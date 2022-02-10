@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2
+namespace Sprint2.Enemy.Bluebat
 {
-	public class EnemyMovingRightState : IEnemyState
+	public class BluebatMovingDownState : IEnemyState
 	{
-		private Enemy enemy;
+		private Enemy bluebat;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -17,13 +17,13 @@ namespace Sprint2
 		private Texture2D sheet;
 
 
-		public EnemyMovingRightState(Enemy enemy)
+		public BluebatMovingDownState(Enemy bluebat)
 		{
-			this.enemy = enemy;
+			this.bluebat = bluebat;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_RIGHT1;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2_RIGHT2;
+			frame1 = EnemySpriteFactory.BLUEBAT_SHEET2_POS1;
+			frame2 = EnemySpriteFactory.BLUEBAT_SHEET2_POS2;
 			this.sheet = this.spriteFactory.getEnemySheet2();
 		}
 
@@ -49,18 +49,17 @@ namespace Sprint2
 		}
 		public void UseWeapon()
 		{
-			//enemy.currState = new EnemyUsingWeaponRight(enemy);
+			//bluebat.currState = new BluebatUsingWeaponDown(bluebat);
 		}
-		
 		public void TakeDamage()
 		{
-			enemy.health--;
-			//enemy.currState = new EnemyDamagedFacingRight(enemy);
+			bluebat.health--;
+			//bluebat.currState = new BluebatDamagedFacingDown(bluebat);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)enemy.pos.X, (int)enemy.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)enemy.pos.X, (int)enemy.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame1.Width, frame1.Height);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame2.Width, frame2.Height);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -73,7 +72,7 @@ namespace Sprint2
 
 		public void Update()
 		{
-			enemy.pos.X++;
+			bluebat.pos.Y++;
 			if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)

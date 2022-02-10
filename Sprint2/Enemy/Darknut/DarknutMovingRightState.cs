@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2
+namespace Sprint2.Enemy.Darknut
 {
-	public class EnemyMovingDownState : IEnemyState
+	public class DarknutMovingRightState : IEnemyState
 	{
-		private Enemy enemy;
+		private Enemy darknut;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -17,13 +17,13 @@ namespace Sprint2
 		private Texture2D sheet;
 
 
-		public EnemyMovingDownState(Enemy enemy)
+		public DarknutMovingRightState(Enemy darknut)
 		{
-			this.enemy = enemy;
+			this.darknut = darknut;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_FRONT1;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2_FRONT2;
+			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_RIGHT1;
+			frame2 = EnemySpriteFactory.DARKNUT_SHEET2_RIGHT2;
 			this.sheet = this.spriteFactory.getEnemySheet2();
 		}
 
@@ -33,7 +33,7 @@ namespace Sprint2
 		}
 		public void StandingFacingDown()
 		{
-			
+
 		}
 		public void StandingFacingRight()
 		{
@@ -49,17 +49,18 @@ namespace Sprint2
 		}
 		public void UseWeapon()
 		{
-			//enemy.currState = new EnemyUsingWeaponDown(enemy);
+			//darknut.currState = new DarknutUsingWeaponRight(darknut);
 		}
+		
 		public void TakeDamage()
 		{
-			enemy.health--;
-			//enemy.currState = new EnemyDamagedFacingDown(enemy);
+			darknut.health--;
+			//darknut.currState = new DarknutDamagedFacingRight(darknut);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)enemy.pos.X, (int)enemy.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)enemy.pos.X, (int)enemy.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame1.Width, frame1.Height);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame2.Width, frame2.Height);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -72,7 +73,7 @@ namespace Sprint2
 
 		public void Update()
 		{
-			enemy.pos.Y++;
+			darknut.pos.X++;
 			if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)
@@ -85,6 +86,6 @@ namespace Sprint2
 			}
 		}
 
-        
-    }   
-    }
+
+	}
+}

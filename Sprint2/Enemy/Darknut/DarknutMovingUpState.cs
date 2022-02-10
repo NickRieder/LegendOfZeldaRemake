@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2
+namespace Sprint2.Enemy.Darknut
 {
-	public class EnemyMovingLeftState : IEnemyState
+	public class DarknutMovingUpState : IEnemyState
 	{
-		private Enemy enemy;
+		private Enemy darknut;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -15,16 +15,18 @@ namespace Sprint2
 		private Rectangle frame2;
 		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private Texture2D sheetMirror;
 
 
-		public EnemyMovingLeftState(Enemy enemy)
+		public DarknutMovingUpState(Enemy darknut)
 		{
-			this.enemy = enemy;
+			this.darknut = darknut;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_LEFT1;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_LEFT2;
+			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_BACK;
+			frame2 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_BACK;
 			this.sheet = this.spriteFactory.getEnemySheet2();
+			this.sheetMirror = this.spriteFactory.getEnemySheet2Mirror();
 		}
 
 		public void StandingFacingUp()
@@ -49,31 +51,31 @@ namespace Sprint2
 		}
 		public void UseWeapon()
 		{
-			//enemy.currState = new EnemyUsingWeaponLeft(enemy);
+			//darknut.currState = new DarknutUsingWeaponRight();
 		}
-	
+		
 		public void TakeDamage()
 		{
-			enemy.health--;
-			//enemy.currState = new EnemyDamagedFacingLeft(enemy);
+			darknut.health--;
+			//darknut.currState = new DarknutDamagedFacingRight(darknut);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)enemy.pos.X, (int)enemy.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)enemy.pos.X, (int)enemy.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame1.Width, frame1.Height);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame2.Width, frame2.Height);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 			}
 			else
 			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
+				spriteBatch.Draw(sheetMirror, destinationRectangleFrame2, frame2, Color.White);
 			}
 		}
 
 		public void Update()
 		{
-			enemy.pos.X--;
+			darknut.pos.Y--;
 			if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)
