@@ -65,7 +65,7 @@ namespace Sprint2.Enemy.Dragon
 			Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame1.Width, frame1.Height);
 			Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame2.Width, frame2.Height);
 			Rectangle destinationRectangleFrame3 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width, frame3.Height);
-			Rectangle destinationRectangleFrame4 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width, frame3.Height);
+			Rectangle destinationRectangleFrame4 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame4.Width, frame4.Height);
 
 			if (currFrame == 0)
 			{
