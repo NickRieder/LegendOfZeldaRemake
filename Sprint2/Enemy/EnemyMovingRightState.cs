@@ -73,7 +73,7 @@ namespace Sprint2
 
 		public void Update()
 		{
-			enemy.pos.Y--;
+			enemy.pos.X++;
 			if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)
