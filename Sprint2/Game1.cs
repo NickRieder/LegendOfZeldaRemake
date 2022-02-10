@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace Sprint2
 {
@@ -26,7 +29,7 @@ namespace Sprint2
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            //LinkSpriteFactory.LoadSpriteSheet();
             // TODO: use this.Content to load your game content here
         }
 
