@@ -9,12 +9,17 @@ namespace Sprint2
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private LinkMovingDownState movingDown;
+        private Link link;
+        private LinkSpriteFactory linkSpriteFactory;
+        private ContentManager content;
+        private Texture2D linkTexture;
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -28,8 +33,13 @@ namespace Sprint2
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //LinkSpriteFactory.LoadSpriteSheet();
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            link = new Link();
+            linkTexture = Content.Load<Texture2D>("Sheets/LinkSheet");
+            // content.RootDirectory = "Content";
+            movingDown = new LinkMovingDownState(link);
+           // linkSpriteFactory = new LinkSpriteFactory();
+           // linkSpriteFactory.LoadSpriteSheet(this.Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -38,15 +48,17 @@ namespace Sprint2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            movingDown.Update();
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            GraphicsDevice.Clear(Color.Gray);
+            spriteBatch.Begin();
+            movingDown.Draw(linkTexture, spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
