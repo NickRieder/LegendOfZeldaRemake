@@ -71,7 +71,7 @@ namespace Sprint2.Enemy.Dragon
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 			}
-			else if (currFrame == 1)
+			else 
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
 				spriteBatch.Draw(sheet, destinationRectangleFrame3, frame3, Color.White);
