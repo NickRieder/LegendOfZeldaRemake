@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Link
+	public class Link : ILinkState
 	{
 		public ILinkState currState;
 
@@ -12,9 +12,9 @@ namespace Sprint2
 
 		
 		public int health;
-		public Link()
+		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
-			//currState = new LinkMovingDownState(this);
+			currState = new LinkMovingDownState(this, linkSpriteFactory);
 			health = 3;
 			pos.X = 40;
 			pos.Y = 40;

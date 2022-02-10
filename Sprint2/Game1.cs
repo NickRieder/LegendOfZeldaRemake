@@ -11,11 +11,9 @@ namespace Sprint2
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private LinkMovingDownState movingDown;
-        private Link link;
         private LinkSpriteFactory linkSpriteFactory;
-        private ContentManager content;
-        private Texture2D linkTexture;
+        private Link link;
+        
 
         public Game1()
         {
@@ -27,20 +25,26 @@ namespace Sprint2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            linkSpriteFactory = new LinkSpriteFactory(this.Content);
+            link = new Link(linkSpriteFactory);
             base.Initialize();
+
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            link = new Link();
-            linkTexture = Content.Load<Texture2D>("Sheets/LinkSheet");
-            // content.RootDirectory = "Content";
-            movingDown = new LinkMovingDownState(link);
-           // linkSpriteFactory = new LinkSpriteFactory();
-           // linkSpriteFactory.LoadSpriteSheet(this.Content);
+
             // TODO: use this.Content to load your game content here
+
+            //linkSpriteFactory.LoadSpriteSheet(this.Content);
+
+            // PROBLEM:
+            // Putting this line of code into the Initialize() function throws an error
+            // because link = new Link(linkSpriteFactory) doesn't know what linkSpriteFactory is yet until the game runs the LoadContent() function.
+            // SOLUTION:
+            // We create a LinkSpriteFactory constructor that loads the sprite sheet upon the initialization of a LinkSpriteFactory object.
+            // link = new Link(linkSpriteFactory);
         }
 
         protected override void Update(GameTime gameTime)
@@ -48,7 +52,7 @@ namespace Sprint2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            movingDown.Update();
+            link.Update();
 
             base.Update(gameTime);
         }
@@ -57,7 +61,7 @@ namespace Sprint2
         {
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
-            movingDown.Draw(linkTexture, spriteBatch);
+            link.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

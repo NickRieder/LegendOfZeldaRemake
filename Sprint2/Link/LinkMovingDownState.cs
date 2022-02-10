@@ -1,46 +1,52 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class LinkMovingDownState
+	public class LinkMovingDownState : ILinkState
 	{
 		private Link link;
 		private int currFrame;
 		private int totalFrames;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private Texture2D sheet;
 		private LinkSpriteFactory spriteFactory;
+		private Texture2D sheet;
+		
 
-		public LinkMovingDownState(Link link)
+		public LinkMovingDownState(Link link, LinkSpriteFactory spriteFactory)
 		{
 			this.link = link;
-			spriteFactory = new LinkSpriteFactory();
+			this.spriteFactory = spriteFactory;
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = LinkSpriteFactory.LINK_MOVE_DOWN_1;
 			frame2 = LinkSpriteFactory.LINK_MOVE_DOWN_2;
-			sheet = spriteFactory.getLinkSheet();
+			this.sheet = this.spriteFactory.getLinkSheet();
 	}
 
-		public void MoveUp()
-		{
-			//link.currState = new LinkFacingUpState(link);
-		}
-		public void MoveDown()
-		{
-			
-		}
-		public void MoveLeft()
-		{
-			//link.currState = new LinkFacingLeftState(link);
-		}
-		public void MoveRight()
-		{
-			//link.currState = new LinkFacingRightState(link);
-		}
+		public void StandingFacingUp()
+        {
+
+        }
+		public void StandingFacingDown()
+        {
+
+        }
+		public void StandingFacingRight()
+        {
+
+        }
+		public void StandingFacingLeft()
+        {
+
+        }
+		public void Move()
+        {
+
+        }
 		public void UseWeapon()
 		{
 			//link.currState = new LinkUsingWeaponDown(link);
@@ -54,7 +60,7 @@ namespace Sprint2
 			link.health--;
 			//link.currState = new LinkDamagedFacingDown(link);
 		}
-		public void Draw(Texture2D sheet, SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch)
 		{
 			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width, frame1.Height);
 			Rectangle destinationRectangleFrame2 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame2.Width, frame2.Height);
