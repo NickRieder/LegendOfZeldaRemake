@@ -1,32 +1,20 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemy
+namespace Sprint2
 {
     public interface IEnemyState
     {
-        // Moving States
-        public void MoveLeftState();
-        public void MoveRightState();
-        public void MoveUpState();
-        public void MoveDownState();
-
-        // Attacking States
-        public void AttackleftState();
-        public void AttackRightState();
-        public void AttackUpState();
-        public void AttackDownState();
-
-        // Implement enemies taking damage states in the future.
-        public void TakeDamageLeftState();
-        public void TakeDamageRightState();
-        public void TakeDamageUpState();
-        public void TakeDamageDownState();
-        // Implement enemies death state in the future.
-        public void Death();          
-
-        public void Update();
-        public void Draw();
+        void StandingFacingUp();
+        void StandingFacingDown();
+        void StandingFacingRight();
+        void StandingFacingLeft();
+        void Move();
+        void UseWeapon();
+        void TakeDamage();
+        void Draw(SpriteBatch spriteBatch);
+        void Update();
     }
 }

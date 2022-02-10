@@ -1,71 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy
+namespace Sprint2
 {
-    public class Enemy
-    {
-        public IEnemyState enemyState;
+	public class Enemy : IEnemyState
+	{
+		public IEnemyState currState;
 
-        public Enemy()
-        {
-            enemyState = new DownMovingEnemyState(this);
-        }
+		public Vector2 pos;
 
-        // Enemy Move
-        public void MoveLeft()
-        {
-            enemyState.MoveLeftState();
-        }
-        public void MoveRight()
-        {
-            enemyState.MoveRightState();
-        }
-        public void MoveUp()
-        {
-            enemyState.MoveUpState();
-        }
-        public void MoveDown()
-        {
-            enemyState.MoveDownState();
-        }
 
-        // Enemy Attack
-        public void AttackLeft()
-        {
-            enemyState.AttackleftState();
-        }
-        public void AttackRight()
-        {
-            enemyState.AttackRightState();
-        }
-        public void AttackUp()
-        {
-            enemyState.AttackUpState();
-        }
-        public void AttackDown()
-        {
-            enemyState.AttackDownState();
-        }
-
-        // Enemy Take Damage
-        public void TakeDamageLeft()
-        {
-
-        }
-        public void TakeDamageRight()
-        {
-
-        }
-        public void TakeDamageUp()
-        {
-
-        }
-        public void TakeDamageDown()
-        {
-
-        }
-
-    }
+		public int health;
+		public Enemy()
+		{
+			currState = new EnemyMovingDownState(this);
+			health = 3;
+			pos.X = 40;
+			pos.Y = 40;
+		}
+		public void StandingFacingUp()
+		{
+			currState.StandingFacingUp();
+		}
+		public void StandingFacingDown()
+		{
+			currState.StandingFacingDown();
+		}
+		public void StandingFacingLeft()
+		{
+			currState.StandingFacingLeft();
+		}
+		public void StandingFacingRight()
+		{
+			currState.StandingFacingRight();
+		}
+		public void Move()
+		{
+			currState.Move();
+		}
+		public void UseWeapon()
+		{
+			currState.UseWeapon();
+		}
+		public void UseItem()
+		{
+			currState.UseItem();
+		}
+		public void TakeDamage()
+		{
+			currState.TakeDamage();
+		}
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			currState.Draw(spriteBatch);
+		}
+		public void Update()
+		{
+			currState.Update();
+		}
+	}
 }
