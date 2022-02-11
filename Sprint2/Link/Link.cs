@@ -10,35 +10,30 @@ namespace Sprint2
 
 		public Vector2 pos;
 
-		
 		public int health;
 		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
-			currState = new LinkMovingDownState(this, linkSpriteFactory);
+			currState = new StandingFacingDown(this, linkSpriteFactory);
 			health = 3;
 			pos.X = 40;
 			pos.Y = 40;
 		}
-		public void StandingFacingUp()
+		public void MoveUp()
         {
-			currState.StandingFacingUp();
+			currState.MoveUp();
         }
-		public void StandingFacingDown()
+		public void MoveDown()
         {
-			currState.StandingFacingDown();
+			currState.MoveDown();
 		}
-		public void StandingFacingLeft()
+		public void MoveLeft()
         {
-			currState.StandingFacingLeft();
+			currState.MoveLeft();
 		}
-		public void StandingFacingRight()
+		public void MoveRight()
         {
-			currState.StandingFacingRight();
+			currState.MoveRight();
 		}
-		public void Move()
-        {
-			currState.Move();
-        }
 		public void UseWeapon()
         {
 			currState.UseWeapon();
