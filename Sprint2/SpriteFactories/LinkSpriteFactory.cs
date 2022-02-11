@@ -6,10 +6,18 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint2
 {
-    class LinkSpriteFactory : ISpriteFactory
+    public class LinkSpriteFactory : ISpriteFactory
     {
         private static Texture2D linkSheet;
         private static Texture2D linkSheetMirrored;
+
+        // Kevin: Added a constructor so that we don't have the problem state on line 42 in the Game1.cs file.
+        public LinkSpriteFactory(ContentManager content)
+        {
+            linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
+            linkSheetMirrored = content.Load<Texture2D>("LinkSheetMirror");
+        }
+
         public void LoadSpriteSheet(ContentManager content)
         {
             linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
