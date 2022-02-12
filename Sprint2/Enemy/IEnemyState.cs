@@ -7,12 +7,11 @@ namespace Sprint2
 {
     public interface IEnemyState
     {
-        void StandingFacingUp();
-        void StandingFacingDown();
-        void StandingFacingRight();
-        void StandingFacingLeft();
-        void Move();
-        void UseWeapon();
+        void MoveUp();
+        void MoveDown();
+        void MoveRight();
+        void MoveLeft();
+        void Attack();
         void TakeDamage();
         void Draw(SpriteBatch spriteBatch);
         void Update();

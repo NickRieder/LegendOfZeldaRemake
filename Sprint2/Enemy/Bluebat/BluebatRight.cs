@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Enemy.Bluebat
 {
-	public class BluebatMovingDownState : IEnemyState
+	public class BluebatRight : IEnemyState
 	{
 		private Enemy bluebat;
 		private int currFrame;
@@ -17,7 +17,7 @@ namespace Sprint2.Enemy.Bluebat
 		private Texture2D sheet;
 
 
-		public BluebatMovingDownState(Enemy bluebat)
+		public BluebatRight(Enemy bluebat)
 		{
 			this.bluebat = bluebat;
 			currFrame = 0;
@@ -27,30 +27,39 @@ namespace Sprint2.Enemy.Bluebat
 			this.sheet = this.spriteFactory.getEnemySheet2();
 		}
 
-		public void StandingFacingUp()
+		public void MoveUp()
 		{
+			bluebat.currState = new BluebatUp(bluebat);
 
 		}
-		public void StandingFacingDown()
+		public void MoveDown()
 		{
 
+			bluebat.currState = new BluebatDown(bluebat);
 		}
-		public void StandingFacingRight()
+		public void MoveRight()
 		{
+			bluebat.pos.X++;
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
+				currFrame = 0;
+			counter++;
 
+			if (currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
 		}
-		public void StandingFacingLeft()
+		public void MoveLeft()
 		{
-
+			bluebat.currState = new BluebatLeft(bluebat);
 		}
-		public void Move()
-		{
-
-		}
-		public void UseWeapon()
+		public void Attack()
 		{
 			//bluebat.currState = new BluebatUsingWeaponDown(bluebat);
 		}
+
 		public void TakeDamage()
 		{
 			bluebat.health--;
@@ -72,17 +81,7 @@ namespace Sprint2.Enemy.Bluebat
 
 		public void Update()
 		{
-			bluebat.pos.Y++;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
 
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
 
 

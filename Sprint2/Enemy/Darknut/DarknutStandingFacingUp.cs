@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Enemy.Darknut
 {
-	public class DarknutMovingDownState : IEnemyState
+	public class DarknutStandingFacingUp : IEnemyState
 	{
 		private Enemy darknut;
 		private int currFrame;
@@ -15,41 +15,52 @@ namespace Sprint2.Enemy.Darknut
 		private Rectangle frame2;
 		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private Texture2D sheetMirror;
 
 
-		public DarknutMovingDownState(Enemy darknut)
+		public DarknutStandingFacingUp(Enemy darknut)
 		{
 			this.darknut = darknut;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_FRONT1;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2_FRONT2;
+			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_BACK;
+			frame2 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_BACK;
 			this.sheet = this.spriteFactory.getEnemySheet2();
+			this.sheetMirror = this.spriteFactory.getEnemySheet2Mirror();
 		}
 
-		public void StandingFacingUp()
+		public void MoveUp()
 		{
+			darknut.pos.Y--;
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
+				currFrame = 0;
+			counter++;
+
+			if (currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
 
 		}
-		public void StandingFacingDown()
+		public void MoveDown()
 		{
-			
-		}
-		public void StandingFacingRight()
-		{
+			darknut.currState = new DarknutStandingFacingDown(darknut);
 
 		}
-		public void StandingFacingLeft()
+		public void MoveRight()
+		{
+			darknut.currState = new DarknutStandingFacingRight(darknut);
+		}
+		public void MoveLeft()
+		{
+			darknut.currState = new DarknutStandingFacingLeft(darknut);
+		}
+
+		public void Attack()
 		{
 
-		}
-		public void Move()
-		{
-
-		}
-		public void UseWeapon()
-		{
-			//darknut.currState = new DarknutUsingWeaponDown(darknut);
 		}
 		public void TakeDamage()
 		{
@@ -66,25 +77,14 @@ namespace Sprint2.Enemy.Darknut
 			}
 			else
 			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
+				spriteBatch.Draw(sheetMirror, destinationRectangleFrame2, frame2, Color.White);
 			}
 		}
 
 		public void Update()
 		{
-			darknut.pos.Y++;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
 
-        
-    }   
-    }
+
+	}
+}

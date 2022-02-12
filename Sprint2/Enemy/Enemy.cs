@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2
+namespace Sprint2.Enemy
 {
 	public class Enemy : IEnemyState
 	{
@@ -15,38 +15,40 @@ namespace Sprint2
 		public int health;
 		public Enemy()
 		{
-			currState = new EnemyMovingDownState(this);
+			/*TODO: currState has a different name for each enemy. We want the current state to 
+			 * either be a front sprite or a right sprite if the sheet does not have front sprite.
+			 * 
+			 * POSSIBLE SOLUTION: Make an IEnemyState currState variable for all every single file.
+			 * 
+			 * MY RECOMMENDED SOLUTION: Make an enemy class for each folder but not sure how that 
+			 * would be coded since each up, right, down, left classes each have implemetations for 
+			 * each move method
+			 */
+			//currState = new BluebatDown(this);  <-- BluebatDown needs to be able to change depedning on folder
 			health = 3;
 			pos.X = 40;
 			pos.Y = 40;
 		}
-		public void StandingFacingUp()
+		public void MoveUp()
 		{
-			currState.StandingFacingUp();
+			currState.MoveDown();
 		}
-		public void StandingFacingDown()
+		public void MoveDown()
 		{
-			currState.StandingFacingDown();
+			currState.MoveDown();
 		}
-		public void StandingFacingLeft()
+		public void MoveLeft()
 		{
-			currState.StandingFacingLeft();
+			currState.MoveLeft();
 		}
-		public void StandingFacingRight()
+		public void MoveRight()
 		{
-			currState.StandingFacingRight();
+			currState.MoveRight();
 		}
-		public void Move()
+	
+		public void Attack()
 		{
-			currState.Move();
-		}
-		public void UseWeapon()
-		{
-			currState.UseWeapon();
-		}
-		public void UseItem()
-		{
-			currState.UseItem();
+			currState.Attack();
 		}
 		public void TakeDamage()
 		{

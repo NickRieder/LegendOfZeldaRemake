@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Enemy.Dragon
 {
-	public class DragonMovingDownState : IEnemyState
+	public class DragonStandingFacingLeft : IEnemyState
 	{
 		private Enemy dragon;
 		private int currFrame;
@@ -19,46 +19,55 @@ namespace Sprint2.Enemy.Dragon
 		private Texture2D sheet;
 
 
-		public DragonMovingDownState(Enemy dragon)
+		public DragonStandingFacingLeft(Enemy dragon)
 		{
 			this.dragon = dragon;
 			currFrame = 0;
-			totalFrames = 4;
+			totalFrames = 3;
 			frame1 = EnemySpriteFactory.DRAGON_SHEET1_LEFT1;
 			frame2 = EnemySpriteFactory.DRAGON_SHEET1_LEFT2;
-		    frame3 = EnemySpriteFactory.DRAGON_SHEET1_LEFT3;
+			frame3 = EnemySpriteFactory.DRAGON_SHEET1_LEFT3;
 			frame4 = EnemySpriteFactory.DRAGON_SHEET1_LEFT4;
 			this.sheet = this.spriteFactory.getEnemySheet1();
 		}
 
-		public void StandingFacingUp()
+		public void MoveUp()
 		{
+			dragon.currState = new DragonStandingFacingUp(dragon);
 
 		}
-		public void StandingFacingDown()
+		public void MoveDown()
 		{
+			dragon.currState = new DragonStandingFacingDown(dragon);
+		}
+		public void MoveRight()
+		{
+			dragon.currState = new DragonStandingFacingRight(dragon);
+		}
+		public void MoveLeft()
+		{
+			dragon.pos.X--;
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
+				currFrame = 0;
+			counter++;
+
+			if (currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
 
 		}
-		public void StandingFacingRight()
+
+		public void Attack()
 		{
 
-		}
-		public void StandingFacingLeft()
-		{
-
-		}
-		public void Move()
-		{
-
-		}
-		public void UseWeapon()
-		{
-			//dragon.currState = new DragonUsingWeaponDown(dragon);
 		}
 		public void TakeDamage()
 		{
 			dragon.health--;
-			//dragon.currState = new DragonDamagedFacingDown(dragon);
+			//dragon.currState = new dragonDamagedFacingDown(dragon);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
@@ -71,30 +80,23 @@ namespace Sprint2.Enemy.Dragon
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 			}
-			else 
+			else if (currFrame == 1)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
+			}
+			else if (currFrame == 2)
+			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame3, frame3, Color.White);
+			}
+			else if (currFrame == 3)
+			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame4, frame4, Color.White);
 			}
-			
+
 		}
 
 		public void Update()
 		{
-			dragon.pos.Y++;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
-
-
 	}
 }

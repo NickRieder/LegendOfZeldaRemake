@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Enemy.Darknut
 {
-	public class DarknutMovingLeftState : IEnemyState
+	public class DarknutStandingFacingRight : IEnemyState
 	{
 		private Enemy darknut;
 		private int currFrame;
@@ -17,45 +17,53 @@ namespace Sprint2.Enemy.Darknut
 		private Texture2D sheet;
 
 
-		public DarknutMovingLeftState(Enemy darknut)
+		public DarknutStandingFacingRight(Enemy darknut)
 		{
 			this.darknut = darknut;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_LEFT1;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_LEFT2;
+			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_RIGHT1;
+			frame2 = EnemySpriteFactory.DARKNUT_SHEET2_RIGHT2;
 			this.sheet = this.spriteFactory.getEnemySheet2();
 		}
 
-		public void StandingFacingUp()
+		public void MoveUp()
+		{
+			darknut.currState = new DarknutStandingFacingUp(darknut);
+
+		}
+		public void MoveDown()
+		{
+			darknut.currState = new DarknutStandingFacingRight(darknut);
+
+		}
+		public void MoveRight()
+		{
+			darknut.pos.X++;
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
+				currFrame = 0;
+			counter++;
+
+			if (currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
+		}
+		public void MoveLeft()
+		{
+			darknut.currState = new DarknutStandingFacingLeft(darknut);
+		}
+
+		public void Attack()
 		{
 
 		}
-		public void StandingFacingDown()
-		{
-
-		}
-		public void StandingFacingRight()
-		{
-
-		}
-		public void StandingFacingLeft()
-		{
-
-		}
-		public void Move()
-		{
-
-		}
-		public void UseWeapon()
-		{
-			//darknut.currState = new DarknutUsingWeaponLeft(darknut);
-		}
-	
 		public void TakeDamage()
 		{
 			darknut.health--;
-			//darknut.currState = new DarknutDamagedFacingLeft(darknut);
+			//darknut.currState = new DarknutDamagedFacingDown(darknut);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
@@ -73,17 +81,7 @@ namespace Sprint2.Enemy.Darknut
 
 		public void Update()
 		{
-			darknut.pos.X--;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
+			
 		}
 
 

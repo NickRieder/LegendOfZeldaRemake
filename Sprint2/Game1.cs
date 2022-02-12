@@ -39,7 +39,7 @@ namespace Sprint2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            keyboardController.RegisterCommand(Keys.S, new SetMovingDown(link));
+            keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
 
             // TODO: use this.Content to load your game content here
 

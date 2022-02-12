@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Enemy.Bluegel
 {
-	public class BluegelMovingDownState : IEnemyState
+	public class BluegelRight : IEnemyState
 	{
 		private Enemy blueGel;
 		private int currFrame;
@@ -17,9 +17,9 @@ namespace Sprint2.Enemy.Bluegel
 		private Texture2D sheet;
 
 
-		public BluegelMovingDownState(Enemy blueGell)
+		public BluegelRight(Enemy blueGell)
 		{
-			this.blueGel = blueGel;
+			
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = EnemySpriteFactory.BLUEGEL_SHEET2_POS1;
@@ -27,30 +27,39 @@ namespace Sprint2.Enemy.Bluegel
 			this.sheet = this.spriteFactory.getEnemySheet2();
 		}
 
-		public void StandingFacingUp()
+		public void MoveUp()
+		{
+			blueGel.currState = new BluegelUp(blueGel);
+
+		}
+		public void MoveDown()
+		{
+
+			blueGel.currState = new BluegelDown(blueGel);
+		}
+		public void MoveRight()
+		{
+			blueGel.pos.X++;
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
+				currFrame = 0;
+			counter++;
+
+			if (currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
+		}
+		public void MoveLeft()
+		{
+			blueGel.currState = new BluegelLeft(blueGel);
+		}
+		public void Attack()
 		{
 
 		}
-		public void StandingFacingDown()
-		{
 
-		}
-		public void StandingFacingRight()
-		{
-
-		}
-		public void StandingFacingLeft()
-		{
-
-		}
-		public void Move()
-		{
-
-		}
-		public void UseWeapon()
-		{
-			//blueGel.currState = new BlueGelUsingWeaponDown(blueGel);
-		}
 		public void TakeDamage()
 		{
 			blueGel.health--;
@@ -72,17 +81,7 @@ namespace Sprint2.Enemy.Bluegel
 
 		public void Update()
 		{
-			blueGel.pos.Y++;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
 
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
 
 
