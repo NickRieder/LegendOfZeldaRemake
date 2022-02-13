@@ -30,13 +30,14 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width, frame1.Height);
+			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 		}
 		public void Update()
 		{
 			if (++currFrame == totalFrames)
 			{
-				//link.currState = new StandingFacingDown(link);
+				link.currState = new StandingFacingDown(link);
 			}
 		}
 

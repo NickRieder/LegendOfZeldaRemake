@@ -9,10 +9,10 @@ namespace Sprint2
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private LinkSpriteFactory linkSpriteFactory;
-        private Link link;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
+        public LinkSpriteFactory linkSpriteFactory;
+        public Link link;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -46,13 +46,6 @@ namespace Sprint2
             linkSpriteFactory.LoadSpriteSheet();
             link = new Link(linkSpriteFactory); 
             keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
-
-            // PROBLEM:
-            // Putting this line of code into the Initialize() function throws an error
-            // because link = new Link(linkSpriteFactory) doesn't know what linkSpriteFactory is yet until the game runs the LoadContent() function.
-            // SOLUTION:
-            // We create a LinkSpriteFactory constructor that loads the sprite sheet upon the initialization of a LinkSpriteFactory object.
-            // link = new Link(linkSpriteFactory);
         }
 
         protected override void Update(GameTime gameTime)
