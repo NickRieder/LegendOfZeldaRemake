@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace Sprint2
 {
@@ -13,6 +13,8 @@ namespace Sprint2
         private SpriteBatch spriteBatch;
         private LinkSpriteFactory linkSpriteFactory;
         private Link link;
+        private ArrayList controllerList;
+        private KeyboardController keyboardController;
         
 
         public Game1()
@@ -26,7 +28,10 @@ namespace Sprint2
         {
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
-            link = new Link(linkSpriteFactory);
+            controllerList = new ArrayList();
+            
+            keyboardController = new KeyboardController();
+            controllerList.Add(keyboardController);
             base.Initialize();
 
         }
@@ -34,10 +39,13 @@ namespace Sprint2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
             // TODO: use this.Content to load your game content here
 
-            //linkSpriteFactory.LoadSpriteSheet(this.Content);
+            linkSpriteFactory.LoadSpriteSheet();
+            link = new Link(linkSpriteFactory); 
+            keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
 
             // PROBLEM:
             // Putting this line of code into the Initialize() function throws an error
@@ -51,8 +59,10 @@ namespace Sprint2
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            link.Update();
+            foreach (IController controller in controllerList)
+            {
+                controller.update();
+            }
 
             base.Update(gameTime);
         }

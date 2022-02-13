@@ -9,7 +9,14 @@ namespace Sprint2
     class ItemSpriteFactory : ISpriteFactory
     {
         private static Texture2D linkSheetFlipped;
-        public void LoadSpriteSheet(ContentManager content)
+        private ContentManager content;
+
+        public ItemSpriteFactory(ContentManager content)
+        {
+            this.content = content;
+        }
+
+        public void LoadSpriteSheet()
         {
             linkSheetFlipped = content.Load<Texture2D>("Sheets/LinkSheetUpsideDown");
         }

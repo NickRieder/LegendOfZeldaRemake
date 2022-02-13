@@ -10,15 +10,17 @@ namespace Sprint2
     {
         private static Texture2D linkSheet;
         private static Texture2D linkSheetMirrored;
+        private ContentManager content;
 
-        // Kevin: Added a constructor so that we don't have the problem state on line 42 in the Game1.cs file.
+        // Kevin: Added a constructor so that we don't have the problem stated on line 42 in the Game1.cs file.
         public LinkSpriteFactory(ContentManager content)
         {
-            linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
-            linkSheetMirrored = content.Load<Texture2D>("LinkSheetMirror");
+            this.content = content;
+            //linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
+            //linkSheetMirrored = content.Load<Texture2D>("LinkSheetMirror");
         }
 
-        public void LoadSpriteSheet(ContentManager content)
+        public void LoadSpriteSheet()
         {
             linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
             linkSheetMirrored = content.Load<Texture2D>("LinkSheetMirror");

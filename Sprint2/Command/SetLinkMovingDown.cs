@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Sprint2
+{
+    class SetLinkMovingDown : ICommand
+    {
+        private Link link;
+        public SetLinkMovingDown(Link link)
+        {
+            this.link = link;
+        }
+
+
+
+        public void Execute()
+        {
+            link.MoveDown();
+        }
+    }
+}

@@ -12,7 +12,14 @@ namespace Sprint2
         private static Texture2D enemySheet1Mirror;
         private static Texture2D enemySheet2;
         private static Texture2D enemySheet2Mirror;
-        public void LoadSpriteSheet(ContentManager content)
+        private ContentManager content;
+
+        public EnemySpriteFactory(ContentManager content)
+        {
+            this.content = content;
+        }
+
+        public void LoadSpriteSheet()
         {
             enemySheet1 = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet1Mirror = content.Load<Texture2D>("Sheets/EnemySheet1Mirror");
@@ -71,13 +78,15 @@ namespace Sprint2
         public static Rectangle DARKNUT_SHEET2_RIGHT2 = new Rectangle(69, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2MIRROR_LEFT1 = new Rectangle(372, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2MIRROR_LEFT2 = new Rectangle(389, 90, 16, 16);
+        public static Rectangle DARKNUT_SHEET2MIRROR_BACK = new Rectangle(405, 90, 16, 16);
+
 
         public static Rectangle WIZZROBE_SHEET2_RIGHT1 = new Rectangle(126, 90, 16, 16);
         public static Rectangle WIZZROBE_SHEET2_RIGHT2 = new Rectangle(143, 90, 16, 16);
         public static Rectangle WIZZROBE_SHEET2_BACK1 = new Rectangle(160, 90, 16, 16);
         public static Rectangle WIZZROBE_SHEET2_BACK2 = new Rectangle(177, 90, 16, 16);
-        public static Rectangle WIZZROBE_SHEET2MIRROR_LEFT1 = new Rectangle(298, 90, 16, 16);
-        public static Rectangle WIZZROBE_SHEET2MIRROR_LEFT2 = new Rectangle(298, 90, 16, 16);
+        public static Rectangle WIZZROBE_SHEET2MIRROR_LEFT1 = new Rectangle(298, 89, 16, 16);
+        public static Rectangle WIZZROBE_SHEET2MIRROR_LEFT2 = new Rectangle(314, 89, 16, 16);
 
         public static Rectangle GORIYA_SHEET2_FRONT = new Rectangle(222, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2_BACK = new Rectangle(239, 11, 16, 16);
@@ -88,6 +97,8 @@ namespace Sprint2
         public static Rectangle GORIYA_SHEET2_WEAPONRIGHT3 = new Rectangle(308, 11, 8, 16);
 
         public static Rectangle GORIYA_SHEET2MIRROR_LEFT = new Rectangle(185, 11, 16, 16);
+        public static Rectangle GORIYA_SHEET2MIRROR_BACK = new Rectangle(201, 11, 16, 16);
+        public static Rectangle GORIYA_SHEET2MIRROR_FRONT = new Rectangle(219, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_THROWLEFT = new Rectangle(168, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_WEAPONLEFT1 = new Rectangle(159, 11, 8, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_WEAPONLEFT2 = new Rectangle(150, 11, 8, 16);

@@ -9,7 +9,14 @@ namespace Sprint2
     class BlockSpriteFactory : ISpriteFactory
     {
         private static Texture2D tileSheet;
-        public void LoadSpriteSheet(ContentManager content)
+        private ContentManager content;
+
+        public BlockSpriteFactory(ContentManager content)
+        {
+            this.content = content;
+        }
+
+        public void LoadSpriteSheet()
         {
             tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
         }
