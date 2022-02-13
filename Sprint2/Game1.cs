@@ -29,7 +29,7 @@ namespace Sprint2
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
             controllerList = new ArrayList();
-            link = new Link(linkSpriteFactory);
+            
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
             base.Initialize();
@@ -39,11 +39,13 @@ namespace Sprint2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            keyboardController.RegisterCommand(Keys.S, new SetMovingDown(link));
+            
 
             // TODO: use this.Content to load your game content here
 
-            //linkSpriteFactory.LoadSpriteSheet(this.Content);
+            linkSpriteFactory.LoadSpriteSheet();
+            link = new Link(linkSpriteFactory); 
+            keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
 
             // PROBLEM:
             // Putting this line of code into the Initialize() function throws an error

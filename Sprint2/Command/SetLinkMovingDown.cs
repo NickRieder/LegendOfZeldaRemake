@@ -4,13 +4,15 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetMovingDown : ICommand
+    class SetLinkMovingDown : ICommand
     {
         private Link link;
-        public SetMovingDown(Link link)
+        public SetLinkMovingDown(Link link)
         {
             this.link = link;
         }
+
+
 
         public void Execute()
         {
