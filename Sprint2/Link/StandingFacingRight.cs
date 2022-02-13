@@ -32,7 +32,11 @@ namespace Sprint2
 		}
 		public void MoveRight()
 		{
-			// No OP
+			link.pos.X += 5;
+			if (++currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
 		}
 		public void MoveLeft()
 		{

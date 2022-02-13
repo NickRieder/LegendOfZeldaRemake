@@ -24,7 +24,11 @@ namespace Sprint2
 		}
 		public void MoveUp()
 		{
-			// No OP
+			link.pos.Y -= 5;
+			if (++currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
 		}
 		public void MoveDown()
 		{

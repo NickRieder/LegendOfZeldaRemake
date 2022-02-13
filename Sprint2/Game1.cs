@@ -11,8 +11,8 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public LinkSpriteFactory linkSpriteFactory;
-        public Link link;
+        private LinkSpriteFactory linkSpriteFactory;
+        private Link link;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -46,6 +46,9 @@ namespace Sprint2
             linkSpriteFactory.LoadSpriteSheet();
             link = new Link(linkSpriteFactory); 
             keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
+            keyboardController.RegisterCommand(Keys.W, new SetLinkMovingUp(link));
+            keyboardController.RegisterCommand(Keys.A, new SetLinkMovingLeft(link));
+            keyboardController.RegisterCommand(Keys.D, new SetLinkMovingRight(link));
         }
 
         protected override void Update(GameTime gameTime)

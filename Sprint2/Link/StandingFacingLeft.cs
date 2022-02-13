@@ -36,7 +36,11 @@ namespace Sprint2
 		}
 		public void MoveLeft()
 		{
-			// No OP
+			link.pos.X -= 5;
+			if (++currFrame == totalFrames)
+			{
+				currFrame = 0;
+			}
 		}
 		public void UseWeapon()
 		{
