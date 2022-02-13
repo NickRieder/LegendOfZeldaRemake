@@ -9,11 +9,12 @@ namespace Sprint2
 		public ILinkState currState;
 
 		public Vector2 pos;
-
+		public LinkSpriteFactory spriteFactory;
 		public int health;
 		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
-			currState = new StandingFacingDown(this, linkSpriteFactory);
+			spriteFactory = linkSpriteFactory;
+			currState = new StandingFacingDown(this);
 			health = 3;
 			pos.X = 40;
 			pos.Y = 40;

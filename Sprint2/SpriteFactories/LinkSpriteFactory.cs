@@ -16,14 +16,12 @@ namespace Sprint2
         public LinkSpriteFactory(ContentManager content)
         {
             this.content = content;
-            //linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
-            //linkSheetMirrored = content.Load<Texture2D>("LinkSheetMirror");
         }
 
         public void LoadSpriteSheet()
         {
             linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
-            linkSheetMirrored = content.Load<Texture2D>("LinkSheetMirror");
+            linkSheetMirrored = content.Load<Texture2D>("Sheets/LinkSheetMirror");
         }
 
         public Texture2D getLinkSheet()

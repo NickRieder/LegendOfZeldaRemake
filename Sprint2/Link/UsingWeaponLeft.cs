@@ -10,17 +10,15 @@ namespace Sprint2
 		private int currFrame;
 		private int totalFrames;
 		private Rectangle frame1;
-		private LinkSpriteFactory spriteFactory;
 		private Texture2D sheet;
 
 		public UsingWeaponLeft(Link link)
 		{
 			this.link = link;
-			this.spriteFactory = spriteFactory; // needs to be changed. based off class where spriteFactory was passed as param
 			currFrame = 0;
 			totalFrames = 1;
 			frame1 = LinkSpriteFactory.LINK_USESWORD_MIRROR_LEFT;
-			this.sheet = this.spriteFactory.getLinkSheetMirrored();
+			this.sheet = link.spriteFactory.getLinkSheetMirrored();
 		}
 
 		public void TakeDamage()
@@ -30,7 +28,8 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width, frame1.Height);
+			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 		}
 		public void Update()
 		{

@@ -11,18 +11,16 @@ namespace Sprint2
 		private int totalFrames;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private LinkSpriteFactory spriteFactory;
 		private Texture2D sheet;
 
-		public StandingFacingDown(Link link, LinkSpriteFactory spriteFactory)
+		public StandingFacingDown(Link link)
 		{
 			this.link = link;
-			this.spriteFactory = spriteFactory;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = LinkSpriteFactory.LINK_MOVE_MIRROR_LEFT_1;
-			frame2 = LinkSpriteFactory.LINK_MOVE_MIRROR_LEFT_2;
-			this.sheet = this.spriteFactory.getLinkSheetMirrored();
+			frame1 = LinkSpriteFactory.LINK_MOVE_DOWN_1;
+			frame2 = LinkSpriteFactory.LINK_MOVE_DOWN_2;
+			this.sheet = link.spriteFactory.getLinkSheet();
 		}
 		public void MoveUp()
 		{
