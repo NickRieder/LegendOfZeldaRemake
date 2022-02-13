@@ -12,7 +12,14 @@ namespace Sprint2
         private static Texture2D enemySheet1Mirror;
         private static Texture2D enemySheet2;
         private static Texture2D enemySheet2Mirror;
-        public void LoadSpriteSheet(ContentManager content)
+        private ContentManager content;
+
+        public EnemySpriteFactory(ContentManager content)
+        {
+            this.content = content;
+        }
+
+        public void LoadSpriteSheet()
         {
             enemySheet1 = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet1Mirror = content.Load<Texture2D>("Sheets/EnemySheet1Mirror");
