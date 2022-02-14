@@ -15,6 +15,7 @@ namespace Sprint2
         public ItemSpriteFactory itemSpriteFactory;
         public Link link;
         private Item item;
+
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -65,9 +66,14 @@ namespace Sprint2
             itemSpriteFactory.LoadSpriteSheet();
             item = new Item(itemSpriteFactory);
 
-            keyboardController.RegisterCommandHold(Keys.D, new SetMovingRight(link));
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+            
+            keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
+            keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
+            keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
+            keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
+
         }
 
         protected override void Update(GameTime gameTime)
