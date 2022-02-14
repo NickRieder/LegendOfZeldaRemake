@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Darknut
+namespace Sprint2
 {
 	public class DarknutStandingFacingUp : IEnemyState
 	{
-		private Enemy darknut;
+		private Enemies darknut;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -18,7 +18,7 @@ namespace Sprint2.Enemy.Darknut
 		private Texture2D sheetMirror;
 
 
-		public DarknutStandingFacingUp(Enemy darknut)
+		public DarknutStandingFacingUp(Enemies darknut)
 		{
 			this.darknut = darknut;
 			currFrame = 0;

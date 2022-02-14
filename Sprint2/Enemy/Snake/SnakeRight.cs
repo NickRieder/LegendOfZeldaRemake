@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Snake
+namespace Sprint2
 {
 	public class SnakeRight : IEnemyState
 	{
-		private Enemy snake;
+		private Enemies snake;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -17,7 +17,7 @@ namespace Sprint2.Enemy.Snake
 		private Texture2D sheet;
 
 
-		public SnakeRight(Enemy snake)
+		public SnakeRight(Enemies snake)
 		{
 			this.snake = snake;
 			currFrame = 0;

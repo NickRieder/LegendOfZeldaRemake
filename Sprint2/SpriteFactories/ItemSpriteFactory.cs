@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint2
 {
-    class ItemSpriteFactory : ISpriteFactory
+    public class ItemSpriteFactory : ISpriteFactory
     {
         private static Texture2D linkSheetFlipped;
         private ContentManager content;

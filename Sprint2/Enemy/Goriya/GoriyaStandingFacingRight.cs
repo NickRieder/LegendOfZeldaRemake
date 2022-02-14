@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Goriya
+namespace Sprint2
 {
 	public class GoriyaStandingFacingRight : IEnemyState
 	{
-		private Enemy goriya;
+		private Enemies goriya;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -17,7 +17,7 @@ namespace Sprint2.Enemy.Goriya
 		private Texture2D sheet;
 
 
-		public GoriyaStandingFacingRight(Enemy goriya)
+		public GoriyaStandingFacingRight(Enemies goriya)
 		{
 			this.goriya = goriya;
 			currFrame = 0;

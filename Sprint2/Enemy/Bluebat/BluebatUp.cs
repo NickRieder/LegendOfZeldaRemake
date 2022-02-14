@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Bluebat
+namespace Sprint2
 {
 	public class BluebatUp : IEnemyState
 	{
-		private Enemy bluebat;
+		private Enemies bluebat;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -15,16 +15,17 @@ namespace Sprint2.Enemy.Bluebat
 		private Rectangle frame2;
 		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private Game1 game;
 
-
-		public BluebatUp(Enemy bluebat)
+		public BluebatUp(Game1 game)
 		{
-			this.bluebat = bluebat;
+			this.game = game;
+			bluebat = game.bluebatEnemy;
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = EnemySpriteFactory.BLUEBAT_SHEET2_POS1;
 			frame2 = EnemySpriteFactory.BLUEBAT_SHEET2_POS2;
-			this.sheet = this.spriteFactory.getEnemySheet2();
+			this.sheet = bluebat.spriteFactory.getEnemySheet2();
 		}
 
 		public void MoveUp()
@@ -44,16 +45,16 @@ namespace Sprint2.Enemy.Bluebat
 		}
 		public void MoveDown()
 		{
-			bluebat.currState = new BluebatDown(bluebat);
+			bluebat.currState = new BluebatDown(game);
 
 		}
 		public void MoveRight()
 		{
-			bluebat.currState = new BluebatRight(bluebat);
+			bluebat.currState = new BluebatRight(game);
 		}
 		public void MoveLeft()
 		{
-			bluebat.currState = new BluebatLeft(bluebat);
+			bluebat.currState = new BluebatLeft(game);
 		}
 		public void Attack()
 		{

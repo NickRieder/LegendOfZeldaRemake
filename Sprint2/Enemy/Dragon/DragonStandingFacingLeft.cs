@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Dragon
+namespace Sprint2
 {
 	public class DragonStandingFacingLeft : IEnemyState
 	{
-		private Enemy dragon;
+		private Enemies dragon;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -19,7 +19,7 @@ namespace Sprint2.Enemy.Dragon
 		private Texture2D sheet;
 
 
-		public DragonStandingFacingLeft(Enemy dragon)
+		public DragonStandingFacingLeft(Enemies dragon)
 		{
 			this.dragon = dragon;
 			currFrame = 0;

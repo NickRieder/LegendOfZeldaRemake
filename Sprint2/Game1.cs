@@ -11,8 +11,10 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        private LinkSpriteFactory linkSpriteFactory;
-        private Link link;
+        public LinkSpriteFactory linkSpriteFactory;
+        public EnemySpriteFactory enemySpriteFactory;
+        public Link link;
+        public Enemies bluebatEnemy;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -28,6 +30,7 @@ namespace Sprint2
         {
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
+            enemySpriteFactory = new EnemySpriteFactory(this.Content);
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
@@ -44,7 +47,12 @@ namespace Sprint2
             // TODO: use this.Content to load your game content here
 
             linkSpriteFactory.LoadSpriteSheet();
-            link = new Link(linkSpriteFactory); 
+            link = new Link(linkSpriteFactory);
+
+            enemySpriteFactory.LoadSpriteSheet();
+            bluebatEnemy = new Enemies(enemySpriteFactory);
+            bluebatEnemy.setEnemyType(new BluebatDown(this));
+
             keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
             keyboardController.RegisterCommand(Keys.W, new SetLinkMovingUp(link));
             keyboardController.RegisterCommand(Keys.A, new SetLinkMovingLeft(link));

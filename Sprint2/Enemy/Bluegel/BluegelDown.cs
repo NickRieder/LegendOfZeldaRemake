@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Bluegel
+namespace Sprint2
 {
 	public class BluegelDown : IEnemyState
 	{
-		private Enemy blueGel;
+		private Enemies blueGel;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -17,7 +17,7 @@ namespace Sprint2.Enemy.Bluegel
 		private Texture2D sheet;
 
 
-		public BluegelDown(Enemy blueGell)
+		public BluegelDown(Enemies blueGell)
 		{
 			
 			currFrame = 0;
