@@ -12,7 +12,9 @@ namespace Sprint2
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public LinkSpriteFactory linkSpriteFactory;
+        public ItemSpriteFactory itemSpriteFactory;
         public Link link;
+        private Item item;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -28,10 +30,15 @@ namespace Sprint2
         {
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
+            itemSpriteFactory = new ItemSpriteFactory(this.Content);
+            
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
+
+            
+            
             base.Initialize();
 
         }
@@ -39,13 +46,28 @@ namespace Sprint2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
 
             // TODO: use this.Content to load your game content here
 
+            //linkSpriteFactory.LoadSpriteSheet(this.Content);
+
+            // PROBLEM:
+            // Putting this line of code into the Initialize() function throws an error
+            // because link = new Link(linkSpriteFactory) doesn't know what linkSpriteFactory is yet until the game runs the LoadContent() function.
+            // SOLUTION:
+            // We create a LinkSpriteFactory constructor that loads the sprite sheet upon the initialization of a LinkSpriteFactory object.
+            // link = new Link(linkSpriteFactory);
+
             linkSpriteFactory.LoadSpriteSheet();
-            link = new Link(linkSpriteFactory); 
-            keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
+            link = new Link(linkSpriteFactory);
+
+            itemSpriteFactory.LoadSpriteSheet();
+            item = new Item(itemSpriteFactory);
+
+            keyboardController.RegisterCommandHold(Keys.D, new SetMovingRight(link));
+            keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
+            keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
         }
 
         protected override void Update(GameTime gameTime)
@@ -57,6 +79,7 @@ namespace Sprint2
                 controller.update();
             }
 
+
             base.Update(gameTime);
         }
 
@@ -65,6 +88,7 @@ namespace Sprint2
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
             link.Draw(spriteBatch);
+            item.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
