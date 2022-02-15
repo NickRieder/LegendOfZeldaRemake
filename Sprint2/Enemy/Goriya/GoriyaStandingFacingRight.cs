@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
 
 namespace Sprint2
 {
@@ -13,29 +15,39 @@ namespace Sprint2
 		private int counter;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private EnemiesList enemiesList;
+		private double totalSecondsPassed;
+		private double waitTime;
+		private TimeSpan elapsedTime;
+		private double secondsPassed;
+		Random randomNumberGenerator;
+		private int randomNum;
+		private int chosenDirectionValue;
 
-
-		public GoriyaStandingFacingRight(Enemies goriya)
+		public GoriyaStandingFacingRight(EnemiesList enemiesList)
 		{
-			this.goriya = goriya;
+			randomNumberGenerator = new Random();
+			totalSecondsPassed = 0;
+			waitTime = 0.25;
+
+			this.enemiesList = enemiesList;
+			goriya = enemiesList.goriya;
+			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = EnemySpriteFactory.GORIYA_SHEET2_RIGHT;
 			frame2 = EnemySpriteFactory.GORIYA_SHEET2_THROWRIGHT;
-			this.sheet = this.spriteFactory.getEnemySheet2();
+			this.sheet = goriya.spriteFactory.getEnemySheet2();
 		}
 
 		public void MoveUp()
 		{
-			goriya.currState = new GoriyaStandingFacingUp(goriya);
-
+			goriya.currState = new GoriyaStandingFacingUp(enemiesList);
 		}
 		public void MoveDown()
 		{
-			goriya.currState = new GoriyaStandingFacingRight(goriya);
-
+			goriya.currState = new GoriyaStandingFacingDown(enemiesList);
 		}
 		public void MoveRight()
 		{
@@ -45,30 +57,25 @@ namespace Sprint2
 			if (currFrame == totalFrames)
 				currFrame = 0;
 			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
 		public void MoveLeft()
 		{
-			goriya.currState = new GoriyaStandingFacingLeft(goriya);
+			goriya.currState = new GoriyaStandingFacingLeft(enemiesList);
 		}
-
 		public void Attack()
 		{
 
 		}
+
 		public void TakeDamage()
 		{
 			goriya.health--;
-			
+			//goriya.currState = new BluebatDamagedFacingDown(goriya);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame1.Width * goriya.spriteSizeMultiplier, frame1.Height * goriya.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame2.Width * goriya.spriteSizeMultiplier, frame2.Height * goriya.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -79,9 +86,34 @@ namespace Sprint2
 			}
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
-			
+			elapsedTime = gameTime.ElapsedGameTime;
+			secondsPassed = elapsedTime.TotalSeconds;
+			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+			if (totalSecondsPassed > waitTime)
+			{
+
+				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+				chosenDirectionValue = randomNum % 4;
+
+				if (chosenDirectionValue == 0)
+					MoveDown();
+				else if (chosenDirectionValue == 1)
+					MoveUp();
+				else if (chosenDirectionValue == 2)
+					MoveLeft();
+				else if (chosenDirectionValue == 3)
+					MoveRight();
+
+				totalSecondsPassed = 0;
+			}
+			else
+			{
+				MoveRight();
+			}
+
 		}
 
 

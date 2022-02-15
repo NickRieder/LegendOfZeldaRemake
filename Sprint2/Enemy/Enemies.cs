@@ -10,6 +10,7 @@ namespace Sprint2
 		public Vector2 pos;
 		public EnemySpriteFactory spriteFactory;
 		public int health;
+		public int spriteSizeMultiplier;
 
 		public Enemies(EnemySpriteFactory enemySpriteFactory)
 		{
@@ -25,10 +26,11 @@ namespace Sprint2
 			//currState = new BluebatDown(this);  <-- BluebatDown needs to be able to change depedning on folder
 
 			spriteFactory = enemySpriteFactory;
+			spriteSizeMultiplier = 2;
 
 			health = 3;
-			pos.X = 40;
-			pos.Y = 40;
+			pos.X = 600;
+			pos.Y = 200;
 		}
 
 		public void setEnemyType(IEnemyState enemyType)
@@ -65,9 +67,9 @@ namespace Sprint2
 		{
 			currState.Draw(spriteBatch);
 		}
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
-			currState.Update();
+			currState.Update(gameTime);
 		}
 	}
 }

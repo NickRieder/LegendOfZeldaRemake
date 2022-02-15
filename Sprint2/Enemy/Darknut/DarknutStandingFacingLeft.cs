@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
 
 namespace Sprint2
 {
@@ -13,33 +15,43 @@ namespace Sprint2
 		private int counter;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private EnemiesList enemiesList;
+		private double totalSecondsPassed;
+		private double waitTime;
+		private TimeSpan elapsedTime;
+		private double secondsPassed;
+		Random randomNumberGenerator;
+		private int randomNum;
+		private int chosenDirectionValue;
 
-
-		public DarknutStandingFacingLeft(Enemies darknut)
+		public DarknutStandingFacingLeft(EnemiesList enemiesList)
 		{
-			this.darknut = darknut;
+			randomNumberGenerator = new Random();
+			totalSecondsPassed = 0;
+			waitTime = 0.25;
+
+			this.enemiesList = enemiesList;
+			darknut = enemiesList.darknut;
+			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_LEFT1;
 			frame2 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_LEFT2;
-			this.sheet = this.spriteFactory.getEnemySheet2Mirror();
+			this.sheet = darknut.spriteFactory.getEnemySheet2Mirror();
 		}
 
 		public void MoveUp()
 		{
-			darknut.currState = new DarknutStandingFacingUp(darknut);
-
+			darknut.currState = new DarknutStandingFacingUp(enemiesList);
 		}
 		public void MoveDown()
 		{
-			darknut.currState = new DarknutStandingFacingDown(darknut);
-
+			darknut.currState = new DarknutStandingFacingDown(enemiesList);
 		}
 		public void MoveRight()
 		{
-			darknut.currState = new DarknutStandingFacingRight(darknut);
+			darknut.currState = new DarknutStandingFacingRight(enemiesList);
 		}
 		public void MoveLeft()
 		{
@@ -49,26 +61,21 @@ namespace Sprint2
 			if (currFrame == totalFrames)
 				currFrame = 0;
 			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
-
 		public void Attack()
 		{
 
 		}
+
 		public void TakeDamage()
 		{
 			darknut.health--;
-			//darknut.currState = new DarknutDamagedFacingDown(darknut);
+			//darknut.currState = new BluegelDamagedFacingDown(darknut);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame1.Width * darknut.spriteSizeMultiplier, frame1.Height * darknut.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame2.Width * darknut.spriteSizeMultiplier, frame2.Height * darknut.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -79,9 +86,33 @@ namespace Sprint2
 			}
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
-			
+			elapsedTime = gameTime.ElapsedGameTime;
+			secondsPassed = elapsedTime.TotalSeconds;
+			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+			if (totalSecondsPassed > waitTime)
+			{
+				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+				chosenDirectionValue = randomNum % 4;
+
+				if (chosenDirectionValue == 0)
+					MoveDown();
+				else if (chosenDirectionValue == 1)
+					MoveUp();
+				else if (chosenDirectionValue == 2)
+					MoveLeft();
+				else if (chosenDirectionValue == 3)
+					MoveRight();
+
+				totalSecondsPassed = 0;
+			}
+			else
+			{
+				MoveLeft();
+			}
+
 		}
 
 

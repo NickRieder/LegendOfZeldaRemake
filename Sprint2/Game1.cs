@@ -11,10 +11,12 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public LinkSpriteFactory linkSpriteFactory;
+        private LinkSpriteFactory linkSpriteFactory;
+        public ItemSpriteFactory itemSpriteFactory;
         public EnemySpriteFactory enemySpriteFactory;
-        public Link link;
-        public Enemies bluebatEnemy;
+        private Link link;
+        private Item item;
+        private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -30,11 +32,16 @@ namespace Sprint2
         {
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
+            itemSpriteFactory = new ItemSpriteFactory(this.Content);
             enemySpriteFactory = new EnemySpriteFactory(this.Content);
+
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
+
+            
+            
             base.Initialize();
 
         }
@@ -42,21 +49,30 @@ namespace Sprint2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
 
             // TODO: use this.Content to load your game content here
 
             linkSpriteFactory.LoadSpriteSheet();
+
             link = new Link(linkSpriteFactory);
 
-            enemySpriteFactory.LoadSpriteSheet();
-            bluebatEnemy = new Enemies(enemySpriteFactory);
-            bluebatEnemy.setEnemyType(new BluebatDown(this));
+            itemSpriteFactory.LoadSpriteSheet();
+            item = new Item(itemSpriteFactory);
 
-            keyboardController.RegisterCommand(Keys.S, new SetLinkMovingDown(link));
-            keyboardController.RegisterCommand(Keys.W, new SetLinkMovingUp(link));
-            keyboardController.RegisterCommand(Keys.A, new SetLinkMovingLeft(link));
-            keyboardController.RegisterCommand(Keys.D, new SetLinkMovingRight(link));
+            enemySpriteFactory.LoadSpriteSheet();
+            enemiesList = new EnemiesList(enemySpriteFactory);
+
+            keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
+            keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+
+            keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
+            keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
+
+            keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
+            keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
+            keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
+            keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,6 +84,8 @@ namespace Sprint2
                 controller.update();
             }
 
+            enemiesList.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -76,6 +94,8 @@ namespace Sprint2
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
             link.Draw(spriteBatch);
+            item.Draw(spriteBatch);
+            enemiesList.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
