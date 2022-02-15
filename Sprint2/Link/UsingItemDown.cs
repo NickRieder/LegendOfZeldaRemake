@@ -23,7 +23,7 @@ namespace Sprint2
 			this.sheet = this.spriteFactory.getLinkSheet();
 		}
 
-		public void TakeDamage()
+		public void TakeDamage(GameTime gameTime)
 		{
 			link.health--;
 			link.currState = new TakingDamageDown(link);
@@ -33,7 +33,7 @@ namespace Sprint2
 			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width, frame1.Height);
 			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 		}
-		public void Update()
+		public void Update(GameTime gametime)
 		{
 			if (++currFrame == totalFrames)
 			{
@@ -48,5 +48,7 @@ namespace Sprint2
 		public void MoveLeft() { }
 		public void UseWeapon() { }
 		public void UseItem() { }
+
+		public void TakeDamage() { }
 	}
 }

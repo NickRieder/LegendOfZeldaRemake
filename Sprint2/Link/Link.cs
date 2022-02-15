@@ -51,9 +51,9 @@ namespace Sprint2
         {
 			currState.Draw(spriteBatch);
         }
-		public void Update()
+		public void Update(GameTime gametime)
 		{
-			currState.Update();
+			currState.Update(gametime);
 		}
 	}
 }

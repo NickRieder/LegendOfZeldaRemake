@@ -68,13 +68,15 @@ namespace Sprint2
 				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
 			}
 		}
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
+			/*
 			link.pos.X += 5;
 			if (++currFrame == totalFrames)
             {
 				currFrame = 0;
             }
+			*/
 		}
 	}
 }

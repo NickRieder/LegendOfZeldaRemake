@@ -44,16 +44,16 @@ namespace Sprint2
 		}
 		public void UseWeapon()
 		{
-			link.currState = new UsingWeaponLeft(link);
+			link.currState = new UsingWeaponDown(link);
 		}
 		public void UseItem()
 		{
-			link.currState = new UsingItemLeft(link);
+			link.currState = new UsingItemDown(link);
 		}
 		public void TakeDamage()
 		{
 			link.health--;
-			link.currState = new TakingDamageLeft(link);
+			link.currState = new TakingDamageDown(link);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
@@ -68,7 +68,7 @@ namespace Sprint2
 				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
 			}
 		}
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
 		}
 	}

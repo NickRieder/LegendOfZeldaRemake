@@ -18,6 +18,7 @@ namespace Sprint2
 
         private ArrayList controllerList;
         private KeyboardController keyboardController;
+        private GameTime gameTime;
         
 
         public Game1()
@@ -38,7 +39,7 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
 
-            
+            gameTime = new GameTime();
             
             base.Initialize();
 
@@ -68,7 +69,8 @@ namespace Sprint2
 
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
-            
+            keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
+
             keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
             keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
             keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
@@ -85,6 +87,7 @@ namespace Sprint2
                 controller.update();
             }
 
+            link.Update(gameTime);
 
             base.Update(gameTime);
         }

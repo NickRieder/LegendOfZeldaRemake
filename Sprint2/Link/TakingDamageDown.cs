@@ -36,7 +36,7 @@ namespace Sprint2
 				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
 			}
 		}
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
 			if (++currFrame == totalFrames)
 			{
