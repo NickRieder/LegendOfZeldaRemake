@@ -13,8 +13,10 @@ namespace Sprint2
         public SpriteBatch spriteBatch;
         public LinkSpriteFactory linkSpriteFactory;
         public ItemSpriteFactory itemSpriteFactory;
+        public BlockSpriteFactory blockSpriteFactory;
         public Link link;
         private Item item;
+        private Block block;
 
         private ArrayList controllerList;
         private KeyboardController keyboardController;
@@ -32,6 +34,7 @@ namespace Sprint2
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
             itemSpriteFactory = new ItemSpriteFactory(this.Content);
+            blockSpriteFactory = new BlockSpriteFactory(this.Content);
             
             controllerList = new ArrayList();
             
@@ -66,9 +69,15 @@ namespace Sprint2
             itemSpriteFactory.LoadSpriteSheet();
             item = new Item(itemSpriteFactory);
 
+            blockSpriteFactory.LoadSpriteSheet();
+            block = new Block(blockSpriteFactory);
+
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
-            
+
+            keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(block));
+            keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
+
             keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
             keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
             keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
@@ -95,6 +104,7 @@ namespace Sprint2
             spriteBatch.Begin();
             link.Draw(spriteBatch);
             item.Draw(spriteBatch);
+            block.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
