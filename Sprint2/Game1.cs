@@ -70,6 +70,7 @@ namespace Sprint2
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
             keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
+            keyboardController.RegisterCommandTap(Keys.N, new SetLinkAttacking(link));
 
             keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
             keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
