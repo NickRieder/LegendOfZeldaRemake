@@ -6,11 +6,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint2
 {
-    class EnemySpriteFactory : ISpriteFactory
+    public class EnemySpriteFactory : ISpriteFactory
     {
-        private static Texture2D enemySheet1;
-        private static Texture2D enemySheet1Mirror;
+        private static Texture2D enemySheet;
         private static Texture2D enemySheet2;
+        private static Texture2D enemySheet3;
+        private static Texture2D enemySheetMirror;
         private static Texture2D enemySheet2Mirror;
         private ContentManager content;
 
@@ -21,20 +22,22 @@ namespace Sprint2
 
         public void LoadSpriteSheet()
         {
-            enemySheet1 = content.Load<Texture2D>("Sheets/EnemySheet");
-            enemySheet1Mirror = content.Load<Texture2D>("Sheets/EnemySheet1Mirror");
+            enemySheet = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet2 = content.Load<Texture2D>("Sheets/EnemySheet2");
+            enemySheet3 = content.Load<Texture2D>("Sheets/EnemySheet3");
+
+            enemySheetMirror = content.Load<Texture2D>("Sheets/EnemySheetMirror");
             enemySheet2Mirror = content.Load<Texture2D>("Sheets/EnemySheet2Mirror");
         }
 
         public Texture2D getEnemySheet1()
         {
-            return enemySheet1;
+            return enemySheet;
         }
 
-        public Texture2D getEnemySheet1Mirror()
+        public Texture2D getEnemySheetMirror()
         {
-            return enemySheet1Mirror;
+            return enemySheetMirror;
         }
 
         public Texture2D getEnemySheet2()
@@ -45,6 +48,11 @@ namespace Sprint2
         public Texture2D getEnemySheet2Mirror()
         {
             return enemySheet2Mirror;
+        }
+
+        public Texture2D getEnemySheet3()
+        {
+            return enemySheet3;
         }
 
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);

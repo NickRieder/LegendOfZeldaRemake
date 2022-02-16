@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy.Wizzrobe
+namespace Sprint2
 {
 	public class WizzrobeDown : IEnemyState
 	{
-		private Enemy wizzrobe;
+		private Enemies wizzrobe;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
@@ -17,7 +17,7 @@ namespace Sprint2.Enemy.Wizzrobe
 		private Texture2D sheet;
 
 
-		public WizzrobeDown(Enemy wizzrobe)
+		public WizzrobeDown(Enemies wizzrobe)
 		{
 			this.wizzrobe = wizzrobe;
 			currFrame = 0;
@@ -79,7 +79,7 @@ namespace Sprint2.Enemy.Wizzrobe
 			}
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
 
 		}

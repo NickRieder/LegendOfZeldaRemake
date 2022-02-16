@@ -11,17 +11,18 @@ namespace Sprint2
 		private int totalFrames;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private LinkSpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private int counter;
 
 		public TakingDamageUp(Link link)
         {
 			this.link = link;
-			this.spriteFactory = spriteFactory; // needs to be changed. based off class where spriteFactory was passed as param
 			currFrame = 0;
+			counter = 0;
 			totalFrames = 2;
 			//frame1 =						NEED DAMAGED LINK SPRITES
-			this.sheet = this.spriteFactory.getLinkSheet();
+			//frame2 = 
+			this.sheet = link.spriteFactory.getLinkSheet();
 		}
 
 
@@ -40,10 +41,11 @@ namespace Sprint2
 		}
 		public void Update()
 		{
-			if (++currFrame == totalFrames)
-			{
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
 				link.currState = new StandingFacingUp(link);
-			}
+			counter++;
 		}
 
 		// No OPs
