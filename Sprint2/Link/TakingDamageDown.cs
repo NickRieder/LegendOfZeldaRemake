@@ -12,13 +12,16 @@ namespace Sprint2
 		private Rectangle frame1;
 		private Rectangle frame2;
 		private Texture2D sheet;
+		private int counter;
 
 		public TakingDamageDown(Link link)
 		{
 			this.link = link;
 			currFrame = 0;
+			counter = 0;
 			totalFrames = 2;
 			//frame1 =						NEED DAMAGED LINK SPRITES
+			//frame2 = 
 			this.sheet = link.spriteFactory.getLinkSheet();
 		}
 
@@ -38,10 +41,11 @@ namespace Sprint2
 		}
 		public void Update()
 		{
-			if (++currFrame == totalFrames)
-			{
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
 				link.currState = new StandingFacingDown(link);
-			}
+			counter++;
 		}
 
 		// No OPs
