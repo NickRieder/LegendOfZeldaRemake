@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint2
 {
-    class BlockSpriteFactory : ISpriteFactory
+    public class BlockSpriteFactory : ISpriteFactory
     {
         private static Texture2D tileSheet;
         private ContentManager content;

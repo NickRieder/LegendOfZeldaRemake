@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,6 @@ namespace Sprint2
         void Attack();
         void TakeDamage();
         void Draw(SpriteBatch spriteBatch);
-        void Update();
+        void Update(GameTime gameTime);
     }
 }

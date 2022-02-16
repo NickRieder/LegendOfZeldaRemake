@@ -1,19 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint2.Enemy
+namespace Sprint2
 {
-	public class Enemy : IEnemyState
+	public class Enemies
 	{
 		public IEnemyState currState;
-
 		public Vector2 pos;
-
-
+		public EnemySpriteFactory spriteFactory;
 		public int health;
-		public Enemy()
+		public int spriteSizeMultiplier;
+
+		public Enemies(EnemySpriteFactory enemySpriteFactory)
 		{
 			/*TODO: currState has a different name for each enemy. We want the current state to 
 			 * either be a front sprite or a right sprite if the sheet does not have front sprite.
@@ -25,10 +24,20 @@ namespace Sprint2.Enemy
 			 * each move method
 			 */
 			//currState = new BluebatDown(this);  <-- BluebatDown needs to be able to change depedning on folder
+
+			spriteFactory = enemySpriteFactory;
+			spriteSizeMultiplier = 2;
+
 			health = 3;
-			pos.X = 40;
-			pos.Y = 40;
+			pos.X = 600;
+			pos.Y = 200;
 		}
+
+		public void setEnemyType(IEnemyState enemyType)
+        {
+			currState = enemyType;
+		}
+
 		public void MoveUp()
 		{
 			currState.MoveDown();
@@ -45,7 +54,7 @@ namespace Sprint2.Enemy
 		{
 			currState.MoveRight();
 		}
-	
+
 		public void Attack()
 		{
 			currState.Attack();
@@ -58,9 +67,9 @@ namespace Sprint2.Enemy
 		{
 			currState.Draw(spriteBatch);
 		}
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
-			currState.Update();
+			currState.Update(gameTime);
 		}
 	}
 }
