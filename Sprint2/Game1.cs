@@ -82,6 +82,12 @@ namespace Sprint2
             keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
             keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
             keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
+
+            keyboardController.RegisterCommandHold(Keys.Down, new SetLinkMovingDown(link));
+            keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
+            keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
+            keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
+
         }
 
         protected override void Update(GameTime gameTime)
