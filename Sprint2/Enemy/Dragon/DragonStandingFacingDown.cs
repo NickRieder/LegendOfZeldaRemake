@@ -2,41 +2,50 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
 
-namespace Sprint2.Enemy.Dragon
+namespace Sprint2
 {
 	public class DragonStandingFacingDown : IEnemyState
 	{
-		private Enemy dragon;
+		private Enemies dragon;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
-		private Rectangle frame1;
-		private Rectangle frame2;
 		private Rectangle frame3;
 		private Rectangle frame4;
-		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private EnemiesList enemiesList;
+		private double totalSecondsPassed;
+		private double waitTime;
+		private TimeSpan elapsedTime;
+		private double secondsPassed;
+		Random randomNumberGenerator;
+		private int randomNum;
+		private int chosenDirectionValue;
 
-
-		public DragonStandingFacingDown(Enemy dragon)
+		public DragonStandingFacingDown(EnemiesList enemiesList)
 		{
-			this.dragon = dragon;
+			randomNumberGenerator = new Random();
+			totalSecondsPassed = 0;
+			waitTime = 0.25;
+
+			this.enemiesList = enemiesList;
+			dragon = enemiesList.dragon;
+			counter = 0;
 			currFrame = 0;
-			totalFrames = 3;
-			frame1 = EnemySpriteFactory.DRAGON_SHEET1_LEFT1;
-			frame2 = EnemySpriteFactory.DRAGON_SHEET1_LEFT2;
+			totalFrames = 2;
 			frame3 = EnemySpriteFactory.DRAGON_SHEET1_LEFT3;
 			frame4 = EnemySpriteFactory.DRAGON_SHEET1_LEFT4;
-			this.sheet = this.spriteFactory.getEnemySheet1();
+			this.sheet = dragon.spriteFactory.getEnemySheet1();
 		}
 
 		public void MoveUp()
 		{
-			dragon.currState = new DragonStandingFacingUp(dragon);
-
+			dragon.currState = new DragonStandingFacingUp(enemiesList);
 		}
-		public void MoveDown() //Using left state to move down
+		public void MoveDown()
 		{
 			dragon.pos.Y++;
 			if (counter % 5 == 0)
@@ -44,59 +53,69 @@ namespace Sprint2.Enemy.Dragon
 			if (currFrame == totalFrames)
 				currFrame = 0;
 			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
-
 		}
 		public void MoveRight()
 		{
-			dragon.currState = new DragonStandingFacingRight(dragon);
+			dragon.currState = new DragonStandingFacingRight(enemiesList);
 		}
 		public void MoveLeft()
 		{
-			dragon.currState = new DragonStandingFacingLeft(dragon);
+			dragon.currState = new DragonStandingFacingLeft(enemiesList);
 		}
-
 		public void Attack()
 		{
 
 		}
+
 		public void TakeDamage()
 		{
 			dragon.health--;
-			//dragon.currState = new dragonDamagedFacingDown(dragon);
+			//dragon.currState = new BluebatDamagedFacingDown(dragon);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame2.Width, frame2.Height);
-			Rectangle destinationRectangleFrame3 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width, frame3.Height);
-			Rectangle destinationRectangleFrame4 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame4.Width, frame4.Height);
-
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width * dragon.spriteSizeMultiplier, frame3.Height * dragon.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame4.Width * dragon.spriteSizeMultiplier, frame4.Height * dragon.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
+				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame3, Color.White);
 			}
-			else if (currFrame == 1)
+			else
 			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
+				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame4, Color.White);
 			}
-			else if (currFrame == 2)
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame3, frame3, Color.White);
-			}
-			else if (currFrame == 3)
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame4, frame4, Color.White);
-			}
-
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
+			elapsedTime = gameTime.ElapsedGameTime;
+			secondsPassed = elapsedTime.TotalSeconds;
+			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+			if (totalSecondsPassed > waitTime)
+			{
+
+				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+				chosenDirectionValue = randomNum % 4;
+
+				if (chosenDirectionValue == 0)
+					MoveDown();
+				else if (chosenDirectionValue == 1)
+					MoveUp();
+				else if (chosenDirectionValue == 2)
+					MoveLeft();
+				else if (chosenDirectionValue == 3)
+					MoveRight();
+
+				totalSecondsPassed = 0;
+			}
+			else
+			{
+				MoveDown();
+			}
+
 		}
+
+
 	}
 }

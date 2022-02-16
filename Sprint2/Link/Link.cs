@@ -7,10 +7,10 @@ namespace Sprint2
 	public class Link : ILinkState
 	{
 		public ILinkState currState;
-
 		public Vector2 pos;
 		public LinkSpriteFactory spriteFactory;
 		public int health;
+
 		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
 			spriteFactory = linkSpriteFactory;
