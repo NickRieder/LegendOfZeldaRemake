@@ -54,5 +54,13 @@ namespace Sprint2
         public static Rectangle LINK_USESWORD_UP = new Rectangle(18, 97, 16, 28);
         public static Rectangle LINK_USESWORD_MIRROR_LEFT = new Rectangle(326, 78, 27, 16);
 
+        public static Rectangle LINK_DAMAGED_BLACK_AND_RED = new Rectangle(57, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_GREEN_AND_PEACH = new Rectangle(74, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_RED_AND_PEACH = new Rectangle(91, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_PINKBACKGROUND = new Rectangle(109, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_ALLBLUE = new Rectangle(74, 240, 16, 16);
+        public static Rectangle LINK_DAMAGED_ALLGREEN = new Rectangle(91, 240, 16, 16);
+        public static Rectangle LINK_DAMAGED_ALLORANGE = new Rectangle(108, 240, 16, 16);
+
     }
 }
