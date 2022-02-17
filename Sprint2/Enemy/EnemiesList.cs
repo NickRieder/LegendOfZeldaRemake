@@ -38,24 +38,24 @@ namespace Sprint2
             darknut = new Enemies(spriteFactory);
             dragon = new Enemies(spriteFactory);
             goriya = new Enemies(spriteFactory);
-            /*snake = new Enemies(spriteFactory);
-            wizzrobe = new Enemies(spriteFactory);*/
+            snake = new Enemies(spriteFactory);
+            wizzrobe = new Enemies(spriteFactory);
 
             bluebat.setEnemyType(new BluebatDown(this));
 			bluegel.setEnemyType(new BluegelDown(this));
             darknut.setEnemyType(new DarknutStandingFacingDown(this));
             dragon.setEnemyType(new DragonStandingFacingDown(this));
             goriya.setEnemyType(new GoriyaStandingFacingDown(this));
-            /*snake.setEnemyType(new SnakeDown(this));
-            wizzrobe.setEnemyType(new WizzrobeDown(this));*/
+            snake.setEnemyType(new SnakeDown(this));
+            wizzrobe.setEnemyType(new WizzrobeDown(this));
 
             enemiesArray.Add(bluebat);
 			enemiesArray.Add(bluegel);
 			enemiesArray.Add(darknut);
             enemiesArray.Add(dragon);
             enemiesArray.Add(goriya);
-            /*enemiesArray.Add(snake);
-            enemiesArray.Add(wizzrobe);*/
+            enemiesArray.Add(snake);
+            enemiesArray.Add(wizzrobe);
 
         }
 
