@@ -6,12 +6,14 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint2
 {
-    class EnemySpriteFactory : ISpriteFactory
+    public class EnemySpriteFactory : ISpriteFactory
     {
-        private static Texture2D enemySheet1;
-        private static Texture2D enemySheet1Mirror;
+        private static Texture2D enemySheet;
         private static Texture2D enemySheet2;
+        private static Texture2D enemySheet3;
+        private static Texture2D enemySheetMirror;
         private static Texture2D enemySheet2Mirror;
+        private static Texture2D linkSheetUpsideDown;
         private ContentManager content;
 
         public EnemySpriteFactory(ContentManager content)
@@ -21,20 +23,24 @@ namespace Sprint2
 
         public void LoadSpriteSheet()
         {
-            enemySheet1 = content.Load<Texture2D>("Sheets/EnemySheet");
-            enemySheet1Mirror = content.Load<Texture2D>("Sheets/EnemySheet1Mirror");
+            enemySheet = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet2 = content.Load<Texture2D>("Sheets/EnemySheet2");
+            enemySheet3 = content.Load<Texture2D>("Sheets/EnemySheet3");
+
+            enemySheetMirror = content.Load<Texture2D>("Sheets/EnemySheetMirror");
             enemySheet2Mirror = content.Load<Texture2D>("Sheets/EnemySheet2Mirror");
+
+            linkSheetUpsideDown = content.Load<Texture2D>("Sheets/LinkSheetUpsideDown");
         }
 
         public Texture2D getEnemySheet1()
         {
-            return enemySheet1;
+            return enemySheet;
         }
 
-        public Texture2D getEnemySheet1Mirror()
+        public Texture2D getEnemySheetMirror()
         {
-            return enemySheet1Mirror;
+            return enemySheetMirror;
         }
 
         public Texture2D getEnemySheet2()
@@ -45,6 +51,16 @@ namespace Sprint2
         public Texture2D getEnemySheet2Mirror()
         {
             return enemySheet2Mirror;
+        }
+
+        public Texture2D getEnemySheet3()
+        {
+            return enemySheet3;
+        }
+
+        public Texture2D getLinkSheetUpsideDown()
+        {
+            return linkSheetUpsideDown;
         }
 
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
@@ -68,8 +84,8 @@ namespace Sprint2
         public static Rectangle BLUEBAT_SHEET2_POS2 = new Rectangle(200, 11, 16, 16);
         public static Rectangle BLUEGEL_SHEET2_POS1 = new Rectangle(19, 11, 8, 16);
         public static Rectangle BLUEGEL_SHEET2_POS2 = new Rectangle(28, 11, 8, 16);
-        public static Rectangle GREENGEL_SHEET2POS1 = new Rectangle(1, 28, 8, 16);
-        public static Rectangle GREENGEL_SHEET2POS2 = new Rectangle(10, 28, 8, 16);
+        public static Rectangle GREENGEL_SHEET2_POS1 = new Rectangle(1, 28, 8, 16);
+        public static Rectangle GREENGEL_SHEET2_POS2 = new Rectangle(10, 28, 8, 16);
 
         public static Rectangle DARKNUT_SHEET2_FRONT1 = new Rectangle(1, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_FRONT2 = new Rectangle(18, 90, 16, 16);
@@ -92,9 +108,13 @@ namespace Sprint2
         public static Rectangle GORIYA_SHEET2_BACK = new Rectangle(239, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2_RIGHT = new Rectangle(256, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2_THROWRIGHT = new Rectangle(273, 11, 16, 16);
-        public static Rectangle GORIYA_SHEET2_WEAPONRIGHT1 = new Rectangle(290, 11, 8, 16);
-        public static Rectangle GORIYA_SHEET2_WEAPONRIGHT2 = new Rectangle(299, 11, 8, 16);
-        public static Rectangle GORIYA_SHEET2_WEAPONRIGHT3 = new Rectangle(308, 11, 8, 16);
+
+        public static Rectangle GORIYA_LINKSHEETUPSIDEDOWN_WEAPON1 = new Rectangle(298, 109, 8, 16);
+        public static Rectangle GORIYA_LINKSHEETUPSIDEDOWN_WEAPON2 = new Rectangle(289, 109, 8, 16);
+        public static Rectangle GORIYA_LINKSHEETUPSIDEDOWN_WEAPON3 = new Rectangle(280, 109, 8, 16);
+        public static Rectangle GORIYA_SHEET2_WEAPON4 = new Rectangle(290, 11, 8, 16);
+        public static Rectangle GORIYA_SHEET2_WEAPON5 = new Rectangle(299, 11, 8, 16);
+        public static Rectangle GORIYA_SHEET2_WEAPON6 = new Rectangle(308, 11, 8, 16);
 
         public static Rectangle GORIYA_SHEET2MIRROR_LEFT = new Rectangle(185, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_BACK = new Rectangle(201, 11, 16, 16);

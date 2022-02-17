@@ -2,40 +2,52 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
 
-namespace Sprint2.Enemy.Bluebat
+namespace Sprint2
 {
 	public class BluebatRight : IEnemyState
 	{
-		private Enemy bluebat;
+		private Enemies bluebat;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private EnemiesList enemiesList;
+		private double totalSecondsPassed;
+		private double waitTime;
+		private TimeSpan elapsedTime;
+		private double secondsPassed;
+		Random randomNumberGenerator;
+		private int randomNum;
+		private int chosenDirectionValue;
 
-
-		public BluebatRight(Enemy bluebat)
+		public BluebatRight(EnemiesList enemiesList)
 		{
-			this.bluebat = bluebat;
+			randomNumberGenerator = new Random();
+			totalSecondsPassed = 0;
+			waitTime = 0.25;
+
+			this.enemiesList = enemiesList;
+			bluebat = enemiesList.bluebat;
+			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = EnemySpriteFactory.BLUEBAT_SHEET2_POS1;
 			frame2 = EnemySpriteFactory.BLUEBAT_SHEET2_POS2;
-			this.sheet = this.spriteFactory.getEnemySheet2();
+			this.sheet = bluebat.spriteFactory.getEnemySheet2();
 		}
 
 		public void MoveUp()
 		{
-			bluebat.currState = new BluebatUp(bluebat);
-
+			bluebat.currState = new BluebatUp(enemiesList);
 		}
 		public void MoveDown()
 		{
-
-			bluebat.currState = new BluebatDown(bluebat);
+			bluebat.currState = new BluebatDown(enemiesList);
 		}
 		public void MoveRight()
 		{
@@ -45,19 +57,14 @@ namespace Sprint2.Enemy.Bluebat
 			if (currFrame == totalFrames)
 				currFrame = 0;
 			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
 		}
 		public void MoveLeft()
 		{
-			bluebat.currState = new BluebatLeft(bluebat);
+			bluebat.currState = new BluebatLeft(enemiesList);
 		}
 		public void Attack()
 		{
-			//bluebat.currState = new BluebatUsingWeaponDown(bluebat);
+
 		}
 
 		public void TakeDamage()
@@ -67,8 +74,8 @@ namespace Sprint2.Enemy.Bluebat
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame1.Width * bluebat.spriteSizeMultiplier, frame1.Height * bluebat.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame2.Width * bluebat.spriteSizeMultiplier, frame2.Height * bluebat.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -79,8 +86,33 @@ namespace Sprint2.Enemy.Bluebat
 			}
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
+			elapsedTime = gameTime.ElapsedGameTime;
+			secondsPassed = elapsedTime.TotalSeconds;
+			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+			if (totalSecondsPassed > waitTime)
+			{
+
+				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+				chosenDirectionValue = randomNum % 4;
+
+				if (chosenDirectionValue == 0)
+					MoveDown();
+				else if (chosenDirectionValue == 1)
+					MoveUp();
+				else if (chosenDirectionValue == 2)
+					MoveLeft();
+				else if (chosenDirectionValue == 3)
+					MoveRight();
+
+				totalSecondsPassed = 0;
+			}
+			else
+			{
+				MoveRight();
+			}
 
 		}
 

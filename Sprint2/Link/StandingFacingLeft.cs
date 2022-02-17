@@ -12,11 +12,13 @@ namespace Sprint2
 		private Rectangle frame1;
 		private Rectangle frame2;
 		private Texture2D sheet;
+		private int counter;
 
 		public StandingFacingLeft(Link link)
 		{
 			this.link = link;
 			currFrame = 0;
+			counter = 0;
 			totalFrames = 2;
 			frame1 = LinkSpriteFactory.LINK_MOVE_MIRROR_LEFT_1;
 			frame2 = LinkSpriteFactory.LINK_MOVE_MIRROR_LEFT_2;
@@ -36,11 +38,12 @@ namespace Sprint2
 		}
 		public void MoveLeft()
 		{
-			link.pos.X -= 5;
-			if (++currFrame == totalFrames)
-			{
+			link.pos.X -= 2;
+			if (counter % 5 == 0)
+				currFrame++;
+			if (currFrame == totalFrames)
 				currFrame = 0;
-			}
+			counter++;
 		}
 		public void UseWeapon()
 		{

@@ -2,37 +2,50 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
 
-namespace Sprint2.Enemy.Snake
+namespace Sprint2
 {
 	public class SnakeDown : IEnemyState
 	{
-		private Enemy snake;
+		private Enemies snake;
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private EnemiesList enemiesList;
+		private double totalSecondsPassed;
+		private double waitTime;
+		private TimeSpan elapsedTime;
+		private double secondsPassed;
+		Random randomNumberGenerator;
+		private int randomNum;
+		private int chosenDirectionValue;
 
-
-		public SnakeDown(Enemy snake)
+		public SnakeDown(EnemiesList enemiesList)
 		{
-			this.snake = snake;
+			randomNumberGenerator = new Random();
+			totalSecondsPassed = 0;
+			waitTime = 0.25;
+
+			this.enemiesList = enemiesList;
+			snake = enemiesList.snake;
+			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
 			frame1 = EnemySpriteFactory.SNAKE_SHEET2_RIGHT1;
 			frame2 = EnemySpriteFactory.SNAKE_SHEET2_RIGHT2;
-			this.sheet = this.spriteFactory.getEnemySheet2();
+			this.sheet = snake.spriteFactory.getEnemySheet2();
 		}
 
 		public void MoveUp()
 		{
-			snake.currState = new SnakeUp(snake);
-
+			snake.currState = new SnakeUp(enemiesList);
 		}
-		public void MoveDown()  //Using right state for moving down
+		public void MoveDown()
 		{
 			snake.pos.Y++;
 			if (counter % 5 == 0)
@@ -40,20 +53,14 @@ namespace Sprint2.Enemy.Snake
 			if (currFrame == totalFrames)
 				currFrame = 0;
 			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
-
 		}
 		public void MoveRight()
 		{
-			snake.currState = new SnakeRight(snake);
+			snake.currState = new SnakeRight(enemiesList);
 		}
 		public void MoveLeft()
 		{
-			snake.currState = new SnakeLeft(snake);
+			snake.currState = new SnakeLeft(enemiesList);
 		}
 		public void Attack()
 		{
@@ -63,12 +70,12 @@ namespace Sprint2.Enemy.Snake
 		public void TakeDamage()
 		{
 			snake.health--;
-			
+			//snake.currState = new BluebatDamagedFacingDown(snake);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)snake.pos.X, (int)snake.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)snake.pos.X, (int)snake.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)snake.pos.X, (int)snake.pos.Y, frame1.Width * snake.spriteSizeMultiplier, frame1.Height * snake.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)snake.pos.X, (int)snake.pos.Y, frame2.Width * snake.spriteSizeMultiplier, frame2.Height * snake.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -79,8 +86,33 @@ namespace Sprint2.Enemy.Snake
 			}
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
+			elapsedTime = gameTime.ElapsedGameTime;
+			secondsPassed = elapsedTime.TotalSeconds;
+			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+			if (totalSecondsPassed > waitTime)
+			{
+
+				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+				chosenDirectionValue = randomNum % 4;
+
+				if (chosenDirectionValue == 0)
+					MoveDown();
+				else if (chosenDirectionValue == 1)
+					MoveUp();
+				else if (chosenDirectionValue == 2)
+					MoveLeft();
+				else if (chosenDirectionValue == 3)
+					MoveRight();
+
+				totalSecondsPassed = 0;
+			}
+			else
+			{
+				MoveDown();
+			}
 
 		}
 

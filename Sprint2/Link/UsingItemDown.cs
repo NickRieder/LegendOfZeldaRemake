@@ -10,17 +10,15 @@ namespace Sprint2
 		private int currFrame;
 		private int totalFrames;
 		private Rectangle frame1;
-		private LinkSpriteFactory spriteFactory;
 		private Texture2D sheet;
 
 		public UsingItemDown(Link link)
 		{
 			this.link = link;
-			this.spriteFactory = spriteFactory; // needs to be changed. based off class where spriteFactory was passed as param
 			currFrame = 0;
 			totalFrames = 1;
 			frame1 = LinkSpriteFactory.LINK_USEITEM_DOWN;
-			this.sheet = this.spriteFactory.getLinkSheet();
+			this.sheet = link.spriteFactory.getLinkSheet();
 		}
 
 		public void TakeDamage(GameTime gameTime)
