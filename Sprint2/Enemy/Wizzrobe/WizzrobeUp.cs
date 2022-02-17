@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
 
 namespace Sprint2
 {
@@ -13,21 +15,33 @@ namespace Sprint2
 		private int counter;
 		private Rectangle frame1;
 		private Rectangle frame2;
-		private EnemySpriteFactory spriteFactory;
 		private Texture2D sheet;
+		private EnemiesList enemiesList;
+		private double totalSecondsPassed;
+		private double waitTime;
+		private TimeSpan elapsedTime;
+		private double secondsPassed;
+		Random randomNumberGenerator;
+		private int randomNum;
+		private int chosenDirectionValue;
 
-
-		public WizzrobeUp(Enemies wizzrobe)
+		public WizzrobeUp(EnemiesList enemiesList)
 		{
-			this.wizzrobe = wizzrobe;
+			randomNumberGenerator = new Random();
+			totalSecondsPassed = 0;
+			waitTime = 0.25;
+
+			this.enemiesList = enemiesList;
+			wizzrobe = enemiesList.wizzrobe;
+			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.WIZZROBE_SHEET2_RIGHT1;
-			frame2 = EnemySpriteFactory.WIZZROBE_SHEET2_RIGHT2;
-			this.sheet = this.spriteFactory.getEnemySheet2();
+			frame1 = EnemySpriteFactory.WIZZROBE_SHEET2_BACK1;
+			frame2 = EnemySpriteFactory.WIZZROBE_SHEET2_BACK2;
+			this.sheet = wizzrobe.spriteFactory.getEnemySheet2();
 		}
 
-		public void MoveUp()   //Using right state to move up 
+		public void MoveUp()
 		{
 			wizzrobe.pos.Y--;
 			if (counter % 5 == 0)
@@ -35,25 +49,18 @@ namespace Sprint2
 			if (currFrame == totalFrames)
 				currFrame = 0;
 			counter++;
-
-			if (currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
-
-
 		}
 		public void MoveDown()
 		{
-			wizzrobe.currState = new WizzrobeDown(wizzrobe);
+			wizzrobe.currState = new WizzrobeDown(enemiesList);
 		}
 		public void MoveRight()
 		{
-			wizzrobe.currState = new WizzrobeRight(wizzrobe);
+			wizzrobe.currState = new WizzrobeRight(enemiesList);
 		}
 		public void MoveLeft()
 		{
-			wizzrobe.currState = new WizzrobeLeft(wizzrobe);
+			wizzrobe.currState = new WizzrobeLeft(enemiesList);
 		}
 		public void Attack()
 		{
@@ -63,12 +70,12 @@ namespace Sprint2
 		public void TakeDamage()
 		{
 			wizzrobe.health--;
-
+			//wizzrobe.currState = new BluebatDamagedFacingDown(wizzrobe);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)wizzrobe.pos.X, (int)wizzrobe.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)wizzrobe.pos.X, (int)wizzrobe.pos.Y, frame2.Width, frame2.Height);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)wizzrobe.pos.X, (int)wizzrobe.pos.Y, frame1.Width * wizzrobe.spriteSizeMultiplier, frame1.Height * wizzrobe.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)wizzrobe.pos.X, (int)wizzrobe.pos.Y, frame2.Width * wizzrobe.spriteSizeMultiplier, frame2.Height * wizzrobe.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
@@ -81,6 +88,31 @@ namespace Sprint2
 
 		public void Update(GameTime gameTime)
 		{
+			elapsedTime = gameTime.ElapsedGameTime;
+			secondsPassed = elapsedTime.TotalSeconds;
+			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+			if (totalSecondsPassed > waitTime)
+			{
+
+				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+				chosenDirectionValue = randomNum % 4;
+
+				if (chosenDirectionValue == 0)
+					MoveDown();
+				else if (chosenDirectionValue == 1)
+					MoveUp();
+				else if (chosenDirectionValue == 2)
+					MoveLeft();
+				else if (chosenDirectionValue == 3)
+					MoveRight();
+
+				totalSecondsPassed = 0;
+			}
+			else
+			{
+				MoveUp();
+			}
 
 		}
 

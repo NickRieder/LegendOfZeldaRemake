@@ -66,7 +66,7 @@ namespace Sprint2
 		}
 		public void Attack()
 		{
-
+			goriya.currState = new GoriyaAttackingDown(enemiesList);
 		}
 
 		public void TakeDamage()
@@ -88,6 +88,8 @@ namespace Sprint2
 			}
 		}
 
+		//hi
+
 		public void Update(GameTime gameTime)
 		{
 			elapsedTime = gameTime.ElapsedGameTime;
@@ -98,7 +100,7 @@ namespace Sprint2
 			{
 
 				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-				chosenDirectionValue = randomNum % 4;
+				chosenDirectionValue = randomNum % 5;
 
 				if (chosenDirectionValue == 0)
 					MoveDown();
@@ -108,6 +110,8 @@ namespace Sprint2
 					MoveLeft();
 				else if (chosenDirectionValue == 3)
 					MoveRight();
+				else if (chosenDirectionValue == 4)
+					Attack();
 
 				totalSecondsPassed = 0;
 			}
