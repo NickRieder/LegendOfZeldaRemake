@@ -37,7 +37,6 @@ namespace Sprint2
         {
 
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-
             currentState = Keyboard.GetState();
 
             foreach (Keys key in pressedKeys)
@@ -49,13 +48,8 @@ namespace Sprint2
                 {
                     controllerMappingsHold[key].Execute();
                 }
-
-                
-
             }
             previousPressedKeys = pressedKeys;
-
         }
-
     }
 }

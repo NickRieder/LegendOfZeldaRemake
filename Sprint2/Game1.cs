@@ -23,7 +23,6 @@ namespace Sprint2
         private KeyboardController keyboardController;
         private Game1 game;
         
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,16 +43,12 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
 
-            
-            
             base.Initialize();
-
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
 
             // TODO: use this.Content to load your game content here
 
@@ -71,7 +66,6 @@ namespace Sprint2
 
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
-
 
             keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(block));
             keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
@@ -91,20 +85,18 @@ namespace Sprint2
 
             keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(game));
             keyboardController.RegisterCommandHold(Keys.R, new ResetGame(game));
-
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             foreach (IController controller in controllerList)
             {
                 controller.update();
             }
-
             enemiesList.Update(gameTime);
-
             base.Update(gameTime);
         }
 
@@ -123,6 +115,11 @@ namespace Sprint2
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        internal void Reset()
+        {
+            this.Initialize();
         }
     }
 }

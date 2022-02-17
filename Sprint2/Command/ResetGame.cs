@@ -11,7 +11,7 @@
 
         public void Execute()
         {
-            // set everything back to its original state
+            game.Reset();
         }
     }
 }
