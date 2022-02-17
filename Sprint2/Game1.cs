@@ -11,11 +11,14 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public LinkSpriteFactory linkSpriteFactory;
+        private LinkSpriteFactory linkSpriteFactory;
         public ItemSpriteFactory itemSpriteFactory;
+        public BlockSpriteFactory blockSpriteFactory;
+        public EnemySpriteFactory enemySpriteFactory;
         public Link link;
         private Item item;
-
+        private Block block;
+        private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         
@@ -32,7 +35,9 @@ namespace Sprint2
             // TODO: Add your initialization logic here
             linkSpriteFactory = new LinkSpriteFactory(this.Content);
             itemSpriteFactory = new ItemSpriteFactory(this.Content);
-            
+            blockSpriteFactory = new BlockSpriteFactory(this.Content);
+            enemySpriteFactory = new EnemySpriteFactory(this.Content);
+
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
@@ -51,28 +56,37 @@ namespace Sprint2
 
             // TODO: use this.Content to load your game content here
 
-            //linkSpriteFactory.LoadSpriteSheet(this.Content);
-
-            // PROBLEM:
-            // Putting this line of code into the Initialize() function throws an error
-            // because link = new Link(linkSpriteFactory) doesn't know what linkSpriteFactory is yet until the game runs the LoadContent() function.
-            // SOLUTION:
-            // We create a LinkSpriteFactory constructor that loads the sprite sheet upon the initialization of a LinkSpriteFactory object.
-            // link = new Link(linkSpriteFactory);
-
             linkSpriteFactory.LoadSpriteSheet();
+
             link = new Link(linkSpriteFactory);
 
             itemSpriteFactory.LoadSpriteSheet();
             item = new Item(itemSpriteFactory);
 
+            blockSpriteFactory.LoadSpriteSheet();
+            block = new Block(blockSpriteFactory);
+            enemySpriteFactory.LoadSpriteSheet();
+            enemiesList = new EnemiesList(enemySpriteFactory);
+
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
-            
+
+
+            keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(block));
+            keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
+
+            keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
+            keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
+
             keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
             keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
             keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
             keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
+
+            keyboardController.RegisterCommandHold(Keys.Down, new SetLinkMovingDown(link));
+            keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
+            keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
+            keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
 
         }
 
@@ -85,6 +99,7 @@ namespace Sprint2
                 controller.update();
             }
 
+            enemiesList.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -95,6 +110,11 @@ namespace Sprint2
             spriteBatch.Begin();
             link.Draw(spriteBatch);
             item.Draw(spriteBatch);
+
+            block.Draw(spriteBatch);
+
+            enemiesList.Draw(spriteBatch);
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
