@@ -6,9 +6,7 @@ namespace Sprint2.Items
 {
     public interface IItem
     {
-        Texture2D Texture { get; set; }
         void Update();
-        Rectangle MakeDestinationRectangle(Vector2 location);
         void Draw(SpriteBatch spriteBatch, Vector2 location);
     }
 }

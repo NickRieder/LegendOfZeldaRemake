@@ -21,6 +21,7 @@ namespace Sprint2
         private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
+        private Game1 game;
         
 
         public Game1()
@@ -87,6 +88,9 @@ namespace Sprint2
             keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
             keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
             keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
+
+            keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(game));
+            keyboardController.RegisterCommandHold(Keys.R, new ResetGame(game));
 
         }
 
