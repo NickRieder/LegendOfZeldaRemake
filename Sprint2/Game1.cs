@@ -21,7 +21,6 @@ namespace Sprint2
         private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
-        private Game1 game;
         
         public Game1()
         {
@@ -66,6 +65,9 @@ namespace Sprint2
 
             keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
             keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+            
+            keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
+            keyboardController.RegisterCommandTap(Keys.N, new SetLinkAttacking(link));
 
             keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(block));
             keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
@@ -83,8 +85,8 @@ namespace Sprint2
             keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
             keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
 
-            keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(game));
-            keyboardController.RegisterCommandHold(Keys.R, new ResetGame(game));
+            keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(this));
+            keyboardController.RegisterCommandHold(Keys.R, new ResetGame(this));
         }
 
         protected override void Update(GameTime gameTime)
@@ -96,6 +98,8 @@ namespace Sprint2
             {
                 controller.update();
             }
+            
+            link.Update(gameTime);
             enemiesList.Update(gameTime);
             base.Update(gameTime);
         }

@@ -31,7 +31,7 @@ namespace Sprint2
 			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width, frame1.Height);
 			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
 		}
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
 			if (++currFrame == totalFrames)
 			{

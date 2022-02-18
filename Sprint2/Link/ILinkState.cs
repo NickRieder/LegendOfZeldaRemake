@@ -14,7 +14,7 @@ namespace Sprint2
         void UseItem();
         void TakeDamage();
         void Draw(SpriteBatch spriteBatch);
-        void Update();
+        void Update(GameTime gameTime);
     }
 }
 
