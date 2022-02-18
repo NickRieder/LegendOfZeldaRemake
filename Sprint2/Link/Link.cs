@@ -10,7 +10,7 @@ namespace Sprint2
 		public Vector2 pos;
 		public LinkSpriteFactory spriteFactory;
 		public int health;
-
+		// add size multiplier
 		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
 			spriteFactory = linkSpriteFactory;

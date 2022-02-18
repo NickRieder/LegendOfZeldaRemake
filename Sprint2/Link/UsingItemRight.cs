@@ -24,7 +24,7 @@ namespace Sprint2
 		public void TakeDamage()
 		{
 			link.health--;
-			link.currState = new TakingDamageRight(link);
+			link.currState = new TakingDamageDown(link);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

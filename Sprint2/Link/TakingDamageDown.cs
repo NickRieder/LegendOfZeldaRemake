@@ -1,51 +1,44 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Sprint2
 {
     class TakingDamageDown : ILinkState
 	{
 		private Link link;
-		private int currFrame;
-		private int totalFrames;
 		private Rectangle frame1;
-		private Rectangle frame2;
 		private Texture2D sheet;
-		private int counter;
+		private static TimeSpan damagedTime;
+		private TimeSpan startDamagedTime;
+		bool isDamaged;
 
 		public TakingDamageDown(Link link)
 		{
 			this.link = link;
-			currFrame = 0;
-			counter = 0;
-			totalFrames = 2;
-			//frame1 =						NEED DAMAGED LINK SPRITES
-			//frame2 = 
+			frame1 = LinkSpriteFactory.LINK_DAMAGED_BLACK_AND_RED;
 			this.sheet = link.spriteFactory.getLinkSheet();
+			damagedTime = TimeSpan.FromMilliseconds(500);
+			isDamaged = true;
 		}
 
 		
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width, frame1.Height);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame2.Width, frame2.Height);
-			if (currFrame == 0)
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-			}
-			else
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
-			}
+			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
+	
 		}
 		public void Update(GameTime gameTime)
 		{
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
+			if (isDamaged)
+            {
+				startDamagedTime = gameTime.TotalGameTime;
+				isDamaged = false;
+			}
+			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
 				link.currState = new StandingFacingDown(link);
-			counter++;
 		}
 
 		// No OPs
