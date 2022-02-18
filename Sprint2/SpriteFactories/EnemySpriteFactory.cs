@@ -67,7 +67,10 @@ namespace Sprint2
         public static Rectangle DRAGON_SHEET1_LEFT2 = new Rectangle(26, 11, 24, 32);
         public static Rectangle DRAGON_SHEET1_LEFT3 = new Rectangle(51, 11, 24, 32);
         public static Rectangle DRAGON_SHEET1_LEFT4 = new Rectangle(76, 11, 24, 32);
-        public static Rectangle DRAGONFIREBALL_SHEET1 = new Rectangle(119, 11, 8, 16);
+        public static Rectangle DRAGON_SHEET1_FIREBALL1 = new Rectangle(101, 11, 8, 16);
+        public static Rectangle DRAGON_SHEET1_FIREBALL2 = new Rectangle(110, 11, 8, 16);
+        public static Rectangle DRAGON_SHEET1_FIREBALL3 = new Rectangle(119, 11, 8, 16);
+        public static Rectangle DRAGON_SHEET1_FIREBALL4 = new Rectangle(128, 11, 8, 16);
 
         public static Rectangle DRAGON_SHEET1MIRROR_RIGHT1 = new Rectangle(469, 11, 24, 32);
         public static Rectangle DRAGON_SHEET1MIRROR_RIGHT2 = new Rectangle(444, 11, 24, 32);
