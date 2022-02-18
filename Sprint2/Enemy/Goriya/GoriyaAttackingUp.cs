@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Sprint2
 {
-    class GoriyaAttackingDown : IEnemyState
+    class GoriyaAttackingUp : IEnemyState
     {
 
         private Enemies goriya;
@@ -42,7 +42,7 @@ namespace Sprint2
         private Vector2 weaponPos;
         private ArrayList weaponFrameArray;
 
-        public GoriyaAttackingDown(EnemiesList enemiesList)
+        public GoriyaAttackingUp(EnemiesList enemiesList)
         {
             randomNumberGenerator = new Random();
             weaponFrameArray = new ArrayList();
@@ -56,8 +56,8 @@ namespace Sprint2
             totalFrames = 2;
             currWeaponFrame = 0;
             totalWeaponFrames = 6;
-            frame1 = EnemySpriteFactory.GORIYA_SHEET2_FRONT;
-            frame2 = EnemySpriteFactory.GORIYA_SHEET2MIRROR_FRONT;
+            frame1 = EnemySpriteFactory.GORIYA_SHEET2_BACK;
+            frame2 = EnemySpriteFactory.GORIYA_SHEET2MIRROR_BACK;
             this.sheet = goriya.spriteFactory.getEnemySheet2();
             this.sheetMirrored = goriya.spriteFactory.getEnemySheet2Mirror();
 
@@ -109,14 +109,14 @@ namespace Sprint2
             counter++;
 
             // MAKE BOOMERANG GO AWAY AND BACK TO THE GORIYA
-            if (weaponPos.Y > goriya.pos.Y + 150) // 150 is the distance the weapon travels
+            if (weaponPos.Y < goriya.pos.Y - 150) // 150 is the distance the weapon travels
             {
                 weaponReturning = true;
             }
             
             if (weaponReturning)
             {
-                if (weaponPos.Y < goriya.pos.Y + 10)
+                if (weaponPos.Y > goriya.pos.Y - 10)
                 {
                     randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
                     chosenDirectionValue = randomNum % 4;
@@ -130,11 +130,11 @@ namespace Sprint2
                     else if (chosenDirectionValue == 3)
                         MoveRight();
                 }
-                weaponPos.Y -= 4;
+                weaponPos.Y += 4;
             }
             else
             {
-                weaponPos.Y += 4;
+                weaponPos.Y -= 4;
             }
 
             if (weaponCounter % 5 == 0)

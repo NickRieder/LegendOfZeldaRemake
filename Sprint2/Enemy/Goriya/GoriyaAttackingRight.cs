@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Sprint2
 {
-    class GoriyaAttackingDown : IEnemyState
+    class GoriyaAttackingRight : IEnemyState
     {
 
         private Enemies goriya;
@@ -28,7 +28,6 @@ namespace Sprint2
         private Rectangle weaponFrame5;
         private Rectangle weaponFrame6;
         private Texture2D sheet;
-        private Texture2D sheetMirrored;
         private Texture2D weaponSheet;
         private Texture2D weaponSheetUpsideDown;
         private EnemiesList enemiesList;
@@ -42,7 +41,7 @@ namespace Sprint2
         private Vector2 weaponPos;
         private ArrayList weaponFrameArray;
 
-        public GoriyaAttackingDown(EnemiesList enemiesList)
+        public GoriyaAttackingRight(EnemiesList enemiesList)
         {
             randomNumberGenerator = new Random();
             weaponFrameArray = new ArrayList();
@@ -56,10 +55,9 @@ namespace Sprint2
             totalFrames = 2;
             currWeaponFrame = 0;
             totalWeaponFrames = 6;
-            frame1 = EnemySpriteFactory.GORIYA_SHEET2_FRONT;
-            frame2 = EnemySpriteFactory.GORIYA_SHEET2MIRROR_FRONT;
+            frame1 = EnemySpriteFactory.GORIYA_SHEET2_RIGHT;
+            frame2 = EnemySpriteFactory.GORIYA_SHEET2_THROWRIGHT;
             this.sheet = goriya.spriteFactory.getEnemySheet2();
-            this.sheetMirrored = goriya.spriteFactory.getEnemySheet2Mirror();
 
             // CREATE BOOMERANG FRAMES HERE
             weaponFrame1 = EnemySpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON1;
@@ -79,7 +77,6 @@ namespace Sprint2
             weaponFrameArray.Add(weaponFrame6);
 
             weaponPos = goriya.pos;
-            weaponPos.X += frame1.Width / 2;
             weaponReturning = false;
         }
 
@@ -109,14 +106,14 @@ namespace Sprint2
             counter++;
 
             // MAKE BOOMERANG GO AWAY AND BACK TO THE GORIYA
-            if (weaponPos.Y > goriya.pos.Y + 150) // 150 is the distance the weapon travels
+            if (weaponPos.X > goriya.pos.X + 150) // 150 is the distance the weapon travels
             {
                 weaponReturning = true;
             }
             
             if (weaponReturning)
             {
-                if (weaponPos.Y < goriya.pos.Y + 10)
+                if (weaponPos.X < goriya.pos.X + 10)
                 {
                     randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
                     chosenDirectionValue = randomNum % 4;
@@ -130,11 +127,11 @@ namespace Sprint2
                     else if (chosenDirectionValue == 3)
                         MoveRight();
                 }
-                weaponPos.Y -= 4;
+                weaponPos.X -= 4;
             }
             else
             {
-                weaponPos.Y += 4;
+                weaponPos.X += 4;
             }
 
             if (weaponCounter % 5 == 0)
@@ -176,7 +173,7 @@ namespace Sprint2
             }
             else
             {
-                spriteBatch.Draw(sheetMirrored, destinationRectangleFrame2, frame2, Color.White);
+                spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
             }
 
             

@@ -13,8 +13,8 @@ namespace Sprint2
 		private int currFrame;
 		private int totalFrames;
 		private int counter;
-		private Rectangle frame1;
-		private Rectangle frame2;
+		private Rectangle frame3;
+		private Rectangle frame4;
 		private Texture2D sheet;
 		private EnemiesList enemiesList;
 		private double totalSecondsPassed;
@@ -36,9 +36,9 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DRAGON_SHEET1MIRROR_RIGHT3;
-			frame2 = EnemySpriteFactory.DRAGON_SHEET1MIRROR_RIGHT4;
-			this.sheet = dragon.spriteFactory.getEnemySheetMirror();
+			frame3 = EnemySpriteFactory.DRAGON_SHEET1_LEFT3;
+			frame4 = EnemySpriteFactory.DRAGON_SHEET1_LEFT4;
+			this.sheet = dragon.spriteFactory.getEnemySheet1();
 		}
 
 		public void MoveUp()
@@ -64,7 +64,7 @@ namespace Sprint2
 		}
 		public void Attack()
 		{
-
+			dragon.currState = new DragonAttackingRight(enemiesList);
 		}
 
 		public void TakeDamage()
@@ -74,15 +74,15 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame1.Width * dragon.spriteSizeMultiplier, frame1.Height * dragon.spriteSizeMultiplier);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame2.Width * dragon.spriteSizeMultiplier, frame2.Height * dragon.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width * dragon.spriteSizeMultiplier, frame3.Height * dragon.spriteSizeMultiplier);
+			Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame4.Width * dragon.spriteSizeMultiplier, frame4.Height * dragon.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
+				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame3, Color.White);
 			}
 			else
 			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
+				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame4, Color.White);
 			}
 		}
 
@@ -96,7 +96,7 @@ namespace Sprint2
 			{
 
 				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-				chosenDirectionValue = randomNum % 4;
+				chosenDirectionValue = randomNum % 5;
 
 				if (chosenDirectionValue == 0)
 					MoveDown();
@@ -106,6 +106,8 @@ namespace Sprint2
 					MoveLeft();
 				else if (chosenDirectionValue == 3)
 					MoveRight();
+				else if (chosenDirectionValue == 4)
+					Attack();
 
 				totalSecondsPassed = 0;
 			}
