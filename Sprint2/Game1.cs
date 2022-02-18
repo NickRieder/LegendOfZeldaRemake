@@ -119,7 +119,8 @@ namespace Sprint2
 
         internal void Reset()
         {
-            this.Initialize();
+            // new link, enemy, block, item
+            this. Initialize();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Sprint2.Items
 
         public ArrowDown()
         {
-            frame1 = ItemSpriteFactory.ARROW_UP;
+            frame1 = ItemSpriteFactory.ARROW_UPSIDEDOWN_DOWN;
             this.sheet = item.spriteFactory.getLinkSheet();
         }
 
@@ -24,7 +24,6 @@ namespace Sprint2.Items
 
         public void Update()
         {
-            // throw new NotImplementedException();
             item.itemPos.Y += 5;
         }
     }
