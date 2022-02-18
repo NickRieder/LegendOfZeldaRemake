@@ -56,7 +56,7 @@ namespace Sprint2
 		public void TakeDamage()
 		{
 			link.health--;
-			link.currState = new TakingDamageLeft(link);
+			link.currState = new TakingDamageDown(link);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

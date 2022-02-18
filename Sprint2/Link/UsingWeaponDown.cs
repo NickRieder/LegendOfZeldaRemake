@@ -9,11 +9,8 @@ namespace Sprint2
     class UsingWeaponDown : ILinkState
 	{
 		private Link link;
-		private int currFrame;
-		private int totalFrames;
 		private Rectangle frame1;
 		private Texture2D sheet;
-
 		private static TimeSpan attackTime;
 		private TimeSpan startTimeAttack;
 		bool isAttacking;
@@ -21,8 +18,6 @@ namespace Sprint2
 		public UsingWeaponDown(Link link)
 		{
 			this.link = link;
-			currFrame = 0;
-			totalFrames = 1;
 			frame1 = LinkSpriteFactory.LINK_USESWORD_DOWN;
 			this.sheet = link.spriteFactory.getLinkSheet();
 
