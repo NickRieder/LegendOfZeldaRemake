@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace Sprint2
 {
@@ -13,6 +14,8 @@ namespace Sprint2
 		private Rectangle frame2;
 		private Texture2D sheet;
 		private int counter;
+		private ArrayList itemList;
+		private IItem item;
 
 		public StandingFacingDown(Link link)
 		{
@@ -23,6 +26,11 @@ namespace Sprint2
 			frame1 = LinkSpriteFactory.LINK_MOVE_DOWN_1;
 			frame2 = LinkSpriteFactory.LINK_MOVE_DOWN_2;
 			this.sheet = link.spriteFactory.getLinkSheet();
+
+			itemList = new ArrayList();
+			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
+			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
+			itemList.Add(new ExplosionDown(this.link, this.link.spriteFactory));
 		}
 		public void MoveUp()
 		{
@@ -49,9 +57,10 @@ namespace Sprint2
 		{
 			link.currState = new UsingWeaponDown(link);
 		}
-		public void UseItem()
+		public void UseItem(int itemNum)
 		{
 			link.currState = new UsingItemDown(link);
+			link.item = (IItem) itemList[itemNum - 1];
 		}
 		public void TakeDamage()
 		{

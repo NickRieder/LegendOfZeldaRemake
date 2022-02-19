@@ -2,11 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Items
+namespace Sprint2
 {
     public class ExplosionDown : IItem
     {
-        private Item item;
         private int currFrame;
         private int totalFrames;
         private Rectangle frame1;
@@ -14,23 +13,28 @@ namespace Sprint2.Items
         private Rectangle frame3;
         private Texture2D sheet;
         private int counter;
+        private Vector2 itemPos;
+        private Link link;
 
-        public ExplosionDown()
+        public ExplosionDown(Link link, LinkSpriteFactory spriteFactory)
         {
             currFrame = 0;
             counter = 0;
             totalFrames = 3;
+            this.link = link;
             frame1 = ItemSpriteFactory.EXPLOSION_1;
             frame2 = ItemSpriteFactory.EXPLOSION_2;
             frame3 = ItemSpriteFactory.EXPLOSION_3;
-            this.sheet = item.spriteFactory.getLinkSheet();
+            this.sheet = spriteFactory.getLinkSheet();
+            itemPos.X = this.link.pos.X;
+            itemPos.Y = this.link.pos.Y + 15;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            Rectangle destinationRectangleFrame1 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame1.Width, frame1.Height);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame2.Width, frame2.Height);
-            Rectangle destinationRectangleFrame3 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame3.Width, frame3.Height);
+            Rectangle destinationRectangleFrame1 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame1.Width, frame1.Height);
+            Rectangle destinationRectangleFrame2 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame2.Width, frame2.Height);
+            Rectangle destinationRectangleFrame3 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame3.Width, frame3.Height);
 
             if (currFrame == 0)
             {
@@ -48,11 +52,15 @@ namespace Sprint2.Items
 
         public void Update()
         {
-            item.itemPos.Y += 5;
-            if (++currFrame == totalFrames)
+            if (currFrame == totalFrames)
             {
-                currFrame = 0;
+                link.item = new NullItem();
             }
+            if (counter % 10 == 0)
+            {
+                currFrame++;
+            }
+            counter++;
         }
     }
 }

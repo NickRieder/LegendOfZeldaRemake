@@ -10,11 +10,13 @@ namespace Sprint2
 		public Vector2 pos;
 		public LinkSpriteFactory spriteFactory;
 		public int health;
+		public IItem item;
 		// add size multiplier
 		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
 			spriteFactory = linkSpriteFactory;
 			currState = new StandingFacingDown(this);
+			item = new NullItem();
 			health = 3;
 			pos.X = 40;
 			pos.Y = 40;
@@ -39,9 +41,9 @@ namespace Sprint2
         {
 			currState.UseWeapon();
         }
-		public void UseItem()
+		public void UseItem(int itemNum)
         {
-			currState.UseItem();
+			currState.UseItem(itemNum);
         }
 		public void TakeDamage()
         {
@@ -50,10 +52,12 @@ namespace Sprint2
 		public void Draw(SpriteBatch spriteBatch)
         {
 			currState.Draw(spriteBatch);
+			item.Draw(spriteBatch, new Vector2(pos.X, pos.Y));
         }
 		public void Update(GameTime gametime)
 		{
 			currState.Update(gametime);
+			item.Update();
 		}
 	}
 }

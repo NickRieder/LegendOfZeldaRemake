@@ -75,6 +75,10 @@ namespace Sprint2
             keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
             keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
 
+            keyboardController.RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
+            keyboardController.RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
+            keyboardController.RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
+
             keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
             keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
             keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));

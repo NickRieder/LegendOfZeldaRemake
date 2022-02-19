@@ -2,30 +2,31 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Items
+namespace Sprint2
 {
     public class ArrowLeft : IItem
     {
-        private Item item;
         private Rectangle frame1;
         private Texture2D sheet;
+        private Vector2 itemPos;
 
-        public ArrowLeft()
+        public ArrowLeft(Link link, LinkSpriteFactory spriteFactory)
         {
-            frame1 = ItemSpriteFactory.ARROW_MIRRORED_LEFT;
-            this.sheet = item.spriteFactory.getLinkSheet();
+            frame1 = ItemSpriteFactory.ARROW_UPSIDEDOWN_DOWN;
+            this.sheet = spriteFactory.getLinkSheet();
+            itemPos.X = link.pos.X;
+            itemPos.Y = link.pos.Y;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            Rectangle destinationRectangleFrame1 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame1.Width, frame1.Height);
+            Rectangle destinationRectangleFrame1 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame1.Width, frame1.Height);
             spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
         }
 
         public void Update()
         {
-            // throw new NotImplementedException();
-            item.itemPos.X -= 5;
+            itemPos.X -= 5;
         }
     }
 }

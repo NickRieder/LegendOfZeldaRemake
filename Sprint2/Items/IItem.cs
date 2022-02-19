@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Sprint2.Items
+namespace Sprint2
 {
     public interface IItem
     {

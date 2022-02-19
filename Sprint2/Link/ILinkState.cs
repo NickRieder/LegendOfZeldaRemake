@@ -11,7 +11,7 @@ namespace Sprint2
         void MoveRight();
         void MoveLeft();
         void UseWeapon();
-        void UseItem();
+        void UseItem(int itemNum);
         void TakeDamage();
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gameTime);
