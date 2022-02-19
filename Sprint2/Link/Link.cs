@@ -11,7 +11,7 @@ namespace Sprint2
 		public LinkSpriteFactory spriteFactory;
 		public int health;
 		public IItem item;
-		// add size multiplier
+		public int sizeMuliplier = 3;
 		public Link(LinkSpriteFactory linkSpriteFactory)
 		{
 			spriteFactory = linkSpriteFactory;
