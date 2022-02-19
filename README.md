@@ -21,4 +21,4 @@ Other:
 To quit the game, use q.
 To reset the game, use r.
 
-Authors: Zach Richter, Derek Johnson, Kevin Nguyen, Nick Rieder, Yajat Dhawan
+Authors: Zach Richter, Derek Johnson, Chris Johnson, Kevin Nguyen, Nick Rieder, Yajat Dhawan
