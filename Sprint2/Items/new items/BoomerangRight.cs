@@ -2,20 +2,22 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Items
+namespace Sprint2
 {
     public class BoomerangRight : IItem
     {
-        private Item item;
         private int currFrame;
         private int totalFrames;
         private Rectangle frame1;
         private Rectangle frame2;
         private Rectangle frame3;
         private Texture2D sheet;
+        private Vector2 itemPos;
         private int counter;
+        private int speed;
+        private Link link;
 
-        public BoomerangRight()
+        public BoomerangRight(Link link, LinkSpriteFactory spriteFactory)
         {
             currFrame = 0;
             counter = 0;
@@ -23,14 +25,18 @@ namespace Sprint2.Items
             frame1 = ItemSpriteFactory.BOOMERANG_1;
             frame2 = ItemSpriteFactory.BOOMERANG_2;
             frame3 = ItemSpriteFactory.BOOMERANG_3;
-            this.sheet = item.spriteFactory.getLinkSheet();
+            this.sheet = spriteFactory.getLinkSheet();
+            itemPos.X = link.pos.X;
+            itemPos.Y = link.pos.Y;
+            speed = 5;
+            this.link = link;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            Rectangle destinationRectangleFrame1 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame1.Width, frame1.Height);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame2.Width, frame2.Height);
-            Rectangle destinationRectangleFrame3 = new Rectangle((int)item.itemPos.X, (int)item.itemPos.Y, frame3.Width, frame3.Height);
+            Rectangle destinationRectangleFrame1 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame1.Width, frame1.Height);
+            Rectangle destinationRectangleFrame2 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame2.Width, frame2.Height);
+            Rectangle destinationRectangleFrame3 = new Rectangle((int)itemPos.X, (int)itemPos.Y, frame3.Width, frame3.Height);
 
             if (currFrame == 0)
             {
@@ -48,11 +54,22 @@ namespace Sprint2.Items
 
         public void Update()
         {
-            item.itemPos.X += 5;
-            if (++currFrame == totalFrames)
+
+            itemPos.X += speed;
+            if (currFrame == totalFrames)
             {
                 currFrame = 0;
             }
+            if(counter % 10 == 0)
+            {
+                currFrame++;
+                speed--;
+            }
+            if(itemPos.X <= link.pos.X)
+            {
+                link.item = new NullItem();
+            }
+            counter++;
         }
     }
 }

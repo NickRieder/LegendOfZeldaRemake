@@ -61,6 +61,6 @@ namespace Sprint2
 		public void MoveRight() { }
 		public void MoveLeft() { }
 		public void UseWeapon() { }
-		public void UseItem() { }
+		public void UseItem(int itemNum) { }
 	}
 }
