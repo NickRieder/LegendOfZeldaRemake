@@ -6,23 +6,32 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint2
 {
-    public class EnemySpriteFactory : ISpriteFactory
+    public class SpriteFactory : ISpriteFactory
     {
+        private static Texture2D tileSheet;
+        private ContentManager content;
+
         private static Texture2D enemySheet;
         private static Texture2D enemySheet2;
         private static Texture2D enemySheet3;
         private static Texture2D enemySheetMirror;
         private static Texture2D enemySheet2Mirror;
         private static Texture2D linkSheetUpsideDown;
-        private ContentManager content;
 
-        public EnemySpriteFactory(ContentManager content)
+        private static Texture2D linkSheetFlipped;
+        private static Texture2D linkSheet;
+        private static Texture2D itemSheet;
+
+        private static Texture2D linkSheetMirrored;
+
+        public SpriteFactory(ContentManager content)
         {
             this.content = content;
         }
-
-        public void LoadSpriteSheet()
+        public void LoadSpriteSheets()
         {
+            tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
+
             enemySheet = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet2 = content.Load<Texture2D>("Sheets/EnemySheet2");
             enemySheet3 = content.Load<Texture2D>("Sheets/EnemySheet3");
@@ -31,6 +40,17 @@ namespace Sprint2
             enemySheet2Mirror = content.Load<Texture2D>("Sheets/EnemySheet2Mirror");
 
             linkSheetUpsideDown = content.Load<Texture2D>("Sheets/LinkSheetUpsideDown");
+            linkSheetFlipped = content.Load<Texture2D>("Sheets/LinkSheetUpsideDown");
+            linkSheet = content.Load<Texture2D>("Sheets/LinkSheet");
+            linkSheetMirrored = content.Load<Texture2D>("Sheets/LinkSheetMirror");
+
+            itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
+
+            
+        }
+        public Texture2D getTileSheet()
+        {
+            return tileSheet;
         }
 
         public Texture2D getEnemySheet1()
@@ -63,6 +83,33 @@ namespace Sprint2
             return linkSheetUpsideDown;
         }
 
+        public Texture2D getLinkSheetFlipped()
+        {
+            return linkSheetFlipped;
+        }
+
+        public Texture2D getLinkSheet()
+        {
+            return linkSheet;
+        }
+        public Texture2D getLinkSheetMirrored()
+        {
+            return linkSheetMirrored;
+        }
+
+        public Texture2D getItemSheet()
+        {
+            return itemSheet;
+        }
+
+        //Tiles
+        public static Rectangle TILE_DOOR = new Rectangle(881, 25, 32, 18);
+        public static Rectangle TILE_STAIRS = new Rectangle(1035, 28, 16, 16);
+        public static Rectangle TILE_FLATBLOCK = new Rectangle(984, 11, 16, 16);
+        public static Rectangle TILE_NONFLAT_BLOCK = new Rectangle(1001, 11, 16, 16);
+        public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
+
+        //Enemies
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
         public static Rectangle DRAGON_SHEET1_LEFT2 = new Rectangle(26, 11, 24, 32);
         public static Rectangle DRAGON_SHEET1_LEFT3 = new Rectangle(51, 11, 24, 32);
@@ -132,5 +179,63 @@ namespace Sprint2
         public static Rectangle SNAKE_SHEET2MIRROR_LEFT1 = new Rectangle(315, 59, 16, 16);
         public static Rectangle SNAKE_SHEET2MIRROR_LEFT2 = new Rectangle(298, 59, 16, 16);
 
+        //Items
+        public static Rectangle ARROWORBOOMERANG_HIT = new Rectangle(89, 189, 7, 7);
+        public static Rectangle ARROW_RIGHT = new Rectangle(9, 185, 15, 15);
+        public static Rectangle ARROW_UP = new Rectangle(1, 185, 7, 15);
+        public static Rectangle ARROW_UPSIDEDOWN_DOWN = new Rectangle(360, 108, 7, 7);
+        public static Rectangle ARROW_MIRRORED_LEFT = new Rectangle(345, 185, 15, 15);
+
+
+        public static Rectangle BOOMERANG_1 = new Rectangle(65, 189, 7, 7);
+        public static Rectangle BOOMERANG_2 = new Rectangle(73, 189, 7, 7);
+        public static Rectangle BOOMERANG_3 = new Rectangle(81, 189, 7, 7);
+
+        public static Rectangle EXPLOSION_1 = new Rectangle(138, 185, 16, 16);
+        public static Rectangle EXPLOSION_2 = new Rectangle(155, 185, 16, 16);
+        public static Rectangle EXPLOSION_3 = new Rectangle(172, 185, 16, 16);
+
+        // on ItemSheet
+        public static Rectangle HEART_CANISTER = new Rectangle(25, 1, 14, 14);
+        public static Rectangle WOODEN_SWORD = new Rectangle(104, 0, 8, 16);
+        public static Rectangle MAGIC_SWORD = new Rectangle(104, 16, 8, 16);
+        public static Rectangle BOW = new Rectangle(136, 16, 9, 17);
+        public static Rectangle BOMB = new Rectangle(136, 0, 9, 14);
+        public static Rectangle BOOMERANG = new Rectangle(129, 3, 6, 8);
+        public static Rectangle RED_CANDLE = new Rectangle(160, 0, 8, 16);
+        public static Rectangle BLUE_CANDLE = new Rectangle(160, 16, 8, 16);
+        public static Rectangle ORANGE_RUBY = new Rectangle(71, 0, 9, 16);
+        public static Rectangle BLUE_RUBY = new Rectangle(71, 16, 9, 16);
+
+        //Link
+        public static Rectangle LINK_MOVE_DOWN_1 = new Rectangle(1, 11, 16, 16);
+        public static Rectangle LINK_MOVE_DOWN_2 = new Rectangle(18, 11, 16, 16);
+        public static Rectangle LINK_MOVE_RIGHT_1 = new Rectangle(35, 11, 16, 16);
+        public static Rectangle LINK_MOVE_RIGHT_2 = new Rectangle(52, 11, 16, 16);
+        public static Rectangle LINK_MOVE_UP_1 = new Rectangle(69, 11, 16, 16);
+        public static Rectangle LINK_MOVE_UP_2 = new Rectangle(86, 11, 16, 16);
+        public static Rectangle LINK_MOVE_MIRROR_LEFT_1 = new Rectangle(320, 11, 16, 16);
+        public static Rectangle LINK_MOVE_MIRROR_LEFT_2 = new Rectangle(303, 11, 16, 16);
+
+        public static Rectangle LINK_PICKUP_ITEM_1 = new Rectangle(231, 11, 16, 16);
+        public static Rectangle LINK_PICKUP_ITEM_2 = new Rectangle(248, 11, 16, 16);
+
+        public static Rectangle LINK_USEITEM_DOWN = new Rectangle(107, 11, 16, 16);
+        public static Rectangle LINK_USEITEM_RIGHT = new Rectangle(124, 11, 16, 16);
+        public static Rectangle LINK_USEITEM_UP = new Rectangle(141, 11, 16, 16);
+        public static Rectangle LINK_USEITEM_MIRROR_LEFT = new Rectangle(232, 11, 16, 16);
+
+        public static Rectangle LINK_USESWORD_DOWN = new Rectangle(18, 47, 16, 27);
+        public static Rectangle LINK_USESWORD_RIGHT = new Rectangle(18, 78, 27, 16);
+        public static Rectangle LINK_USESWORD_UP = new Rectangle(18, 97, 16, 28);
+        public static Rectangle LINK_USESWORD_MIRROR_LEFT = new Rectangle(326, 78, 27, 16);
+
+        public static Rectangle LINK_DAMAGED_BLACK_AND_RED = new Rectangle(57, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_GREEN_AND_PEACH = new Rectangle(74, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_RED_AND_PEACH = new Rectangle(91, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_PINKBACKGROUND = new Rectangle(109, 223, 16, 16);
+        public static Rectangle LINK_DAMAGED_ALLBLUE = new Rectangle(74, 240, 16, 16);
+        public static Rectangle LINK_DAMAGED_ALLGREEN = new Rectangle(91, 240, 16, 16);
+        public static Rectangle LINK_DAMAGED_ALLORANGE = new Rectangle(108, 240, 16, 16);
     }
 }

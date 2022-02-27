@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame3 = EnemySpriteFactory.DRAGON_SHEET1_LEFT3;
-			frame4 = EnemySpriteFactory.DRAGON_SHEET1_LEFT4;
+			frame3 = SpriteFactory.DRAGON_SHEET1_LEFT3;
+			frame4 = SpriteFactory.DRAGON_SHEET1_LEFT4;
 			this.sheet = dragon.spriteFactory.getEnemySheet1();
 		}
 

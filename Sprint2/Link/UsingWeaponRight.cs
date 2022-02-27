@@ -23,7 +23,7 @@ namespace Sprint2
 			this.link = link;
 			currFrame = 0;
 			totalFrames = 1;
-			frame1 = LinkSpriteFactory.LINK_USESWORD_RIGHT;
+			frame1 = SpriteFactory.LINK_USESWORD_RIGHT;
 			this.sheet = link.spriteFactory.getLinkSheet();
 
 			attackTime = TimeSpan.FromMilliseconds(500);

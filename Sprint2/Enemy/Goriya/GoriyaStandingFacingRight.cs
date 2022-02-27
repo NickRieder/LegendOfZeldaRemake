@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.GORIYA_SHEET2_RIGHT;
-			frame2 = EnemySpriteFactory.GORIYA_SHEET2_THROWRIGHT;
+			frame1 = SpriteFactory.GORIYA_SHEET2_RIGHT;
+			frame2 = SpriteFactory.GORIYA_SHEET2_THROWRIGHT;
 			this.sheet = goriya.spriteFactory.getEnemySheet2();
 		}
 

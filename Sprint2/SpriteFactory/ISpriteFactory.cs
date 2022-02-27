@@ -7,6 +7,6 @@ namespace Sprint2
 
 	public interface ISpriteFactory
 	{
-		void LoadSpriteSheet();
+		void LoadSpriteSheets();
 	}
 }

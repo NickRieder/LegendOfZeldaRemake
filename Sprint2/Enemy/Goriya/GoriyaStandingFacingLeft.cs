@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.GORIYA_SHEET2MIRROR_LEFT;
-			frame2 = EnemySpriteFactory.GORIYA_SHEET2MIRROR_THROWLEFT;
+			frame1 = SpriteFactory.GORIYA_SHEET2MIRROR_LEFT;
+			frame2 = SpriteFactory.GORIYA_SHEET2MIRROR_THROWLEFT;
 			this.sheet = goriya.spriteFactory.getEnemySheet2Mirror();
 		}
 

@@ -37,8 +37,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_BACK;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2MIRROR_BACK;
+			frame1 = SpriteFactory.DARKNUT_SHEET2_BACK;
+			frame2 = SpriteFactory.DARKNUT_SHEET2MIRROR_BACK;
 			this.sheet = darknut.spriteFactory.getEnemySheet2();
 			this.sheetMirrored = darknut.spriteFactory.getEnemySheet2Mirror();
 		}

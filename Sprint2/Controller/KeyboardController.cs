@@ -33,6 +33,40 @@ namespace Sprint2
             controllerMappingsTap.Add(key, command);
         }
 
+        public void Initialize(Link link, Item item, Block block, EnemiesList enemiesList, Game1 game1)
+        {
+            RegisterCommandTap(Keys.I, new SetNextItem(item));
+            RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+
+            RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
+            RegisterCommandTap(Keys.N, new SetLinkAttacking(link));
+
+            RegisterCommandTap(Keys.Y, new SetNextBlock(block));
+            RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
+
+            RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
+            RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
+
+            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
+            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
+            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
+
+            RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
+            RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
+            RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
+            RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
+
+            RegisterCommandTap(Keys.E, new SetLinkDamagedDown(link));
+
+            RegisterCommandHold(Keys.Down, new SetLinkMovingDown(link));
+            RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
+            RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
+            RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
+
+            RegisterCommandHold(Keys.Q, new QuitCommand(game1));
+            RegisterCommandHold(Keys.R, new ResetGame(game1));
+        }
+
         public void update()
         {
 

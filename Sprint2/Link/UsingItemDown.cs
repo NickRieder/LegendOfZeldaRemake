@@ -17,7 +17,7 @@ namespace Sprint2
 			this.link = link;
 			currFrame = 0;
 			totalFrames = 1;
-			frame1 = LinkSpriteFactory.LINK_USEITEM_DOWN;
+			frame1 = SpriteFactory.LINK_USEITEM_DOWN;
 			this.sheet = link.spriteFactory.getLinkSheet();
 		}
 
