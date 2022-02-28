@@ -15,13 +15,14 @@ namespace Sprint2
         public ItemSpriteFactory itemSpriteFactory;
         public BlockSpriteFactory blockSpriteFactory;
         public EnemySpriteFactory enemySpriteFactory;
-        public Link link;
-        private Item item;
-        private Block block;
-        private EnemiesList enemiesList;
+        //public Link link;
+        //private Item item;
+        //private Block block;
+        //private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
-        
+        private GameObjectManager gom;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -37,10 +38,14 @@ namespace Sprint2
             blockSpriteFactory = new BlockSpriteFactory(this.Content);
             enemySpriteFactory = new EnemySpriteFactory(this.Content);
 
+            gom = new GameObjectManager();
+
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
+
+            //link = new Link();
 
             base.Initialize();
         }
@@ -53,43 +58,46 @@ namespace Sprint2
 
             linkSpriteFactory.LoadSpriteSheet();
 
-            link = new Link(linkSpriteFactory);
+            //link.SetSpriteContent(linkSpriteFactory);
 
             itemSpriteFactory.LoadSpriteSheet();
-            item = new Item(itemSpriteFactory);
+            //item = new Item(itemSpriteFactory);
 
             blockSpriteFactory.LoadSpriteSheet();
-            block = new Block(blockSpriteFactory);
+            //block = new Block(blockSpriteFactory);
+
             enemySpriteFactory.LoadSpriteSheet();
-            enemiesList = new EnemiesList(enemySpriteFactory);
+            //enemiesList = new EnemiesList(enemySpriteFactory);
 
-            keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
-            keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+            gom.SetSpriteContent(linkSpriteFactory, enemySpriteFactory, itemSpriteFactory, blockSpriteFactory);
+
+            keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(gom.item));
+            keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(gom.item));
             
-            keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
-            keyboardController.RegisterCommandTap(Keys.N, new SetLinkAttacking(link));
+            keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(gom.link));
+            keyboardController.RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link));
 
-            keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(block));
-            keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
+            keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(gom.block));
+            keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(gom.block));
 
-            keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
-            keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
+            keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(gom.enemiesList));
+            keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(gom.enemiesList));
 
-            keyboardController.RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
-            keyboardController.RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
-            keyboardController.RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
+            keyboardController.RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link));
+            keyboardController.RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link));
+            keyboardController.RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link));
 
-            keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
-            keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
-            keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
-            keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
+            keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(gom.link));
+            keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(gom.link));
+            keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(gom.link));
+            keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(gom.link));
 
-            keyboardController.RegisterCommandTap(Keys.E, new SetLinkDamagedDown(link));
+            keyboardController.RegisterCommandTap(Keys.E, new SetLinkDamagedDown(gom.link));
 
-            keyboardController.RegisterCommandHold(Keys.Down, new SetLinkMovingDown(link));
-            keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
-            keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
-            keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
+            keyboardController.RegisterCommandHold(Keys.Down, new SetLinkMovingDown(gom.link));
+            keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(gom.link));
+            keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(gom.link));
+            keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(gom.link));
 
             keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(this));
             keyboardController.RegisterCommandHold(Keys.R, new ResetGame(this));
@@ -97,6 +105,7 @@ namespace Sprint2
 
         protected override void Update(GameTime gameTime)
         {
+            // Pretty sure we were told last Sprint that we didn't need this.
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -104,9 +113,13 @@ namespace Sprint2
             {
                 controller.update();
             }
+
+            //link.Update(gameTime);
             
-            link.Update(gameTime);
-            enemiesList.Update(gameTime);
+            //enemiesList.Update(gameTime);
+
+            gom.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -114,12 +127,15 @@ namespace Sprint2
         {
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
-            link.Draw(spriteBatch);
-            item.Draw(spriteBatch);
+            //link.Draw(spriteBatch);
+            
+            //item.Draw(spriteBatch);
 
-            block.Draw(spriteBatch);
+            //block.Draw(spriteBatch);
 
-            enemiesList.Draw(spriteBatch);
+            //enemiesList.Draw(spriteBatch);
+
+            gom.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here
