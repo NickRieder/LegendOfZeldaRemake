@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Link : ISprite
+	public class Link 
 	{
 		public ILinkState currState;
 		public Vector2 pos;
@@ -12,10 +12,9 @@ namespace Sprint2
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
+		public Vector2 direction;
 		public Link()
-		{
-			
-			
+		{	
 			item = new NullItem();
 			health = 3;
 			pos.X = 40;

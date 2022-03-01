@@ -9,9 +9,10 @@ namespace Sprint2
 {
     public class GameObjectManager
     {
-        private ArrayList spriteList;
-        private ArrayList updatableSprites;
-        private ArrayList drawableSprites;
+        public  ArrayList allObjectList;
+        public ArrayList updatableSprites;
+        public ArrayList drawableSprites;
+        public ArrayList movableList;
 
         public Link link;
         public Item item;
@@ -28,9 +29,10 @@ namespace Sprint2
 
         public GameObjectManager()
         {
-            spriteList = new ArrayList();
+            allObjectList = new ArrayList();
             updatableSprites = new ArrayList();
             drawableSprites = new ArrayList();
+            movableList = new ArrayList();
             
             link = new Link();
             item = new Item();
@@ -50,32 +52,43 @@ namespace Sprint2
             // Kevin: I think the class that reads the XML files would be adding the necessary sprite objects into the list. (Unless this IS the class, but idk)
                 // PROBLEM: We can't easily access sprite objects from the GOM if we use a list.
                 // SOLUTION: Maybe we could use a dictionary, but we can only add unique keys to a dictionary (ie. no duplicate enemies?).
-            this.AddToSpriteList(link);
-            this.AddToSpriteList(item);
-            this.AddToSpriteList(block);
+            this.AddToallObjectList(link);
+            this.AddToallObjectList(item);
+            this.AddToallObjectList(block);
+            this.AddToMovableList(link);
+
+            this.AddToMovableList(bluebat);
+            this.AddToMovableList(bluegel);
+            this.AddToMovableList(darknut);
+            this.AddToMovableList(dragon);
+            this.AddToMovableList(goriya);
+            this.AddToMovableList(snake);
+            this.AddToMovableList(wizzrobe);
+
+
 
             // Adding all of these enemies into the list causes all enemies to be drawn in the beginning.
-                // PROBLEM: Not adding them messes up every enemy files, so just keep it here for now.
-            this.AddToSpriteList(bluebat);
-            this.AddToSpriteList(bluegel);
-            this.AddToSpriteList(darknut);
-            this.AddToSpriteList(dragon);
-            this.AddToSpriteList(goriya);
-            this.AddToSpriteList(snake);
-            this.AddToSpriteList(wizzrobe);
+            // PROBLEM: Not adding them messes up every enemy files, so just keep it here for now.
+            this.AddToallObjectList(bluebat);
+            this.AddToallObjectList(bluegel);
+            this.AddToallObjectList(darknut);
+            this.AddToallObjectList(dragon);
+            this.AddToallObjectList(goriya);
+            this.AddToallObjectList(snake);
+            this.AddToallObjectList(wizzrobe);
 
-            this.AddToSpriteList(enemiesList);
+            this.AddToallObjectList(enemiesList);
 
-            // Right now, updatableSprites, drawableSprites, and spriteList all hold the same sprite objects.
+            // Right now, updatableSprites, drawableSprites, and allObjectList all hold the same sprite objects.
                 // QUESTION: What makes them different?
                 // ANSWER:
-            updatableSprites = spriteList;
-            drawableSprites = spriteList;
+            updatableSprites = allObjectList;
+            drawableSprites = allObjectList;
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-            foreach (ISprite sprite in spriteList)
+            foreach (ISprite sprite in allObjectList)
             {
                 sprite.SetSpriteContent(spriteFactory);
             }
@@ -89,10 +102,15 @@ namespace Sprint2
             wizzrobe.setEnemyType(new WizzrobeDown(enemiesList));
         }
 
-        public void AddToSpriteList(ISprite spriteObject)
+        public void AddToallObjectList(ISprite spriteObject)
         {
-            spriteList.Add(spriteObject);
+            allObjectList.Add(spriteObject);
         }
+        public void AddToMovableList(ISprite spriteObject)
+        {
+            movableList.Add(spriteObject);
+        }
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
