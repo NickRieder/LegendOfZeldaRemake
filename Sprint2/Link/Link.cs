@@ -8,7 +8,7 @@ namespace Sprint2
 	{
 		public ILinkState currState;
 		public Vector2 pos;
-		public LinkSpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
@@ -22,9 +22,9 @@ namespace Sprint2
 			pos.Y = 40;
 		}
 
-		public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF)
+		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-			this.spriteFactory = linkSF;
+			this.spriteFactory = spriteFactory;
 			this.currState = new StandingFacingDown(this);
 		}
 

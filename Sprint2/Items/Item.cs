@@ -12,7 +12,7 @@ namespace Sprint2
 		private ArrayList itemArray;
 		private int arrIndex;
 		public Vector2 itemPos;
-		public ItemSpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 		private Texture2D itemSheet;
 
 		public Item()
@@ -23,23 +23,23 @@ namespace Sprint2
 			itemPos.X = 200;
 			itemPos.Y = 200;
 
-			itemArray.Add(ItemSpriteFactory.BOOMERANG);
-			itemArray.Add(ItemSpriteFactory.BOMB);
-			itemArray.Add(ItemSpriteFactory.BOW);
-			itemArray.Add(ItemSpriteFactory.RED_CANDLE);
-			itemArray.Add(ItemSpriteFactory.BLUE_CANDLE);
-			itemArray.Add(ItemSpriteFactory.WOODEN_SWORD);
-			itemArray.Add(ItemSpriteFactory.MAGIC_SWORD);
-			itemArray.Add(ItemSpriteFactory.HEART_CANISTER);
-			itemArray.Add(ItemSpriteFactory.ORANGE_RUBY);
-			itemArray.Add(ItemSpriteFactory.BLUE_RUBY);
+			itemArray.Add(SpriteFactory.BOOMERANG);
+			itemArray.Add(SpriteFactory.BOMB);
+			itemArray.Add(SpriteFactory.BOW);
+			itemArray.Add(SpriteFactory.RED_CANDLE);
+			itemArray.Add(SpriteFactory.BLUE_CANDLE);
+			itemArray.Add(SpriteFactory.WOODEN_SWORD);
+			itemArray.Add(SpriteFactory.MAGIC_SWORD);
+			itemArray.Add(SpriteFactory.HEART_CANISTER);
+			itemArray.Add(SpriteFactory.ORANGE_RUBY);
+			itemArray.Add(SpriteFactory.BLUE_RUBY);
 
 		}
 
-		public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF)
+		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-			this.spriteFactory = itemSF;
-			this.itemSheet = spriteFactory.getItemSheet();
+			this.spriteFactory = spriteFactory;
+			this.itemSheet = this.spriteFactory.getItemSheet();
 		}
 
 		public  void NextItem()

@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.SNAKE_SHEET2_RIGHT1;
-			frame2 = EnemySpriteFactory.SNAKE_SHEET2_RIGHT2;
+			frame1 = SpriteFactory.SNAKE_SHEET2_RIGHT1;
+			frame2 = SpriteFactory.SNAKE_SHEET2_RIGHT2;
 			this.sheet = snake.spriteFactory.getEnemySheet2();
 		}
 

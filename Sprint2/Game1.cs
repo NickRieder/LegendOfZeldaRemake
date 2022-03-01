@@ -11,10 +11,7 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        private LinkSpriteFactory linkSpriteFactory;
-        public ItemSpriteFactory itemSpriteFactory;
-        public BlockSpriteFactory blockSpriteFactory;
-        public EnemySpriteFactory enemySpriteFactory;
+        private SpriteFactory spriteFactory;
         //public Link link;
         //private Item item;
         //private Block block;
@@ -33,17 +30,14 @@ namespace Sprint2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            linkSpriteFactory = new LinkSpriteFactory(this.Content);
-            itemSpriteFactory = new ItemSpriteFactory(this.Content);
-            blockSpriteFactory = new BlockSpriteFactory(this.Content);
-            enemySpriteFactory = new EnemySpriteFactory(this.Content);
-
-            gom = new GameObjectManager();
+            spriteFactory = new SpriteFactory(this.Content);
 
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
+
+            gom = new GameObjectManager();
 
             //link = new Link();
 
@@ -56,51 +50,20 @@ namespace Sprint2
 
             // TODO: use this.Content to load your game content here
 
-            linkSpriteFactory.LoadSpriteSheet();
+            spriteFactory.LoadSpriteSheets();
 
-            //link.SetSpriteContent(linkSpriteFactory);
+            //link = new Link(linkSpriteFactory);
 
-            itemSpriteFactory.LoadSpriteSheet();
+            //itemSpriteFactory.LoadSpriteSheet();
             //item = new Item(itemSpriteFactory);
 
-            blockSpriteFactory.LoadSpriteSheet();
+            //blockSpriteFactory.LoadSpriteSheet();
             //block = new Block(blockSpriteFactory);
-
-            enemySpriteFactory.LoadSpriteSheet();
+            //enemySpriteFactory.LoadSpriteSheet();
             //enemiesList = new EnemiesList(enemySpriteFactory);
+            gom.SetSpriteContent(spriteFactory);
 
-            gom.SetSpriteContent(linkSpriteFactory, enemySpriteFactory, itemSpriteFactory, blockSpriteFactory);
-
-            keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(gom.item));
-            keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(gom.item));
-            
-            keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(gom.link));
-            keyboardController.RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link));
-
-            keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(gom.block));
-            keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(gom.block));
-
-            keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(gom.enemiesList));
-            keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(gom.enemiesList));
-
-            keyboardController.RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link));
-            keyboardController.RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link));
-            keyboardController.RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link));
-
-            keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(gom.link));
-            keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(gom.link));
-            keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(gom.link));
-            keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(gom.link));
-
-            keyboardController.RegisterCommandTap(Keys.E, new SetLinkDamagedDown(gom.link));
-
-            keyboardController.RegisterCommandHold(Keys.Down, new SetLinkMovingDown(gom.link));
-            keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(gom.link));
-            keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(gom.link));
-            keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(gom.link));
-
-            keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(this));
-            keyboardController.RegisterCommandHold(Keys.R, new ResetGame(this));
+            keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
         }
 
         protected override void Update(GameTime gameTime)

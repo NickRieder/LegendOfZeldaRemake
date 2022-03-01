@@ -52,15 +52,15 @@ namespace Sprint2
             totalFrames = 2;
             currWeaponFrame = 0;
             totalWeaponFrames = 4;
-            frame1 = EnemySpriteFactory.DRAGON_SHEET1_LEFT1;
-            frame2 = EnemySpriteFactory.DRAGON_SHEET1_LEFT2;
+            frame1 = SpriteFactory.DRAGON_SHEET1_LEFT1;
+            frame2 = SpriteFactory.DRAGON_SHEET1_LEFT2;
             this.sheet = dragon.spriteFactory.getEnemySheet1();
 
             // CREATE BOOMERANG FRAMES HERE
-            weaponFrame1 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL1;
-            weaponFrame2 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL2;
-            weaponFrame3 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL3;
-            weaponFrame4 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL4;
+            weaponFrame1 = SpriteFactory.DRAGON_SHEET1_FIREBALL1;
+            weaponFrame2 = SpriteFactory.DRAGON_SHEET1_FIREBALL2;
+            weaponFrame3 = SpriteFactory.DRAGON_SHEET1_FIREBALL3;
+            weaponFrame4 = SpriteFactory.DRAGON_SHEET1_FIREBALL4;
             this.weaponSheet = dragon.spriteFactory.getEnemySheet1();
 
             weaponFrameArray.Add(weaponFrame1);

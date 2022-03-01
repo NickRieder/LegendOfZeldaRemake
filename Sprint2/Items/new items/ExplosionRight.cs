@@ -16,15 +16,15 @@ namespace Sprint2
         private Vector2 itemPos;
         private Link link;
 
-        public ExplosionRight(Link link, LinkSpriteFactory spriteFactory)
+        public ExplosionRight(Link link, SpriteFactory spriteFactory)
         {
             currFrame = 0;
             counter = 0;
             totalFrames = 3;
             this.link = link;
-            frame1 = ItemSpriteFactory.EXPLOSION_1;
-            frame2 = ItemSpriteFactory.EXPLOSION_2;
-            frame3 = ItemSpriteFactory.EXPLOSION_3;
+            frame1 = SpriteFactory.EXPLOSION_1;
+            frame2 = SpriteFactory.EXPLOSION_2;
+            frame3 = SpriteFactory.EXPLOSION_3;
             this.sheet = spriteFactory.getLinkSheet();
             itemPos.X = this.link.pos.X + 15;
             itemPos.Y = this.link.pos.Y;

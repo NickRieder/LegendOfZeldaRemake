@@ -12,7 +12,7 @@ namespace Sprint2
 		private ArrayList enemiesArray;
 		private int arrIndex;
 		public Vector2 startingPos;
-		public EnemySpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 
 		public Enemies bluebat;
 		public Enemies bluegel;
@@ -59,9 +59,9 @@ namespace Sprint2
 
         }
 
-		public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF)
+		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
-			this.spriteFactory = enemySF;
+			this.spriteFactory = spriteFactory;
 
 			
 		}

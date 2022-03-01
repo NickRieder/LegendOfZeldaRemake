@@ -12,7 +12,7 @@ namespace Sprint2
 		private ArrayList blockArray;
 		private int arrIndex;
 		public Vector2 blockPos;
-		public BlockSpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 		private Texture2D blockSheet;
 
         public Block()
@@ -23,18 +23,18 @@ namespace Sprint2
 			blockPos.X = 100;
 			blockPos.Y = 100;
 
-			blockArray.Add(BlockSpriteFactory.TILE_DOOR);
-			blockArray.Add(BlockSpriteFactory.TILE_STAIRS);
-			blockArray.Add(BlockSpriteFactory.TILE_FLATBLOCK);
-			blockArray.Add(BlockSpriteFactory.TILE_NONFLAT_BLOCK);
-			blockArray.Add(BlockSpriteFactory.TILE_BRICK_BLOCK);
+			blockArray.Add(SpriteFactory.TILE_DOOR);
+			blockArray.Add(SpriteFactory.TILE_STAIRS);
+			blockArray.Add(SpriteFactory.TILE_FLATBLOCK);
+			blockArray.Add(SpriteFactory.TILE_NONFLAT_BLOCK);
+			blockArray.Add(SpriteFactory.TILE_BRICK_BLOCK);
 
 		}
 
-		public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF)
+		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
-			this.spriteFactory = blockSF;
-			blockSheet = spriteFactory.getTileSheet();
+			this.spriteFactory = spriteFactory;
+			blockSheet = this.spriteFactory.getTileSheet();
 		}
 
 		public void NextBlock()

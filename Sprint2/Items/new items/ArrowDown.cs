@@ -10,9 +10,9 @@ namespace Sprint2
         private Texture2D sheet;
         private Vector2 itemPos;
 
-        public ArrowDown(Link link, LinkSpriteFactory spriteFactory)
+        public ArrowDown(Link link, SpriteFactory spriteFactory)
         {
-            frame1 = ItemSpriteFactory.ARROW_UPSIDEDOWN_DOWN;
+            frame1 = SpriteFactory.ARROW_UPSIDEDOWN_DOWN;
             this.sheet = spriteFactory.getLinkSheet();
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;

@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.DARKNUT_SHEET2_FRONT1;
-			frame2 = EnemySpriteFactory.DARKNUT_SHEET2_FRONT2;
+			frame1 = SpriteFactory.DARKNUT_SHEET2_FRONT1;
+			frame2 = SpriteFactory.DARKNUT_SHEET2_FRONT2;
 			this.sheet = darknut.spriteFactory.getEnemySheet2();
 		}
 

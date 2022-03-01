@@ -8,7 +8,7 @@ namespace Sprint2
 	{
 		public IEnemyState currState;
 		public Vector2 pos;
-		public EnemySpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 		public int health;
 		public int spriteSizeMultiplier;
 
@@ -21,9 +21,9 @@ namespace Sprint2
 			pos.Y = 200;
 		}
 
-		public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF)
+		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-			this.spriteFactory = enemySF;
+			this.spriteFactory = spriteFactory;
 		}
 
 		public void setEnemyType(IEnemyState enemyType)

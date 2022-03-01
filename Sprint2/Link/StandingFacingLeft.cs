@@ -22,8 +22,8 @@ namespace Sprint2
 			currFrame = 0;
 			counter = 0;
 			totalFrames = 2;
-			frame1 = LinkSpriteFactory.LINK_MOVE_MIRROR_LEFT_1;
-			frame2 = LinkSpriteFactory.LINK_MOVE_MIRROR_LEFT_2;
+			frame1 = SpriteFactory.LINK_MOVE_MIRROR_LEFT_1;
+			frame2 = SpriteFactory.LINK_MOVE_MIRROR_LEFT_2;
 			this.sheet = link.spriteFactory.getLinkSheetMirrored();
 
 			itemList = new ArrayList();

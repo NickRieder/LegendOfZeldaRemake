@@ -73,11 +73,11 @@ namespace Sprint2
             drawableSprites = spriteList;
         }
 
-        public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF)
+        public void SetSpriteContent(SpriteFactory spriteFactory)
         {
             foreach (ISprite sprite in spriteList)
             {
-                sprite.SetSpriteContent(linkSF, enemySF, itemSF, blockSF);
+                sprite.SetSpriteContent(spriteFactory);
             }
 
             bluebat.setEnemyType(new BluebatDown(enemiesList));

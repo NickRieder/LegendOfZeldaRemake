@@ -8,7 +8,7 @@ namespace Sprint2
 {
     public interface ISprite
     {
-        public void SetSpriteContent(LinkSpriteFactory linkSF, EnemySpriteFactory enemySF, ItemSpriteFactory itemSF, BlockSpriteFactory blockSF);
+        public void SetSpriteContent(SpriteFactory spriteFactory);
         public void Draw(SpriteBatch spritebatch);
 
         public void Update(GameTime gameTime);

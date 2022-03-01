@@ -17,14 +17,14 @@ namespace Sprint2
         private int speed;
         private Link link;
 
-        public BoomerangDown(Link link, LinkSpriteFactory spriteFactory)
+        public BoomerangDown(Link link, SpriteFactory spriteFactory)
         {
             currFrame = 0;
             counter = 0;
             totalFrames = 3;
-            frame1 = ItemSpriteFactory.BOOMERANG_1;
-            frame2 = ItemSpriteFactory.BOOMERANG_2;
-            frame3 = ItemSpriteFactory.BOOMERANG_3;
+            frame1 = SpriteFactory.BOOMERANG_1;
+            frame2 = SpriteFactory.BOOMERANG_2;
+            frame3 = SpriteFactory.BOOMERANG_3;
             this.sheet = spriteFactory.getLinkSheet();
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;
