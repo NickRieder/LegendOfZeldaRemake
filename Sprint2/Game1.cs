@@ -12,14 +12,14 @@ namespace Sprint2
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         private SpriteFactory spriteFactory;
-       
-        public Link link;
-        private Item item;
-        private Block block;
-        private EnemiesList enemiesList;
+        //public Link link;
+        //private Item item;
+        //private Block block;
+        //private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
-        
+        private GameObjectManager gom;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -31,12 +31,15 @@ namespace Sprint2
         {
             // TODO: Add your initialization logic here
             spriteFactory = new SpriteFactory(this.Content);
-           
 
             controllerList = new ArrayList();
             
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
+
+            gom = new GameObjectManager();
+
+            //link = new Link();
 
             base.Initialize();
         }
@@ -49,16 +52,23 @@ namespace Sprint2
 
             spriteFactory.LoadSpriteSheets();
 
-            link = new Link(spriteFactory);
-            item = new Item(spriteFactory);           
-            block = new Block(spriteFactory); 
-            enemiesList = new EnemiesList(spriteFactory);
+            //link = new Link(linkSpriteFactory);
 
-            keyboardController.Initialize(link, item, block, enemiesList, this);
+            //itemSpriteFactory.LoadSpriteSheet();
+            //item = new Item(itemSpriteFactory);
+
+            //blockSpriteFactory.LoadSpriteSheet();
+            //block = new Block(blockSpriteFactory);
+            //enemySpriteFactory.LoadSpriteSheet();
+            //enemiesList = new EnemiesList(enemySpriteFactory);
+            gom.SetSpriteContent(spriteFactory);
+
+            keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
         }
 
         protected override void Update(GameTime gameTime)
         {
+            // Pretty sure we were told last Sprint that we didn't need this.
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -66,9 +76,13 @@ namespace Sprint2
             {
                 controller.update();
             }
+
+            //link.Update(gameTime);
             
-            link.Update(gameTime);
-            enemiesList.Update(gameTime);
+            //enemiesList.Update(gameTime);
+
+            gom.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -76,12 +90,15 @@ namespace Sprint2
         {
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
-            link.Draw(spriteBatch);
-            item.Draw(spriteBatch);
+            //link.Draw(spriteBatch);
+            
+            //item.Draw(spriteBatch);
 
-            block.Draw(spriteBatch);
+            //block.Draw(spriteBatch);
 
-            enemiesList.Draw(spriteBatch);
+            //enemiesList.Draw(spriteBatch);
+
+            gom.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here

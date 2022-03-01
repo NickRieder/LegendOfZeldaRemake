@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Enemies
+	public class Enemies : ISprite
 	{
 		public IEnemyState currState;
 		public Vector2 pos;
@@ -12,14 +12,18 @@ namespace Sprint2
 		public int health;
 		public int spriteSizeMultiplier;
 
-		public Enemies(SpriteFactory enemySpriteFactory)
+		public Enemies()
 		{
-			spriteFactory = enemySpriteFactory;
 			spriteSizeMultiplier = 2;
 
 			health = 3;
 			pos.X = 600;
 			pos.Y = 200;
+		}
+
+		public void SetSpriteContent(SpriteFactory spriteFactory)
+        {
+			this.spriteFactory = spriteFactory;
 		}
 
 		public void setEnemyType(IEnemyState enemyType)

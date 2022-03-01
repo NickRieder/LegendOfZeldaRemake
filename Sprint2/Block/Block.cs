@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Sprint2
 {
-	public class Block
+	public class Block : ISprite
 	{
 		private ArrayList blockArray;
 		private int arrIndex;
@@ -15,11 +15,10 @@ namespace Sprint2
 		public SpriteFactory spriteFactory;
 		private Texture2D blockSheet;
 
-        public Block(SpriteFactory blockSpriteFactory)
+        public Block()
 		{
 			blockArray = new ArrayList();
-			spriteFactory = blockSpriteFactory;
-			blockSheet = blockSpriteFactory.getTileSheet();
+
 			arrIndex = 0;
 			blockPos.X = 100;
 			blockPos.Y = 100;
@@ -30,6 +29,12 @@ namespace Sprint2
 			blockArray.Add(SpriteFactory.TILE_NONFLAT_BLOCK);
 			blockArray.Add(SpriteFactory.TILE_BRICK_BLOCK);
 
+		}
+
+		public void SetSpriteContent(SpriteFactory spriteFactory)
+		{
+			this.spriteFactory = spriteFactory;
+			blockSheet = this.spriteFactory.getTileSheet();
 		}
 
 		public void NextBlock()
@@ -65,6 +70,11 @@ namespace Sprint2
 			Rectangle destinationRectangle = new Rectangle((int)blockPos.X, (int)blockPos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
 			spriteBatch.Draw(blockSheet, destinationRectangle, sourceRectangle, Color.White);
 		}
+
+		public void Update(GameTime gameTime)
+        {
+			// No Op
+        }
 	}
 }
 

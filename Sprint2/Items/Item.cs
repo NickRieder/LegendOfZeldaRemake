@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Sprint2
 {
-	public class Item
+	public class Item : ISprite
 	{
 		private ArrayList itemArray;
 		private int arrIndex;
@@ -15,11 +15,10 @@ namespace Sprint2
 		public SpriteFactory spriteFactory;
 		private Texture2D itemSheet;
 
-		public Item(SpriteFactory itemSpriteFactory)
+		public Item()
 		{
 			itemArray = new ArrayList();
-			spriteFactory = itemSpriteFactory;
-			itemSheet = itemSpriteFactory.getItemSheet();
+
 			arrIndex = 0;
 			itemPos.X = 200;
 			itemPos.Y = 200;
@@ -35,6 +34,12 @@ namespace Sprint2
 			itemArray.Add(SpriteFactory.ORANGE_RUBY);
 			itemArray.Add(SpriteFactory.BLUE_RUBY);
 
+		}
+
+		public void SetSpriteContent(SpriteFactory spriteFactory)
+        {
+			this.spriteFactory = spriteFactory;
+			this.itemSheet = this.spriteFactory.getItemSheet();
 		}
 
 		public  void NextItem()
@@ -70,5 +75,10 @@ namespace Sprint2
 			Rectangle destinationRectangle = new Rectangle((int)itemPos.X, (int)itemPos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
 			spriteBatch.Draw(itemSheet, destinationRectangle, sourceRectangle, Color.White);
 		}
+
+		public void Update(GameTime gameTime)
+        {
+			// No Op
+        }
 	}
 }
