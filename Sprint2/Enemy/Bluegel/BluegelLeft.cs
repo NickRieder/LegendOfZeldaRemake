@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.BLUEGEL_SHEET2_POS1;
-			frame2 = EnemySpriteFactory.BLUEGEL_SHEET2_POS2;
+			frame1 = SpriteFactory.BLUEGEL_SHEET2_POS1;
+			frame2 = SpriteFactory.BLUEGEL_SHEET2_POS2;
 			this.sheet = bluegel.spriteFactory.getEnemySheet2();
 		}
 

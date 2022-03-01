@@ -11,10 +11,8 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        private LinkSpriteFactory linkSpriteFactory;
-        public ItemSpriteFactory itemSpriteFactory;
-        public BlockSpriteFactory blockSpriteFactory;
-        public EnemySpriteFactory enemySpriteFactory;
+        private SpriteFactory spriteFactory;
+       
         public Link link;
         private Item item;
         private Block block;
@@ -32,10 +30,8 @@ namespace Sprint2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            linkSpriteFactory = new LinkSpriteFactory(this.Content);
-            itemSpriteFactory = new ItemSpriteFactory(this.Content);
-            blockSpriteFactory = new BlockSpriteFactory(this.Content);
-            enemySpriteFactory = new EnemySpriteFactory(this.Content);
+            spriteFactory = new SpriteFactory(this.Content);
+           
 
             controllerList = new ArrayList();
             
@@ -51,48 +47,14 @@ namespace Sprint2
 
             // TODO: use this.Content to load your game content here
 
-            linkSpriteFactory.LoadSpriteSheet();
+            spriteFactory.LoadSpriteSheets();
 
-            link = new Link(linkSpriteFactory);
+            link = new Link(spriteFactory);
+            item = new Item(spriteFactory);           
+            block = new Block(spriteFactory); 
+            enemiesList = new EnemiesList(spriteFactory);
 
-            itemSpriteFactory.LoadSpriteSheet();
-            item = new Item(itemSpriteFactory);
-
-            blockSpriteFactory.LoadSpriteSheet();
-            block = new Block(blockSpriteFactory);
-            enemySpriteFactory.LoadSpriteSheet();
-            enemiesList = new EnemiesList(enemySpriteFactory);
-
-            keyboardController.RegisterCommandTap(Keys.I, new SetNextItem(item));
-            keyboardController.RegisterCommandTap(Keys.U, new SetPreviousItem(item));
-            
-            keyboardController.RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
-            keyboardController.RegisterCommandTap(Keys.N, new SetLinkAttacking(link));
-
-            keyboardController.RegisterCommandTap(Keys.Y, new SetNextBlock(block));
-            keyboardController.RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
-
-            keyboardController.RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
-            keyboardController.RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
-
-            keyboardController.RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
-            keyboardController.RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
-            keyboardController.RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
-
-            keyboardController.RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
-            keyboardController.RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
-            keyboardController.RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
-            keyboardController.RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
-
-            keyboardController.RegisterCommandTap(Keys.E, new SetLinkDamagedDown(link));
-
-            keyboardController.RegisterCommandHold(Keys.Down, new SetLinkMovingDown(link));
-            keyboardController.RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
-            keyboardController.RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
-            keyboardController.RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
-
-            keyboardController.RegisterCommandHold(Keys.Q, new QuitCommand(this));
-            keyboardController.RegisterCommandHold(Keys.R, new ResetGame(this));
+            keyboardController.Initialize(link, item, block, enemiesList, this);
         }
 
         protected override void Update(GameTime gameTime)

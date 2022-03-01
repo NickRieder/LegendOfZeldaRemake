@@ -8,11 +8,11 @@ namespace Sprint2
 	{
 		public IEnemyState currState;
 		public Vector2 pos;
-		public EnemySpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 		public int health;
 		public int spriteSizeMultiplier;
 
-		public Enemies(EnemySpriteFactory enemySpriteFactory)
+		public Enemies(SpriteFactory enemySpriteFactory)
 		{
 			spriteFactory = enemySpriteFactory;
 			spriteSizeMultiplier = 2;

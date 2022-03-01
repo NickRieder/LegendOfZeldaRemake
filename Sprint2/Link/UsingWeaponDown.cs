@@ -18,7 +18,7 @@ namespace Sprint2
 		public UsingWeaponDown(Link link)
 		{
 			this.link = link;
-			frame1 = LinkSpriteFactory.LINK_USESWORD_DOWN;
+			frame1 = SpriteFactory.LINK_USESWORD_DOWN;
 			this.sheet = link.spriteFactory.getLinkSheet();
 
 			attackTime = TimeSpan.FromMilliseconds(500);

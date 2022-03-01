@@ -23,7 +23,7 @@ namespace Sprint2
 			this.link = link;
 			currFrame = 0;
 			totalFrames = 1;
-			frame1 = LinkSpriteFactory.LINK_USESWORD_MIRROR_LEFT;
+			frame1 = SpriteFactory.LINK_USESWORD_MIRROR_LEFT;
 			this.sheet = link.spriteFactory.getLinkSheetMirrored();
 
 			attackTime = TimeSpan.FromMilliseconds(500);

@@ -17,7 +17,7 @@ namespace Sprint2
 		public TakingDamageDown(Link link)
 		{
 			this.link = link;
-			frame1 = LinkSpriteFactory.LINK_DAMAGED_BLACK_AND_RED;
+			frame1 = SpriteFactory.LINK_DAMAGED_BLACK_AND_RED;
 			this.sheet = link.spriteFactory.getLinkSheet();
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			isDamaged = true;

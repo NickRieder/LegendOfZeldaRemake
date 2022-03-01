@@ -12,7 +12,7 @@ namespace Sprint2
 		private ArrayList enemiesArray;
 		private int arrIndex;
 		public Vector2 startingPos;
-		public EnemySpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory;
 
 		public Enemies bluebat;
 		public Enemies bluegel;
@@ -24,7 +24,7 @@ namespace Sprint2
 
 		Enemies enemyToBeDrawn;
 
-		public EnemiesList(EnemySpriteFactory enemySpriteFactory)
+		public EnemiesList(SpriteFactory enemySpriteFactory)
 		{
 			enemiesArray = new ArrayList();
 			spriteFactory = enemySpriteFactory;

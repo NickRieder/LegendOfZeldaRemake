@@ -7,9 +7,9 @@ namespace Sprint2
     public class LinkItem
     {
         public IItem currItem;
-        public LinkSpriteFactory spriteFactory;
+        public SpriteFactory spriteFactory;
 
-        public LinkItem(LinkSpriteFactory linkSpriteFactory)
+        public LinkItem(SpriteFactory linkSpriteFactory)
         {
             spriteFactory = linkSpriteFactory;
         }

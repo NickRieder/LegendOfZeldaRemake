@@ -22,8 +22,8 @@ namespace Sprint2
 			currFrame = 0;
 			counter = 0;
 			totalFrames = 2;
-			frame1 = LinkSpriteFactory.LINK_MOVE_RIGHT_1;
-			frame2 = LinkSpriteFactory.LINK_MOVE_RIGHT_2;
+			frame1 = SpriteFactory.LINK_MOVE_RIGHT_1;
+			frame2 = SpriteFactory.LINK_MOVE_RIGHT_2;
 			this.sheet = link.spriteFactory.getLinkSheet();
 
 			itemList = new ArrayList();

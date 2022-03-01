@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.BLUEBAT_SHEET2_POS1;
-			frame2 = EnemySpriteFactory.BLUEBAT_SHEET2_POS2;
+			frame1 = SpriteFactory.BLUEBAT_SHEET2_POS1;
+			frame2 = SpriteFactory.BLUEBAT_SHEET2_POS2;
 			this.sheet = bluebat.spriteFactory.getEnemySheet2();
 		}
 

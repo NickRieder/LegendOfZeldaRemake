@@ -36,8 +36,8 @@ namespace Sprint2
 			counter = 0;
 			currFrame = 0;
 			totalFrames = 2;
-			frame1 = EnemySpriteFactory.WIZZROBE_SHEET2_BACK1;
-			frame2 = EnemySpriteFactory.WIZZROBE_SHEET2_BACK2;
+			frame1 = SpriteFactory.WIZZROBE_SHEET2_BACK1;
+			frame2 = SpriteFactory.WIZZROBE_SHEET2_BACK2;
 			this.sheet = wizzrobe.spriteFactory.getEnemySheet2();
 		}
 
