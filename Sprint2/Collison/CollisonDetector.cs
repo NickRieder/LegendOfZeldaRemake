@@ -68,7 +68,7 @@ namespace Sprint2
                         int collisionSide = GetCollision(movableSprite, otherSprite);
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
-                            // Kevin: is the Collide function a part of collision response? If so, it should probably be in the ColisionHandler.cs file.
+                            // Kevin: is this Collide function a part of collision response? If so, it should probably be implemented in the ColisionHandler.cs file.
                             // movableSprite.Collide(collision);
                             // otherSprite.Collide(collision);
                         }
