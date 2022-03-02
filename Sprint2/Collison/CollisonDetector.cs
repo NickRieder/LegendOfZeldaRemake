@@ -36,16 +36,16 @@ namespace Sprint2
               int intersectingArea = Rectangle.Intersect(mSprRectangle, oSprRectangle);
               if (intersectingArea.Width >= intersectingArea.Height)      // top-bottom collision
                   {
-                      if (mSprRectangle.pos.Y < oSprRectangle.pos.Y)
+                      if (movableSprite.pos.Y < otherSprite.pos.Y)
                           return (int)COLLISION_SIDE.TOP;                 // movableSprite top collision
-                      elseif (mSprRectangle.pos.Y >= oSprRectangle.pos.Y)
+                      elseif (movableSprite.pos.Y >= otherSpriteotherSprite.pos.Y)
                           return (int)COLLISION_SIDE.BOTTOM;              // movableSprite bottom collision
                   }
               elseif (intersectingArea.Width < intersectingArea.Height)   // left-right collision
                   {
-                      if (mSprRectangle.pos.X < oSprRectangle.pos.X)
+                      if (movableSprite.pos.X < otherSprite.pos.X)
                           return (int)COLLSION_SIDE.LEFT;                 // movableSprite left collision
-                      elseif (mSprRectangle.pos.X >= oSprRectangle.pos.X)
+                      elseif (movableSprite.pos.X >= otherSprite.pos.X)
                           return (int)COLLISION_SIDE.RIGHT                // movableSprite right collision
                   }
               else
