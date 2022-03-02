@@ -9,11 +9,11 @@ namespace Sprint2
 {
     public class GameObjectManager
     {
-        public  ArrayList allObjectList;
-        public ArrayList updatableSprites;
-        public ArrayList drawableSprites;
-        public ArrayList movableList;
-
+        private  ArrayList allObjectList;
+        private ArrayList movableObjectList;
+        public ArrayList updatableSpritesList;
+        public ArrayList drawableSpritesList;
+        
         public Link link;
         public Item item;
         public Block block;
@@ -30,9 +30,9 @@ namespace Sprint2
         public GameObjectManager()
         {
             allObjectList = new ArrayList();
-            updatableSprites = new ArrayList();
-            drawableSprites = new ArrayList();
-            movableList = new ArrayList();
+            updatableSpritesList = new ArrayList();
+            drawableSpritesList = new ArrayList();
+            movableObjectList = new ArrayList();
             
             link = new Link();
             item = new Item();
@@ -55,17 +55,6 @@ namespace Sprint2
             this.AddToallObjectList(link);
             this.AddToallObjectList(item);
             this.AddToallObjectList(block);
-            this.AddToMovableList(link);
-
-            this.AddToMovableList(bluebat);
-            this.AddToMovableList(bluegel);
-            this.AddToMovableList(darknut);
-            this.AddToMovableList(dragon);
-            this.AddToMovableList(goriya);
-            this.AddToMovableList(snake);
-            this.AddToMovableList(wizzrobe);
-
-
 
             // Adding all of these enemies into the list causes all enemies to be drawn in the beginning.
             // PROBLEM: Not adding them messes up every enemy files, so just keep it here for now.
@@ -79,11 +68,21 @@ namespace Sprint2
 
             this.AddToallObjectList(enemiesList);
 
+            this.AddToMovableObjectList(link);
+            this.AddToMovableObjectList(bluebat);
+            this.AddToMovableObjectList(bluegel);
+            this.AddToMovableObjectList(darknut);
+            this.AddToMovableObjectList(dragon);
+            this.AddToMovableObjectList(goriya);
+            this.AddToMovableObjectList(snake);
+            this.AddToMovableObjectList(wizzrobe);
+            this.AddToMovableObjectList(enemiesList);
+
             // Right now, updatableSprites, drawableSprites, and allObjectList all hold the same sprite objects.
-                // QUESTION: What makes them different?
-                // ANSWER:
-            updatableSprites = allObjectList;
-            drawableSprites = allObjectList;
+            // QUESTION: What makes them different?
+            // ANSWER:
+            updatableSpritesList = allObjectList;
+            drawableSpritesList = allObjectList;
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -102,21 +101,30 @@ namespace Sprint2
             wizzrobe.setEnemyType(new WizzrobeDown(enemiesList));
         }
 
+        public ArrayList getListOfAllObjects()
+        {
+            return allObjectList;
+        }
+
+        public ArrayList getListOfMovableObjects()
+        {
+            return movableObjectList;
+        }
+
         public void AddToallObjectList(ISprite spriteObject)
         {
             allObjectList.Add(spriteObject);
         }
-        public void AddToMovableList(ISprite spriteObject)
+        public void AddToMovableObjectList(ISprite spriteObject)
         {
-            movableList.Add(spriteObject);
+            movableObjectList.Add(spriteObject);
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Could be done in Game1.cs
-            // This function could just return an array of IDrawables
-            foreach (ISprite sprite in drawableSprites)
+            
+            foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
             }
@@ -124,9 +132,8 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            // Could be done in Game1.cs
-            // This function could just return an array of IUpdatables
-            foreach (ISprite sprite in updatableSprites)
+           
+            foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);
             }
