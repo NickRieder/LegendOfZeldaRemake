@@ -34,14 +34,17 @@ namespace Sprint2
 		public void MoveUp()
 		{
 			link.currState = new StandingFacingUp(link);
+			link.direction = "up";
 		}
 		public void MoveDown()
 		{
 			link.currState = new StandingFacingDown(link);
+			link.direction = "down";
 		}
 		public void MoveRight()
 		{
 			link.currState = new StandingFacingRight(link);
+			link.direction = "right";
 		}
 		public void MoveLeft()
 		{
@@ -54,17 +57,17 @@ namespace Sprint2
 		}
 		public void UseWeapon()
 		{
-			link.currState = new UsingWeaponLeft(link);
+			link.currState = new UsingWeapon(link);
 		}
 		public void UseItem(int itemNum)
 		{
-			link.currState = new UsingItemLeft(link);
+			link.currState = new UsingItem(link);
 			link.item = (IItem)itemList[itemNum - 1];
 		}
 		public void TakeDamage()
 		{
 			link.health--;
-			link.currState = new TakingDamageDown(link);
+			link.currState = new TakingDamage(link);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

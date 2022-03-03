@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Link 
+	public class Link : ISprite
 	{
 		public ILinkState currState;
 		public Vector2 pos;
@@ -12,7 +12,7 @@ namespace Sprint2
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
-		public Vector2 direction;
+		public string direction;
 		public Link()
 		{	
 			item = new NullItem();
@@ -25,22 +25,27 @@ namespace Sprint2
         {
 			this.spriteFactory = spriteFactory;
 			this.currState = new StandingFacingDown(this);
+			direction = "down";
 		}
 
 		public void MoveUp()
         {
+			direction = "up";
 			currState.MoveUp();
-        }
+		}
 		public void MoveDown()
         {
+			direction = "down";
 			currState.MoveDown();
 		}
 		public void MoveLeft()
         {
+			direction = "left";
 			currState.MoveLeft();
 		}
 		public void MoveRight()
         {
+			direction = "right";
 			currState.MoveRight();
 		}
 		public void UseWeapon()
