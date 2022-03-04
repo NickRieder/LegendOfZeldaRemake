@@ -58,13 +58,8 @@ namespace Sprint2
 			this.spriteFactory = spriteFactory;
 
 			foreach (Enemies enemy in enemiesArray)
-            {
-				if (this.spriteFactory != null)
-                {
-					System.Diagnostics.Debug.WriteLine("DEBUG: Setting enemy's spriteFactory");
-					enemy.spriteFactory = spriteFactory;
-                }
-
+			{
+				enemy.spriteFactory = spriteFactory;
 			}
 
 			bluebat.setEnemyType(new BluebatDown(this));
