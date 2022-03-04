@@ -46,12 +46,12 @@ namespace Sprint2
 			enemiesArray.Add(bluebat);
 			enemiesArray.Add(bluegel);
 			enemiesArray.Add(darknut);
-            enemiesArray.Add(dragon);
-            enemiesArray.Add(goriya);
-            enemiesArray.Add(snake);
-            enemiesArray.Add(wizzrobe);
+			enemiesArray.Add(dragon);
+			enemiesArray.Add(goriya);
+			enemiesArray.Add(snake);
+			enemiesArray.Add(wizzrobe);
 
-        }
+		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
