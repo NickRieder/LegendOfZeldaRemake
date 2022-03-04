@@ -12,13 +12,10 @@ namespace Sprint2
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         private SpriteFactory spriteFactory;
-        //public Link link;
-        //private Item item;
-        //private Block block;
-        //private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         private GameObjectManager gom;
+        private CollisionDetector collisionDetector;
 
         public Game1()
         {
@@ -39,7 +36,7 @@ namespace Sprint2
 
             gom = new GameObjectManager();
 
-            //link = new Link();
+            collisionDetector = new CollisionDetector(gom);
 
             base.Initialize();
         }
@@ -52,15 +49,14 @@ namespace Sprint2
 
             spriteFactory.LoadSpriteSheets();
 
-            //link = new Link(linkSpriteFactory);
+            gom.spriteFactory = spriteFactory;
 
-            //itemSpriteFactory.LoadSpriteSheet();
-            //item = new Item(itemSpriteFactory);
+            if (gom.spriteFactory != null)
+            {
+                System.Diagnostics.Debug.WriteLine("DEBUG: " + gom.spriteFactory.getArrowSpriteDown().getDestinationRectangle().X);
+                System.Diagnostics.Debug.WriteLine("DEBUG: " + gom.spriteFactory.getArrowSpriteDown().getDestinationRectangle().Y);
+            }
 
-            //blockSpriteFactory.LoadSpriteSheet();
-            //block = new Block(blockSpriteFactory);
-            //enemySpriteFactory.LoadSpriteSheet();
-            //enemiesList = new EnemiesList(enemySpriteFactory);
             gom.SetSpriteContent(spriteFactory);
 
             keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
@@ -77,26 +73,17 @@ namespace Sprint2
                 controller.Update(gameTime);
             }
 
-            //link.Update(gameTime);
-            
-            //enemiesList.Update(gameTime);
-
             gom.Update(gameTime);
+            collisionDetector.Update(gameTime);
 
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
-            //link.Draw(spriteBatch);
-            
-            //item.Draw(spriteBatch);
-
-            //block.Draw(spriteBatch);
-
-            //enemiesList.Draw(spriteBatch);
 
             gom.Draw(spriteBatch);
 

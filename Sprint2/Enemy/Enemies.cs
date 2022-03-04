@@ -8,7 +8,7 @@ namespace Sprint2
 	{
 		public IEnemyState currState;
 		public Vector2 pos;
-		public SpriteFactory spriteFactory;
+		public SpriteFactory spriteFactory { get; set; }
 		public int health;
 		public int spriteSizeMultiplier;
 

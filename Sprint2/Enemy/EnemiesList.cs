@@ -13,6 +13,7 @@ namespace Sprint2
 		private int arrIndex;
 		public Vector2 startingPos;
 		public SpriteFactory spriteFactory;
+		public GameObjectManager gom;
 
 		public Enemies bluebat;
 		public Enemies bluegel;
@@ -26,28 +27,21 @@ namespace Sprint2
 
 		public EnemiesList(GameObjectManager gom)
 		{
-			enemiesArray = new ArrayList();
+			this.gom = gom;
 
+			enemiesArray = new ArrayList();
 
 			arrIndex = 0;
 			startingPos.X = 600;
 			startingPos.Y = 200;
 
-			bluebat = gom.bluebat;
-			bluegel = gom.bluegel;
-			darknut = gom.darknut;
-			dragon = gom.dragon;
-			goriya = gom.goriya;
-			snake = gom.snake;
-			wizzrobe = gom.wizzrobe;
-
-			/*bluebat.setEnemyType(new BluebatDown(this));
-			bluegel.setEnemyType(new BluegelDown(this));
-			darknut.setEnemyType(new DarknutStandingFacingDown(this));
-			dragon.setEnemyType(new DragonStandingFacingDown(this));
-			goriya.setEnemyType(new GoriyaStandingFacingDown(this));
-			snake.setEnemyType(new SnakeDown(this));
-			wizzrobe.setEnemyType(new WizzrobeDown(this));*/
+			bluebat = new Enemies();
+			bluegel = new Enemies();
+			darknut = new Enemies();
+			dragon = new Enemies();
+			goriya = new Enemies();
+			snake = new Enemies();
+			wizzrobe = new Enemies();
 
 			enemiesArray.Add(bluebat);
 			enemiesArray.Add(bluegel);
@@ -63,7 +57,24 @@ namespace Sprint2
 		{
 			this.spriteFactory = spriteFactory;
 
-			
+			foreach (Enemies enemy in enemiesArray)
+            {
+				if (this.spriteFactory != null)
+                {
+					System.Diagnostics.Debug.WriteLine("DEBUG: Setting enemy's spriteFactory");
+					enemy.spriteFactory = spriteFactory;
+                }
+
+			}
+
+			bluebat.setEnemyType(new BluebatDown(this));
+			bluegel.setEnemyType(new BluegelDown(this));
+			darknut.setEnemyType(new DarknutStandingFacingDown(this));
+			dragon.setEnemyType(new DragonStandingFacingDown(this));
+			goriya.setEnemyType(new GoriyaStandingFacingDown(this));
+			snake.setEnemyType(new SnakeDown(this));
+			wizzrobe.setEnemyType(new WizzrobeDown(this));
+
 		}
 
 		public void NextEnemy()
