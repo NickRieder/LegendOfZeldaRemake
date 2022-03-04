@@ -52,7 +52,7 @@ namespace Sprint2
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             itemPos.X -= speed;
             if (currFrame == totalFrames)
