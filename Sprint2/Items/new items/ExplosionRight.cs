@@ -7,14 +7,10 @@ namespace Sprint2
     public class ExplosionRight : IItem
     {
         private int currFrame;
-        private int totalFrames;
         private int counter;
         private Vector2 itemPos;
         private Link link;
         private Sprite Explosion;
-        private TimeSpan animationTime;
-        private TimeSpan elapsedTime;
-
         public ExplosionRight(Link link, SpriteFactory spriteFactory)
         {
             currFrame = 0;
@@ -35,8 +31,9 @@ namespace Sprint2
             if (counter % 10 == 0)
             {
                 Explosion.Update(gameTime);
+                currFrame++;
             }
-            else if (counter >= 50)
+            if(Explosion.GetTotalFrames() <= currFrame)
             {
                 link.item = new NullItem();
             }

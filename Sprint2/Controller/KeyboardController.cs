@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint2
 {
-    class KeyboardController : IController, IUpdatable
+    class KeyboardController : IController
     {
         private KeyboardState currentState;
         private KeyboardState previousState;
@@ -68,7 +68,7 @@ namespace Sprint2
             RegisterCommandHold(Keys.R, new ResetGame(game1));
         }
 
-        public void update()
+        public void Update(GameTime gameTime)
         {
 
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
