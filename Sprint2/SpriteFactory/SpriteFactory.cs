@@ -47,7 +47,11 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             
+
+
         }
+
+        
         public Texture2D getTileSheet()
         {
             return tileSheet;
@@ -237,5 +241,33 @@ namespace Sprint2
         public static Rectangle LINK_DAMAGED_ALLBLUE = new Rectangle(74, 240, 16, 16);
         public static Rectangle LINK_DAMAGED_ALLGREEN = new Rectangle(91, 240, 16, 16);
         public static Rectangle LINK_DAMAGED_ALLORANGE = new Rectangle(108, 240, 16, 16);
+
+
+        public Sprite getBoomerangSprite()
+        {
+            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);
+        }
+        public Sprite getArrowSpriteRight()
+        {
+            return new Sprite(linkSheet, ARROW_RIGHT);
+        }
+        public Sprite getArrowSpriteUp()
+        {
+            return new Sprite(linkSheet, ARROW_UP);
+        }
+        public Sprite getArrowSpriteLeft()
+        {
+            return new Sprite(linkSheetMirrored, ARROW_MIRRORED_LEFT);
+        }
+        public Sprite getArrowSpriteDown()
+        {
+            return new Sprite(linkSheetUpsideDown, ARROW_UPSIDEDOWN_DOWN);
+        }
+        public Sprite getExplosionSprite()
+        {
+
+            return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
+
+        }
     }
 }

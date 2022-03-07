@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
+using Microsoft.Xna.Framework;
 
 namespace Sprint2
 {
@@ -67,7 +68,7 @@ namespace Sprint2
             RegisterCommandHold(Keys.R, new ResetGame(game1));
         }
 
-        public void update()
+        public void Update(GameTime gameTime)
         {
 
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();

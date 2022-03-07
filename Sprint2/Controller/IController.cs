@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2
 {
     public interface IController
     {
 
-        public void update();
+        public void Update(GameTime gameTime);
     }
 }
