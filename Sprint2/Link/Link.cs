@@ -14,7 +14,7 @@ namespace Sprint2
 		public int sizeMuliplier = 3;
 		public string direction;
 		public Link()
-		{	
+		{
 			item = new NullItem();
 			health = 3;
 			pos.X = 40;

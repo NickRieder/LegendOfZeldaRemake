@@ -28,6 +28,7 @@ namespace Sprint2
         {
             this.content = content;
         }
+
         public void LoadSpriteSheets()
         {
             tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
