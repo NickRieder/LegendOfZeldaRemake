@@ -48,5 +48,9 @@ namespace Sprint2
         {
             return destinationRectangle;
         }
+        public int GetTotalFrames()
+        {
+            return totalFrames;
+        }
     }
 }
