@@ -60,10 +60,10 @@ namespace Sprint2
 			currState.Draw(spriteBatch);
 			item.Draw(spriteBatch, new Vector2(pos.X, pos.Y));
         }
-		public void Update(GameTime gametime)
+		public void Update(GameTime gameTime)
 		{
-			currState.Update(gametime);
-			item.Update();
+			currState.Update(gameTime);
+			item.Update(gameTime);
 		}
 	}
 }

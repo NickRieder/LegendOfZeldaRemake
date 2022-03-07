@@ -74,7 +74,7 @@ namespace Sprint2
 
             foreach (IController controller in controllerList)
             {
-                controller.update();
+                controller.Update(gameTime);
             }
 
             //link.Update(gameTime);
