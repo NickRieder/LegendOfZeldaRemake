@@ -20,14 +20,6 @@ namespace Sprint2
         public Block block;
         public EnemiesList enemiesList;
 
-        public Enemies bluebat;
-        public Enemies bluegel;
-        public Enemies darknut;
-        public Enemies dragon;
-        public Enemies goriya;
-        public Enemies snake;
-        public Enemies wizzrobe;
-
         public GameObjectManager()
         {
             allObjectList = new ArrayList();

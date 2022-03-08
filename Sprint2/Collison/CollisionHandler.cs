@@ -18,7 +18,7 @@ namespace Sprint2
             movableObjectList = gom.getListOfMovableObjects();
         }
 
-        public void Collide(Sprite spriteObject, int collisionSideEnum)  // Check the collisionSideEnum parameter against the CollisionDetection.COLLISION_SIDE enums
+        public void Collide(ISprite spriteObject, int collisionSideEnum)  // Check the collisionSideEnum parameter against the CollisionDetection.COLLISION_SIDE enums
         {
             if (gom.movableObjectList.Contains(spriteObject))
             {
@@ -42,9 +42,9 @@ namespace Sprint2
 
         }
 
-        public void preventLeftCollision(Sprite spriteObject)
+        public void preventLeftCollision(ISprite spriteObject)
         {
-            Rectangle spriteRectangle = spriteObject.getDestinationRectangle();
+            Rectangle spriteRectangle = spriteObject.GetDestinationRectangle();
             spriteRectangle.X = 50;
         }
 
