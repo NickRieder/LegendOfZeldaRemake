@@ -274,9 +274,35 @@ namespace Sprint2
         {
             return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
         }
+        public Sprite getLinkStandingFacingRightSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_RIGHT_1);
+        }
+        public Sprite getLinkStandingFacingLeftSprite()
+        {
+            return new Sprite(linkSheetMirrored, LINK_MOVE_MIRROR_LEFT_1);
+        }
+        public Sprite getLinkStandingFacingUpSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_UP_1);
+
+        }
         public Sprite getLinkMovingDownSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_DOWN_1, LINK_MOVE_DOWN_2);
+        }
+        public Sprite getLinkMovingRightSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_RIGHT_1, LINK_MOVE_RIGHT_2);
+        }
+        public Sprite getLinkMovingLeftSprite()
+        {
+            return new Sprite(linkSheetMirrored, LINK_MOVE_MIRROR_LEFT_1, LINK_MOVE_MIRROR_LEFT_2);
+        }
+        public Sprite getLinkMovingUpSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_UP_1, LINK_MOVE_UP_2);
+
         }
     }
 }

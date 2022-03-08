@@ -17,8 +17,8 @@ namespace Sprint2
 		{
 			this.link = link;
 			spriteFactory = link.spriteFactory;
-			link.linkSprite = spriteFactory.getLinkStandingFacingDownSprite();
-			
+			link.sprite = spriteFactory.getLinkStandingFacingDownSprite();
+			link.direction = "down";
 			itemList = new ArrayList();
 			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
 			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
@@ -26,22 +26,19 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.currState = new StandingFacingUp(link);
 			link.direction = "up";
+			link.currState = new StandingFacingUp(link);
 		}
-		public void StandingDown()
-		{ 
-		
-		}
+		public void StandingDown() { }
 		public void StandingRight()
 		{
-			link.currState = new StandingFacingRight(link);
 			link.direction = "right";
+			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			link.currState = new StandingFacingLeft(link);
 			link.direction = "left";
+			link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
@@ -63,11 +60,11 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			link.linkSprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			link.linkSprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 		}
 	}
 }

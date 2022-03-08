@@ -8,24 +8,16 @@ namespace Sprint2
     class StandingFacingLeft : ILinkState
 	{
 		private Link link;
-		private int currFrame;
-		private int totalFrames;
-		private Rectangle frame1;
-		private Rectangle frame2;
-		private Texture2D sheet;
+		private SpriteFactory spriteFactory;
 		private ArrayList itemList;
 		private int counter;
 
 		public StandingFacingLeft(Link link)
 		{
 			this.link = link;
-			currFrame = 0;
-			counter = 0;
-			totalFrames = 2;
-			frame1 = SpriteFactory.LINK_MOVE_MIRROR_LEFT_1;
-			frame2 = SpriteFactory.LINK_MOVE_MIRROR_LEFT_2;
-			this.sheet = link.spriteFactory.getLinkSheetMirrored();
-
+			spriteFactory = link.spriteFactory;
+			link.sprite = spriteFactory.getLinkStandingFacingLeftSprite();
+			link.direction = "left";
 			itemList = new ArrayList();
 			itemList.Add(new ArrowLeft(this.link, this.link.spriteFactory));
 			itemList.Add(new BoomerangLeft(this.link, this.link.spriteFactory));
@@ -33,32 +25,24 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.currState = new StandingFacingUp(link);
 			link.direction = "up";
+			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			link.currState = new StandingFacingDown(link);
 			link.direction = "down";
+			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
 			link.currState = new StandingFacingRight(link);
 			link.direction = "right";
 		}
-		public void StandingLeft()
-		{
-			link.pos.X -= 2;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
-		}
+		public void StandingLeft() { }
 		public void Move()
         {
-
-        }
+			link.currState = new MovingLink(link);
+		}
 		public void UseWeapon()
 		{
 			link.currState = new UsingWeapon(link);
@@ -75,26 +59,11 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width * link.sizeMuliplier, frame1.Height * link.sizeMuliplier);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame2.Width * link.sizeMuliplier, frame2.Height * link.sizeMuliplier);
-			if (currFrame == 0)
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-			}
-			else
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
-			}
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			/*
-			link.pos.X -= 5;
-			if (++currFrame == totalFrames)
-			{
-				currFrame = 0;
-			}
-			*/
+			link.sprite.Update(gameTime);
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace Sprint2
 		public ILinkState currState;
 		public Vector2 pos;
 		public SpriteFactory spriteFactory;
-		public Sprite linkSprite;
+		public Sprite sprite;
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
@@ -26,13 +26,13 @@ namespace Sprint2
         {
 			this.spriteFactory = spriteFactory;
 			this.currState = new StandingFacingDown(this);
-			linkSprite = spriteFactory.getLinkStandingFacingDownSprite();
+			sprite = spriteFactory.getLinkStandingFacingDownSprite();
 			direction = "down";
 		}
 
 		public Rectangle GetSpriteRectangle()
         {
-			return linkSprite.getDestinationRectangle();
+			return sprite.getDestinationRectangle();
         }
 
 		public void StandingUp()
@@ -79,7 +79,7 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
-			linkSprite.Update(gameTime);
+			sprite.Update(gameTime);
 			item.Update(gameTime);
 		}
 	}
