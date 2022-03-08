@@ -30,14 +30,14 @@ namespace Sprint2
             collisionHandler = new CollisionHandler(gom);
         }
 
-        private int GetCollisionSide(ISprite movableSpite, ISprite otherSprite)
+        private int GetCollisionSide(Sprite movableSpite, Sprite otherSprite)
         {
             int collisionSide = 0;
 
             // All ISprite classes should have a public "currState" variable, where each state class has a "sprite" variable
             // so that getDestinationRectangle() can be called.
-            Rectangle mSprRectangle = movableSpite.GetDestinationRectangle();
-            Rectangle oSprRectangle = otherSprite.GetDestinationRectangle();
+            Rectangle mSprRectangle = movableSpite.getDestinationRectangle();
+            Rectangle oSprRectangle = otherSprite.getDestinationRectangle();
 
             Rectangle intersectingArea = Rectangle.Intersect(mSprRectangle, oSprRectangle);
 
@@ -65,9 +65,9 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach(ISprite movableSprite in movableObjectList)
+            foreach(Sprite movableSprite in movableObjectList)
             {
-                foreach(ISprite otherSprite in allObjectList)
+                foreach(Sprite otherSprite in allObjectList)
                 {
                     if (!(movableSprite == otherSprite))
                     {
