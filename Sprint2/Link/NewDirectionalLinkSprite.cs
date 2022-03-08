@@ -14,7 +14,18 @@ namespace Sprint2
 		{
 			this.link = link;
 			this.direction = direction;
-
+		}
+		public void StandingUp() { }
+		public void StandingDown() { }
+		public void StandingRight() { }
+		public void StandingLeft() { }
+		public void Move() { }
+		public void UseWeapon() { }
+		public void UseItem(int itemNum) { }
+		public void TakeDamage() { }
+		public void Draw(SpriteBatch spriteBatch) { }
+		public void Update(GameTime gameTime) 
+		{
 			switch (direction)
 			{
 				case "down":
@@ -31,15 +42,6 @@ namespace Sprint2
 					break;
 			}
 		}
-		public void MoveUp() { }
-		public void MoveDown() { }
-		public void MoveRight() { }
-		public void MoveLeft() { }
-		public void UseWeapon() { }
-		public void UseItem(int itemNum) { }
-		public void TakeDamage() { }
-		public void Draw(SpriteBatch spriteBatch) { }
-		public void Update(GameTime gameTime) { }
 
 	}
 }

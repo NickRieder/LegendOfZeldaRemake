@@ -4,11 +4,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Link : ISprite
+	public class Link : ILinkState, ISprite
 	{
 		public ILinkState currState;
 		public Vector2 pos;
 		public SpriteFactory spriteFactory;
+		public Sprite linkSprite;
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
@@ -25,29 +26,39 @@ namespace Sprint2
         {
 			this.spriteFactory = spriteFactory;
 			this.currState = new StandingFacingDown(this);
+			linkSprite = spriteFactory.getLinkStandingFacingDownSprite();
 			direction = "down";
 		}
 
-		public void MoveUp()
+		public Rectangle GetSpriteRectangle()
+        {
+			return linkSprite.getDestinationRectangle();
+        }
+
+		public void StandingUp()
         {
 			direction = "up";
-			currState.MoveUp();
+			currState.StandingUp();
 		}
-		public void MoveDown()
+		public void StandingDown()
         {
 			direction = "down";
-			currState.MoveDown();
+			currState.StandingDown();
 		}
-		public void MoveLeft()
+		public void StandingLeft()
         {
 			direction = "left";
-			currState.MoveLeft();
+			currState.StandingLeft();
 		}
-		public void MoveRight()
+		public void StandingRight()
         {
 			direction = "right";
-			currState.MoveRight();
+			currState.StandingRight();
 		}
+		public void Move()
+        {
+			currState.Move();
+        }
 		public void UseWeapon()
         {
 			currState.UseWeapon();
@@ -68,6 +79,7 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
+			linkSprite.Update(gameTime);
 			item.Update(gameTime);
 		}
 	}

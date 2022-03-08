@@ -16,7 +16,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            link.MoveLeft();
+            link.StandingLeft();
         }
     }
 }

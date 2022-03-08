@@ -270,5 +270,13 @@ namespace Sprint2
             return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
 
         }
+        public Sprite getLinkStandingFacingDownSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
+        }
+        public Sprite getLinkMovingDownSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_DOWN_1, LINK_MOVE_DOWN_2);
+        }
     }
 }

@@ -21,6 +21,10 @@ namespace Sprint2
 			pos.Y = 200;
 		}
 
+		public Rectangle GetSpriteRectangle()
+		{
+			return new Rectangle(0, 0, 0, 0); // Change this to Enemy Sprite
+		}
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;

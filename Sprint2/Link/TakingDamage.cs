@@ -43,10 +43,11 @@ namespace Sprint2
 
 		// No OPs
 		public void TakeDamage() { }
-		public void MoveUp() { }
-		public void MoveDown() { }
-		public void MoveRight() { }
-		public void MoveLeft() { }
+		public void StandingUp() { }
+		public void StandingDown() { }
+		public void StandingRight() { }
+		public void StandingLeft() { }
+		public void Move() { }
 		public void UseWeapon() { }
 		public void UseItem(int itemNum) { }
 	}

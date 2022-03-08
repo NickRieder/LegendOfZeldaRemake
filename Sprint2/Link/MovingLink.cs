@@ -5,20 +5,21 @@ using System.Collections;
 
 namespace Sprint2
 {
-	class StandingFacingDown : ILinkState
+	class MovingLink : ILinkState
 	{
 		private Link link;
+		private Sprite linkSprite;
 		private SpriteFactory spriteFactory;
 		private ArrayList itemList;
 		private IItem item;
-		
+		private int counter;
 
-		public StandingFacingDown(Link link)
+		public MovingLink(Link link)
 		{
 			this.link = link;
 			spriteFactory = link.spriteFactory;
-			link.linkSprite = spriteFactory.getLinkStandingFacingDownSprite();
-			
+			linkSprite = spriteFactory.getLinkMovingDownSprite();
+			counter = 0;
 			itemList = new ArrayList();
 			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
 			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
@@ -30,8 +31,8 @@ namespace Sprint2
 			link.direction = "up";
 		}
 		public void StandingDown()
-		{ 
-		
+		{
+			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
@@ -45,8 +46,22 @@ namespace Sprint2
 		}
 		public void Move()
         {
-			link.currState = new MovingLink(link);
-        }
+			switch (link.direction)
+			{
+				case "down":
+					link.pos.Y += 2;
+					break;
+				case "left":
+					link.pos.X += 2;
+					break;
+				case "right":
+					link.pos.X -= 2;
+					break;
+				default: // facing up
+					link.pos.Y -= 2;
+					break;
+			}
+		}
 		public void UseWeapon()
 		{
 			link.currState = new UsingWeapon(link);
@@ -54,7 +69,7 @@ namespace Sprint2
 		public void UseItem(int itemNum)
 		{
 			link.currState = new UsingItem(link);
-			link.item = (IItem) itemList[itemNum - 1];
+			link.item = (IItem)itemList[itemNum - 1];
 		}
 		public void TakeDamage()
 		{
@@ -63,11 +78,11 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			link.linkSprite.Draw(spriteBatch, link.pos);
+			linkSprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			link.linkSprite.Update(gameTime);
+			linkSprite.Update(gameTime);
 		}
 	}
 }

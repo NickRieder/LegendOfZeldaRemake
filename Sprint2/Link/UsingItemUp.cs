@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-    class UsingItemUp : ILinkState
+    class UsingItemUp
 	{
 		private Link link;
 		private int currFrame;
@@ -24,7 +24,7 @@ namespace Sprint2
 		public void TakeDamage()
 		{
 			link.health--;
-			link.currState = new TakingDamageDown(link);
+	//		link.currState = new TakingDamageDown(link);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

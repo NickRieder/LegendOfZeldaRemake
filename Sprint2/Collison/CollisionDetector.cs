@@ -61,30 +61,30 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach(Sprite movableSprite in movableObjectList)
-            {
-                foreach(Sprite otherSprite in allObjectList)
-                {
-                    if (!(movableSprite == otherSprite))
-                    {
-                        int collisionSide = GetCollision(movableSprite, otherSprite);
-                        if (collisionSide != (int)COLLISION_SIDE.NONE)
-                        {
-                            // This was how the pseudocode had it
-                            /*movableSprite.Collide(collisionSide);
-                            otherSprite.Collide(collisionSide);*/
+            /*  foreach(Sprite movableSprite in movableObjectList)
+              {
+                  foreach(Sprite otherSprite in allObjectList)
+                  {
+                      if (!(movableSprite == otherSprite))
+                      {
+                          int collisionSide = GetCollision(movableSprite, otherSprite);
+                          if (collisionSide != (int)COLLISION_SIDE.NONE)
+                          {
+                              // This was how the pseudocode had it
+                              movableSprite.Collide(collisionSide);
+                              otherSprite.Collide(collisionSide);
 
-                            // We are implementing the Collide() function in the CollisionHandler instead.
-                            collisionHandler.Collide(movableSprite, collisionSide);
-                            collisionHandler.Collide(otherSprite, collisionSide);
-                        }
-                        
-                    }
+                              // We are implementing the Collide() function in the CollisionHandler instead.
+                              collisionHandler.Collide(movableSprite, collisionSide);
+                              collisionHandler.Collide(otherSprite, collisionSide); 
+                          }
 
-                                     
-                }
-            }
+                      }
 
+
+                  }*/
         }
+
     }
+    
 }

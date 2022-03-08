@@ -31,22 +31,22 @@ namespace Sprint2
 			itemList.Add(new BoomerangLeft(this.link, this.link.spriteFactory));
 			itemList.Add(new ExplosionLeft(this.link, this.link.spriteFactory));
 		}
-		public void MoveUp()
+		public void StandingUp()
 		{
 			link.currState = new StandingFacingUp(link);
 			link.direction = "up";
 		}
-		public void MoveDown()
+		public void StandingDown()
 		{
 			link.currState = new StandingFacingDown(link);
 			link.direction = "down";
 		}
-		public void MoveRight()
+		public void StandingRight()
 		{
 			link.currState = new StandingFacingRight(link);
 			link.direction = "right";
 		}
-		public void MoveLeft()
+		public void StandingLeft()
 		{
 			link.pos.X -= 2;
 			if (counter % 5 == 0)
@@ -55,6 +55,10 @@ namespace Sprint2
 				currFrame = 0;
 			counter++;
 		}
+		public void Move()
+        {
+
+        }
 		public void UseWeapon()
 		{
 			link.currState = new UsingWeapon(link);
