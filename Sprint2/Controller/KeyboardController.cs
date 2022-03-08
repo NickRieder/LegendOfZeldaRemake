@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
 using Microsoft.Xna.Framework;
+using System.Linq;
 
 namespace Sprint2
 {
@@ -13,6 +14,7 @@ namespace Sprint2
         private KeyboardState previousState;
         private Dictionary<Keys, ICommand> controllerMappingsHold;
         private Dictionary<Keys, ICommand> controllerMappingsTap;
+        private Dictionary<Keys, ICommand> controllerMappingsRelease;
         private Dictionary<Keys, bool> currentKeyStates;
         private Dictionary<Keys, bool> previousKeyStates;
         private Keys[] previousPressedKeys;
@@ -22,6 +24,7 @@ namespace Sprint2
             previousPressedKeys = Keyboard.GetState().GetPressedKeys();
             controllerMappingsHold = new Dictionary<Keys, ICommand>();
             controllerMappingsTap = new Dictionary<Keys, ICommand>();
+            controllerMappingsRelease = new Dictionary<Keys, ICommand>();
         }
 
         public void RegisterCommandHold(Keys key, ICommand command)
@@ -32,6 +35,11 @@ namespace Sprint2
         public void RegisterCommandTap(Keys key, ICommand command)
         {
             controllerMappingsTap.Add(key, command);
+        }
+
+        public void RegisterCommandRelease(Keys key, ICommand command)
+        {
+            controllerMappingsRelease.Add(key, command);
         }
 
         public void Initialize(Link link, Item item, Block block, EnemiesList enemiesList, Game1 game1)
@@ -70,14 +78,18 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-
+            
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
             currentState = Keyboard.GetState();
 
-            foreach (Keys key in pressedKeys)
+            foreach (Keys key in pressedKeys.Union<Keys>(previousPressedKeys))
             {
                 if(controllerMappingsTap.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) == -1) {
                     controllerMappingsTap[key].Execute();
+                }
+                else if (controllerMappingsRelease.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) != -1 && Array.IndexOf(pressedKeys, key) == -1)
+                {
+                    controllerMappingsRelease[key].Execute();
                 }
                 else if (controllerMappingsHold.ContainsKey(key))
                 {
