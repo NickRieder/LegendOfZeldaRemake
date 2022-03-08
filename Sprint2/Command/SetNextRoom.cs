@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetNextBlock : ICommand
+    class SetNextRoom : ICommand
     {
-        private Block block;
-        public SetNextBlock(Block block)
+        private Door door;
+        public SetNextRoom(Door door)
         {
-            this.block = block;
+            this.door = door;
         }
 
         public void Execute()
         {
-            //block.NextBlock();
+            door.LoadNextLevel();
         }
     }
 }

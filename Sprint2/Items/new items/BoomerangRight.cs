@@ -15,6 +15,7 @@ namespace Sprint2
         public BoomerangRight(Link link, SpriteFactory spriteFactory)
         {
             counter = 0;
+            this.link = link;
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;
             speed = 5;

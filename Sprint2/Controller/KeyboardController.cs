@@ -66,6 +66,8 @@ namespace Sprint2
 
             RegisterCommandHold(Keys.Q, new QuitCommand(game1));
             RegisterCommandHold(Keys.R, new ResetGame(game1));
+
+
         }
 
         public void Update(GameTime gameTime)

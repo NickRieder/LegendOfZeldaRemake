@@ -34,8 +34,8 @@ namespace Sprint2
             
             link = new Link();
             item = new Item();
-            block = new Block();
 
+            
             bluebat = new Enemies();
             bluegel = new Enemies();
             darknut = new Enemies();
@@ -43,6 +43,7 @@ namespace Sprint2
             goriya = new Enemies();
             snake = new Enemies();
             wizzrobe = new Enemies();
+            
 
             enemiesList = new EnemiesList(this);
 
@@ -52,10 +53,10 @@ namespace Sprint2
                 // SOLUTION: Maybe we could use a dictionary, but we can only add unique keys to a dictionary (ie. no duplicate enemies?).
             this.AddToSpriteList(link);
             this.AddToSpriteList(item);
-            this.AddToSpriteList(block);
 
             // Adding all of these enemies into the list causes all enemies to be drawn in the beginning.
                 // PROBLEM: Not adding them messes up every enemy files, so just keep it here for now.
+            
             this.AddToSpriteList(bluebat);
             this.AddToSpriteList(bluegel);
             this.AddToSpriteList(darknut);
@@ -65,12 +66,14 @@ namespace Sprint2
             this.AddToSpriteList(wizzrobe);
 
             this.AddToSpriteList(enemiesList);
+            
 
             // Right now, updatableSprites, drawableSprites, and spriteList all hold the same sprite objects.
                 // QUESTION: What makes them different?
                 // ANSWER:
             updatableSprites = spriteList;
             drawableSprites = spriteList;
+
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -93,12 +96,16 @@ namespace Sprint2
         {
             spriteList.Add(spriteObject);
         }
+        public void ClearSpriteList()
+        {
+            spriteList.Clear();
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             // Could be done in Game1.cs
             // This function could just return an array of IDrawables
-            foreach (ISprite sprite in drawableSprites)
+            foreach (ISprite sprite in spriteList)
             {
                 sprite.Draw(spriteBatch);
             }
@@ -108,7 +115,7 @@ namespace Sprint2
         {
             // Could be done in Game1.cs
             // This function could just return an array of IUpdatables
-            foreach (ISprite sprite in updatableSprites)
+            foreach (ISprite sprite in spriteList)
             {
                 sprite.Update(gametime);
             }

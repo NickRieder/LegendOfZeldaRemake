@@ -2,8 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
+using System.Xml;
 using System.Collections;
+using System.IO;
 
 namespace Sprint2
 {
@@ -19,6 +20,7 @@ namespace Sprint2
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         private GameObjectManager gom;
+        private LevelLoader levelLoader;
 
         public Game1()
         {
@@ -38,6 +40,10 @@ namespace Sprint2
             controllerList.Add(keyboardController);
 
             gom = new GameObjectManager();
+
+            levelLoader = new LevelLoader(gom, spriteFactory);
+
+
 
             //link = new Link();
 
@@ -63,7 +69,11 @@ namespace Sprint2
             //enemiesList = new EnemiesList(enemySpriteFactory);
             gom.SetSpriteContent(spriteFactory);
 
+            levelLoader.LoadLevel("TestLevel");
+
             keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
+
+            
         }
 
         protected override void Update(GameTime gameTime)

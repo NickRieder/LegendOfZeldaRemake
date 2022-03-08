@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent>
+	<Asset Type="Sprint2.MyLevel">
+		<block Type ="Flat Block">
+			<XCoord>30</XCoord>
+			<YCoord>30</YCoord>
+		</block>
+		<block Type ="Flat Block">
+			<XCoord>50</XCoord>
+			<YCoord>30</YCoord>
+		</block>
+		<block Type ="Flat Block">
+			<XCoord>80</XCoord>
+			<YCoord>30</YCoord>
+		</block>	
+	</Asset>
+</XnaContent>

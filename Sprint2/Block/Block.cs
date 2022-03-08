@@ -14,21 +14,15 @@ namespace Sprint2
 		public Vector2 blockPos;
 		public SpriteFactory spriteFactory;
 		private Texture2D blockSheet;
+		private Sprite blockSprite;
 
-        public Block()
+        public Block(Sprite blockType, Vector2 pos)
 		{
 			blockArray = new ArrayList();
 
 			arrIndex = 0;
-			blockPos.X = 100;
-			blockPos.Y = 100;
-
-			blockArray.Add(SpriteFactory.TILE_DOOR);
-			blockArray.Add(SpriteFactory.TILE_STAIRS);
-			blockArray.Add(SpriteFactory.TILE_FLATBLOCK);
-			blockArray.Add(SpriteFactory.TILE_NONFLAT_BLOCK);
-			blockArray.Add(SpriteFactory.TILE_BRICK_BLOCK);
-
+			blockPos = pos;
+			blockSprite = blockType;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -37,6 +31,7 @@ namespace Sprint2
 			blockSheet = this.spriteFactory.getTileSheet();
 		}
 
+		/*
 		public void NextBlock()
 		{
 			if (arrIndex == blockArray.Count - 1)
@@ -61,19 +56,17 @@ namespace Sprint2
 				arrIndex--;
 			}
 		}
+		*/
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
 
-			Rectangle sourceRectangle = (Rectangle)blockArray[arrIndex];
-
-			Rectangle destinationRectangle = new Rectangle((int)blockPos.X, (int)blockPos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
-			spriteBatch.Draw(blockSheet, destinationRectangle, sourceRectangle, Color.White);
+			blockSprite.Draw(spriteBatch, blockPos);
 		}
 
 		public void Update(GameTime gameTime)
         {
-			// No Op
+			blockSprite.Update(gameTime);
         }
 	}
 }
