@@ -54,7 +54,10 @@ namespace Sprint2
 
         public Rectangle GetSpriteRectangle()
         {
-            return new Rectangle(0, 0, 0, 0); // Change this to Enemies Sprites
+            enemyToBeDrawn = (Enemies)enemiesArray[arrIndex];
+            return enemyToBeDrawn.sprite.getDestinationRectangle();
+
+            //return new Rectangle(0, 0, 0, 0); // Change this to Enemies Sprites
         }
         public void SetSpriteContent(SpriteFactory spriteFactory)
         {

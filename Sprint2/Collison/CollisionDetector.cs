@@ -39,24 +39,28 @@ namespace Sprint2
 
             Rectangle intersectingArea = Rectangle.Intersect(mSprRectangle, oSprRectangle);
 
-            if (intersectingArea.Width >= intersectingArea.Height)      // top-bottom collision
+            if (!(intersectingArea.IsEmpty))
             {
-                if (mSprRectangle.Y < oSprRectangle.Y)
-                    return (int)COLLISION_SIDE.TOP;                 // movableSprite top collision
-                else if(mSprRectangle.Y >= oSprRectangle.Y)
-                    return (int)COLLISION_SIDE.BOTTOM;              // movableSprite bottom collision
+                if (intersectingArea.Width >= intersectingArea.Height)      // top-bottom collision
+                {
+                    if (mSprRectangle.Y < oSprRectangle.Y)
+                        return (int)COLLISION_SIDE.TOP;                 // movableSprite top collision
+                    else if (mSprRectangle.Y >= oSprRectangle.Y)
+                        return (int)COLLISION_SIDE.BOTTOM;              // movableSprite bottom collision
+                }
+                else if (intersectingArea.Width < intersectingArea.Height)   // left-right collision
+                {
+                    if (mSprRectangle.X < oSprRectangle.X)
+                        return (int)COLLISION_SIDE.LEFT;                // movableSprite left collision
+                    else if (mSprRectangle.X >= oSprRectangle.X)
+                        return (int)COLLISION_SIDE.RIGHT;               // movableSprite right collision
+                }
+                else
+                {
+                    return (int)COLLISION_SIDE.NONE;
+                }
             }
-            else if(intersectingArea.Width < intersectingArea.Height)   // left-right collision
-            {
-                if (mSprRectangle.X < oSprRectangle.X)
-                    return (int)COLLISION_SIDE.LEFT;                // movableSprite left collision
-                else if (mSprRectangle.X >= oSprRectangle.X)
-                    return (int)COLLISION_SIDE.RIGHT;               // movableSprite right collision
-            }
-            else
-            {
-                return (int)COLLISION_SIDE.NONE;
-            }
+            
             return collisionSide;
         }
 
@@ -74,7 +78,7 @@ namespace Sprint2
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
-                            System.Diagnostics.Debug.WriteLine("Something collided");
+                            System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
                             collisionHandler.Collide(movableSprite, collisionSide);
                             collisionHandler.Collide(otherSprite, collisionSide);
                         }
