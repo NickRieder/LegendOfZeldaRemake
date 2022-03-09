@@ -9,8 +9,8 @@ namespace Sprint2
 	class UsingWeapon : ILinkState
 	{
 		private Link link;
-		private Rectangle frame1;
-		private Texture2D sheet;
+		private Sprite sprite;
+		private SpriteFactory spriteFactory;
 		private static TimeSpan attackTime;
 		private TimeSpan startTimeAttack;
 		bool isAttacking;
@@ -18,10 +18,23 @@ namespace Sprint2
 		public UsingWeapon(Link link)
 		{
 			this.link = link;
-			// Need switch to get proper sprite
-			frame1 = SpriteFactory.LINK_USESWORD_DOWN;
-			this.sheet = link.spriteFactory.getLinkSheet();
-
+			this.sprite = link.sprite;
+			spriteFactory = link.spriteFactory;
+			switch (link.direction)
+			{
+				case "down":
+					sprite = spriteFactory.getLinkUsingWeaponDown();
+					break;
+				case "left":
+					sprite = spriteFactory.getLinkUsingWeaponLeft();
+					break;
+				case "right":
+					sprite = spriteFactory.getLinkUsingWeaponRight();
+					break;
+				default: // facing up
+					sprite = spriteFactory.getLinkUsingWeaponUp();
+					break;
+			}
 			attackTime = TimeSpan.FromMilliseconds(500);
 			isAttacking = true;
 		}
@@ -33,18 +46,16 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width * link.sizeMuliplier, frame1.Height * link.sizeMuliplier);
-			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
+			sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
+			sprite.Update(gameTime);
 			if (isAttacking)
 			{
 				startTimeAttack = gameTime.TotalGameTime;
 				isAttacking = false;
 			}
-
-
 			if (startTimeAttack + attackTime < gameTime.TotalGameTime)
 			{
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);

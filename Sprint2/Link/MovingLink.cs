@@ -8,6 +8,8 @@ namespace Sprint2
 	class MovingLink : ILinkState
 	{
 		private Link link;
+		private Sprite sprite;
+		private string direction;
 		private SpriteFactory spriteFactory;
 		private ArrayList itemList;
 		private IItem item;
@@ -15,20 +17,22 @@ namespace Sprint2
 		public MovingLink(Link link)
 		{
 			this.link = link;
+			this.sprite = link.sprite;
+			this.direction = link.direction;
 			spriteFactory = link.spriteFactory;
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
-					link.sprite = spriteFactory.getLinkMovingDownSprite();
+					sprite = spriteFactory.getLinkMovingDownSprite();
 					break;
 				case "left":
-					link.sprite = spriteFactory.getLinkMovingLeftSprite();
+					sprite = spriteFactory.getLinkMovingLeftSprite();
 					break;
 				case "right":
-					link.sprite = spriteFactory.getLinkMovingRightSprite();
+					sprite = spriteFactory.getLinkMovingRightSprite();
 					break;
 				default: // facing up
-					link.sprite = spriteFactory.getLinkMovingUpSprite();
+					sprite = spriteFactory.getLinkMovingUpSprite();
 					break;
 			}
 			itemList = new ArrayList();
@@ -38,27 +42,23 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.direction = "up";
 			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			link.direction = "down";
 			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
-			link.direction = "right";
 			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			link.direction = "left";
 			link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
 					link.pos.Y += 2;
@@ -90,11 +90,11 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			link.sprite.Draw(spriteBatch, link.pos);
+			sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			link.sprite.Update(gameTime);
+			sprite.Update(gameTime);
 		}
 	}
 }

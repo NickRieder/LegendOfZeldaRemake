@@ -7,19 +7,32 @@ namespace Sprint2
 	class UsingItem : ILinkState
 	{
 		private Link link;
-		private int currFrame;
+		private Sprite sprite;
+		private SpriteFactory spriteFactory;
 		private int totalFrames;
-		private Rectangle frame1;
-		private Texture2D sheet;
-
+		private int currFrame;
 		public UsingItem(Link link)
 		{
 			this.link = link;
+			this.sprite = link.sprite;
+			spriteFactory = link.spriteFactory;
+			switch (link.direction)
+			{
+				case "down":
+					sprite = spriteFactory.getLinkUsingItemDown();
+					break;
+				case "left":
+					sprite = spriteFactory.getLinkUsingItemLeft();
+					break;
+				case "right":
+					sprite = spriteFactory.getLinkUsingItemRight();
+					break;
+				default: // facing up
+					sprite = spriteFactory.getLinkUsingItemUp();
+					break;
+			}
+			totalFrames = sprite.GetTotalFrames();
 			currFrame = 0;
-			totalFrames = 1;
-			// Need switch to get proper sprite
-			frame1 = SpriteFactory.LINK_USEITEM_DOWN;
-			this.sheet = link.spriteFactory.getLinkSheet();
 		}
 
 		public void TakeDamage(GameTime gameTime)
@@ -29,15 +42,16 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)link.pos.X, (int)link.pos.Y, frame1.Width * link.sizeMuliplier, frame1.Height * link.sizeMuliplier);
-			spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
+			sprite.Draw(spriteBatch, link.pos);
 		}
-		public void Update(GameTime gametime)
+		public void Update(GameTime gameTime)
 		{
-			if (++currFrame == totalFrames)
-			{
+			sprite.Update(gameTime);
+			if (currFrame == totalFrames * 5)
+            {
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
 			}
+			currFrame++;
 		}
 
 		// No OPs

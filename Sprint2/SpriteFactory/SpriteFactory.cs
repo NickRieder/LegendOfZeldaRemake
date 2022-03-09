@@ -285,7 +285,6 @@ namespace Sprint2
         public Sprite getLinkStandingFacingUpSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_UP_1);
-
         }
         public Sprite getLinkMovingDownSprite()
         {
@@ -302,7 +301,42 @@ namespace Sprint2
         public Sprite getLinkMovingUpSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_UP_1, LINK_MOVE_UP_2);
-
+        }
+        public Sprite getLinkUsingWeaponUp()
+        {
+            return new Sprite(linkSheet, LINK_USESWORD_UP);
+        }
+        public Sprite getLinkUsingWeaponDown()
+        {
+            return new Sprite(linkSheet, LINK_USESWORD_DOWN);
+        }
+        public Sprite getLinkUsingWeaponRight()
+        {
+            return new Sprite(linkSheet, LINK_USESWORD_RIGHT);
+        }
+        public Sprite getLinkUsingWeaponLeft()
+        {
+            return new Sprite(linkSheetMirrored, LINK_USESWORD_MIRROR_LEFT);
+        }
+        public Sprite getLinkUsingItemUp()
+        {
+            return new Sprite(linkSheet, LINK_USEITEM_UP);
+        }
+        public Sprite getLinkUsingItemDown()
+        {
+            return new Sprite(linkSheet, LINK_USEITEM_DOWN);
+        }
+        public Sprite getLinkUsingItemRight()
+        {
+            return new Sprite(linkSheet, LINK_USEITEM_RIGHT);
+        }
+        public Sprite getLinkUsingItemLeft()
+        {
+            return new Sprite(linkSheetMirrored, LINK_USEITEM_MIRROR_LEFT);
+        }
+        public Sprite getLinkDamaged()
+        {
+            return new Sprite(linkSheet, LINK_DAMAGED_BLACK_AND_RED);
         }
     }
 }

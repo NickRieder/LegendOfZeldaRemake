@@ -37,22 +37,18 @@ namespace Sprint2
 
 		public void StandingUp()
         {
-			direction = "up";
 			currState.StandingUp();
 		}
 		public void StandingDown()
         {
-			direction = "down";
 			currState.StandingDown();
 		}
 		public void StandingLeft()
         {
-			direction = "left";
 			currState.StandingLeft();
 		}
 		public void StandingRight()
         {
-			direction = "right";
 			currState.StandingRight();
 		}
 		public void Move()

@@ -8,15 +8,18 @@ namespace Sprint2
     class StandingFacingRight : ILinkState
 	{
 		private Link link;
+		private Sprite sprite;
 		private SpriteFactory spriteFactory;
 		private ArrayList itemList;
 
 		public StandingFacingRight(Link link)
 		{
 			this.link = link;
-			spriteFactory = link.spriteFactory;
-			link.sprite = spriteFactory.getLinkStandingFacingRightSprite();
+			this.sprite = link.sprite;
 			link.direction = "right";
+			spriteFactory = link.spriteFactory;
+			sprite = spriteFactory.getLinkStandingFacingRightSprite();
+			
 			itemList = new ArrayList();
 			itemList.Add(new ArrowRight(this.link, this.link.spriteFactory));
 			itemList.Add(new BoomerangRight(this.link, this.link.spriteFactory));
@@ -24,18 +27,15 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.direction = "up";
 			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			link.direction = "down";
 			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight() { }
 		public void StandingLeft()
 		{
-			link.direction = "left";
 			link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
@@ -58,11 +58,11 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			link.sprite.Draw(spriteBatch, link.pos);
+			sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			link.sprite.Update(gameTime);
+			sprite.Update(gameTime);
 		}
 	}
 }
