@@ -10,7 +10,6 @@ namespace Sprint2
     {
         public void SetSpriteContent(SpriteFactory spriteFactory);
         public void Draw(SpriteBatch spritebatch);
-
         public void Update(GameTime gameTime);
     }
 }
