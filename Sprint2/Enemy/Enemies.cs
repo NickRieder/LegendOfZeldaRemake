@@ -7,11 +7,12 @@ namespace Sprint2
 	public class Enemies : ISprite
 	{
 		public IEnemyState currState;
-		public Vector2 pos;
+		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory { get; set; }
-		public Sprite sprite;
 		public int health;
 		public int spriteSizeMultiplier;
+
+		public Sprite sprite;
 		public string enemyName;
 
 		public Enemies(string enemyName)
@@ -19,13 +20,15 @@ namespace Sprint2
 			this.enemyName = enemyName;
 			spriteSizeMultiplier = 2;
 			health = 3;
-			pos.X = 600;
-			pos.Y = 200;
+			pos = new Vector2(600, 200);
+			/*pos.X = 600;
+			pos.Y = 200;*/
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
+
 			switch (enemyName)
 			{
 				case "Bluebat":
@@ -57,13 +60,8 @@ namespace Sprint2
 
 		public Rectangle GetSpriteRectangle()
 		{
-			return new Rectangle(0, 0, 0, 0); // Change this to Enemy Sprite
+			return sprite.getDestinationRectangle();
 		}
-
-		/*public void setEnemyType(IEnemyState enemyType)
-        {
-			currState = enemyType;
-		}*/
 
 		public void MoveUp()
 		{

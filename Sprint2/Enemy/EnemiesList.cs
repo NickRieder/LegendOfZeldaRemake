@@ -11,7 +11,7 @@ namespace Sprint2
     {
         private ArrayList enemiesArray;
         private int arrIndex;
-        public Vector2 startingPos;
+        public Vector2 pos { get; set; }
         public SpriteFactory spriteFactory;
         public GameObjectManager gom;
 
@@ -31,8 +31,7 @@ namespace Sprint2
             enemiesArray = new ArrayList();
 
             arrIndex = 0;
-            startingPos.X = 600;
-            startingPos.Y = 200;
+            pos = new Vector2(600, 200);
 
             bluebat = new Enemies("Bluebat");
             bluegel = new Enemies("Bluegel");

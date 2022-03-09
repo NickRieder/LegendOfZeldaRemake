@@ -46,7 +46,12 @@ namespace Sprint2
 
         public void MoveUp()
         {
-            bluegel.pos.Y--;
+            //bluegel.pos.Y--;
+
+            Vector2 currPos = bluegel.pos;
+            currPos.Y--;
+            bluegel.pos = currPos;
+
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)

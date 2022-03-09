@@ -58,19 +58,29 @@ namespace Sprint2
 		}
 		public void Move()
         {
+			Vector2 currPos = link.pos;
+			
 			switch (link.direction)
 			{
 				case "down":
-					link.pos.Y += 2;
+					//link.pos.Y += 2;
+					currPos.Y += 2;
+					link.pos = currPos;
 					break;
 				case "left":
-					link.pos.X -= 2;
+					//link.pos.X -= 2;
+					currPos.X -= 2;
+					link.pos = currPos;
 					break;
 				case "right":
-					link.pos.X += 2;
+					//link.pos.X += 2;
+					currPos.X += 2;
+					link.pos = currPos;
 					break;
 				default: // facing up
-					link.pos.Y -= 2;
+					//link.pos.Y -= 2;
+					currPos.Y -= 2;
+					link.pos = currPos;
 					break;
 			}
 		}

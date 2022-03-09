@@ -58,7 +58,12 @@ namespace Sprint2
         }
         public void MoveLeft()
         {
-            bluegel.pos.X--;
+            //bluegel.pos.X--;
+
+            Vector2 currPos = bluegel.pos;
+            currPos.X--;
+            bluegel.pos = currPos;
+
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)

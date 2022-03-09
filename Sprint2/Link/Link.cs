@@ -7,7 +7,7 @@ namespace Sprint2
 	public class Link : ILinkState, ISprite
 	{
 		public ILinkState currState;
-		public Vector2 pos;
+		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		public Sprite sprite;
 		public int health;
@@ -18,8 +18,7 @@ namespace Sprint2
 		{
 			item = new NullItem();
 			health = 3;
-			pos.X = 40;
-			pos.Y = 40;
+			pos = new Vector2(40, 40);
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)

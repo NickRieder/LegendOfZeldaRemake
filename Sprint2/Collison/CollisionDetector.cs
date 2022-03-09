@@ -79,8 +79,8 @@ namespace Sprint2
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
                             System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
-                            collisionHandler.Collide(movableSprite, collisionSide);
-                            collisionHandler.Collide(otherSprite, collisionSide);
+                            collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
+                            collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
                         }
 
                     }

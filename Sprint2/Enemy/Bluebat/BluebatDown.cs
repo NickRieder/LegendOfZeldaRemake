@@ -50,7 +50,12 @@ namespace Sprint2
 		}
 		public void MoveDown()
 		{
-			bluebat.pos.Y++;
+			//bluebat.pos.Y++;
+
+			Vector2 currPos = bluebat.pos;
+			currPos.Y++;
+			bluebat.pos = currPos;
+
 			/*if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)

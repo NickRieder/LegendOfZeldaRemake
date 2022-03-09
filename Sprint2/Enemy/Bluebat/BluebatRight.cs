@@ -54,7 +54,12 @@ namespace Sprint2
 		}
 		public void MoveRight()
 		{
-			bluebat.pos.X++;
+			//bluebat.pos.X++;
+
+			Vector2 currPos = bluebat.pos;
+			currPos.X++;
+			bluebat.pos = currPos;
+
 			/*if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)
