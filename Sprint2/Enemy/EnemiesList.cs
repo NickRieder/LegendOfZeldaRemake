@@ -36,19 +36,19 @@ namespace Sprint2
 
             bluebat = new Enemies("Bluebat");
             bluegel = new Enemies("Bluegel");
-            /*darknut = new Enemies("Darknut");
+            darknut = new Enemies("Darknut");
             dragon = new Enemies("Dragon");
             goriya = new Enemies("Goriya");
             snake = new Enemies("Snake");
-            wizzrobe = new Enemies("Wizzrobe");*/
+            wizzrobe = new Enemies("Wizzrobe");
 
             enemiesArray.Add(bluebat);
             enemiesArray.Add(bluegel);
-            /*enemiesArray.Add(darknut);
+            enemiesArray.Add(darknut);
             enemiesArray.Add(dragon);
             enemiesArray.Add(goriya);
             enemiesArray.Add(snake);
-            enemiesArray.Add(wizzrobe);*/
+            enemiesArray.Add(wizzrobe);
 
         }
 

@@ -145,11 +145,12 @@ namespace Sprint2
         public static Rectangle DARKNUT_SHEET2_FRONT1 = new Rectangle(1, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_FRONT2 = new Rectangle(18, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_BACK = new Rectangle(35, 90, 16, 16);
+        public static Rectangle DARKNUT_SHEET2_BACK2 = new Rectangle(90, 106, 16, 16);
         public static Rectangle DARKNUT_SHEET2_RIGHT1 = new Rectangle(52, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_RIGHT2 = new Rectangle(69, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2MIRROR_LEFT1 = new Rectangle(372, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2MIRROR_LEFT2 = new Rectangle(389, 90, 16, 16);
-        public static Rectangle DARKNUT_SHEET2MIRROR_BACK = new Rectangle(405, 90, 16, 16);
+       // public static Rectangle DARKNUT_SHEET2MIRROR_BACK = new Rectangle(405, 90, 16, 16);
 
 
         public static Rectangle WIZZROBE_SHEET2_RIGHT1 = new Rectangle(126, 90, 16, 16);
@@ -160,7 +161,9 @@ namespace Sprint2
         public static Rectangle WIZZROBE_SHEET2MIRROR_LEFT2 = new Rectangle(314, 89, 16, 16);
 
         public static Rectangle GORIYA_SHEET2_FRONT = new Rectangle(222, 11, 16, 16);
+        public static Rectangle GORIYA_SHEET2_FRONT2 = new Rectangle(290, 27, 16, 16);
         public static Rectangle GORIYA_SHEET2_BACK = new Rectangle(239, 11, 16, 16);
+        public static Rectangle GORIYA_SHEET2_BACK2 = new Rectangle(308, 27, 16, 16);
         public static Rectangle GORIYA_SHEET2_RIGHT = new Rectangle(256, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2_THROWRIGHT = new Rectangle(273, 11, 16, 16);
 
@@ -172,8 +175,8 @@ namespace Sprint2
         public static Rectangle GORIYA_SHEET2_WEAPON6 = new Rectangle(308, 11, 8, 16);
 
         public static Rectangle GORIYA_SHEET2MIRROR_LEFT = new Rectangle(185, 11, 16, 16);
-        public static Rectangle GORIYA_SHEET2MIRROR_BACK = new Rectangle(201, 11, 16, 16);
-        public static Rectangle GORIYA_SHEET2MIRROR_FRONT = new Rectangle(219, 11, 16, 16);
+        //public static Rectangle GORIYA_SHEET2MIRROR_BACK = new Rectangle(201, 11, 16, 16);
+        //public static Rectangle GORIYA_SHEET2MIRROR_FRONT = new Rectangle(219, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_THROWLEFT = new Rectangle(168, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_WEAPONLEFT1 = new Rectangle(159, 11, 8, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_WEAPONLEFT2 = new Rectangle(150, 11, 8, 16);
@@ -315,6 +318,67 @@ namespace Sprint2
         public Sprite getBluegelSprite()
         {
             return new Sprite(enemySheet2, BLUEGEL_SHEET2_POS1, BLUEGEL_SHEET2_POS2);
+        }
+
+        public Sprite getDarknutUpSprite()
+        {
+            return new Sprite(enemySheet2, DARKNUT_SHEET2_BACK, DARKNUT_SHEET2_BACK2);
+        }
+         public Sprite getDarknutDownSprite()
+        {
+            return new Sprite(enemySheet2,DARKNUT_SHEET2_FRONT1,  DARKNUT_SHEET2_FRONT2);
+        }
+         public Sprite getDarknutLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, DARKNUT_SHEET2MIRROR_LEFT1,  DARKNUT_SHEET2MIRROR_LEFT2);
+        }
+         public Sprite getDarknutRightSprite()
+        {
+            return new Sprite(enemySheet2,DARKNUT_SHEET2_RIGHT1,  DARKNUT_SHEET2_RIGHT2);
+        }
+        public Sprite getDragonRightSprite()
+        {
+            return new Sprite(enemySheetMirror, DRAGON_SHEET1MIRROR_RIGHT3, DRAGON_SHEET1MIRROR_RIGHT4);
+        }
+        public Sprite getDragonLeftSprite()
+        {
+            return new Sprite(enemySheet, DRAGON_SHEET1_LEFT3, DRAGON_SHEET1_LEFT4);
+        }
+        public Sprite getGoriyaLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, GORIYA_SHEET2MIRROR_LEFT, GORIYA_SHEET2MIRROR_THROWLEFT);
+        }
+        public Sprite getGoriyaRightSprite()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_RIGHT, GORIYA_SHEET2_THROWRIGHT);
+        }
+        public Sprite getGoriyaUpSprite()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_BACK, GORIYA_SHEET2_BACK2);
+        }
+        public Sprite getGoriyaDownSprite()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_FRONT, GORIYA_SHEET2_FRONT2);
+        }
+        public Sprite getSnakeRightSprite()
+        {
+            return new Sprite(enemySheet2, SNAKE_SHEET2_RIGHT1, SNAKE_SHEET2_RIGHT2);
+        }
+        public Sprite getSnakeLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, SNAKE_SHEET2MIRROR_LEFT1, SNAKE_SHEET2MIRROR_LEFT2);
+        }
+        public Sprite getWizzrobeRightSprite()
+        {
+            return new Sprite(enemySheet2, WIZZROBE_SHEET2_RIGHT1, WIZZROBE_SHEET2_RIGHT2);
+        }
+        public Sprite getWizzrobeLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, WIZZROBE_SHEET2MIRROR_LEFT1, WIZZROBE_SHEET2MIRROR_LEFT2);
+        }
+        public Sprite getWizzrobeBackSprite()
+        {
+            return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
     }
 }

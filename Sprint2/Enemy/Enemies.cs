@@ -35,19 +35,19 @@ namespace Sprint2
 					currState = new BluegelDown(this);
 					break;
 				case "Darknut":
-					//currState = new DarknutStandingFacingDown(this);
+					currState = new DarknutStandingFacingDown(this);
 					break;
 				case "Dragon":
-					//currState = new DragonStandingFacingDown(this);
+					currState = new DragonStandingFacingDown(this);
 					break;
 				case "Goriya":
-					//currState = new GoriyaStandingFacingDown(this);
+					currState = new GoriyaStandingFacingDown(this);
 					break;
 				case "Snake":
-					//currState = new SnakeDown(this);
+					currState = new SnakeDown(this);
 					break;
 				case "Wizzrobe":
-					//currState = new WizzrobeDown(this);
+					currState = new WizzrobeDown(this);
 					break;
 				default: // facing up
 					currState = null;
@@ -82,10 +82,10 @@ namespace Sprint2
 			currState.MoveRight();
 		}
 
-		public void Attack()
+		/*public void Attack()
 		{
 			currState.Attack();
-		}
+		}*/
 		public void TakeDamage()
 		{
 			currState.TakeDamage();
