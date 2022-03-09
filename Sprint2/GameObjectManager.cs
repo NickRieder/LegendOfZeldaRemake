@@ -14,19 +14,12 @@ namespace Sprint2
         public ArrayList movableObjectList { get; set; }
         public ArrayList updatableSpritesList;
         public ArrayList drawableSpritesList;
-        
+        public GameTime gameTime;
         public Link link;
         public Item item;
         public Block block;
+        //public Door door;
         public EnemiesList enemiesList;
-
-        public Enemies bluebat;
-        public Enemies bluegel;
-        public Enemies darknut;
-        public Enemies dragon;
-        public Enemies goriya;
-        public Enemies snake;
-        public Enemies wizzrobe;
 
         public GameObjectManager()
         {
@@ -42,13 +35,15 @@ namespace Sprint2
 
             link = new Link();
             item = new Item();
-            block = new Block();
-            enemiesList = new EnemiesList(this);
+            block = new Block("Brick Block");
+            gameTime = new GameTime();
+            //door = new Door("Top Door", "room", new LevelLoader(this, spriteFactory));
+            enemiesList = new EnemiesList();
 
-            this.AddToallObjectList(link);
-            this.AddToallObjectList(item);
-            this.AddToallObjectList(block);
-            this.AddToallObjectList(enemiesList);
+            this.AddToAllObjectList(link);
+            this.AddToAllObjectList(item);
+            this.AddToAllObjectList(block);
+            this.AddToAllObjectList(enemiesList);
 
             this.AddToMovableObjectList(link);
             this.AddToMovableObjectList(enemiesList);
@@ -79,7 +74,7 @@ namespace Sprint2
             return movableObjectList;
         }
 
-        public void AddToallObjectList(ISprite spriteObject)
+        public void AddToAllObjectList(ISprite spriteObject)
         {
             allObjectList.Add(spriteObject);
         }
@@ -87,12 +82,15 @@ namespace Sprint2
         {
             movableObjectList.Add(spriteObject);
         }
+        public void ClearSpriteList()
+        {
+            allObjectList.Clear();
+        }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
-            foreach (ISprite sprite in drawableSpritesList)
+            foreach (ISprite sprite in allObjectList)
             {
                 sprite.Draw(spriteBatch);
             }
@@ -100,8 +98,7 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-           
-            foreach (ISprite sprite in updatableSpritesList)
+            foreach (ISprite sprite in allObjectList)
             {
                 sprite.Update(gametime);
             }

@@ -11,7 +11,7 @@ namespace Sprint2
 	{
 		private ArrayList itemArray;
 		private int arrIndex;
-		public Vector2 itemPos;
+		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		private Texture2D itemSheet;
 
@@ -20,8 +20,7 @@ namespace Sprint2
 			itemArray = new ArrayList();
 
 			arrIndex = 0;
-			itemPos.X = 200;
-			itemPos.Y = 200;
+			pos = new Vector2(200, 200);
 
 			itemArray.Add(SpriteFactory.BOOMERANG);
 			itemArray.Add(SpriteFactory.BOMB);
@@ -76,7 +75,7 @@ namespace Sprint2
 
 			Rectangle sourceRectangle = (Rectangle)itemArray[arrIndex];
 
-			Rectangle destinationRectangle = new Rectangle((int)itemPos.X, (int)itemPos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
+			Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
 			spriteBatch.Draw(itemSheet, destinationRectangle, sourceRectangle, Color.White);
 		}
 

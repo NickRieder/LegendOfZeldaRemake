@@ -16,6 +16,7 @@ namespace Sprint2
         {
             this.link = link;
             counter = 0;
+            this.link = link;
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;
             speed = 5;

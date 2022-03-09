@@ -108,7 +108,7 @@ namespace Sprint2
         }
 
         //Tiles
-        public static Rectangle TILE_DOOR = new Rectangle(881, 25, 32, 18);
+        public static Rectangle TILE_DOOR = new Rectangle(881, 11, 32, 32);
         public static Rectangle TILE_STAIRS = new Rectangle(1035, 28, 16, 16);
         public static Rectangle TILE_FLATBLOCK = new Rectangle(984, 11, 16, 16);
         public static Rectangle TILE_NONFLAT_BLOCK = new Rectangle(1001, 11, 16, 16);
@@ -337,6 +337,33 @@ namespace Sprint2
         public Sprite getLinkDamaged()
         {
             return new Sprite(linkSheet, LINK_DAMAGED_BLACK_AND_RED);
+        }
+
+        // Tiles
+
+        public Sprite getFlatBlockSprite()
+        {
+            return new Sprite(tileSheet, TILE_FLATBLOCK);
+        }
+        public Sprite getBrickBlockSprite()
+        {
+            return new Sprite(tileSheet, TILE_BRICK_BLOCK);
+        }
+        public Sprite getTopDoorSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR);
+        }
+
+        // Enemies
+
+        public Sprite getBluebatSprite()
+        {
+            return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);
+        }
+
+        public Sprite getBluegelSprite()
+        {
+            return new Sprite(enemySheet2, BLUEGEL_SHEET2_POS1, BLUEGEL_SHEET2_POS2);
         }
     }
 }

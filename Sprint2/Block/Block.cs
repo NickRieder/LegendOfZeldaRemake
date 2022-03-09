@@ -11,36 +11,48 @@ namespace Sprint2
 	{
 		private ArrayList blockArray;
 		private int arrIndex;
-		public Vector2 blockPos;
+		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		private Texture2D blockSheet;
 
-        public Block()
+		public Sprite sprite;
+		public string blockType;
+
+		public Block(string blockType)
 		{
 			blockArray = new ArrayList();
 
 			arrIndex = 0;
-			blockPos.X = 100;
-			blockPos.Y = 100;
-
-			blockArray.Add(SpriteFactory.TILE_DOOR);
-			blockArray.Add(SpriteFactory.TILE_STAIRS);
-			blockArray.Add(SpriteFactory.TILE_FLATBLOCK);
-			blockArray.Add(SpriteFactory.TILE_NONFLAT_BLOCK);
-			blockArray.Add(SpriteFactory.TILE_BRICK_BLOCK);
-
+			pos = new Vector2(100,100);
+			//sprite = spriteFactory.getFlatBlockSprite();
 		}
 
-		public Rectangle GetSpriteRectangle()
-		{
-			return new Rectangle(0,0,0,0); // Change this to Block Sprite
-		}
+		
 		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
 			this.spriteFactory = spriteFactory;
 			blockSheet = this.spriteFactory.getTileSheet();
+
+            switch (blockType)
+            {
+                case "Flat Block":
+                    sprite = spriteFactory.getFlatBlockSprite();
+                    break;
+                case "Brick Block":
+                    sprite = spriteFactory.getBrickBlockSprite();
+                    break;
+                default:
+                    sprite = spriteFactory.getFlatBlockSprite();
+                    break;
+            }
+        }
+
+		public Rectangle GetSpriteRectangle()
+		{
+			return sprite.getDestinationRectangle();
 		}
 
+		/*
 		public void NextBlock()
 		{
 			if (arrIndex == blockArray.Count - 1)
@@ -65,19 +77,17 @@ namespace Sprint2
 				arrIndex--;
 			}
 		}
+		*/
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
 
-			Rectangle sourceRectangle = (Rectangle)blockArray[arrIndex];
-
-			Rectangle destinationRectangle = new Rectangle((int)blockPos.X, (int)blockPos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
-			spriteBatch.Draw(blockSheet, destinationRectangle, sourceRectangle, Color.White);
+			sprite.Draw(spriteBatch, pos);
 		}
 
 		public void Update(GameTime gameTime)
         {
-			// No Op
+			sprite.Update(gameTime);
         }
 	}
 }

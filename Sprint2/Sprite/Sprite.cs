@@ -34,7 +34,6 @@ namespace Sprint2
                 currFrame = 0;
             }
             currRectangle = frameList[currFrame];
-            
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

@@ -9,7 +9,6 @@ namespace Sprint2
 	{
 		private Link link;
 		private Sprite sprite;
-		private string direction;
 		private SpriteFactory spriteFactory;
 		private ArrayList itemList;
 		private IItem item;
@@ -18,9 +17,8 @@ namespace Sprint2
 		{
 			this.link = link;
 			this.sprite = link.sprite;
-			this.direction = link.direction;
 			spriteFactory = link.spriteFactory;
-			switch (direction)
+			switch (link.direction)
 			{
 				case "down":
 					sprite = spriteFactory.getLinkMovingDownSprite();
@@ -35,6 +33,7 @@ namespace Sprint2
 					sprite = spriteFactory.getLinkMovingUpSprite();
 					break;
 			}
+			link.sprite = sprite;
 			itemList = new ArrayList();
 			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
 			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
@@ -42,35 +41,45 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
+			link.direction = "up";
 			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
+			link.direction = "down";
 			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
+			link.direction = "right";
 			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
+			link.direction = "left";
 			link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
-			switch (direction)
+			Vector2 currPos = link.pos;
+			
+			switch (link.direction)
 			{
 				case "down":
-					link.pos.Y += 2;
+					currPos.Y += 2;
+					link.pos = currPos;
 					break;
 				case "left":
-					link.pos.X -= 2;
+					currPos.X -= 2;
+					link.pos = currPos;
 					break;
 				case "right":
-					link.pos.X += 2;
+					currPos.X += 2;
+					link.pos = currPos;
 					break;
 				default: // facing up
-					link.pos.Y -= 2;
+					currPos.Y -= 2;
+					link.pos = currPos;
 					break;
 			}
 		}
@@ -95,6 +104,7 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			sprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 		}
 	}
 }

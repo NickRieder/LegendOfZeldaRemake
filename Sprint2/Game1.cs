@@ -2,8 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
+using System.Xml;
 using System.Collections;
+using System.IO;
 
 namespace Sprint2
 {
@@ -15,6 +16,7 @@ namespace Sprint2
         private ArrayList controllerList;
         private KeyboardController keyboardController;
         private GameObjectManager gom;
+        private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
 
         public Game1()
@@ -37,6 +39,8 @@ namespace Sprint2
             gom = new GameObjectManager();
 
             collisionDetector = new CollisionDetector(gom);
+            //levelLoader = new LevelLoader(gom, spriteFactory);
+
 
             base.Initialize();
         }
@@ -51,15 +55,13 @@ namespace Sprint2
 
             gom.spriteFactory = spriteFactory;
 
-            if (gom.spriteFactory != null)
-            {
-                System.Diagnostics.Debug.WriteLine("DEBUG: " + gom.spriteFactory.getArrowSpriteDown().getDestinationRectangle().X);
-                System.Diagnostics.Debug.WriteLine("DEBUG: " + gom.spriteFactory.getArrowSpriteDown().getDestinationRectangle().Y);
-            }
-
             gom.SetSpriteContent(spriteFactory);
 
+            //levelLoader.LoadLevel("TestLevel");
+
             keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
+
+            
         }
 
         protected override void Update(GameTime gameTime)

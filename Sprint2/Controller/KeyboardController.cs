@@ -92,8 +92,10 @@ namespace Sprint2
             RegisterCommandHold(Keys.Left, new SetLinkMoving(link));
             RegisterCommandHold(Keys.Right, new SetLinkMoving(link));
 
-            RegisterCommandHold(Keys.Q, new QuitCommand(game1));
-            RegisterCommandHold(Keys.R, new ResetGame(game1));
+            RegisterCommandTap(Keys.Q, new QuitCommand(game1));
+            RegisterCommandTap(Keys.R, new ResetGame(game1));
+
+
         }
 
         public void Update(GameTime gameTime)
