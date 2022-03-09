@@ -31,6 +31,10 @@ namespace Sprint2
 
 		}
 
+		public Rectangle GetSpriteRectangle()
+		{
+			return new Rectangle(0,0,0,0); // Change this to Block Sprite
+		}
 		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
 			this.spriteFactory = spriteFactory;

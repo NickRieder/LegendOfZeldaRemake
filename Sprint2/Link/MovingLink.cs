@@ -5,22 +5,36 @@ using System.Collections;
 
 namespace Sprint2
 {
-    class StandingFacingRight : ILinkState
+	class MovingLink : ILinkState
 	{
 		private Link link;
 		private SpriteFactory spriteFactory;
 		private ArrayList itemList;
+		private IItem item;
 
-		public StandingFacingRight(Link link)
+		public MovingLink(Link link)
 		{
 			this.link = link;
 			spriteFactory = link.spriteFactory;
-			link.sprite = spriteFactory.getLinkStandingFacingRightSprite();
-			link.direction = "right";
+			switch (link.direction)
+			{
+				case "down":
+					link.sprite = spriteFactory.getLinkMovingDownSprite();
+					break;
+				case "left":
+					link.sprite = spriteFactory.getLinkMovingLeftSprite();
+					break;
+				case "right":
+					link.sprite = spriteFactory.getLinkMovingRightSprite();
+					break;
+				default: // facing up
+					link.sprite = spriteFactory.getLinkMovingUpSprite();
+					break;
+			}
 			itemList = new ArrayList();
-			itemList.Add(new ArrowRight(this.link, this.link.spriteFactory));
-			itemList.Add(new BoomerangRight(this.link, this.link.spriteFactory));
-			itemList.Add(new ExplosionRight(this.link, this.link.spriteFactory));
+			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
+			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
+			itemList.Add(new ExplosionDown(this.link, this.link.spriteFactory));
 		}
 		public void StandingUp()
 		{
@@ -32,7 +46,11 @@ namespace Sprint2
 			link.direction = "down";
 			link.currState = new StandingFacingDown(link);
 		}
-		public void StandingRight() { }
+		public void StandingRight()
+		{
+			link.direction = "right";
+			link.currState = new StandingFacingRight(link);
+		}
 		public void StandingLeft()
 		{
 			link.direction = "left";
@@ -40,8 +58,22 @@ namespace Sprint2
 		}
 		public void Move()
         {
-			link.currState = new MovingLink(link);
-        }
+			switch (link.direction)
+			{
+				case "down":
+					link.pos.Y += 2;
+					break;
+				case "left":
+					link.pos.X -= 2;
+					break;
+				case "right":
+					link.pos.X += 2;
+					break;
+				default: // facing up
+					link.pos.Y -= 2;
+					break;
+			}
+		}
 		public void UseWeapon()
 		{
 			link.currState = new UsingWeapon(link);

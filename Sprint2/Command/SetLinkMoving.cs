@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetLinkMovingRight : ICommand
+    class SetLinkMoving : ICommand
     {
         private Link link;
-        public SetLinkMovingRight(Link link)
+        public SetLinkMoving(Link link)
         {
             this.link = link;
         }
@@ -16,7 +16,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            link.MoveRight();
+            link.Move();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Sprint2
     public interface ISprite
     {
         public void SetSpriteContent(SpriteFactory spriteFactory);
+        public Rectangle GetSpriteRectangle();
         public void Draw(SpriteBatch spritebatch);
         public void Update(GameTime gameTime);
     }

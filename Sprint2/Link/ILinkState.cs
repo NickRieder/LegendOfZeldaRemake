@@ -6,10 +6,11 @@ namespace Sprint2
 {
     public interface ILinkState
     {
-        void MoveUp();
-        void MoveDown();
-        void MoveRight();
-        void MoveLeft();
+        void StandingUp();
+        void StandingDown();
+        void StandingRight();
+        void StandingLeft();
+        void Move();
         void UseWeapon();
         void UseItem(int itemNum);
         void TakeDamage();
