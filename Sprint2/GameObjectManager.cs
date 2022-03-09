@@ -35,7 +35,7 @@ namespace Sprint2
             link = new Link();
             item = new Item();
             block = new Block();
-            enemiesList = new EnemiesList(this);
+            enemiesList = new EnemiesList();
 
             this.AddToallObjectList(link);
             this.AddToallObjectList(item);

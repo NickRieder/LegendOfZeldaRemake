@@ -9,13 +9,15 @@ namespace Sprint2
 		public IEnemyState currState;
 		public Vector2 pos;
 		public SpriteFactory spriteFactory { get; set; }
+		public Sprite sprite;
 		public int health;
 		public int spriteSizeMultiplier;
+		public string enemyName;
 
-		public Enemies()
+		public Enemies(string enemyName)
 		{
+			this.enemyName = enemyName;
 			spriteSizeMultiplier = 2;
-
 			health = 3;
 			pos.X = 600;
 			pos.Y = 200;
@@ -24,12 +26,44 @@ namespace Sprint2
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
+			switch (enemyName)
+			{
+				case "Bluebat":
+					currState = new BluebatDown(this);
+					break;
+				case "Bluegel":
+					currState = new BluegelDown(this);
+					break;
+				case "Darknut":
+					//currState = new DarknutStandingFacingDown(this);
+					break;
+				case "Dragon":
+					//currState = new DragonStandingFacingDown(this);
+					break;
+				case "Goriya":
+					//currState = new GoriyaStandingFacingDown(this);
+					break;
+				case "Snake":
+					//currState = new SnakeDown(this);
+					break;
+				case "Wizzrobe":
+					//currState = new WizzrobeDown(this);
+					break;
+				default: // facing up
+					currState = null;
+					break;
+			}
 		}
 
-		public void setEnemyType(IEnemyState enemyType)
+		public Rectangle GetSpriteRectangle()
+		{
+			return new Rectangle(0, 0, 0, 0); // Change this to Enemy Sprite
+		}
+
+		/*public void setEnemyType(IEnemyState enemyType)
         {
 			currState = enemyType;
-		}
+		}*/
 
 		public void MoveUp()
 		{

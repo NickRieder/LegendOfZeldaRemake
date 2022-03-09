@@ -30,14 +30,12 @@ namespace Sprint2
             collisionHandler = new CollisionHandler(gom);
         }
 
-        private int GetCollisionSide(Sprite movableSpite, Sprite otherSprite)
+        private int GetCollisionSide(ISprite movableSpite, ISprite otherSprite)
         {
             int collisionSide = 0;
 
-            // All ISprite classes should have a public "currState" variable, where each state class has a "sprite" variable
-            // so that getDestinationRectangle() can be called.
-            Rectangle mSprRectangle = movableSpite.getDestinationRectangle();
-            Rectangle oSprRectangle = otherSprite.getDestinationRectangle();
+            Rectangle mSprRectangle = movableSpite.GetSpriteRectangle();
+            Rectangle oSprRectangle = otherSprite.GetSpriteRectangle();
 
             Rectangle intersectingArea = Rectangle.Intersect(mSprRectangle, oSprRectangle);
 
@@ -65,26 +63,33 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach(Sprite movableSprite in movableObjectList)
+            foreach (ISprite movableSprite in movableObjectList)
             {
-                foreach(Sprite otherSprite in allObjectList)
+                foreach (ISprite otherSprite in allObjectList)
                 {
+
+
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
-                            // We are implementing the Collide() function in the CollisionHandler instead.
+                            System.Diagnostics.Debug.WriteLine("Something collided");
                             collisionHandler.Collide(movableSprite, collisionSide);
                             collisionHandler.Collide(otherSprite, collisionSide);
                         }
+
+                    }
+                    else
+                    {
                         
                     }
 
-                                     
                 }
             }
 
         }
+
     }
+    
 }

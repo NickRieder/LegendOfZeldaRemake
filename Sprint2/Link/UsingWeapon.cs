@@ -3,26 +3,23 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 
+
 namespace Sprint2
 {
-    class UsingWeaponUp : ILinkState
+	class UsingWeapon : ILinkState
 	{
 		private Link link;
-		private int currFrame;
-		private int totalFrames;
 		private Rectangle frame1;
 		private Texture2D sheet;
-
 		private static TimeSpan attackTime;
 		private TimeSpan startTimeAttack;
 		bool isAttacking;
 
-		public UsingWeaponUp(Link link)
+		public UsingWeapon(Link link)
 		{
 			this.link = link;
-			currFrame = 0;
-			totalFrames = 1;
-			frame1 = SpriteFactory.LINK_USESWORD_UP;
+			// Need switch to get proper sprite
+			frame1 = SpriteFactory.LINK_USESWORD_DOWN;
 			this.sheet = link.spriteFactory.getLinkSheet();
 
 			attackTime = TimeSpan.FromMilliseconds(500);
@@ -32,7 +29,7 @@ namespace Sprint2
 		public void TakeDamage()
 		{
 			link.health--;
-			link.currState = new TakingDamageDown(link);
+			link.currState = new NewDirectionalLinkSprite(link, link.direction);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
@@ -50,15 +47,16 @@ namespace Sprint2
 
 			if (startTimeAttack + attackTime < gameTime.TotalGameTime)
 			{
-				link.currState = new StandingFacingUp(link);
+				link.currState = new NewDirectionalLinkSprite(link, link.direction);
 			}
 		}
 
 		// No OPs
-		public void MoveUp() { }
-		public void MoveDown() { }
-		public void MoveRight() { }
-		public void MoveLeft() { }
+		public void StandingUp() { }
+		public void StandingDown() { }
+		public void StandingRight() { }
+		public void StandingLeft() { }
+		public void Move() { }
 		public void UseWeapon() { }
 		public void UseItem(int itemNum) { }
 	}

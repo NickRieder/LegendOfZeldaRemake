@@ -4,15 +4,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Link : ISprite
+	public class Link : ILinkState, ISprite
 	{
 		public ILinkState currState;
 		public Vector2 pos;
 		public SpriteFactory spriteFactory;
+		public Sprite sprite;
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
-		public Vector2 direction;
+		public string direction;
 		public Link()
 		{
 			item = new NullItem();
@@ -25,24 +26,39 @@ namespace Sprint2
         {
 			this.spriteFactory = spriteFactory;
 			this.currState = new StandingFacingDown(this);
+			sprite = spriteFactory.getLinkStandingFacingDownSprite();
+			direction = "down";
 		}
 
-		public void MoveUp()
+		public Rectangle GetSpriteRectangle()
         {
-			currState.MoveUp();
+			return sprite.getDestinationRectangle();
         }
-		public void MoveDown()
+
+		public void StandingUp()
         {
-			currState.MoveDown();
+			direction = "up";
+			currState.StandingUp();
 		}
-		public void MoveLeft()
+		public void StandingDown()
         {
-			currState.MoveLeft();
+			direction = "down";
+			currState.StandingDown();
 		}
-		public void MoveRight()
+		public void StandingLeft()
         {
-			currState.MoveRight();
+			direction = "left";
+			currState.StandingLeft();
 		}
+		public void StandingRight()
+        {
+			direction = "right";
+			currState.StandingRight();
+		}
+		public void Move()
+        {
+			currState.Move();
+        }
 		public void UseWeapon()
         {
 			currState.UseWeapon();
@@ -63,6 +79,7 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
+			sprite.Update(gameTime);
 			item.Update(gameTime);
 		}
 	}
