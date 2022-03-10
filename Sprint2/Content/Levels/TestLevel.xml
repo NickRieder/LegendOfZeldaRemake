@@ -1,0 +1,45 @@
+﻿<Level>
+	<background>
+		<sprite>room1</sprite>
+	</background>
+	
+	<Blocks>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>240</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>240</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>240</XCoord>
+			<YCoord>240</YCoord>
+		</block>
+	</Blocks>
+	
+	<Enemies>
+		<enemy Type="Goriya">
+			<XCoord>200</XCoord>
+			<YCoord>300</YCoord>
+		</enemy>
+		<enemy Type="Dragon">
+			<XCoord>400</XCoord>
+			<YCoord>300</YCoord>
+		</enemy>
+	</Enemies>
+
+	<Doors>
+		<door Type="Top">
+			<room>TestLevel2</room>
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+	</Doors>
+	
+</Level>
+

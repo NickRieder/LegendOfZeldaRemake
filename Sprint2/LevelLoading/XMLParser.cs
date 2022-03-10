@@ -20,12 +20,19 @@ namespace Sprint2
             Vector2 pos;
             String objType;
             XmlNode node;
-            XmlReader reader = XmlReader.Create(TitleContainer.OpenStream(@"Content/Levels/" + fileName + ".xml"));
+            // This will get the current WORKING directory (i.e. \bin\Debug)
+            string workingDirectory = Environment.CurrentDirectory;
+            // or: Directory.GetCurrentDirectory() gives the same result
 
-         
+            // This will get the current PROJECT directory
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            projectDirectory = projectDirectory.Replace((char)92, '/');
 
-            
-            while(reader.Read())
+            XmlReader reader = XmlReader.Create(projectDirectory + "/Content/Levels/" + fileName + ".xml");
+
+
+
+            while (reader.Read())
             {
                 if(reader.NodeType == XmlNodeType.Element)
                 {
