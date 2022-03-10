@@ -45,12 +45,14 @@ namespace Sprint2
 
         public void MoveUp()
         {
-            wizzrobe.pos.Y--;
-           /* if (counter % 5 == 0)
-                currFrame++;
-            if (currFrame == totalFrames)
-                currFrame = 0;
-            counter++;*/
+            Vector2 currPos = wizzrobe.pos;
+            currPos.Y--;
+            wizzrobe.pos = currPos;
+            /* if (counter % 5 == 0)
+                 currFrame++;
+             if (currFrame == totalFrames)
+                 currFrame = 0;
+             counter++;*/
         }
         public void MoveDown()
         {

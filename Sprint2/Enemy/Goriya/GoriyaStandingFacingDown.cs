@@ -51,7 +51,9 @@ namespace Sprint2
         }
         public void MoveDown()
         {
-            goriya.pos.Y++;
+            Vector2 currPos = goriya.pos;
+            currPos.Y++;
+            goriya.pos = currPos;
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)

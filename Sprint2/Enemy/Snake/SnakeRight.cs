@@ -53,12 +53,14 @@ namespace Sprint2
         }
         public void MoveRight()
         {
-            snake.pos.X++;
-          /*  if (counter % 5 == 0)
-                currFrame++;
-            if (currFrame == totalFrames)
-                currFrame = 0;
-            counter++;*/
+            Vector2 currPos = snake.pos;
+            currPos.X++;
+            snake.pos = currPos;
+            /*  if (counter % 5 == 0)
+                  currFrame++;
+              if (currFrame == totalFrames)
+                  currFrame = 0;
+              counter++;*/
         }
         public void MoveLeft()
         {

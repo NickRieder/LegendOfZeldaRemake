@@ -58,7 +58,9 @@ namespace Sprint2
         }
         public void MoveLeft()
         {
-            dragon.pos.X--;
+            Vector2 currPos = dragon.pos;
+            currPos.X--;
+            dragon.pos = currPos;
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)

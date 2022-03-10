@@ -54,7 +54,9 @@ namespace Sprint2
         }
         public void MoveRight()
         {
-            goriya.pos.X++;
+            Vector2 currPos = goriya.pos;
+            currPos.X++;
+            goriya.pos = currPos;
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)

@@ -49,7 +49,9 @@ namespace Sprint2
         }
         public void MoveDown()
         {
-            dragon.pos.Y++;
+            Vector2 currPos = dragon.pos;
+            currPos.Y++;
+            dragon.pos = currPos;
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)

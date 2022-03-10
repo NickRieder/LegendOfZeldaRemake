@@ -53,12 +53,14 @@ namespace Sprint2
         }
         public void MoveRight()
         {
-            darknut.pos.X++;
-           /* if (counter % 5 == 0)
-                currFrame++;
-            if (currFrame == totalFrames)
-                currFrame = 0;
-            counter++;*/
+            Vector2 currPos = darknut.pos;
+            currPos.X++;
+            darknut.pos = currPos;
+            /* if (counter % 5 == 0)
+                 currFrame++;
+             if (currFrame == totalFrames)
+                 currFrame = 0;
+             counter++;*/
         }
         public void MoveLeft()
         {
