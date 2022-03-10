@@ -29,6 +29,11 @@ namespace Sprint2
 			direction = "down";
 		}
 
+		public void SetPos(Vector2 pos)
+        {
+			this.pos = pos;
+        }
+
 		public Rectangle GetSpriteRectangle()
         {
 			return sprite.getDestinationRectangle();

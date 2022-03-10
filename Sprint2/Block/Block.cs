@@ -21,7 +21,7 @@ namespace Sprint2
 		public Block(string blockType, Vector2 pos)
 		{
 			blockArray = new ArrayList();
-
+			this.blockType = blockType;
 			arrIndex = 0;
 			this.pos = pos;
 			//sprite = spriteFactory.getFlatBlockSprite();
@@ -35,12 +35,15 @@ namespace Sprint2
 
             switch (blockType)
             {
-                case "Flat Block":
+                case "Flat":
                     sprite = spriteFactory.getFlatBlockSprite();
                     break;
-                case "Brick Block":
+                case "Brick":
                     sprite = spriteFactory.getBrickBlockSprite();
                     break;
+				case "NonFlat":
+					sprite = spriteFactory.getNonFlatBlockSprite();
+					break;
                 default:
                     sprite = spriteFactory.getFlatBlockSprite();
                     break;

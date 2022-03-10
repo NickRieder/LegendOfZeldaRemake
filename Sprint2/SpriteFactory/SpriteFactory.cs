@@ -107,6 +107,8 @@ namespace Sprint2
             return itemSheet;
         }
 
+
+        public static Rectangle DEFAULT = new Rectangle(270, 270, 30, 30);
         //Tiles
         public static Rectangle TILE_DOOR = new Rectangle(881, 11, 32, 32);
         public static Rectangle TILE_STAIRS = new Rectangle(1035, 28, 16, 16);
@@ -116,6 +118,11 @@ namespace Sprint2
         public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
         public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
         public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
+
+        public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
+        public static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
+        public static Rectangle RIGHT_DOOR_OPEN = new Rectangle(848, 77, 32, 32);
+        public static Rectangle LEFT_DOOR_OPEN = new Rectangle(848, 44, 32, 32);
 
         //Enemies
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
@@ -249,6 +256,11 @@ namespace Sprint2
         public static Rectangle LINK_DAMAGED_ALLGREEN = new Rectangle(91, 240, 16, 16);
         public static Rectangle LINK_DAMAGED_ALLORANGE = new Rectangle(108, 240, 16, 16);
 
+        // link starting positions
+        public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
+        public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
+        public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
         public Sprite getBoomerangSprite()
         {
@@ -355,9 +367,26 @@ namespace Sprint2
         {
             return new Sprite(tileSheet, TILE_BRICK_BLOCK);
         }
+        public Sprite getNonFlatBlockSprite()
+        {
+            return new Sprite(tileSheet, TILE_NONFLAT_BLOCK);
+        }
+
         public Sprite getTopDoorSprite()
         {
-            return new Sprite(tileSheet, TILE_DOOR);
+            return new Sprite(tileSheet, TOP_DOOR_OPEN);
+        }
+        public Sprite getRightDoorSprite()
+        {
+            return new Sprite(tileSheet, RIGHT_DOOR_OPEN);
+        }
+        public Sprite getLeftDoorSprite()
+        {
+            return new Sprite(tileSheet, LEFT_DOOR_OPEN);
+        }
+        public Sprite getBottomDoorSprite()
+        {
+            return new Sprite(tileSheet, BOT_DOOR_OPEN);
         }
 
         // Enemies
@@ -437,6 +466,10 @@ namespace Sprint2
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);
+        }
+        public Sprite getDefaultSprite()
+        {
+            return new Sprite(linkSheet, DEFAULT);
         }
     }
 }

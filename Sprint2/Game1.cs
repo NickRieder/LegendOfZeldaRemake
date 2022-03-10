@@ -61,7 +61,7 @@ namespace Sprint2
 
             gom.SetSpriteContent(spriteFactory);
 
-            levelLoader.LoadLevel("TestLevel");
+            levelLoader.LoadLevel("TestLevel", "Top");
 
             
 

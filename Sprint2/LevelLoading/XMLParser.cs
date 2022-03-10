@@ -54,7 +54,7 @@ namespace Sprint2
                             reader.ReadToFollowing("YCoord");
                             pos.Y = reader.ReadElementContentAsInt();
 
-                            //levelLoader.LoadEnemyObject(objType, pos);
+                            levelLoader.LoadEnemyObject(objType, pos);
                             break;
                         case "door":
                             reader.MoveToFirstAttribute();
@@ -81,16 +81,7 @@ namespace Sprint2
                             break;
                     }
                 }
-                
-
-                
-
             }
-
-           
-
-            
-        }
-        
+        } 
     }
 }

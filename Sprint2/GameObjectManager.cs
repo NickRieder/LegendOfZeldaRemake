@@ -45,13 +45,9 @@ namespace Sprint2
 
             this.AddToDrawableObjectList(background);
 
-            this.AddToAllObjectList(link);
-            this.AddToAllObjectList(item);
-            //this.AddToAllObjectList(block);
-            this.AddToAllObjectList(enemiesList);
+            //this.AddToAllObjectList(enemiesList);
 
-            this.AddToMovableObjectList(link);
-            this.AddToMovableObjectList(enemiesList);
+            //this.AddToMovableObjectList(enemiesList);
 
             // Right now, updatableSprites, drawableSprites, and allObjectList all hold the same sprite objects.
             // QUESTION: What makes them different?
@@ -61,7 +57,7 @@ namespace Sprint2
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-            foreach (ISprite sprite in allObjectList)
+            foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSpriteContent(spriteFactory);
             }
@@ -92,8 +88,7 @@ namespace Sprint2
         public void AddToMovableObjectList(ISprite spriteObject)
         {
             movableObjectList.Add(spriteObject);
-            drawableSpritesList.Add(spriteObject);
-            updatableSpritesList.Add(spriteObject);
+            
         }
         public void AddToDrawableObjectList(ISprite spriteObject)
         {

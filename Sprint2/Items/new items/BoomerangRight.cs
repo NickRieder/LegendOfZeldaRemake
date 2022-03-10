@@ -20,6 +20,7 @@ namespace Sprint2
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;
             speed = 5;
+            
 
             Boomerang = spriteFactory.getBoomerangSprite();
         }

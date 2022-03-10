@@ -33,8 +33,17 @@ namespace Sprint2
 
             switch (doorType)
             {
-                case "Top Door":
+                case "Top":
                     sprite = spriteFactory.getTopDoorSprite();
+                    break;
+                case "Bot":
+                    sprite = spriteFactory.getBottomDoorSprite();
+                    break;
+                case "Left":
+                    sprite = spriteFactory.getLeftDoorSprite();
+                    break;
+                case "Right":
+                    sprite = spriteFactory.getRightDoorSprite();
                     break;
                 default:
                     sprite = spriteFactory.getTopDoorSprite();
@@ -55,7 +64,9 @@ namespace Sprint2
 
         public void LoadNextLevel()
         {
-            levelLoader.LoadLevel(nextLevel);
+            
+
+            levelLoader.LoadLevel(nextLevel, doorType);
         }
 
         

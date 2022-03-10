@@ -11,7 +11,6 @@ namespace Sprint2
         public Vector2 pos { get; set; }
         private string roomName;
         private Sprite sprite;
-        private Game1 game;
         
 
         public Background()
