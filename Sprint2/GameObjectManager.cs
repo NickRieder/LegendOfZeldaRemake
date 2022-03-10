@@ -43,7 +43,8 @@ namespace Sprint2
             //door = new Door("Top Door", "room", new LevelLoader(this, spriteFactory));
             enemiesList = new EnemiesList();
 
-            this.AddToAllObjectList(background);
+            this.AddToDrawableObjectList(background);
+
             this.AddToAllObjectList(link);
             this.AddToAllObjectList(item);
             //this.AddToAllObjectList(block);
@@ -55,8 +56,7 @@ namespace Sprint2
             // Right now, updatableSprites, drawableSprites, and allObjectList all hold the same sprite objects.
             // QUESTION: What makes them different?
             // ANSWER:
-            updatableSpritesList = allObjectList;
-            drawableSpritesList = allObjectList;
+            
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -86,10 +86,19 @@ namespace Sprint2
         public void AddToAllObjectList(ISprite spriteObject)
         {
             allObjectList.Add(spriteObject);
+            drawableSpritesList.Add(spriteObject);
+            updatableSpritesList.Add(spriteObject);
         }
         public void AddToMovableObjectList(ISprite spriteObject)
         {
             movableObjectList.Add(spriteObject);
+            drawableSpritesList.Add(spriteObject);
+            updatableSpritesList.Add(spriteObject);
+        }
+        public void AddToDrawableObjectList(ISprite spriteObject)
+        {
+            drawableSpritesList.Add(spriteObject);
+            updatableSpritesList.Add(spriteObject);
         }
         public void ClearSpriteList()
         {
@@ -99,7 +108,7 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (ISprite sprite in allObjectList)
+            foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
             }
@@ -107,7 +116,7 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach (ISprite sprite in allObjectList)
+            foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);
             }

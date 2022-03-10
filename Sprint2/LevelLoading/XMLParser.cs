@@ -72,7 +72,6 @@ namespace Sprint2
                             levelLoader.LoadDoorObject(objType, pos, room);
                             break;
                         case "background":
-                            reader.MoveToFirstAttribute();
                             reader.ReadToFollowing("sprite");
                             string roomName = reader.ReadElementContentAsString();
 

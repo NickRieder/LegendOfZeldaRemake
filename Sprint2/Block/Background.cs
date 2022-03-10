@@ -24,7 +24,7 @@ namespace Sprint2
 
         public Rectangle GetSpriteRectangle()
         {
-            throw new NotImplementedException();
+            return sprite.getDestinationRectangle();
         }
 
         public void SetRoomName(string roomName)

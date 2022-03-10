@@ -114,6 +114,8 @@ namespace Sprint2
         public static Rectangle TILE_NONFLAT_BLOCK = new Rectangle(1001, 11, 16, 16);
         public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
         public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
+        public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
+        public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
 
         //Enemies
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
@@ -434,7 +436,7 @@ namespace Sprint2
 
         public Sprite getRoom1Sprite()
         {
-            return new Sprite(tileSheet, TILE_FLOOR_BASIC);
+            return new Sprite(tileSheet, FULL_ROOM);
         }
     }
 }
