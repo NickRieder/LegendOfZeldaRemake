@@ -63,6 +63,11 @@ namespace Sprint2
 			return sprite.getDestinationRectangle();
 		}
 
+		public void setPos(Vector2 pos)
+        {
+			this.pos = pos;
+        }
+
 		public void MoveUp()
 		{
 			currState.MoveDown();

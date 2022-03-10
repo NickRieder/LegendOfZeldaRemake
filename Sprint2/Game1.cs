@@ -12,6 +12,7 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+        public Rectangle windowRectangle;
         private SpriteFactory spriteFactory;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
@@ -19,11 +20,13 @@ namespace Sprint2
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            windowRectangle = this.Window.ClientBounds;
         }
 
         protected override void Initialize()
@@ -37,6 +40,7 @@ namespace Sprint2
             controllerList.Add(keyboardController);
 
             gom = new GameObjectManager();
+            levelLoader = new LevelLoader(gom, spriteFactory);
 
             collisionDetector = new CollisionDetector(gom);
             //levelLoader = new LevelLoader(gom, spriteFactory);
@@ -57,11 +61,11 @@ namespace Sprint2
 
             gom.SetSpriteContent(spriteFactory);
 
-            //levelLoader.LoadLevel("TestLevel");
-
-            keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
+            levelLoader.LoadLevel("TestLevel");
 
             
+
+            keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
         }
 
         protected override void Update(GameTime gameTime)

@@ -113,6 +113,7 @@ namespace Sprint2
         public static Rectangle TILE_FLATBLOCK = new Rectangle(984, 11, 16, 16);
         public static Rectangle TILE_NONFLAT_BLOCK = new Rectangle(1001, 11, 16, 16);
         public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
+        public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
 
         //Enemies
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
@@ -428,6 +429,12 @@ namespace Sprint2
         public Sprite getWizzrobeBackSprite()
         {
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
+        }
+
+
+        public Sprite getRoom1Sprite()
+        {
+            return new Sprite(tileSheet, TILE_FLOOR_BASIC);
         }
     }
 }

@@ -18,12 +18,12 @@ namespace Sprint2
 		public Sprite sprite;
 		public string blockType;
 
-		public Block(string blockType)
+		public Block(string blockType, Vector2 pos)
 		{
 			blockArray = new ArrayList();
 
 			arrIndex = 0;
-			pos = new Vector2(100,100);
+			this.pos = pos;
 			//sprite = spriteFactory.getFlatBlockSprite();
 		}
 

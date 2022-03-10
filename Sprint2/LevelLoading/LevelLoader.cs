@@ -8,6 +8,7 @@ namespace Sprint2
     {
         private GameObjectManager gom;
         private SpriteFactory spriteFactory;
+        private Game1 game;
         public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory)
         {
             this.gom = gom;
@@ -16,15 +17,15 @@ namespace Sprint2
 
         public void LoadLevel(String fileName)
         {
-            gom.ClearSpriteList();
+            //gom.ClearSpriteList();
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
         }
 
         public void LoadBlockObject(String blockType, Vector2 pos)
         {
-            Block block = new Block(blockType);
-            block.pos = pos;
+            Block block = new Block(blockType, pos);
+            block.SetSpriteContent(spriteFactory);
 
             gom.AddToAllObjectList(block);
         }
@@ -33,6 +34,7 @@ namespace Sprint2
         {
             Enemies enemy = new Enemies(enemyName);
             enemy.pos = pos;
+            enemy.SetSpriteContent(spriteFactory);
 
             gom.AddToAllObjectList(enemy);
         }
@@ -41,8 +43,15 @@ namespace Sprint2
         {
             Door door = new Door(doorType, room, this);
             door.pos = pos;
+            door.SetSpriteContent(spriteFactory);
 
             gom.AddToAllObjectList(door);
+        }
+
+        public void LoadBackground(string roomName)
+        {
+            gom.SetBackgroundRoom(roomName);
+            gom.SetSpriteContent(spriteFactory);
         }
     }
 }

@@ -21,6 +21,8 @@ namespace Sprint2
         //public Door door;
         public EnemiesList enemiesList;
 
+        private Background background;
+
         public GameObjectManager()
         {
             allObjectList = new ArrayList();
@@ -33,16 +35,18 @@ namespace Sprint2
             // PROBLEM: We can't easily access sprite objects from the GOM if we use a list.
             // SOLUTION: Maybe we could use a dictionary, but we can only add unique keys to a dictionary (ie. no duplicate enemies?).
 
+            background = new Background();
             link = new Link();
             item = new Item();
-            block = new Block("Brick Block");
+            //block = new Block("Brick Block");
             gameTime = new GameTime();
             //door = new Door("Top Door", "room", new LevelLoader(this, spriteFactory));
             enemiesList = new EnemiesList();
 
+            this.AddToAllObjectList(background);
             this.AddToAllObjectList(link);
             this.AddToAllObjectList(item);
-            this.AddToAllObjectList(block);
+            //this.AddToAllObjectList(block);
             this.AddToAllObjectList(enemiesList);
 
             this.AddToMovableObjectList(link);
@@ -62,6 +66,11 @@ namespace Sprint2
                 sprite.SetSpriteContent(spriteFactory);
             }
 
+        }
+
+        public void SetBackgroundRoom(string roomName)
+        {
+            background.SetRoomName(roomName);
         }
 
         public ArrayList getListOfAllObjects()

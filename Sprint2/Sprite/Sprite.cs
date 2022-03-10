@@ -38,7 +38,7 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            destinationRectangle = new Rectangle((int)location.X, (int)location.Y, 3*currRectangle.Width, 3*currRectangle.Height);
+            destinationRectangle = new Rectangle((int)location.X, (int)location.Y, 3 * currRectangle.Width, 3 * currRectangle.Height);
 
             spriteBatch.Draw(spriteSheet, destinationRectangle, frameList[currFrame], Color.White);
         }
