@@ -44,7 +44,6 @@ namespace Sprint2
 			}	
             else
             {
-				sprite.Update(gameTime);
 				switch (link.direction)
 				{
 					case "down":
@@ -64,9 +63,9 @@ namespace Sprint2
 						link.pos = currPos;
 						break;
 				}
-				link.pos = currPos;
-				link.sprite.Update(gameTime);
             }
+			sprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 		}
 
 		// No OPs

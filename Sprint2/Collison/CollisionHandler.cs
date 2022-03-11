@@ -11,10 +11,14 @@ namespace Sprint2
         private GameObjectManager gom;
         private ArrayList allObjectList;
         private ArrayList movableObjectList;
+        private Link link;
+        private Enemies enemy;
 
         public CollisionHandler(GameObjectManager gom)
         {
             this.gom = gom;
+            this.link = gom.link;
+            enemy = new Enemies("bluebat");
             allObjectList = gom.getListOfAllObjects();
             movableObjectList = gom.getListOfMovableObjects();
         }
@@ -69,7 +73,7 @@ namespace Sprint2
             Vector2 otherSprObjPos = otherSpriteObject.pos;
             Rectangle mainSpriteRectangle = mainSpriteObject.GetSpriteRectangle();
             Rectangle otherSpriteRectangle = otherSpriteObject.GetSpriteRectangle();
-
+            
             mainSprObjPos.Y = otherSprObjPos.Y - mainSpriteRectangle.Height;
             mainSpriteObject.pos = mainSprObjPos;
         }
@@ -83,7 +87,6 @@ namespace Sprint2
             mainSprObjPos.Y = otherSprObjPos.Y + otherSpriteRectangle.Height;
             mainSpriteObject.pos = mainSprObjPos;
         }
-            
     }   
 
 }

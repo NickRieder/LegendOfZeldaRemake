@@ -74,7 +74,7 @@ namespace Sprint2
 		public void Draw(SpriteBatch spriteBatch)
         {
 			currState.Draw(spriteBatch);
-			item.Draw(spriteBatch, new Vector2(pos.X, pos.Y));
+			item.Draw(spriteBatch, pos);
         }
 		public void Update(GameTime gameTime)
 		{
