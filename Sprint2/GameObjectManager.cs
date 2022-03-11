@@ -30,28 +30,13 @@ namespace Sprint2
             drawableSpritesList = new ArrayList();
             movableObjectList = new ArrayList();
             keyboardController = new KeyboardController();
-            // Adding all these sprite objects should probably be done outside of the GOM.
-            // Kevin: I think the class that reads the XML files would be adding the necessary sprite objects into the list. (Unless this IS the class, but idk)
-            // PROBLEM: We can't easily access sprite objects from the GOM if we use a list.
-            // SOLUTION: Maybe we could use a dictionary, but we can only add unique keys to a dictionary (ie. no duplicate enemies?).
 
-            background = new Background();
             link = new Link();
-            item = new Item();
-            //block = new Block("Brick Block");
+            background = new Background();
             gameTime = new GameTime();
-            //door = new Door("Top Door", "room", new LevelLoader(this, spriteFactory));
-            enemiesList = new EnemiesList();
 
             this.AddToDrawableObjectList(background);
 
-            //this.AddToAllObjectList(enemiesList);
-
-            //this.AddToMovableObjectList(enemiesList);
-
-            // Right now, updatableSprites, drawableSprites, and allObjectList all hold the same sprite objects.
-            // QUESTION: What makes them different?
-            // ANSWER:
             
         }
 
