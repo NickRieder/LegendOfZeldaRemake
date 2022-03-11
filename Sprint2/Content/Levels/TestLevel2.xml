@@ -1,0 +1,29 @@
+﻿<level>
+
+	<background>
+		<sprite>room1</sprite>
+	</background>
+	
+	<Blocks>
+		<block Type ="Flat Block">
+			<XCoord>80</XCoord>
+			<YCoord>90</YCoord>
+		</block>
+		<block Type ="Brick Block">
+			<XCoord>100</XCoord>
+			<YCoord>30</YCoord>
+		</block>
+	</Blocks>
+
+	<Doors>
+		<door Type="Top">
+			<room>TestLevel</room>
+			<!-- Next Room-->
+			<room>TestLevel</room>
+			<!-- Previous Room-->
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+	</Doors>
+	
+</level>

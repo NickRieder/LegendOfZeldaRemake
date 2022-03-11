@@ -28,6 +28,7 @@ namespace Sprint2
         {
             this.content = content;
         }
+
         public void LoadSpriteSheets()
         {
             tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
@@ -106,12 +107,22 @@ namespace Sprint2
             return itemSheet;
         }
 
+
+        public static Rectangle DEFAULT = new Rectangle(270, 270, 30, 30);
         //Tiles
-        public static Rectangle TILE_DOOR = new Rectangle(881, 25, 32, 18);
+        public static Rectangle TILE_DOOR = new Rectangle(881, 11, 32, 32);
         public static Rectangle TILE_STAIRS = new Rectangle(1035, 28, 16, 16);
         public static Rectangle TILE_FLATBLOCK = new Rectangle(984, 11, 16, 16);
         public static Rectangle TILE_NONFLAT_BLOCK = new Rectangle(1001, 11, 16, 16);
         public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
+        public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
+        public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
+        public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
+
+        public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
+        public static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
+        public static Rectangle RIGHT_DOOR_OPEN = new Rectangle(848, 77, 32, 32);
+        public static Rectangle LEFT_DOOR_OPEN = new Rectangle(848, 44, 32, 32);
 
         //Enemies
         public static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
@@ -144,11 +155,12 @@ namespace Sprint2
         public static Rectangle DARKNUT_SHEET2_FRONT1 = new Rectangle(1, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_FRONT2 = new Rectangle(18, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_BACK = new Rectangle(35, 90, 16, 16);
+        public static Rectangle DARKNUT_SHEET2_BACK2 = new Rectangle(90, 106, 16, 16);
         public static Rectangle DARKNUT_SHEET2_RIGHT1 = new Rectangle(52, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2_RIGHT2 = new Rectangle(69, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2MIRROR_LEFT1 = new Rectangle(372, 90, 16, 16);
         public static Rectangle DARKNUT_SHEET2MIRROR_LEFT2 = new Rectangle(389, 90, 16, 16);
-        public static Rectangle DARKNUT_SHEET2MIRROR_BACK = new Rectangle(405, 90, 16, 16);
+       // public static Rectangle DARKNUT_SHEET2MIRROR_BACK = new Rectangle(405, 90, 16, 16);
 
 
         public static Rectangle WIZZROBE_SHEET2_RIGHT1 = new Rectangle(126, 90, 16, 16);
@@ -159,7 +171,9 @@ namespace Sprint2
         public static Rectangle WIZZROBE_SHEET2MIRROR_LEFT2 = new Rectangle(314, 89, 16, 16);
 
         public static Rectangle GORIYA_SHEET2_FRONT = new Rectangle(222, 11, 16, 16);
+        public static Rectangle GORIYA_SHEET2_FRONT2 = new Rectangle(290, 27, 16, 16);
         public static Rectangle GORIYA_SHEET2_BACK = new Rectangle(239, 11, 16, 16);
+        public static Rectangle GORIYA_SHEET2_BACK2 = new Rectangle(308, 27, 16, 16);
         public static Rectangle GORIYA_SHEET2_RIGHT = new Rectangle(256, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2_THROWRIGHT = new Rectangle(273, 11, 16, 16);
 
@@ -171,8 +185,8 @@ namespace Sprint2
         public static Rectangle GORIYA_SHEET2_WEAPON6 = new Rectangle(308, 11, 8, 16);
 
         public static Rectangle GORIYA_SHEET2MIRROR_LEFT = new Rectangle(185, 11, 16, 16);
-        public static Rectangle GORIYA_SHEET2MIRROR_BACK = new Rectangle(201, 11, 16, 16);
-        public static Rectangle GORIYA_SHEET2MIRROR_FRONT = new Rectangle(219, 11, 16, 16);
+        //public static Rectangle GORIYA_SHEET2MIRROR_BACK = new Rectangle(201, 11, 16, 16);
+        //public static Rectangle GORIYA_SHEET2MIRROR_FRONT = new Rectangle(219, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_THROWLEFT = new Rectangle(168, 11, 16, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_WEAPONLEFT1 = new Rectangle(159, 11, 8, 16);
         public static Rectangle GORIYA_SHEET2MIRROR_WEAPONLEFT2 = new Rectangle(150, 11, 8, 16);
@@ -242,6 +256,11 @@ namespace Sprint2
         public static Rectangle LINK_DAMAGED_ALLGREEN = new Rectangle(91, 240, 16, 16);
         public static Rectangle LINK_DAMAGED_ALLORANGE = new Rectangle(108, 240, 16, 16);
 
+        // link starting positions
+        public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
+        public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
+        public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
         public Sprite getBoomerangSprite()
         {
@@ -268,6 +287,189 @@ namespace Sprint2
 
             return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
 
+        }
+        public Sprite getLinkStandingFacingDownSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
+        }
+        public Sprite getLinkStandingFacingRightSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_RIGHT_1);
+        }
+        public Sprite getLinkStandingFacingLeftSprite()
+        {
+            return new Sprite(linkSheetMirrored, LINK_MOVE_MIRROR_LEFT_1);
+        }
+        public Sprite getLinkStandingFacingUpSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_UP_1);
+        }
+        public Sprite getLinkMovingDownSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_DOWN_1, LINK_MOVE_DOWN_2);
+        }
+        public Sprite getLinkMovingRightSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_RIGHT_1, LINK_MOVE_RIGHT_2);
+        }
+        public Sprite getLinkMovingLeftSprite()
+        {
+            return new Sprite(linkSheetMirrored, LINK_MOVE_MIRROR_LEFT_1, LINK_MOVE_MIRROR_LEFT_2);
+        }
+        public Sprite getLinkMovingUpSprite()
+        {
+            return new Sprite(linkSheet, LINK_MOVE_UP_1, LINK_MOVE_UP_2);
+        }
+        public Sprite getLinkUsingWeaponUp()
+        {
+            return new Sprite(linkSheet, LINK_USESWORD_UP);
+        }
+        public Sprite getLinkUsingWeaponDown()
+        {
+            return new Sprite(linkSheet, LINK_USESWORD_DOWN);
+        }
+        public Sprite getLinkUsingWeaponRight()
+        {
+            return new Sprite(linkSheet, LINK_USESWORD_RIGHT);
+        }
+        public Sprite getLinkUsingWeaponLeft()
+        {
+            return new Sprite(linkSheetMirrored, LINK_USESWORD_MIRROR_LEFT);
+        }
+        public Sprite getLinkUsingItemUp()
+        {
+            return new Sprite(linkSheet, LINK_USEITEM_UP);
+        }
+        public Sprite getLinkUsingItemDown()
+        {
+            return new Sprite(linkSheet, LINK_USEITEM_DOWN);
+        }
+        public Sprite getLinkUsingItemRight()
+        {
+            return new Sprite(linkSheet, LINK_USEITEM_RIGHT);
+        }
+        public Sprite getLinkUsingItemLeft()
+        {
+            return new Sprite(linkSheetMirrored, LINK_USEITEM_MIRROR_LEFT);
+        }
+        public Sprite getLinkDamaged()
+        {
+            return new Sprite(linkSheet, LINK_DAMAGED_BLACK_AND_RED);
+        }
+
+        // Tiles
+
+        public Sprite getFlatBlockSprite()
+        {
+            return new Sprite(tileSheet, TILE_FLATBLOCK);
+        }
+        public Sprite getBrickBlockSprite()
+        {
+            return new Sprite(tileSheet, TILE_BRICK_BLOCK);
+        }
+        public Sprite getNonFlatBlockSprite()
+        {
+            return new Sprite(tileSheet, TILE_NONFLAT_BLOCK);
+        }
+
+        public Sprite getTopDoorSprite()
+        {
+            return new Sprite(tileSheet, TOP_DOOR_OPEN);
+        }
+        public Sprite getRightDoorSprite()
+        {
+            return new Sprite(tileSheet, RIGHT_DOOR_OPEN);
+        }
+        public Sprite getLeftDoorSprite()
+        {
+            return new Sprite(tileSheet, LEFT_DOOR_OPEN);
+        }
+        public Sprite getBottomDoorSprite()
+        {
+            return new Sprite(tileSheet, BOT_DOOR_OPEN);
+        }
+
+        // Enemies
+
+        public Sprite getBluebatSprite()
+        {
+            return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);
+        }
+
+        public Sprite getBluegelSprite()
+        {
+            return new Sprite(enemySheet2, BLUEGEL_SHEET2_POS1, BLUEGEL_SHEET2_POS2);
+        }
+
+        public Sprite getDarknutUpSprite()
+        {
+            return new Sprite(enemySheet2, DARKNUT_SHEET2_BACK, DARKNUT_SHEET2_BACK2);
+        }
+         public Sprite getDarknutDownSprite()
+        {
+            return new Sprite(enemySheet2,DARKNUT_SHEET2_FRONT1,  DARKNUT_SHEET2_FRONT2);
+        }
+         public Sprite getDarknutLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, DARKNUT_SHEET2MIRROR_LEFT1,  DARKNUT_SHEET2MIRROR_LEFT2);
+        }
+         public Sprite getDarknutRightSprite()
+        {
+            return new Sprite(enemySheet2,DARKNUT_SHEET2_RIGHT1,  DARKNUT_SHEET2_RIGHT2);
+        }
+        public Sprite getDragonRightSprite()
+        {
+            return new Sprite(enemySheetMirror, DRAGON_SHEET1MIRROR_RIGHT3, DRAGON_SHEET1MIRROR_RIGHT4);
+        }
+        public Sprite getDragonLeftSprite()
+        {
+            return new Sprite(enemySheet, DRAGON_SHEET1_LEFT3, DRAGON_SHEET1_LEFT4);
+        }
+        public Sprite getGoriyaLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, GORIYA_SHEET2MIRROR_LEFT, GORIYA_SHEET2MIRROR_THROWLEFT);
+        }
+        public Sprite getGoriyaRightSprite()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_RIGHT, GORIYA_SHEET2_THROWRIGHT);
+        }
+        public Sprite getGoriyaUpSprite()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_BACK, GORIYA_SHEET2_BACK2);
+        }
+        public Sprite getGoriyaDownSprite()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_FRONT, GORIYA_SHEET2_FRONT2);
+        }
+        public Sprite getSnakeRightSprite()
+        {
+            return new Sprite(enemySheet2, SNAKE_SHEET2_RIGHT1, SNAKE_SHEET2_RIGHT2);
+        }
+        public Sprite getSnakeLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, SNAKE_SHEET2MIRROR_LEFT1, SNAKE_SHEET2MIRROR_LEFT2);
+        }
+        public Sprite getWizzrobeRightSprite()
+        {
+            return new Sprite(enemySheet2, WIZZROBE_SHEET2_RIGHT1, WIZZROBE_SHEET2_RIGHT2);
+        }
+        public Sprite getWizzrobeLeftSprite()
+        {
+            return new Sprite(enemySheet2Mirror, WIZZROBE_SHEET2MIRROR_LEFT1, WIZZROBE_SHEET2MIRROR_LEFT2);
+        }
+        public Sprite getWizzrobeBackSprite()
+        {
+            return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
+        }
+
+
+        public Sprite getRoom1Sprite()
+        {
+            return new Sprite(tileSheet, FULL_ROOM);
+        }
+        public Sprite getDefaultSprite()
+        {
+            return new Sprite(linkSheet, DEFAULT);
         }
     }
 }

@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Sprint2
 {
-     public interface ICollison
+     public interface ICollision
     {
-        public void GetRectangle();
+
+        //public void GetRectangle();
     }
 }

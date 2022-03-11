@@ -14,10 +14,13 @@ namespace Sprint2
 
         public BoomerangRight(Link link, SpriteFactory spriteFactory)
         {
+            this.link = link;
             counter = 0;
+            this.link = link;
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;
             speed = 5;
+            
 
             Boomerang = spriteFactory.getBoomerangSprite();
         }

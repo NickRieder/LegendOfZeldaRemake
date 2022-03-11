@@ -60,20 +60,42 @@ namespace Sprint2
             RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
             RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
 
-            RegisterCommandHold(Keys.S, new SetLinkMovingDown(link));
-            RegisterCommandHold(Keys.W, new SetLinkMovingUp(link));
-            RegisterCommandHold(Keys.A, new SetLinkMovingLeft(link));
-            RegisterCommandHold(Keys.D, new SetLinkMovingRight(link));
+            RegisterCommandHold(Keys.S, new SetLinkMoving(link));
+            RegisterCommandHold(Keys.W, new SetLinkMoving(link));
+            RegisterCommandHold(Keys.A, new SetLinkMoving(link));
+            RegisterCommandHold(Keys.D, new SetLinkMoving(link));
+
+            RegisterCommandTap(Keys.S, new SetLinkStandingDown(link));
+            RegisterCommandTap(Keys.W, new SetLinkStandingUp(link));
+            RegisterCommandTap(Keys.A, new SetLinkStandingLeft(link));
+            RegisterCommandTap(Keys.D, new SetLinkStandingRight(link));
+
+            RegisterCommandRelease(Keys.S, new SetLinkStandingDown(link));
+            RegisterCommandRelease(Keys.W, new SetLinkStandingUp(link));
+            RegisterCommandRelease(Keys.A, new SetLinkStandingLeft(link));
+            RegisterCommandRelease(Keys.D, new SetLinkStandingRight(link));
 
             RegisterCommandTap(Keys.E, new SetLinkDamagedDown(link));
 
-            RegisterCommandHold(Keys.Down, new SetLinkMovingDown(link));
-            RegisterCommandHold(Keys.Up, new SetLinkMovingUp(link));
-            RegisterCommandHold(Keys.Left, new SetLinkMovingLeft(link));
-            RegisterCommandHold(Keys.Right, new SetLinkMovingRight(link));
+            RegisterCommandTap(Keys.Down, new SetLinkStandingDown(link));
+            RegisterCommandTap(Keys.Up, new SetLinkStandingUp(link));
+            RegisterCommandTap(Keys.Left, new SetLinkStandingLeft(link));
+            RegisterCommandTap(Keys.Right, new SetLinkStandingRight(link));
 
-            RegisterCommandHold(Keys.Q, new QuitCommand(game1));
-            RegisterCommandHold(Keys.R, new ResetGame(game1));
+            RegisterCommandRelease(Keys.Down, new SetLinkStandingDown(link));
+            RegisterCommandRelease(Keys.Up, new SetLinkStandingUp(link));
+            RegisterCommandRelease(Keys.Left, new SetLinkStandingLeft(link));
+            RegisterCommandRelease(Keys.Right, new SetLinkStandingRight(link));
+
+            RegisterCommandHold(Keys.Down, new SetLinkMoving(link));
+            RegisterCommandHold(Keys.Up, new SetLinkMoving(link));
+            RegisterCommandHold(Keys.Left, new SetLinkMoving(link));
+            RegisterCommandHold(Keys.Right, new SetLinkMoving(link));
+
+            RegisterCommandTap(Keys.Q, new QuitCommand(game1));
+            RegisterCommandTap(Keys.R, new ResetGame(game1));
+
+
         }
 
         public void Update(GameTime gameTime)

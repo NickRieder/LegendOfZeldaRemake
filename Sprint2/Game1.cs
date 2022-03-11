@@ -2,8 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
+using System.Xml;
 using System.Collections;
+using System.IO;
 
 namespace Sprint2
 {
@@ -11,20 +12,22 @@ namespace Sprint2
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+        public Rectangle windowRectangle;
         private SpriteFactory spriteFactory;
-        //public Link link;
-        //private Item item;
-        //private Block block;
-        //private EnemiesList enemiesList;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
+        private MouseController mouseController;
         private GameObjectManager gom;
+        private LevelLoader levelLoader;
+        private CollisionDetector collisionDetector;
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            windowRectangle = this.Window.ClientBounds;
         }
 
         protected override void Initialize()
@@ -38,8 +41,15 @@ namespace Sprint2
             controllerList.Add(keyboardController);
 
             gom = new GameObjectManager();
+            levelLoader = new LevelLoader(gom, spriteFactory);
 
-            //link = new Link();
+            Door door = new Door("Top", "TestLevel2", levelLoader, "TestLevel");
+            mouseController = new MouseController(door);
+            controllerList.Add(mouseController);
+
+            collisionDetector = new CollisionDetector(gom);
+            //levelLoader = new LevelLoader(gom, spriteFactory);
+
 
             base.Initialize();
         }
@@ -52,16 +62,13 @@ namespace Sprint2
 
             spriteFactory.LoadSpriteSheets();
 
-            //link = new Link(linkSpriteFactory);
+            gom.spriteFactory = spriteFactory;
 
-            //itemSpriteFactory.LoadSpriteSheet();
-            //item = new Item(itemSpriteFactory);
-
-            //blockSpriteFactory.LoadSpriteSheet();
-            //block = new Block(blockSpriteFactory);
-            //enemySpriteFactory.LoadSpriteSheet();
-            //enemiesList = new EnemiesList(enemySpriteFactory);
             gom.SetSpriteContent(spriteFactory);
+
+            levelLoader.LoadLevel("TestLevel", "Top");
+
+            
 
             keyboardController.Initialize(gom.link, gom.item, gom.block, gom.enemiesList, this);
         }
@@ -77,26 +84,17 @@ namespace Sprint2
                 controller.Update(gameTime);
             }
 
-            //link.Update(gameTime);
-            
-            //enemiesList.Update(gameTime);
-
             gom.Update(gameTime);
+            collisionDetector.Update(gameTime);
 
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
-            //link.Draw(spriteBatch);
-            
-            //item.Draw(spriteBatch);
-
-            //block.Draw(spriteBatch);
-
-            //enemiesList.Draw(spriteBatch);
 
             gom.Draw(spriteBatch);
 
