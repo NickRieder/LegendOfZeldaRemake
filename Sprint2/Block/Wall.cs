@@ -37,5 +37,15 @@ namespace Sprint2
         {
             sprite.Update(gameTime);
         }
+
+        public Wall GetConcreteObject()
+        {
+            return this;
+        }
+
+        object ISprite.GetConcreteObject()
+        {
+            return this;
+        }
     }
 }

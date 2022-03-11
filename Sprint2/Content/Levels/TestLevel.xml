@@ -62,6 +62,10 @@
 			<XCoord>400</XCoord>
 			<YCoord>200</YCoord>
 		</enemy>
+		<enemy Type="Dragon">
+			<XCoord>500</XCoord>
+			<YCoord>150</YCoord>
+		</enemy>
 	</Enemies>
 	<Walls>
 		<wall>

@@ -42,7 +42,7 @@ namespace Sprint2
             controllerMappingsRelease.Add(key, command);
         }
 
-        public void Initialize(Link link, Item item, Block block, EnemiesList enemiesList, Game1 game1)
+        public void Initialize(Link link, Item item, Block block, Game1 game1)
         {
             RegisterCommandTap(Keys.I, new SetNextItem(item));
             RegisterCommandTap(Keys.U, new SetPreviousItem(item));
@@ -53,8 +53,8 @@ namespace Sprint2
             RegisterCommandTap(Keys.Y, new SetNextBlock(block));
             RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
 
-            RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
-            RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
+            //RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
+           // RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
 
             RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
             RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
@@ -75,7 +75,7 @@ namespace Sprint2
             RegisterCommandRelease(Keys.A, new SetLinkStandingLeft(link));
             RegisterCommandRelease(Keys.D, new SetLinkStandingRight(link));
 
-            RegisterCommandTap(Keys.E, new SetLinkDamagedDown(link));
+            RegisterCommandTap(Keys.E, new SetTakeDamage(link));
 
             RegisterCommandTap(Keys.Down, new SetLinkStandingDown(link));
             RegisterCommandTap(Keys.Up, new SetLinkStandingUp(link));

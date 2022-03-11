@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint2.Collison;
 using System;
 using System.Collections;
 
@@ -13,6 +14,7 @@ namespace Sprint2
         private ArrayList movableObjectList;
         private Link link;
         private Enemies enemy;
+        private CollisionHandlerEnemy collisionHandlerEnemy;
 
         public CollisionHandler(GameObjectManager gom)
         {
@@ -21,6 +23,7 @@ namespace Sprint2
             enemy = new Enemies("bluebat");
             allObjectList = gom.getListOfAllObjects();
             movableObjectList = gom.getListOfMovableObjects();
+            collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
         }
 
         public void Collide(ISprite mainSpriteObject, ISprite otherSpriteObject, int collisionSideEnum)  // Check the collisionSideEnum parameter against the CollisionDetection.COLLISION_SIDE enums
@@ -44,7 +47,6 @@ namespace Sprint2
                     preventBottomCollision(mainSpriteObject, otherSpriteObject);
                 }
             }
-
         }
 
         public void preventLeftCollision(ISprite mainSpriteObject, ISprite otherSpriteObject)

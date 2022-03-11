@@ -82,6 +82,16 @@ namespace Sprint2
 			sprite.Update(gameTime);
 			item.Update(gameTime);
 		}
+
+		public Link GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
+		}
 	}
 }
 

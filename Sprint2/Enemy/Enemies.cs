@@ -101,5 +101,15 @@ namespace Sprint2
 		{
 			currState.Update(gameTime);
 		}
+
+		public Enemies GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
+		}
 	}
 }

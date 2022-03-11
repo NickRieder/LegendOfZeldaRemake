@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint2.Collison;
 using System.Collections;
 
 namespace Sprint2
@@ -20,6 +21,7 @@ namespace Sprint2
         private ArrayList allObjectList;
         private ArrayList movableObjectList;
         private CollisionHandler collisionHandler;
+        private CollisionHandlerEnemy collisionHandlerEnemy;
 
         public CollisionDetector(GameObjectManager gom)
         {
@@ -28,6 +30,7 @@ namespace Sprint2
             movableObjectList = gom.getListOfMovableObjects();
 
             collisionHandler = new CollisionHandler(gom);
+            collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
         }
 
         private int GetCollisionSide(ISprite movableSpite, ISprite otherSprite)
@@ -71,24 +74,18 @@ namespace Sprint2
             {
                 foreach (ISprite otherSprite in allObjectList)
                 {
-
-
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
-                            System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
-                            collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
+                            // collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
+
+                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
+                            // collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
-
                     }
-                    else
-                    {
-                        
-                    }
-
                 }
             }
 

@@ -92,6 +92,16 @@ namespace Sprint2
         {
 			sprite.Update(gameTime);
         }
+
+		public Block GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
+		}
 	}
 }
 
