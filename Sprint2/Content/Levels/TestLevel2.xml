@@ -1,56 +1,60 @@
-﻿<level>
-
+﻿<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
-	
+
 	<Blocks>
-		<block Type ="Flat Block">
-			<XCoord>80</XCoord>
-			<YCoord>90</YCoord>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>192</YCoord>
 		</block>
-		<block Type ="Brick Block">
-			<XCoord>100</XCoord>
-			<YCoord>30</YCoord>
+		<block Type ="NonFlat">
+			<XCoord>240</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>240</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>240</XCoord>
+			<YCoord>240</YCoord>
 		</block>
 	</Blocks>
 
-	<Walls>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
-			<Width>300</Width>
-			<Height>20</Height>
-		</wall>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
-			<Width>300</Width>
-			<Height>5</Height>
-		</wall>
-		<wall>
-			<XCoord>25</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-		<wall>
-			<XCoord>680</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-	</Walls>
-
 	<Doors>
-		<door Type="Top">
-			<room>TestLevel</room>
+		<door Type="TopWall">
+			<room>Room3</room>
 			<!-- Next Room-->
 			<room>TestLevel</room>
 			<!-- Previous Room-->
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
+		<door Type="LeftOpen">
+			<room>Room3</room>
+			<!-- Next Room-->
+			<room>TestLevel</room>
+			<!-- Previous Room-->
+			<XCoord>0</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="RightOpen">
+			<room>Room3</room>
+			<!-- Next Room-->
+			<room>TestLevel</room>
+			<!-- Previous Room-->
+			<XCoord>672</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="BotLock">
+			<room>Room3</room>
+			<!-- Next Room-->
+			<room>TestLevel</room>
+			<!-- Previous Room-->
+			<XCoord>336</XCoord>
+			<YCoord>435</YCoord>
+		</door>
 	</Doors>
-	
-</level>
+
+</Level>

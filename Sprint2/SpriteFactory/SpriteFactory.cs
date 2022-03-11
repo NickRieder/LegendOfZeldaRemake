@@ -70,7 +70,21 @@ namespace Sprint2
 
         public static Rectangle DEFAULT = new Rectangle(270, 270, 30, 30);
         //Tiles
-        public static Rectangle TILE_DOOR = new Rectangle(881, 11, 32, 32);
+        //doors
+        public static Rectangle TILE_DOOR_TOP_OPEN = new Rectangle(848, 11, 32, 32);
+        public static Rectangle TILE_DOOR_RIGHT_OPEN = new Rectangle(848, 77, 32, 32);
+        public static Rectangle TILE_DOOR_BOTTOM_OPEN = new Rectangle(848, 110, 32, 32);
+        public static Rectangle TILE_DOOR_LEFT_OPEN = new Rectangle(848, 44, 32, 32);
+        public static Rectangle TILE_DOOR_TOP_WALL = new Rectangle(815, 11, 32, 32);
+        public static Rectangle TILE_DOOR_RIGHT_WALL = new Rectangle(815, 77, 32, 32);
+        public static Rectangle TILE_DOOR_BOTTOM_WALL = new Rectangle(815, 110, 32, 32);
+        public static Rectangle TILE_DOOR_LEFT_WALL = new Rectangle(815, 44, 32, 32);
+        public static Rectangle TILE_DOOR_TOP_LOCKED = new Rectangle(881, 11, 32, 32);
+        public static Rectangle TILE_DOOR_RIGHT_LOCKED = new Rectangle(881, 77, 32, 32);
+        public static Rectangle TILE_DOOR_BOTTOM_LOCKED = new Rectangle(881, 110, 32, 32);
+        public static Rectangle TILE_DOOR_LEFT_LOCKED = new Rectangle(881, 44, 32, 32);
+
+        //Blocks
         public static Rectangle TILE_STAIRS = new Rectangle(1035, 28, 16, 16);
         public static Rectangle TILE_FLATBLOCK = new Rectangle(984, 11, 16, 16);
         public static Rectangle TILE_NONFLAT_BLOCK = new Rectangle(1001, 11, 16, 16);
@@ -79,10 +93,10 @@ namespace Sprint2
         public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
         public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
 
-        private static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
-        private static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
-        private static Rectangle RIGHT_DOOR_OPEN = new Rectangle(848, 77, 32, 32);
-        private static Rectangle LEFT_DOOR_OPEN = new Rectangle(848, 44, 32, 32);
+        public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
+        public static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
+        public static Rectangle RIGHT_DOOR_OPEN = new Rectangle(848, 77, 32, 32);
+        public static Rectangle LEFT_DOOR_OPEN = new Rectangle(848, 44, 32, 32);
 
         //Enemies
         private static Rectangle DRAGON_SHEET1_LEFT1 = new Rectangle(1, 11, 24, 32);
@@ -329,21 +343,55 @@ namespace Sprint2
             return new Sprite(tileSheet, TILE_NONFLAT_BLOCK);
         }
 
-        public Sprite getTopDoorSprite()
+        public Sprite getTopDoorOpenSprite()
         {
-            return new Sprite(tileSheet, TOP_DOOR_OPEN);
+            return new Sprite(tileSheet, TILE_DOOR_TOP_OPEN);
         }
-        public Sprite getRightDoorSprite()
+        public Sprite getRightDoorOpenSprite()
         {
-            return new Sprite(tileSheet, RIGHT_DOOR_OPEN);
+            return new Sprite(tileSheet, TILE_DOOR_RIGHT_OPEN);
         }
-        public Sprite getLeftDoorSprite()
+        public Sprite getLeftDoorOpenSprite()
         {
-            return new Sprite(tileSheet, LEFT_DOOR_OPEN);
+            return new Sprite(tileSheet, TILE_DOOR_LEFT_OPEN);
         }
-        public Sprite getBottomDoorSprite()
+        public Sprite getBottomDoorOpenSprite()
         {
-            return new Sprite(tileSheet, BOT_DOOR_OPEN);
+            return new Sprite(tileSheet, TILE_DOOR_BOTTOM_OPEN);
+        }
+
+        public Sprite getTopDoorClosedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_TOP_WALL);
+        }
+        public Sprite getRightDoorClosedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_RIGHT_WALL);
+        }
+        public Sprite getLeftDoorClosedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_LEFT_WALL);
+        }
+        public Sprite getBottomDoorClosedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_BOTTOM_WALL);
+        }
+
+        public Sprite getTopDoorLockedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_TOP_LOCKED);
+        }
+        public Sprite getRightDoorLockedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_RIGHT_LOCKED);
+        }
+        public Sprite getLeftDoorLockedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_LEFT_LOCKED);
+        }
+        public Sprite getBottomDoorLockedSprite()
+        {
+            return new Sprite(tileSheet, TILE_DOOR_BOTTOM_LOCKED);
         }
 
         // Enemies

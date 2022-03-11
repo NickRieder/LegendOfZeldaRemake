@@ -5,12 +5,20 @@
 	
 	<Blocks>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
+			<XCoord>384</XCoord>
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
+			<XCoord>336</XCoord>
 			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>384</XCoord>
+			<YCoord>240</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>336</XCoord>
+			<YCoord>240</YCoord>
 		</block>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
@@ -25,72 +33,45 @@
 			<YCoord>242</YCoord>
 		</block>
 	</Blocks>
-
-	<Walls>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
-			<Width>300</Width>
-			<Height>20</Height>
-		</wall>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
-			<Width>300</Width>
-			<Height>5</Height>
-		</wall>
-		<wall>
-			<XCoord>25</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-		<wall>
-			<XCoord>680</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-	</Walls>
 	
 	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
+		<enemy Type="Wizzrobe">
+			<XCoord>450</XCoord>
 			<YCoord>150</YCoord>
 		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
+		<enemy Type="Darknut">
+			<XCoord>200</XCoord>
 			<YCoord>200</YCoord>
 		</enemy>
 	</Enemies>
 
 	<Doors>
-		<door Type="TopOpen">
-			<room>TestLevel2</room>    <!-- Next Room-->
-			<room>Room3</room>    <!-- Previous Room-->
+		<door Type="TopLock">
+			<room>TestLevel</room>    <!-- Next Room-->
+			<room>TestLevel2</room>    <!-- Previous Room-->
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
-		<door Type="LeftLock">
-			<room>TestLevel2</room>
+		<door Type="LeftOpen">
+			<room>TestLevel</room>
 			<!-- Next Room-->
-			<room>Room3</room>
+			<room>TestLevel2</room>
 			<!-- Previous Room-->
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightOpen">
-			<room>TestLevel2</room>
+			<room>TestLevel</room>
 			<!-- Next Room-->
-			<room>Room3</room>
+			<room>TestLevel2</room>
 			<!-- Previous Room-->
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="BotWall">
-			<room>TestLevel2</room>
+		<door Type="BotLock">
+			<room>TestLevel</room>
 			<!-- Next Room-->
-			<room>Room3</room>
+			<room>TestLevel2</room>
 			<!-- Previous Room-->
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
@@ -98,3 +79,4 @@
 	</Doors>
 	
 </Level>
+

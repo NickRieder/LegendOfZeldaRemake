@@ -22,6 +22,8 @@ namespace Sprint2
         public EnemiesList enemiesList;
 
         private Background background;
+        public KeyboardController keyboardController;
+        public MouseController mouseController;
 
         public GameObjectManager()
         {
@@ -29,8 +31,7 @@ namespace Sprint2
             updatableSpritesList = new ArrayList();
             drawableSpritesList = new ArrayList();
             movableObjectList = new ArrayList();
-          
-            
+            keyboardController = new KeyboardController();
 
             link = new Link();
             background = new Background();

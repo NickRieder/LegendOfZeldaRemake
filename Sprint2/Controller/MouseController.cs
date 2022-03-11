@@ -14,11 +14,14 @@ namespace Sprint2
         private Door door;
         public MouseState pastState;
 
-        public MouseController(Door door)
+        public MouseController()
+        {
+        }
+
+        public void SetDoor(Door door)
         {
             this.door = door;
         }
-
 
 
         public void Update(GameTime gameTime)
@@ -33,6 +36,8 @@ namespace Sprint2
             {
                 door.LoadNextRoom();
             }
+
+            pastState = newState;
         }
     }
 }
