@@ -23,6 +23,7 @@ namespace Sprint2
             this.nextLevel = nextLevel;
             this.levelLoader = levelLoader;
             this.prevRoom = prevRoom;
+            this.doorType = doorType;
         }
         public void Draw(SpriteBatch spritebatch)
         {
@@ -35,20 +36,44 @@ namespace Sprint2
 
             switch (doorType)
             {
-                case "Top":
-                    sprite = spriteFactory.getTopDoorSprite();
+                case "TopOpen":
+                    sprite = spriteFactory.getTopDoorOpenSprite();
                     break;
-                case "Bot":
-                    sprite = spriteFactory.getBottomDoorSprite();
+                case "BotOpen":
+                    sprite = spriteFactory.getBottomDoorOpenSprite();
                     break;
-                case "Left":
-                    sprite = spriteFactory.getLeftDoorSprite();
+                case "LeftOpen":
+                    sprite = spriteFactory.getLeftDoorOpenSprite();
                     break;
-                case "Right":
-                    sprite = spriteFactory.getRightDoorSprite();
+                case "RightOpen":
+                    sprite = spriteFactory.getRightDoorOpenSprite();
+                    break;
+                case "TopWall":
+                    sprite = spriteFactory.getTopDoorClosedSprite();
+                    break;
+                case "BotWall":
+                    sprite = spriteFactory.getBottomDoorClosedSprite();
+                    break;
+                case "LeftWall":
+                    sprite = spriteFactory.getLeftDoorClosedSprite();
+                    break;
+                case "RightWall":
+                    sprite = spriteFactory.getRightDoorClosedSprite();
+                    break;
+                case "TopLock":
+                    sprite = spriteFactory.getTopDoorLockedSprite();
+                    break;
+                case "BotLock":
+                    sprite = spriteFactory.getBottomDoorLockedSprite();
+                    break;
+                case "LeftLock":
+                    sprite = spriteFactory.getLeftDoorLockedSprite();
+                    break;
+                case "RightLock":
+                    sprite = spriteFactory.getRightDoorLockedSprite();
                     break;
                 default:
-                    sprite = spriteFactory.getTopDoorSprite();
+                    sprite = spriteFactory.getTopDoorClosedSprite();
                     break;
 
             }
