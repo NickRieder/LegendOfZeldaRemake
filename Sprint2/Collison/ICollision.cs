@@ -6,7 +6,6 @@ namespace Sprint2
 {
      public interface ICollision
     {
-
         //public void GetRectangle();
     }
 }

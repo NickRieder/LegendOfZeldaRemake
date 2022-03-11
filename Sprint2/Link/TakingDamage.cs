@@ -5,7 +5,7 @@ using System;
 
 namespace Sprint2
 {
-	class TakingDamage : ILinkState
+	class TakingDamage : ILinkState, ICommand
 	{
 		private Link link;
 		private Sprite sprite;
@@ -77,6 +77,11 @@ namespace Sprint2
 		public void Move() { }
 		public void UseWeapon() { }
 		public void UseItem(int itemNum) { }
-	}
+
+        public void Execute()
+        {
+			link.TakeDamage();
+        }
+    }
 }
 

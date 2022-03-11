@@ -75,7 +75,7 @@ namespace Sprint2
             RegisterCommandRelease(Keys.A, new SetLinkStandingLeft(link));
             RegisterCommandRelease(Keys.D, new SetLinkStandingRight(link));
 
-            RegisterCommandTap(Keys.E, new SetLinkDamagedDown(link));
+            RegisterCommandTap(Keys.E, new SetTakeDamage(link));
 
             RegisterCommandTap(Keys.Down, new SetLinkStandingDown(link));
             RegisterCommandTap(Keys.Up, new SetLinkStandingUp(link));
