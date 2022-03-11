@@ -22,10 +22,11 @@ To reset the game, use r.
 Authors: Zach Richter, Derek Johnson, Chris Johnson, Kevin Nguyen, Nick Rieder, Yajat Dhawan
 
 Current Bugs:
-When link makes collision with enemies, his collision will teleport him around the room.
+When link makes collision with a front facing enemy, it causes him to fly back and be hurt.
 Link will be stopped by doors to move, but they currently will not send him to the next room.
 Do not use multiple movement key presses at the same time, we have a solution to impliment in the next sprint, this also includes using wasd, items, and the arrow keys at the same time.
 Hurt link does not collide with any other object in the level.
 Enemys do not currently attack.
+Link using the sword and objects do not hurt the enemies.
 
 These problems will be fixed in the next sprint.
