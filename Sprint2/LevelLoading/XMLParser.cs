@@ -87,6 +87,22 @@ namespace Sprint2
 
                             levelLoader.LoadBackground(roomName);
                             break;
+                        case "wall":
+                            reader.ReadToFollowing("XCoord");
+                            pos.X = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("YCoord");
+                            pos.Y = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("Width");
+                            int width = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("Height");
+                            int height = reader.ReadElementContentAsInt();
+
+                            Rectangle rect = new Rectangle(0, 0, width, height);
+                            levelLoader.LoadWall(rect, pos);
+                            break;
                         default:
                             break;
                     }

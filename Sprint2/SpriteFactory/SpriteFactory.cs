@@ -23,6 +23,7 @@ namespace Sprint2
         private static Texture2D itemSheet;
 
         private static Texture2D linkSheetMirrored;
+        private static Texture2D transparentSheet;
 
         public SpriteFactory(ContentManager content)
         {
@@ -46,7 +47,7 @@ namespace Sprint2
             linkSheetMirrored = content.Load<Texture2D>("Sheets/LinkSheetMirror");
 
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
-
+            transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
             
 
 
@@ -470,6 +471,12 @@ namespace Sprint2
         public Sprite getDefaultSprite()
         {
             return new Sprite(linkSheet, DEFAULT);
+        }
+
+
+        public Sprite getWallSprite(Rectangle rect)
+        {
+            return new Sprite(transparentSheet, rect);
         }
     }
 }
