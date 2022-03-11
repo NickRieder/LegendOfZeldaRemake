@@ -80,10 +80,10 @@ namespace Sprint2
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
-                            collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
+                            // collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
 
                             collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
-                            collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
+                            // collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
                     }
                 }

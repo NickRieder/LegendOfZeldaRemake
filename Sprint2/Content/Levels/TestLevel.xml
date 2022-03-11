@@ -58,9 +58,15 @@
 			<XCoord>150</XCoord>
 			<YCoord>150</YCoord>
 		</enemy>
+<<<<<<< Updated upstream
 		<enemy Type="Snake">
 			<XCoord>400</XCoord>
 			<YCoord>200</YCoord>
+=======
+		<enemy Type="Dragon">
+			<XCoord>500</XCoord>
+			<YCoord>150</YCoord>
+>>>>>>> Stashed changes
 		</enemy>
 	</Enemies>
 	<Walls>

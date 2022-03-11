@@ -83,28 +83,5 @@ namespace Sprint2.Collison
                 // link.TakeDamage();
             }
         }
-
-        /*
-        private ICommand parseConstructor(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE side, Type commandType)
-        {
-            Type targetType = target.GetType();
-            Type subjectType = subject.GetType();
-
-            // Search for a valid constructor for this commandType.
-            List<Type[]> signatures = new List<Type[]> {
-                new Type[] { subjectType, targetType, typeof(CollisionDetector.COLLISION_SIDE) },
-            };
-
-            ConstructorInfo commandConstructor = null;
-            foreach (Type[] signature in signatures)
-            {
-                commandConstructor = commandType.GetConstructor(signature);
-                if (commandConstructor != null) { break; }
-            }
-            if (commandConstructor == null) { return null; }
-
-            return (ICommand)commandConstructor.Invoke(new object[] { subject, target, side });
-        }
-        */
     }
 }
