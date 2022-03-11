@@ -1,0 +1,82 @@
+﻿<Level>
+	<background>
+		<sprite>room1</sprite>
+	</background>
+	
+	<Blocks>
+		<block Type ="NonFlat">
+			<XCoord>384</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>336</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>384</XCoord>
+			<YCoord>240</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>336</XCoord>
+			<YCoord>240</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>338</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>432</XCoord>
+			<YCoord>338</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>576</XCoord>
+			<YCoord>242</YCoord>
+		</block>
+	</Blocks>
+	
+	<Enemies>
+		<enemy Type="Wizzrobe">
+			<XCoord>450</XCoord>
+			<YCoord>150</YCoord>
+		</enemy>
+		<enemy Type="Darknut">
+			<XCoord>200</XCoord>
+			<YCoord>200</YCoord>
+		</enemy>
+	</Enemies>
+
+	<Doors>
+		<door Type="TopLock">
+			<room>TestLevel</room>    <!-- Next Room-->
+			<room>TestLevel2</room>    <!-- Previous Room-->
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+		<door Type="LeftOpen">
+			<room>TestLevel</room>
+			<!-- Next Room-->
+			<room>TestLevel2</room>
+			<!-- Previous Room-->
+			<XCoord>0</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="RightOpen">
+			<room>TestLevel</room>
+			<!-- Next Room-->
+			<room>TestLevel2</room>
+			<!-- Previous Room-->
+			<XCoord>672</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="BotLock">
+			<room>TestLevel</room>
+			<!-- Next Room-->
+			<room>TestLevel2</room>
+			<!-- Previous Room-->
+			<XCoord>336</XCoord>
+			<YCoord>435</YCoord>
+		</door>
+	</Doors>
+	
+</Level>
+
