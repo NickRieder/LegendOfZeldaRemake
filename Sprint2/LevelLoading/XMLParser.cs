@@ -70,19 +70,38 @@ namespace Sprint2
                             reader.ReadToFollowing("room");
                             string room = reader.ReadElementContentAsString();
 
+                            reader.ReadToFollowing("room");
+                            string prevRoom = reader.ReadElementContentAsString();
+
                             reader.ReadToFollowing("XCoord");
                             pos.X = reader.ReadElementContentAsInt();
 
                             reader.ReadToFollowing("YCoord");
                             pos.Y = reader.ReadElementContentAsInt();
 
-                            levelLoader.LoadDoorObject(objType, pos, room);
+                            levelLoader.LoadDoorObject(objType, pos, room, prevRoom);
                             break;
                         case "background":
                             reader.ReadToFollowing("sprite");
                             string roomName = reader.ReadElementContentAsString();
 
                             levelLoader.LoadBackground(roomName);
+                            break;
+                        case "wall":
+                            reader.ReadToFollowing("XCoord");
+                            pos.X = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("YCoord");
+                            pos.Y = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("Width");
+                            int width = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("Height");
+                            int height = reader.ReadElementContentAsInt();
+
+                            Rectangle rect = new Rectangle(0, 0, width, height);
+                            levelLoader.LoadWall(rect, pos);
                             break;
                         default:
                             break;

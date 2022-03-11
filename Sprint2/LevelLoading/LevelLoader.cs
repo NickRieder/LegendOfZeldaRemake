@@ -10,6 +10,7 @@ namespace Sprint2
         private SpriteFactory spriteFactory;
         private string doorType;
         private Link link;
+        private MouseController mouse;
         public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory)
         {
             this.gom = gom;
@@ -20,7 +21,7 @@ namespace Sprint2
 
         public void LoadLevel(String fileName, string doorType)
         {
-            //gom.ClearSpriteList();
+            gom.ClearSpriteList();
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
@@ -55,6 +56,7 @@ namespace Sprint2
 
             }
             gom.AddToAllObjectList(link);
+            gom.AddToDrawableObjectList(link);
             gom.AddToMovableObjectList(link);
         }
 
@@ -64,6 +66,7 @@ namespace Sprint2
             block.SetSpriteContent(spriteFactory);
 
             gom.AddToAllObjectList(block);
+            gom.AddToDrawableObjectList(block);
         }
 
         public void LoadEnemyObject(String enemyName, Vector2 pos)
@@ -73,21 +76,31 @@ namespace Sprint2
             enemy.SetSpriteContent(spriteFactory);
 
             gom.AddToAllObjectList(enemy);
+            gom.AddToDrawableObjectList(enemy);
             gom.AddToMovableObjectList(enemy);
         }
 
-        public void LoadDoorObject(String doorType, Vector2 pos, String room)
+        public void LoadDoorObject(String doorType, Vector2 pos, String room, String prevRoom)
         {
-            Door door = new Door(doorType, room, this);
+            Door door = new Door(doorType, room, this, prevRoom);
             door.pos = pos;
             door.SetSpriteContent(spriteFactory);
-
+            gom.mouseController.SetDoor(door);
             gom.AddToAllObjectList(door);
+            gom.AddToDrawableObjectList(door);
         }
 
         public void LoadBackground(string roomName)
         {
             gom.SetBackgroundRoom(roomName);
+        }
+
+        public void LoadWall(Rectangle rect, Vector2 pos)
+        {
+            Sprite sprite = spriteFactory.getWallSprite(rect);
+            Wall wall = new Wall(sprite, pos);
+            gom.AddToAllObjectList(wall);
+            gom.AddToDrawableObjectList(wall);
         }
     }
 }

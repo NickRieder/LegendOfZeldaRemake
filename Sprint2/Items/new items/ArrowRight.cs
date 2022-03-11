@@ -23,7 +23,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            // throw new NotImplementedException();
+           
             arrow.Update(gameTime);
             itemPos.X += 5;
         }

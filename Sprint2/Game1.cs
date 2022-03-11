@@ -42,6 +42,8 @@ namespace Sprint2
             gom = new GameObjectManager();
             levelLoader = new LevelLoader(gom, spriteFactory);
 
+            controllerList.Add(gom.mouseController);
+
             collisionDetector = new CollisionDetector(gom);
             //levelLoader = new LevelLoader(gom, spriteFactory);
 
