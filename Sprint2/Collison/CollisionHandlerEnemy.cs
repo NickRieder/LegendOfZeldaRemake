@@ -69,6 +69,8 @@ namespace Sprint2.Collison
                     link.TakeDamage();
                 }
 
+                // door collision goes here - very buggy. having an issue with passing 'this' as a reference to access the Door's methods (loadNextLevel)
+                /*
                 if (subjectType == doorType)
                 {
                     Door door;
@@ -77,6 +79,7 @@ namespace Sprint2.Collison
                     door = (Door)obj;
                     door.LoadNextLevel();
                 }
+                */
             }
         }
     }
