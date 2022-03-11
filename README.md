@@ -11,6 +11,7 @@ To move link around the map, use w,a,s,d and the arrow keys.
 To attact with link's sword, use z.
 To use different items with link, use 1,2,3.
 To damage link, use e.
+
 Levels:
 To rotate through levels, use the right key on your mouse for the next level, and the left key for the previous.
 
