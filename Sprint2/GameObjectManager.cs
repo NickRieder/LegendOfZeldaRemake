@@ -32,6 +32,7 @@ namespace Sprint2
             drawableSpritesList = new ArrayList();
             movableObjectList = new ArrayList();
             keyboardController = new KeyboardController();
+            mouseController = new MouseController();
 
             link = new Link();
             background = new Background();

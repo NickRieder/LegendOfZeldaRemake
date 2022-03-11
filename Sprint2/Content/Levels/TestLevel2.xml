@@ -21,7 +21,42 @@
 			<YCoord>240</YCoord>
 		</block>
 	</Blocks>
-
+	<Enemies>
+		<enemy Type="Goriya">
+			<XCoord>200</XCoord>
+			<YCoord>300</YCoord>
+		</enemy>
+		<enemy Type="Dragon">
+			<XCoord>400</XCoord>
+			<YCoord>300</YCoord>
+		</enemy>
+	</Enemies>
+	<Walls>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>22</YCoord>
+			<Width>300</Width>
+			<Height>20</Height>
+		</wall>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>435</YCoord>
+			<Width>300</Width>
+			<Height>5</Height>
+		</wall>
+		<wall>
+			<XCoord>25</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+		<wall>
+			<XCoord>680</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+	</Walls>
 	<Doors>
 		<door Type="TopWall">
 			<room>Room3</room>

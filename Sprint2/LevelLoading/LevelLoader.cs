@@ -85,7 +85,7 @@ namespace Sprint2
             Door door = new Door(doorType, room, this, prevRoom);
             door.pos = pos;
             door.SetSpriteContent(spriteFactory);
-            gom.mouseCOntroller.setDoor(door);
+            gom.mouseController.SetDoor(door);
             gom.AddToAllObjectList(door);
             gom.AddToDrawableObjectList(door);
         }
