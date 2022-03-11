@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
@@ -113,6 +114,16 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             enemyToBeDrawn.Draw(spriteBatch);
+        }
+
+        public EnemiesList GetConcreteObject()
+        {
+            return this;
+        }
+
+        object ISprite.GetConcreteObject()
+        {
+            return this;
         }
     }
 }

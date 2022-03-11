@@ -93,9 +93,7 @@ namespace Sprint2
             drawableSpritesList.Clear();
             drawableSpritesList.Add(background);
             updatableSpritesList.Add(background);
-
         }
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -112,6 +110,5 @@ namespace Sprint2
                 sprite.Update(gametime);
             }
         }
-
     }
 }

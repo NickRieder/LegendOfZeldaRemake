@@ -32,18 +32,18 @@ namespace Sprint2.Collison
                
             //Enemy Types
             Type bluebatType = typeof(Enemies);
-            Type bluegelType = typeof(Enemies);
-            Type darknutType = typeof(Enemies);
-            Type dragonType = typeof(Enemies);
-            Type goriyaType = typeof(Enemies);
-            Type snakeType = typeof(Enemies);
-            Type wizzrobeType = typeof(Enemies);
+            //Type bluegelType = typeof(Enemies);
+            //Type darknutType = typeof(Enemies);
+            //Type dragonType = typeof(Enemies);
+            //Type goriyaType = typeof(Enemies);
+            //Type snakeType = typeof(Enemies);
+            //Type wizzrobeType = typeof(Enemies);
 
             Type[] enemyTypes = { bluebatType };
 
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
-                System.Diagnostics.Debug.WriteLine($" {side}");
+                //System.Diagnostics.Debug.WriteLine($" {side}");
                 commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Enemies), playerType, side), typeof(SetTakeDamage));
                 commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Enemies), side), typeof(SetTakeDamage));
 
@@ -63,7 +63,7 @@ namespace Sprint2.Collison
 
             if (keySet.Contains(key))
             {
-                System.Diagnostics.Debug.WriteLine($" {key}");
+                //System.Diagnostics.Debug.WriteLine($" {key}");
                 if (subjectType == playerType)
                 {
                     link.TakeDamage();
@@ -71,16 +71,12 @@ namespace Sprint2.Collison
 
                 if (subjectType == doorType)
                 {
-                    Door dd = (Door) subject;
-                    new SetNextRoom(dd);
+                    Door door;
+                    object obj;
+                    obj = subject.GetConcreteObject();
+                    door = (Door)obj;
+                    door.LoadNextLevel();
                 }
-
-                //Type commandType = commandMap[key];
-                //Console.WriteLine(commandType);
-                //ICommand commandClass = parseConstructor(subject, target, side, commandType);
-                //if (commandClass != null) { commandClass.Execute(); }
-
-                // link.TakeDamage();
             }
         }
     }

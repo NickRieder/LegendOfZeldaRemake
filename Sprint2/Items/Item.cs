@@ -83,5 +83,15 @@ namespace Sprint2
         {
 			// No Op
         }
+
+		public Item GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
+		}
 	}
 }

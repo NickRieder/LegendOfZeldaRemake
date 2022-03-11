@@ -91,23 +91,27 @@ namespace Sprint2
 
         public void LoadNextLevel()
         {
-            
-
             levelLoader.LoadLevel(nextLevel, doorType);
         }
 
         public void LoadNextRoom()
         {
-
-
             levelLoader.LoadLevel(nextLevel, "Right");
         }
 
         public void LoadPreviousRoom()
         {
-
-
             levelLoader.LoadLevel(prevRoom, "Left");
+        }
+
+        public Door GetConcreteObject()
+        {
+            return this;
+        }
+
+        object ISprite.GetConcreteObject()
+        {
+            return this;
         }
     }
 }
