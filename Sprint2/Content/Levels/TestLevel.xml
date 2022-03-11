@@ -35,7 +35,8 @@
 
 	<Doors>
 		<door Type="Top">
-			<room>TestLevel2</room>
+			<room>TestLevel2</room>    <!-- Next Room-->
+			<room>TestLevel2</room>    <!-- Previous Room-->
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>

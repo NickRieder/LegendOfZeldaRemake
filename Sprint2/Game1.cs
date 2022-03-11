@@ -16,6 +16,7 @@ namespace Sprint2
         private SpriteFactory spriteFactory;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
+        private MouseController mouseController;
         private GameObjectManager gom;
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
@@ -41,6 +42,10 @@ namespace Sprint2
 
             gom = new GameObjectManager();
             levelLoader = new LevelLoader(gom, spriteFactory);
+
+            Door door = new Door("Top", "TestLevel2", levelLoader, "TestLevel");
+            mouseController = new MouseController(door);
+            controllerList.Add(mouseController);
 
             collisionDetector = new CollisionDetector(gom);
             //levelLoader = new LevelLoader(gom, spriteFactory);

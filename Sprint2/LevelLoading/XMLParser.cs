@@ -70,13 +70,16 @@ namespace Sprint2
                             reader.ReadToFollowing("room");
                             string room = reader.ReadElementContentAsString();
 
+                            reader.ReadToFollowing("room");
+                            string prevRoom = reader.ReadElementContentAsString();
+
                             reader.ReadToFollowing("XCoord");
                             pos.X = reader.ReadElementContentAsInt();
 
                             reader.ReadToFollowing("YCoord");
                             pos.Y = reader.ReadElementContentAsInt();
 
-                            levelLoader.LoadDoorObject(objType, pos, room);
+                            levelLoader.LoadDoorObject(objType, pos, room, prevRoom);
                             break;
                         case "background":
                             reader.ReadToFollowing("sprite");

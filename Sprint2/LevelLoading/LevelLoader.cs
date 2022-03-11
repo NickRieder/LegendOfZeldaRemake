@@ -20,7 +20,7 @@ namespace Sprint2
 
         public void LoadLevel(String fileName, string doorType)
         {
-            //gom.ClearSpriteList();
+            gom.ClearSpriteList();
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
@@ -76,9 +76,9 @@ namespace Sprint2
             gom.AddToMovableObjectList(enemy);
         }
 
-        public void LoadDoorObject(String doorType, Vector2 pos, String room)
+        public void LoadDoorObject(String doorType, Vector2 pos, String room, String prevRoom)
         {
-            Door door = new Door(doorType, room, this);
+            Door door = new Door(doorType, room, this, prevRoom);
             door.pos = pos;
             door.SetSpriteContent(spriteFactory);
 

@@ -14,5 +14,16 @@
 			<YCoord>30</YCoord>
 		</block>
 	</Blocks>
+
+	<Doors>
+		<door Type="Top">
+			<room>TestLevel</room>
+			<!-- Next Room-->
+			<room>TestLevel</room>
+			<!-- Previous Room-->
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+	</Doors>
 	
 </level>
