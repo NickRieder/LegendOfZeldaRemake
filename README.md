@@ -26,3 +26,6 @@ When link makes collision with enemies, his collision will teleport him around t
 Link will be stopped by doors to move, but they currently will not send him to the next room.
 Do not use multiple movement key presses at the same time, we have a solution to impliment in the next sprint, this also includes using wasd, items, and the arrow keys at the same time.
 Hurt link does not collide with any other object in the level.
+Enemys do not currently attack.
+
+These problems will be fixed in the next sprint.
