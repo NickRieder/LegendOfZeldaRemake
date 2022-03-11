@@ -20,8 +20,8 @@ namespace Sprint2
         public Block block;
         //public Door door;
         public EnemiesList enemiesList;
-
         private Background background;
+        public KeyboardController keyboardController;
 
         public GameObjectManager()
         {
@@ -29,7 +29,7 @@ namespace Sprint2
             updatableSpritesList = new ArrayList();
             drawableSpritesList = new ArrayList();
             movableObjectList = new ArrayList();
-
+            keyboardController = new KeyboardController();
             // Adding all these sprite objects should probably be done outside of the GOM.
             // Kevin: I think the class that reads the XML files would be adding the necessary sprite objects into the list. (Unless this IS the class, but idk)
             // PROBLEM: We can't easily access sprite objects from the GOM if we use a list.

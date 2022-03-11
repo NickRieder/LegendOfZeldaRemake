@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Sprint2
 {
-    class KeyboardController : IController
+    public class KeyboardController : IController
     {
         private KeyboardState currentState;
         private KeyboardState previousState;
