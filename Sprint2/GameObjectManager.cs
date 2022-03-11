@@ -20,8 +20,8 @@ namespace Sprint2
         public Block block;
         //public Door door;
         public EnemiesList enemiesList;
+
         private Background background;
-        public KeyboardController keyboardController;
 
         public GameObjectManager()
         {
@@ -29,7 +29,9 @@ namespace Sprint2
             updatableSpritesList = new ArrayList();
             drawableSpritesList = new ArrayList();
             movableObjectList = new ArrayList();
+          
             keyboardController = new KeyboardController();
+
 
             link = new Link();
             background = new Background();
@@ -67,8 +69,6 @@ namespace Sprint2
         public void AddToAllObjectList(ISprite spriteObject)
         {
             allObjectList.Add(spriteObject);
-            drawableSpritesList.Add(spriteObject);
-            updatableSpritesList.Add(spriteObject);
         }
         public void AddToMovableObjectList(ISprite spriteObject)
         {
@@ -80,14 +80,13 @@ namespace Sprint2
             drawableSpritesList.Add(spriteObject);
             updatableSpritesList.Add(spriteObject);
         }
+        public void AddToUpdatableObjectList(ISprite spriteObject)
+        {
+            updatableSpritesList.Add(spriteObject);
+        }
         public void ClearSpriteList()
         {
             allObjectList.Clear();
-            drawableSpritesList.Clear();
-            updatableSpritesList.Clear();
-            movableObjectList.Clear();
-            drawableSpritesList.Add(background);
-            updatableSpritesList.Add(background);
         }
 
 
