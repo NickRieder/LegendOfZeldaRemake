@@ -86,6 +86,12 @@ namespace Sprint2
         public void ClearSpriteList()
         {
             allObjectList.Clear();
+            movableObjectList.Clear();
+            updatableSpritesList.Clear();
+            drawableSpritesList.Clear();
+            drawableSpritesList.Add(background);
+            updatableSpritesList.Add(background);
+
         }
 
 
