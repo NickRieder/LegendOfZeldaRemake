@@ -7,31 +7,55 @@ using System.Collections;
 
 namespace Sprint2
 {
-	public class Block
+	public class Block : ISprite
 	{
 		private ArrayList blockArray;
 		private int arrIndex;
-		public Vector2 blockPos;
-		public BlockSpriteFactory spriteFactory;
+		public Vector2 pos { get; set; }
+		public SpriteFactory spriteFactory;
 		private Texture2D blockSheet;
 
-        public Block(BlockSpriteFactory blockSpriteFactory)
+		public Sprite sprite;
+		public string blockType;
+
+		public Block(string blockType, Vector2 pos)
 		{
 			blockArray = new ArrayList();
-			spriteFactory = blockSpriteFactory;
-			blockSheet = blockSpriteFactory.getTileSheet();
+			this.blockType = blockType;
 			arrIndex = 0;
-			blockPos.X = 100;
-			blockPos.Y = 100;
-
-			blockArray.Add(BlockSpriteFactory.TILE_DOOR);
-			blockArray.Add(BlockSpriteFactory.TILE_STAIRS);
-			blockArray.Add(BlockSpriteFactory.TILE_FLATBLOCK);
-			blockArray.Add(BlockSpriteFactory.TILE_NONFLAT_BLOCK);
-			blockArray.Add(BlockSpriteFactory.TILE_BRICK_BLOCK);
-
+			this.pos = pos;
+			//sprite = spriteFactory.getFlatBlockSprite();
 		}
 
+		
+		public void SetSpriteContent(SpriteFactory spriteFactory)
+		{
+			this.spriteFactory = spriteFactory;
+			blockSheet = this.spriteFactory.getTileSheet();
+
+            switch (blockType)
+            {
+                case "Flat":
+                    sprite = spriteFactory.getFlatBlockSprite();
+                    break;
+                case "Brick":
+                    sprite = spriteFactory.getBrickBlockSprite();
+                    break;
+				case "NonFlat":
+					sprite = spriteFactory.getNonFlatBlockSprite();
+					break;
+                default:
+                    sprite = spriteFactory.getFlatBlockSprite();
+                    break;
+            }
+        }
+
+		public Rectangle GetSpriteRectangle()
+		{
+			return sprite.getDestinationRectangle();
+		}
+
+		/*
 		public void NextBlock()
 		{
 			if (arrIndex == blockArray.Count - 1)
@@ -56,14 +80,27 @@ namespace Sprint2
 				arrIndex--;
 			}
 		}
+		*/
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
 
-			Rectangle sourceRectangle = (Rectangle)blockArray[arrIndex];
+			sprite.Draw(spriteBatch, pos);
+		}
 
-			Rectangle destinationRectangle = new Rectangle((int)blockPos.X, (int)blockPos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
-			spriteBatch.Draw(blockSheet, destinationRectangle, sourceRectangle, Color.White);
+		public void Update(GameTime gameTime)
+        {
+			sprite.Update(gameTime);
+        }
+
+		public Block GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
 		}
 	}
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    interface ICommand
+    public interface ICommand
     {
         public void Execute();
     }

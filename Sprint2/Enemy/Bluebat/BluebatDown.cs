@@ -25,42 +25,50 @@ namespace Sprint2
 		private int randomNum;
 		private int chosenDirectionValue;
 
-		public BluebatDown(EnemiesList enemiesList)
+		public BluebatDown(Enemies bluebat)
 		{
 			randomNumberGenerator = new Random();
 			totalSecondsPassed = 0;
 			waitTime = 0.25;
 
-			this.enemiesList = enemiesList;
-			bluebat = enemiesList.bluebat;
-			counter = 0;
-			currFrame = 0;
-			totalFrames = 2;
-			frame1 = EnemySpriteFactory.BLUEBAT_SHEET2_POS1;
-			frame2 = EnemySpriteFactory.BLUEBAT_SHEET2_POS2;
-			this.sheet = bluebat.spriteFactory.getEnemySheet2();
-		}
+			this.bluebat = bluebat;
+			bluebat.sprite = bluebat.spriteFactory.getBluebatSprite();
+
+			/*this.enemiesList = enemiesList;
+            bluebat = enemiesList.bluebat;
+            counter = 0;
+            currFrame = 0;
+            totalFrames = 2;
+            frame1 = SpriteFactory.BLUEBAT_SHEET2_POS1;
+            frame2 = SpriteFactory.BLUEBAT_SHEET2_POS2;
+            this.sheet = bluebat.spriteFactory.getEnemySheet2();*/
+        }
 
 		public void MoveUp()
 		{
-			bluebat.currState = new BluebatUp(enemiesList);
+			bluebat.currState = new BluebatUp(bluebat);
 		}
 		public void MoveDown()
 		{
-			bluebat.pos.Y++;
-			if (counter % 5 == 0)
+			//bluebat.pos.Y++;
+
+			Vector2 currPos = bluebat.pos;
+			currPos.Y++;
+			bluebat.pos = currPos;
+
+			/*if (counter % 5 == 0)
 				currFrame++;
 			if (currFrame == totalFrames)
 				currFrame = 0;
-			counter++;
+			counter++;*/
 		}
 		public void MoveRight()
 		{
-			bluebat.currState = new BluebatRight(enemiesList);
+			bluebat.currState = new BluebatRight(bluebat);
 		}
 		public void MoveLeft()
 		{
-			bluebat.currState = new BluebatLeft(enemiesList);
+			bluebat.currState = new BluebatLeft(bluebat);
 		}
 		public void Attack()
 		{
@@ -74,7 +82,9 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame1.Width * bluebat.spriteSizeMultiplier, frame1.Height * bluebat.spriteSizeMultiplier);
+			bluebat.sprite.Draw(spriteBatch, bluebat.pos);
+
+			/*Rectangle destinationRectangleFrame1 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame1.Width * bluebat.spriteSizeMultiplier, frame1.Height * bluebat.spriteSizeMultiplier);
 			Rectangle destinationRectangleFrame2 = new Rectangle((int)bluebat.pos.X, (int)bluebat.pos.Y, frame2.Width * bluebat.spriteSizeMultiplier, frame2.Height * bluebat.spriteSizeMultiplier);
 			if (currFrame == 0)
 			{
@@ -83,7 +93,7 @@ namespace Sprint2
 			else
 			{
 				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
-			}
+			}*/
 		}
 
 		public void Update(GameTime gameTime)
@@ -113,7 +123,7 @@ namespace Sprint2
 			{
 				MoveDown();
 			}
-
+			bluebat.sprite.Update(gameTime);
 		}
 
 

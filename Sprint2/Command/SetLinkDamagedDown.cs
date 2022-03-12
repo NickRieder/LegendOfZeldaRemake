@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetLinkDamagedDown : ICommand
+    class SetTakeDamage : ICommand
     {
         private Link link;
-        public SetLinkDamagedDown(Link link)
+        public SetTakeDamage(Link link)
         {
             this.link = link;
         }

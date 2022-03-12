@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -38,29 +38,32 @@ namespace Sprint2
         private Vector2 weaponPos;
         private ArrayList weaponFrameArray;
 
-        public DragonAttackingLeft(EnemiesList enemiesList)
+        public DragonAttackingLeft(Enemies dragon)
         {
             randomNumberGenerator = new Random();
             weaponFrameArray = new ArrayList();
             totalSecondsPassed = 0;
             waitTime = 0.25;
 
-            this.enemiesList = enemiesList;
-            dragon = enemiesList.dragon;
-            counter = 0;
-            currFrame = 0;
-            totalFrames = 2;
-            currWeaponFrame = 0;
-            totalWeaponFrames = 4;
-            frame1 = EnemySpriteFactory.DRAGON_SHEET1_LEFT1;
-            frame2 = EnemySpriteFactory.DRAGON_SHEET1_LEFT2;
-            this.sheet = dragon.spriteFactory.getEnemySheet1();
+            this.dragon = dragon;
+            dragon.sprite = dragon.spriteFactory.getDarknutDownSprite();
+
+            *//* this.enemiesList = enemiesList;
+             dragon = enemiesList.dragon;
+             counter = 0;
+             currFrame = 0;
+             totalFrames = 2;
+             currWeaponFrame = 0;
+             totalWeaponFrames = 4;
+             frame1 = SpriteFactory.DRAGON_SHEET1_LEFT1;
+             frame2 = SpriteFactory.DRAGON_SHEET1_LEFT2;
+             this.sheet = dragon.spriteFactory.getEnemySheet1();*//*
 
             // CREATE BOOMERANG FRAMES HERE
-            weaponFrame1 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL1;
-            weaponFrame2 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL2;
-            weaponFrame3 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL3;
-            weaponFrame4 = EnemySpriteFactory.DRAGON_SHEET1_FIREBALL4;
+            weaponFrame1 = SpriteFactory.DRAGON_SHEET1_FIREBALL1;
+            weaponFrame2 = SpriteFactory.DRAGON_SHEET1_FIREBALL2;
+            weaponFrame3 = SpriteFactory.DRAGON_SHEET1_FIREBALL3;
+            weaponFrame4 = SpriteFactory.DRAGON_SHEET1_FIREBALL4;
             this.weaponSheet = dragon.spriteFactory.getEnemySheet1();
 
             weaponFrameArray.Add(weaponFrame1);
@@ -75,24 +78,24 @@ namespace Sprint2
 
         public void MoveUp()
         {
-            dragon.currState = new DragonStandingFacingUp(enemiesList);
+            dragon.currState = new DragonStandingFacingUp(dragon);
         }
         public void MoveDown()
         {
-            dragon.currState = new DragonStandingFacingDown(enemiesList);
+            dragon.currState = new DragonStandingFacingDown(dragon);
         }
         public void MoveRight()
         {
-            dragon.currState = new DragonStandingFacingRight(enemiesList);
+            dragon.currState = new DragonStandingFacingRight(dragon);
         }
         public void MoveLeft()
         {
-            dragon.currState = new DragonStandingFacingLeft(enemiesList);
+            dragon.currState = new DragonStandingFacingLeft(dragon);
         }
         public void Attack()
         {
             // Dragon animated
-            
+
             if (counter % 5 == 0)
             {
                 currFrame++;
@@ -143,7 +146,7 @@ namespace Sprint2
             Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame2.Width * dragon.spriteSizeMultiplier, frame2.Height * dragon.spriteSizeMultiplier);
 
             Rectangle weaponFrameToDraw = (Rectangle)weaponFrameArray[currWeaponFrame];
-            
+
             Rectangle destinationRectangleWeaponFrame = new Rectangle((int)weaponPos.X, (int)weaponPos.Y, weaponFrameToDraw.Width * dragon.spriteSizeMultiplier, weaponFrameToDraw.Height * dragon.spriteSizeMultiplier);
 
             // ANIMATE FIREBALL HERE (DRAW 3 SPREADING OUT LATER)
@@ -160,7 +163,7 @@ namespace Sprint2
                 spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
             }
 
-            
+
         }
 
         public void Update(GameTime gameTime)
@@ -170,3 +173,4 @@ namespace Sprint2
         }
     }
 }
+*/

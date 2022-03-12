@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -55,17 +55,17 @@ namespace Sprint2
             totalFrames = 2;
             currWeaponFrame = 0;
             totalWeaponFrames = 6;
-            frame1 = EnemySpriteFactory.GORIYA_SHEET2_RIGHT;
-            frame2 = EnemySpriteFactory.GORIYA_SHEET2_THROWRIGHT;
+            frame1 = SpriteFactory.GORIYA_SHEET2_RIGHT;
+            frame2 = SpriteFactory.GORIYA_SHEET2_THROWRIGHT;
             this.sheet = goriya.spriteFactory.getEnemySheet2();
 
             // CREATE BOOMERANG FRAMES HERE
-            weaponFrame1 = EnemySpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON1;
-            weaponFrame2 = EnemySpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON2;
-            weaponFrame3 = EnemySpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON3;
-            weaponFrame4 = EnemySpriteFactory.GORIYA_SHEET2_WEAPON4;
-            weaponFrame5 = EnemySpriteFactory.GORIYA_SHEET2_WEAPON5;
-            weaponFrame6 = EnemySpriteFactory.GORIYA_SHEET2_WEAPON6;
+            weaponFrame1 = SpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON1;
+            weaponFrame2 = SpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON2;
+            weaponFrame3 = SpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON3;
+            weaponFrame4 = SpriteFactory.GORIYA_SHEET2_WEAPON4;
+            weaponFrame5 = SpriteFactory.GORIYA_SHEET2_WEAPON5;
+            weaponFrame6 = SpriteFactory.GORIYA_SHEET2_WEAPON6;
             this.weaponSheet = goriya.spriteFactory.getEnemySheet2();
             this.weaponSheetUpsideDown = goriya.spriteFactory.getLinkSheetUpsideDown();
 
@@ -186,3 +186,4 @@ namespace Sprint2
         }
     }
 }
+*/

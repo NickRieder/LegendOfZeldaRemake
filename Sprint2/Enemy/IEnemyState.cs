@@ -12,7 +12,7 @@ namespace Sprint2
         void MoveDown();
         void MoveRight();
         void MoveLeft();
-        void Attack();
+        //void Attack();
         void TakeDamage();
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gameTime);

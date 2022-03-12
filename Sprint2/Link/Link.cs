@@ -4,39 +4,61 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Link : ILinkState
+	public class Link : ILinkState, ISprite
 	{
 		public ILinkState currState;
-		public Vector2 pos;
-		public LinkSpriteFactory spriteFactory;
+		public Vector2 pos { get; set; }
+		public SpriteFactory spriteFactory;
+		public Sprite sprite;
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
-		public Link(LinkSpriteFactory linkSpriteFactory)
+		public string direction;
+		public Link()
 		{
-			spriteFactory = linkSpriteFactory;
-			currState = new StandingFacingDown(this);
 			item = new NullItem();
 			health = 3;
-			pos.X = 40;
-			pos.Y = 40;
+			pos = new Vector2(40, 40);
 		}
-		public void MoveUp()
+
+		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-			currState.MoveUp();
+			this.spriteFactory = spriteFactory;
+			this.currState = new StandingFacingDown(this);
+			sprite = spriteFactory.getLinkStandingFacingDownSprite();
+			direction = "down";
+		}
+
+		public void SetPos(Vector2 pos)
+        {
+			this.pos = pos;
         }
-		public void MoveDown()
+
+		public Rectangle GetSpriteRectangle()
         {
-			currState.MoveDown();
-		}
-		public void MoveLeft()
+			return sprite.getDestinationRectangle();
+        }
+
+		public void StandingUp()
         {
-			currState.MoveLeft();
+			currState.StandingUp();
 		}
-		public void MoveRight()
+		public void StandingDown()
         {
-			currState.MoveRight();
+			currState.StandingDown();
 		}
+		public void StandingLeft()
+        {
+			currState.StandingLeft();
+		}
+		public void StandingRight()
+        {
+			currState.StandingRight();
+		}
+		public void Move()
+        {
+			currState.Move();
+        }
 		public void UseWeapon()
         {
 			currState.UseWeapon();
@@ -52,12 +74,23 @@ namespace Sprint2
 		public void Draw(SpriteBatch spriteBatch)
         {
 			currState.Draw(spriteBatch);
-			item.Draw(spriteBatch, new Vector2(pos.X, pos.Y));
+			item.Draw(spriteBatch, pos);
         }
-		public void Update(GameTime gametime)
+		public void Update(GameTime gameTime)
 		{
-			currState.Update(gametime);
-			item.Update();
+			currState.Update(gameTime);
+			sprite.Update(gameTime);
+			item.Update(gameTime);
+		}
+
+		public Link GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
 		}
 	}
 }

@@ -4,28 +4,69 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2
 {
-	public class Enemies
+	public class Enemies : ISprite
 	{
 		public IEnemyState currState;
-		public Vector2 pos;
-		public EnemySpriteFactory spriteFactory;
+		public Vector2 pos { get; set; }
+		public SpriteFactory spriteFactory { get; set; }
 		public int health;
 		public int spriteSizeMultiplier;
 
-		public Enemies(EnemySpriteFactory enemySpriteFactory)
+		public Sprite sprite;
+		public string enemyName;
+
+		public Enemies(string enemyName)
 		{
-			spriteFactory = enemySpriteFactory;
+			this.enemyName = enemyName;
 			spriteSizeMultiplier = 2;
-
 			health = 3;
-			pos.X = 600;
-			pos.Y = 200;
+			pos = new Vector2(600, 200);
+			/*pos.X = 600;
+			pos.Y = 200;*/
 		}
 
-		public void setEnemyType(IEnemyState enemyType)
+		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
-			currState = enemyType;
+			this.spriteFactory = spriteFactory;
+
+			switch (enemyName)
+			{
+				case "Bluebat":
+					currState = new BluebatDown(this);
+					break;
+				case "Bluegel":
+					currState = new BluegelDown(this);
+					break;
+				case "Darknut":
+					currState = new DarknutStandingFacingDown(this);
+					break;
+				case "Dragon":
+					currState = new DragonStandingFacingDown(this);
+					break;
+				case "Goriya":
+					currState = new GoriyaStandingFacingDown(this);
+					break;
+				case "Snake":
+					currState = new SnakeDown(this);
+					break;
+				case "Wizzrobe":
+					currState = new WizzrobeDown(this);
+					break;
+				default: // facing up
+					currState = null;
+					break;
+			}
 		}
+
+		public Rectangle GetSpriteRectangle()
+		{
+			return sprite.getDestinationRectangle();
+		}
+
+		public void setPos(Vector2 pos)
+        {
+			this.pos = pos;
+        }
 
 		public void MoveUp()
 		{
@@ -44,10 +85,10 @@ namespace Sprint2
 			currState.MoveRight();
 		}
 
-		public void Attack()
+		/*public void Attack()
 		{
 			currState.Attack();
-		}
+		}*/
 		public void TakeDamage()
 		{
 			currState.TakeDamage();
@@ -59,6 +100,16 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
+		}
+
+		public Enemies GetConcreteObject()
+		{
+			return this;
+		}
+
+		object ISprite.GetConcreteObject()
+		{
+			return this;
 		}
 	}
 }

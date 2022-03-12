@@ -7,114 +7,124 @@ using System.Diagnostics;
 
 namespace Sprint2
 {
-	public class BluegelRight : IEnemyState
-	{
-		private Enemies bluegel;
-		private int currFrame;
-		private int totalFrames;
-		private int counter;
-		private Rectangle frame1;
-		private Rectangle frame2;
-		private Texture2D sheet;
-		private EnemiesList enemiesList;
-		private double totalSecondsPassed;
-		private double waitTime;
-		public TimeSpan elapsedTime;
-		private double secondsPassed;
-		Random randomNumberGenerator;
-		private int randomNum;
-		private int chosenDirectionValue;
+    public class BluegelRight : IEnemyState
+    {
+        private Enemies bluegel;
+        private int currFrame;
+        private int totalFrames;
+        private int counter;
+        private Rectangle frame1;
+        private Rectangle frame2;
+        private Texture2D sheet;
+        private EnemiesList enemiesList;
+        private double totalSecondsPassed;
+        private double waitTime;
+        public TimeSpan elapsedTime;
+        private double secondsPassed;
+        Random randomNumberGenerator;
+        private int randomNum;
+        private int chosenDirectionValue;
 
-		public BluegelRight(EnemiesList enemiesList)
-		{
-			randomNumberGenerator = new Random();
-			totalSecondsPassed = 0;
-			waitTime = 0.25;
+        public BluegelRight(Enemies bluegel)
+        {
+            randomNumberGenerator = new Random();
+            totalSecondsPassed = 0;
+            waitTime = 0.25;
 
-			this.enemiesList = enemiesList;
-			bluegel = enemiesList.bluegel;
-			counter = 0;
-			currFrame = 0;
-			totalFrames = 2;
-			frame1 = EnemySpriteFactory.BLUEGEL_SHEET2_POS1;
-			frame2 = EnemySpriteFactory.BLUEGEL_SHEET2_POS2;
-			this.sheet = bluegel.spriteFactory.getEnemySheet2();
-		}
+            this.bluegel = bluegel;
+            bluegel.sprite = bluegel.spriteFactory.getBluegelSprite();
 
-		public void MoveUp()
-		{
-			bluegel.currState = new BluegelUp(enemiesList);
-		}
-		public void MoveDown()
-		{
-			bluegel.currState = new BluegelDown(enemiesList);
-		}
-		public void MoveRight()
-		{
-			bluegel.pos.X++;
-			if (counter % 5 == 0)
-				currFrame++;
-			if (currFrame == totalFrames)
-				currFrame = 0;
-			counter++;
-		}
-		public void MoveLeft()
-		{
-			bluegel.currState = new BluegelLeft(enemiesList);
-		}
-		public void Attack()
-		{
+            /*this.enemiesList = enemiesList;
+            bluegel = enemiesList.bluegel;
+            counter = 0;
+            currFrame = 0;
+            totalFrames = 2;
+            frame1 = SpriteFactory.BLUEGEL_SHEET2_POS1;
+            frame2 = SpriteFactory.BLUEGEL_SHEET2_POS2;
+            this.sheet = bluegel.spriteFactory.getEnemySheet2();*/
+        }
 
-		}
+        public void MoveUp()
+        {
+            bluegel.currState = new BluegelUp(bluegel);
+        }
+        public void MoveDown()
+        {
+            bluegel.currState = new BluegelDown(bluegel);
+        }
+        public void MoveRight()
+        {
+            //bluegel.pos.X++;
 
-		public void TakeDamage()
-		{
-			bluegel.health--;
-			//bluegel.currState = new BluegelDamagedFacingDown(bluegel);
-		}
-		public void Draw(SpriteBatch spriteBatch)
-		{
-			Rectangle destinationRectangleFrame1 = new Rectangle((int)bluegel.pos.X, (int)bluegel.pos.Y, frame1.Width * bluegel.spriteSizeMultiplier, frame1.Height * bluegel.spriteSizeMultiplier);
-			Rectangle destinationRectangleFrame2 = new Rectangle((int)bluegel.pos.X, (int)bluegel.pos.Y, frame2.Width * bluegel.spriteSizeMultiplier, frame2.Height * bluegel.spriteSizeMultiplier);
-			if (currFrame == 0)
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-			}
-			else
-			{
-				spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
-			}
-		}
+            Vector2 currPos = bluegel.pos;
+            currPos.X++;
+            bluegel.pos = currPos;
 
-		public void Update(GameTime gameTime)
-		{
-			elapsedTime = gameTime.ElapsedGameTime;
-			secondsPassed = elapsedTime.TotalSeconds;
-			totalSecondsPassed = totalSecondsPassed + secondsPassed;
+            /*if (counter % 5 == 0)
+                currFrame++;
+            if (currFrame == totalFrames)
+                currFrame = 0;
+            counter++;*/
+        }
+        public void MoveLeft()
+        {
+            bluegel.currState = new BluegelLeft(bluegel);
+        }
+        public void Attack()
+        {
 
-			if (totalSecondsPassed > waitTime)
-			{
-				randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-				chosenDirectionValue = randomNum % 4;
+        }
 
-				if (chosenDirectionValue == 0)
-					MoveDown();
-				else if (chosenDirectionValue == 1)
-					MoveUp();
-				else if (chosenDirectionValue == 2)
-					MoveLeft();
-				else if (chosenDirectionValue == 3)
-					MoveRight();
+        public void TakeDamage()
+        {
+            bluegel.health--;
+            //bluegel.currState = new BluegelDamagedFacingDown(bluegel);
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            bluegel.sprite.Draw(spriteBatch, bluegel.pos);
 
-				totalSecondsPassed = 0;
-			}
-			else
-			{
-				MoveRight();
-			}
+            /*Rectangle destinationRectangleFrame1 = new Rectangle((int)bluegel.pos.X, (int)bluegel.pos.Y, frame1.Width * bluegel.spriteSizeMultiplier, frame1.Height * bluegel.spriteSizeMultiplier);
+            Rectangle destinationRectangleFrame2 = new Rectangle((int)bluegel.pos.X, (int)bluegel.pos.Y, frame2.Width * bluegel.spriteSizeMultiplier, frame2.Height * bluegel.spriteSizeMultiplier);
+            if (currFrame == 0)
+            {
+                spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
+            }*/
+        }
 
-		}
+        public void Update(GameTime gameTime)
+        {
+            elapsedTime = gameTime.ElapsedGameTime;
+            secondsPassed = elapsedTime.TotalSeconds;
+            totalSecondsPassed = totalSecondsPassed + secondsPassed;
+
+            if (totalSecondsPassed > waitTime)
+            {
+                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+                chosenDirectionValue = randomNum % 4;
+
+                if (chosenDirectionValue == 0)
+                    MoveDown();
+                else if (chosenDirectionValue == 1)
+                    MoveUp();
+                else if (chosenDirectionValue == 2)
+                    MoveLeft();
+                else if (chosenDirectionValue == 3)
+                    MoveRight();
+
+                totalSecondsPassed = 0;
+            }
+            else
+            {
+                MoveRight();
+            }
+            bluegel.sprite.Update(gameTime);
+        }
 
 
-	}
+    }
 }

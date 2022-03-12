@@ -4,19 +4,17 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetLinkMovingUp : ICommand
+    class SetNextRoom : ICommand
     {
-        private Link link;
-        public SetLinkMovingUp(Link link)
+        private Door door;
+        public SetNextRoom(Door door)
         {
-            this.link = link;
+            this.door = door;
         }
-
-
 
         public void Execute()
         {
-            link.MoveUp();
+            door.LoadNextLevel();
         }
     }
 }
