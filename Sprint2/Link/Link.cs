@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Sprint2
 {
@@ -14,11 +15,14 @@ namespace Sprint2
 		public IItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
+		public List<IItem> itemList;
 		public Link()
 		{
 			item = new NullItem();
 			health = 3;
 			pos = new Vector2(40, 40);
+			itemList = new List<IItem>();
+			
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -27,11 +31,36 @@ namespace Sprint2
 			this.currState = new StandingFacingDown(this);
 			sprite = spriteFactory.getLinkStandingFacingDownSprite();
 			direction = "down";
+
+			itemList.Add(new Arrow(this, spriteFactory));
+			itemList.Add(new Boomerang(this, spriteFactory));
+			itemList.Add(new Explosion(this, spriteFactory));
 		}
 
 		public void SetPos(Vector2 pos)
         {
 			this.pos = pos;
+        }
+		public string GetDirection()
+        {
+			return direction;
+        }
+		public void SetItem(string newItem)
+        {
+			switch(newItem)
+            {
+				case "Arrow":
+					item = new Arrow(this, spriteFactory);
+					break;
+				case "Boomerang":
+					item = new Boomerang(this, spriteFactory);
+					break;
+				case "Explosion":
+					item = new Explosion(this, spriteFactory);
+					break;
+				default:
+					break;
+            }
         }
 
 		public Rectangle GetSpriteRectangle()
@@ -63,9 +92,9 @@ namespace Sprint2
         {
 			currState.UseWeapon();
         }
-		public void UseItem(int itemNum)
+		public void UseItem(string newItem)
         {
-			currState.UseItem(itemNum);
+			currState.UseItem(newItem);
         }
 		public void TakeDamage()
         {
