@@ -20,8 +20,7 @@ namespace Sprint2
             counter = 0;
             this.link = link;
             sprite = spriteFactory.getExplosionSprite();
-            itemPos.X = this.link.pos.X;
-            itemPos.Y = this.link.pos.Y + 15;
+            itemPos = link.pos;
 
             switch (direction)
             {
@@ -49,7 +48,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            if (counter % 10 == 0)
+            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 150 == 0)
             {
                 sprite.Update(gameTime);
                 currFrame++;

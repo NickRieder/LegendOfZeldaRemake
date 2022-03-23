@@ -8,7 +8,7 @@ namespace Sprint2
     {
         private Vector2 itemPos;
         private int counter;
-        private int speed;
+        private double speed;
         private Link link;
         private Sprite sprite;
         private string direction;
@@ -52,25 +52,27 @@ namespace Sprint2
             switch(direction)
             {
                 case "down":
-                    itemPos.Y += speed;
+                    itemPos.Y += (int) speed;
                     break;
                 case "up":
-                    itemPos.Y -= speed;
+                    itemPos.Y -= (int) speed;
                     break;
                 case "right":
-                    itemPos.X += speed;
+                    itemPos.X += (int) speed;
                     break;
                 case "left":
-                    itemPos.X -= speed;
+                    itemPos.X -= (int) speed;
                     break;
                 default:
                     break;
             }
             
-            if (counter % 5 == 0)
+            
+
+            if (((int) gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
             {
                 sprite.Update(gameTime);
-                speed--;
+                speed-= 0.5;
             }
             if(sprite.getDestinationRectangle().Intersects(link.GetSpriteRectangle()))
             {
