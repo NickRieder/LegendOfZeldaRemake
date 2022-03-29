@@ -262,6 +262,16 @@ namespace Sprint2
 
         }
 
+        // Enemy Attacks
+        public Sprite getNullProjectile()
+        {
+            return new Sprite(enemySheet2);
+        }
+        /*public Sprite getFireballSprite()
+        {
+            return new Sprite();
+        }*/
+
         // Link
         public Sprite getLinkStandingFacingDownSprite()
         {
@@ -469,11 +479,7 @@ namespace Sprint2
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
 
-        // Enemy Attacks
-        public Sprite getNullProjectile()
-        {
-            return new Sprite(enemySheet2);
-        }
+        
 
 
         public Sprite getGoriyaBoomerang()

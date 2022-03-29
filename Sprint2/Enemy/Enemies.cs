@@ -16,8 +16,6 @@ namespace Sprint2
 		public Sprite sprite;
 		public string enemyName;
 
-		public ISprite projectile;
-
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
@@ -31,9 +29,6 @@ namespace Sprint2
         {
 			this.spriteFactory = spriteFactory;
 			direction = "Down";
-
-			projectile = new NullSprite();
-
 
 			switch (enemyName)
 			{
@@ -103,12 +98,10 @@ namespace Sprint2
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			currState.Draw(spriteBatch);
-			projectile.Draw(spriteBatch);
 		}
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
-			projectile.Update(gameTime);
 		}
 
 		public Enemies GetConcreteObject()

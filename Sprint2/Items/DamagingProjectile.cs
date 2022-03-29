@@ -12,6 +12,7 @@ namespace Sprint2
 		public Vector2 pos { get; set; }
 		public Enemies enemy;
 		public Vector2 enemyPos { get; set; }
+		public Sprite enemySprite;
 		public SpriteFactory spriteFactory;
 
 		public Sprite sprite;
@@ -21,29 +22,62 @@ namespace Sprint2
 		public DamagingProjectile(Enemies enemy, string projectileType)
 		{
 			this.spriteFactory = enemy.spriteFactory;
+			
+			// Enemy fields setup
+			this.enemy = enemy;
+			this.enemySprite = enemy.sprite;
+			this.enemyPos = enemy.pos;
+
+			// Projectile fields setup
 			this.projectileType = projectileType;
 			this.pos = enemy.pos;
-
-			this.enemy = enemy;
-			this.enemyPos = enemy.pos;
 			this.projectileDirection = enemy.direction;
 
 			switch (projectileType)
 			{
 				case "Boomerang":
-					//System.Diagnostics.Debug.WriteLine("DEBUG: Got a Boomerang");
-					sprite = spriteFactory.getGoriyaBoomerang();
+					sprite = spriteFactory.getBoomerangSprite();
 					break;
 				case "Fireball":
-					//sprite = spriteFactory.getDragonFireball();
-					break;
-				case "Null":
-					sprite = spriteFactory.getNullProjectile();
+					//sprite = spriteFactory.getFireballSprite();
 					break;
 				default:
-					sprite = spriteFactory.getFlatBlockSprite();
+					sprite = spriteFactory.getNullProjectile();
 					break;
 			}
+
+			CenterProjectilePosition();
+			
+		}
+
+		private void CenterProjectilePosition()
+        {
+			Vector2 centeredPos = enemy.pos;
+			Rectangle enemyRectangle = enemySprite.getDestinationRectangle();
+			Rectangle projectileRectangle = sprite.getDestinationRectangle();
+
+			switch (projectileDirection)
+            {
+                case "Up":
+					centeredPos.X += enemyRectangle.Width / 2;
+					centeredPos.Y += projectileRectangle.Height;
+					break;
+                case "Down":
+					centeredPos.X += enemyRectangle.Width / 2;
+					centeredPos.Y += enemyRectangle.Height;
+					break;
+                case "Left":
+					centeredPos.X += projectileRectangle.Width;
+					centeredPos.Y += enemyRectangle.Height / 2;
+					break;
+                case "Right":
+					centeredPos.X += enemyRectangle.Width;
+					centeredPos.Y += enemyRectangle.Height / 2;
+					break;
+                default:
+                    break;
+            }
+			this.pos = centeredPos;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)

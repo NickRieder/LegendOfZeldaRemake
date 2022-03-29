@@ -40,59 +40,10 @@ namespace Sprint2
             this.goriya = goriya;
             this.gom = goriya.gom;
 
-            /*switch (goriya.direction)
-            {
-                case "Down":
-                    goriya.sprite = goriya.spriteFactory.getGoriyaDownSprite();
-                    break;
-                case "Left":
-                    goriya.sprite = goriya.spriteFactory.getGoriyaLeftSprite();
-                    break;
-                case "Right":
-                    goriya.sprite = goriya.spriteFactory.getGoriyaRightSprite();
-                    break;
-                case "Up":
-                    goriya.sprite = goriya.spriteFactory.getGoriyaUpSprite();
-                    break;
-                default: // facing down
-                    goriya.sprite = goriya.spriteFactory.getGoriyaDownSprite();
-                    break;
-            }*/
-
             ISprite projectile = new DamagingProjectile(goriya, "Boomerang");
             gom.AddToAllObjectList(projectile);
             gom.AddToMovableObjectList(projectile);
             gom.AddToDrawableObjectList(projectile);
-
-            /*totalFrames = sprite.GetTotalFrames();
-            currFrame = 0;
-
-            counter = 0;
-            currFrame = 0;
-            totalFrames = 2;
-            currWeaponFrame = 0;
-            totalWeaponFrames = 6;
-            frame1 = SpriteFactory.GORIYA_SHEET2_FRONT;
-            frame2 = SpriteFactory.GORIYA_SHEET2MIRROR_FRONT;
-            this.sheet = goriya.spriteFactory.getEnemySheet2();
-            this.sheetMirrored = goriya.spriteFactory.getEnemySheet2Mirror();
-
-            // CREATE BOOMERANG FRAMES HERE
-            weaponFrame1 = SpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON1;
-            weaponFrame2 = SpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON2;
-            weaponFrame3 = SpriteFactory.GORIYA_LINKSHEETUPSIDEDOWN_WEAPON3;
-            weaponFrame4 = SpriteFactory.GORIYA_SHEET2_WEAPON4;
-            weaponFrame5 = SpriteFactory.GORIYA_SHEET2_WEAPON5;
-            weaponFrame6 = SpriteFactory.GORIYA_SHEET2_WEAPON6;
-            this.weaponSheet = goriya.spriteFactory.getEnemySheet2();
-            this.weaponSheetUpsideDown = goriya.spriteFactory.getLinkSheetUpsideDown();
-
-            weaponFrameArray.Add(weaponFrame1);
-            weaponFrameArray.Add(weaponFrame2);
-            weaponFrameArray.Add(weaponFrame3);
-            weaponFrameArray.Add(weaponFrame4);
-            weaponFrameArray.Add(weaponFrame5);
-            weaponFrameArray.Add(weaponFrame6);*/
 
             weaponReturning = false;
         }
@@ -119,10 +70,6 @@ namespace Sprint2
         }
         public void Attack()
         {
-            
-
-            Vector2 projectilePos = goriya.projectile.pos;
-
             randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
             chosenDirectionValue = randomNum % 4;
 
