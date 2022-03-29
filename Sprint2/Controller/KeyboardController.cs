@@ -59,6 +59,7 @@ namespace Sprint2
             RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
             RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
             RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
+            RegisterCommandTap(Keys.D4, new SetLinkUseItem(link));
 
             RegisterCommandHold(Keys.S, new SetLinkMoving(link));
             RegisterCommandHold(Keys.W, new SetLinkMoving(link));

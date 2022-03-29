@@ -16,7 +16,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            link.UseItem("Boomerang");
+            link.item.SetItem("Boomerang");
 
         }
     }

@@ -14,6 +14,7 @@ namespace Sprint2
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		private Texture2D itemSheet;
+		private Sprite sprite;
 
 		public Item()
 		{

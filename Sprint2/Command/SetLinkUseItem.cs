@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetLinkUseBomb : ICommand
+    class SetLinkUseItem : ICommand
     {
         private Link link;
-        public SetLinkUseBomb(Link link)
+        public SetLinkUseItem(Link link)
         {
             this.link = link;
         }
@@ -16,7 +16,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            link.item.SetItem("Explosion");
+            link.UseItem();
 
         }
     }

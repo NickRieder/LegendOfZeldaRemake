@@ -47,7 +47,7 @@ namespace Sprint2
 		public void UseItem(string newItem)
 		{
 			link.currState = new UsingItem(link);
-			link.SetItem(newItem);
+			link.item.Use();
 		}
 		public void TakeDamage()
 		{

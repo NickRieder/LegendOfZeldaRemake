@@ -42,7 +42,7 @@ namespace Sprint2
             sprite = spriteFactory.getBoomerangSprite();
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        public void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch, itemPos);
         }
@@ -76,7 +76,7 @@ namespace Sprint2
             }
             if(sprite.getDestinationRectangle().Intersects(link.GetSpriteRectangle()))
             {
-                link.item = new NullItem();
+                link.item.SetNull();
             }
             counter++;
         }
