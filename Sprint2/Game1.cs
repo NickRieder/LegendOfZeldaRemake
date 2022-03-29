@@ -19,6 +19,7 @@ namespace Sprint2
         private GameObjectManager gom;
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
+        private HUD hud;
 
 
         public Game1()
@@ -31,6 +32,10 @@ namespace Sprint2
 
         protected override void Initialize()
         {
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 700;
+            graphics.ApplyChanges();
+
             // TODO: Add your initialization logic here
             spriteFactory = new SpriteFactory(this.Content);
 
@@ -47,6 +52,8 @@ namespace Sprint2
             collisionDetector = new CollisionDetector(gom);
             //levelLoader = new LevelLoader(gom, spriteFactory);
 
+            
+
 
             base.Initialize();
         }
@@ -62,6 +69,8 @@ namespace Sprint2
             gom.spriteFactory = spriteFactory;
 
             gom.SetSpriteContent(spriteFactory);
+            hud = new HUD(gom, spriteFactory);
+
 
             levelLoader.LoadLevel("TestLevel", "Top");
 
@@ -83,6 +92,7 @@ namespace Sprint2
 
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
+            hud.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -90,10 +100,11 @@ namespace Sprint2
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
             gom.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here
