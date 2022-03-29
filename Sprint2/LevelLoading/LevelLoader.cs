@@ -71,7 +71,7 @@ namespace Sprint2
 
         public void LoadEnemyObject(String enemyName, Vector2 pos)
         {
-            Enemies enemy = new Enemies(enemyName);
+            Enemies enemy = new Enemies(enemyName, gom);
             enemy.pos = pos;
             enemy.SetSpriteContent(spriteFactory);
 

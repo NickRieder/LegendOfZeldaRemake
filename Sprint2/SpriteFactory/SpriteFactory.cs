@@ -49,10 +49,6 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
-            
-
-
-
         }
 
         
@@ -233,6 +229,7 @@ namespace Sprint2
         public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
          public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
+        // Items
         public Sprite getBoomerangSprite()
         {
             return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);
@@ -259,6 +256,8 @@ namespace Sprint2
             return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
 
         }
+
+        // Link
         public Sprite getLinkStandingFacingDownSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
@@ -329,7 +328,6 @@ namespace Sprint2
         }
 
         // Tiles
-
         public Sprite getFlatBlockSprite()
         {
             return new Sprite(tileSheet, TILE_FLATBLOCK);
@@ -395,7 +393,6 @@ namespace Sprint2
         }
 
         // Enemies
-
         public Sprite getBluebatSprite()
         {
             return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);
@@ -467,7 +464,19 @@ namespace Sprint2
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
 
+        // Enemy Attacks
+        public Sprite getNullProjectile()
+        {
+            return new Sprite(enemySheet2);
+        }
 
+
+        public Sprite getGoriyaBoomerang()
+        {
+            return new Sprite(enemySheet2, GORIYA_SHEET2_WEAPON4, GORIYA_SHEET2_WEAPON5, GORIYA_SHEET2_WEAPON6);
+        }
+
+        // Rooms
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);

@@ -11,23 +11,29 @@ namespace Sprint2
 		public SpriteFactory spriteFactory { get; set; }
 		public int health;
 		public int spriteSizeMultiplier;
-
+		public string direction;
+		public GameObjectManager gom;
 		public Sprite sprite;
 		public string enemyName;
 
-		public Enemies(string enemyName)
+		public ISprite projectile;
+
+		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
+			this.gom = gom;
 			spriteSizeMultiplier = 2;
 			health = 3;
 			pos = new Vector2(600, 200);
-			/*pos.X = 600;
-			pos.Y = 200;*/
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
+			direction = "Down";
+
+			projectile = new NullSprite();
+
 
 			switch (enemyName)
 			{
@@ -85,21 +91,24 @@ namespace Sprint2
 			currState.MoveRight();
 		}
 
-		/*public void Attack()
-		{
-			currState.Attack();
-		}*/
-		public void TakeDamage()
+        public void Attack()
+        {
+            currState.Attack();
+        }
+
+        public void TakeDamage()
 		{
 			currState.TakeDamage();
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			currState.Draw(spriteBatch);
+			projectile.Draw(spriteBatch);
 		}
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
+			projectile.Update(gameTime);
 		}
 
 		public Enemies GetConcreteObject()

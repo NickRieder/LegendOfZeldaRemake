@@ -27,21 +27,15 @@ namespace Sprint2
 
         public GoriyaStandingFacingRight(Enemies goriya)
         {
+            System.Diagnostics.Debug.WriteLine("DEBUG: In FacingRightState");
+
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
             waitTime = 0.25;
 
             this.goriya = goriya;
             goriya.sprite = goriya.spriteFactory.getGoriyaRightSprite();
-
-            /*this.enemiesList = enemiesList;
-            goriya = enemiesList.goriya;
-            counter = 0;
-            currFrame = 0;
-            totalFrames = 2;
-            frame1 = SpriteFactory.GORIYA_SHEET2_RIGHT;
-            frame2 = SpriteFactory.GORIYA_SHEET2_THROWRIGHT;
-            this.sheet = goriya.spriteFactory.getEnemySheet2();*/
+            goriya.direction = "Right";
         }
 
         public void MoveUp()
@@ -67,10 +61,11 @@ namespace Sprint2
         {
             goriya.currState = new GoriyaStandingFacingLeft(goriya);
         }
-        /*public void Attack()
+
+        public void Attack()
         {
-            goriya.currState = new GoriyaAttackingRight(enemiesList);
-        }*/
+            goriya.currState = new GoriyaAttacking(goriya);
+        }
 
         public void TakeDamage()
         {
@@ -113,7 +108,7 @@ namespace Sprint2
                 else if (chosenDirectionValue == 3)
                     MoveRight();
                 else if (chosenDirectionValue == 4)
-                    //Attack();
+                    Attack();
 
                 totalSecondsPassed = 0;
             }

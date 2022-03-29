@@ -110,7 +110,7 @@ namespace Sprint2
             {
                 weaponReturning = true;
             }
-            
+
             if (weaponReturning)
             {
                 if (weaponPos.X < goriya.pos.X + 10)
@@ -152,7 +152,7 @@ namespace Sprint2
             Rectangle destinationRectangleFrame2 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame2.Width * goriya.spriteSizeMultiplier, frame2.Height * goriya.spriteSizeMultiplier);
 
             Rectangle weaponFrameToDraw = (Rectangle)weaponFrameArray[currWeaponFrame];
-            
+
             Rectangle destinationRectangleWeaponFrame = new Rectangle((int)weaponPos.X, (int)weaponPos.Y, weaponFrameToDraw.Width * goriya.spriteSizeMultiplier, weaponFrameToDraw.Height * goriya.spriteSizeMultiplier);
 
             // ANIMATE BOOMERANG HERE
@@ -164,7 +164,7 @@ namespace Sprint2
             {
                 spriteBatch.Draw(weaponSheet, destinationRectangleWeaponFrame, weaponFrameToDraw, Color.White);
             }
-            
+
 
             // ANIMATE GORIYA HERE
             if (currFrame == 0)
@@ -176,9 +176,9 @@ namespace Sprint2
                 spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
             }
 
-            
-        }
 
+        }
+*//**//*
         public void Update(GameTime gameTime)
         {
             // CALL Attack() HERE

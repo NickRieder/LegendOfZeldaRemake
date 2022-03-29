@@ -1,4 +1,4 @@
-﻿/*using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Sprint2
 {
-    class GoriyaAttackingDown : IEnemyState
+    class GoriyaAttacking : IEnemyState
     {
 
         private Enemies goriya;
@@ -19,19 +19,6 @@ namespace Sprint2
         private int counter;
         private int weaponCounter;
         private bool weaponReturning;
-        private Rectangle frame1;
-        private Rectangle frame2;
-        private Rectangle weaponFrame1;
-        private Rectangle weaponFrame2;
-        private Rectangle weaponFrame3;
-        private Rectangle weaponFrame4;
-        private Rectangle weaponFrame5;
-        private Rectangle weaponFrame6;
-        private Texture2D sheet;
-        private Texture2D sheetMirrored;
-        private Texture2D weaponSheet;
-        private Texture2D weaponSheetUpsideDown;
-        private EnemiesList enemiesList;
         private double totalSecondsPassed;
         private double waitTime;
         private TimeSpan elapsedTime;
@@ -41,16 +28,45 @@ namespace Sprint2
         private int chosenDirectionValue;
         private Vector2 weaponPos;
         private ArrayList weaponFrameArray;
+        private GameObjectManager gom;
 
-        public GoriyaAttackingDown(EnemiesList enemiesList)
+        public GoriyaAttacking(Enemies goriya)
         {
             randomNumberGenerator = new Random();
             weaponFrameArray = new ArrayList();
             totalSecondsPassed = 0;
             waitTime = 0.25;
 
-            this.enemiesList = enemiesList;
-            goriya = enemiesList.goriya;
+            this.goriya = goriya;
+            this.gom = goriya.gom;
+
+            /*switch (goriya.direction)
+            {
+                case "Down":
+                    goriya.sprite = goriya.spriteFactory.getGoriyaDownSprite();
+                    break;
+                case "Left":
+                    goriya.sprite = goriya.spriteFactory.getGoriyaLeftSprite();
+                    break;
+                case "Right":
+                    goriya.sprite = goriya.spriteFactory.getGoriyaRightSprite();
+                    break;
+                case "Up":
+                    goriya.sprite = goriya.spriteFactory.getGoriyaUpSprite();
+                    break;
+                default: // facing down
+                    goriya.sprite = goriya.spriteFactory.getGoriyaDownSprite();
+                    break;
+            }*/
+
+            ISprite projectile = new DamagingProjectile(goriya, "Boomerang");
+            gom.AddToAllObjectList(projectile);
+            gom.AddToMovableObjectList(projectile);
+            gom.AddToDrawableObjectList(projectile);
+
+            /*totalFrames = sprite.GetTotalFrames();
+            currFrame = 0;
+
             counter = 0;
             currFrame = 0;
             totalFrames = 2;
@@ -76,47 +92,65 @@ namespace Sprint2
             weaponFrameArray.Add(weaponFrame3);
             weaponFrameArray.Add(weaponFrame4);
             weaponFrameArray.Add(weaponFrame5);
-            weaponFrameArray.Add(weaponFrame6);
+            weaponFrameArray.Add(weaponFrame6);*/
 
-            weaponPos = goriya.pos;
-            weaponPos.X += frame1.Width / 2;
             weaponReturning = false;
         }
 
         public void MoveUp()
         {
-            goriya.currState = new GoriyaStandingFacingUp(enemiesList);
+            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveUp");
+            goriya.currState = new GoriyaStandingFacingUp(goriya);
         }
         public void MoveDown()
         {
-            goriya.currState = new GoriyaStandingFacingDown(enemiesList);
+            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveDown");
+            goriya.currState = new GoriyaStandingFacingDown(goriya);
         }
         public void MoveRight()
         {
-            goriya.currState = new GoriyaStandingFacingRight(enemiesList);
+            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveRight");
+            goriya.currState = new GoriyaStandingFacingRight(goriya);
         }
         public void MoveLeft()
         {
-            goriya.currState = new GoriyaStandingFacingLeft(enemiesList);
+            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveLeft");
+            goriya.currState = new GoriyaStandingFacingLeft(goriya);
         }
         public void Attack()
         {
-            // Goriya standing still and animated
+            
+
+            Vector2 projectilePos = goriya.projectile.pos;
+
+            randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+            chosenDirectionValue = randomNum % 4;
+
+            if (chosenDirectionValue == 0)
+                MoveDown();
+            else if (chosenDirectionValue == 1)
+                MoveUp();
+            else if (chosenDirectionValue == 2)
+                MoveLeft();
+            else if (chosenDirectionValue == 3)
+                MoveRight();
+
+            /*// Goriya standing still and animated
             if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)
                 currFrame = 0;
-            counter++;
+            counter++;*/
 
             // MAKE BOOMERANG GO AWAY AND BACK TO THE GORIYA
-            if (weaponPos.Y > goriya.pos.Y + 150) // 150 is the distance the weapon travels
+            /*if (projectilePos.Y > projectilePos.Y + 150) // 150 is the distance the weapon travels
             {
                 weaponReturning = true;
             }
-            
+
             if (weaponReturning)
             {
-                if (weaponPos.Y < goriya.pos.Y + 10)
+                if (projectilePos.Y < goriya.pos.Y + 10)
                 {
                     randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
                     chosenDirectionValue = randomNum % 4;
@@ -130,18 +164,18 @@ namespace Sprint2
                     else if (chosenDirectionValue == 3)
                         MoveRight();
                 }
-                weaponPos.Y -= 4;
+                projectilePos.Y -= 4;
             }
             else
             {
-                weaponPos.Y += 4;
-            }
+                projectilePos.Y += 4;
+            }*/
 
-            if (weaponCounter % 5 == 0)
+            /*if (weaponCounter % 5 == 0)
                 currWeaponFrame++;
             if (currWeaponFrame == totalWeaponFrames)
                 currWeaponFrame = 0;
-            weaponCounter++;
+            weaponCounter++;*/
         }
 
         public void TakeDamage()
@@ -151,42 +185,12 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destinationRectangleFrame1 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame1.Width * goriya.spriteSizeMultiplier, frame1.Height * goriya.spriteSizeMultiplier);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame2.Width * goriya.spriteSizeMultiplier, frame2.Height * goriya.spriteSizeMultiplier);
-
-            Rectangle weaponFrameToDraw = (Rectangle)weaponFrameArray[currWeaponFrame];
-            
-            Rectangle destinationRectangleWeaponFrame = new Rectangle((int)weaponPos.X, (int)weaponPos.Y, weaponFrameToDraw.Width * goriya.spriteSizeMultiplier, weaponFrameToDraw.Height * goriya.spriteSizeMultiplier);
-
-            // ANIMATE BOOMERANG HERE
-            if (currWeaponFrame < 3)
-            {
-                spriteBatch.Draw(weaponSheetUpsideDown, destinationRectangleWeaponFrame, weaponFrameToDraw, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(weaponSheet, destinationRectangleWeaponFrame, weaponFrameToDraw, Color.White);
-            }
-            
-
-            // ANIMATE GORIYA HERE
-            if (currFrame == 0)
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(sheetMirrored, destinationRectangleFrame2, frame2, Color.White);
-            }
-
-            
+            goriya.sprite.Draw(spriteBatch, goriya.pos);
         }
 
         public void Update(GameTime gameTime)
         {
-            // CALL Attack() HERE
             Attack();
         }
     }
 }
-*/

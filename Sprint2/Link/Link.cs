@@ -21,6 +21,11 @@ namespace Sprint2
 			pos = new Vector2(40, 40);
 		}
 
+		/*public object GetConcreteObject()
+        {
+			return this; // now its Link that I can get instead of ISprite. watch
+        }*/
+
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;

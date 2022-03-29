@@ -91,6 +91,9 @@ namespace Sprint2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
+
+            //SpriteSortMode.BackToFront
+
             spriteBatch.Begin();
 
             gom.Draw(spriteBatch);
