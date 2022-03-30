@@ -8,14 +8,16 @@ namespace Sprint2
     {
         private GameObjectManager gom;
         private SpriteFactory spriteFactory;
+        private SoundFactory soundFactory;
         private string doorType;
         private Link link;
         private MouseController mouse;
-        public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory)
+        public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory, SoundFactory soundFactory)
         {
             this.gom = gom;
             this.link = gom.link;
             this.spriteFactory = spriteFactory;
+            this.soundFactory = soundFactory;
             doorType = "Right";
         }
 
@@ -74,7 +76,7 @@ namespace Sprint2
             Enemies enemy = new Enemies(enemyName);
             enemy.pos = pos;
             enemy.SetSpriteContent(spriteFactory);
-
+            enemy.SetSoundContent(soundFactory);
             gom.AddToAllObjectList(enemy);
             gom.AddToDrawableObjectList(enemy);
             gom.AddToMovableObjectList(enemy);

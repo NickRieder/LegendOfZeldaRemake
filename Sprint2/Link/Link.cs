@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,18 +10,34 @@ namespace Sprint2
 		public ILinkState currState;
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
+		public SoundFactory soundFactory;
+		
 		public Sprite sprite;
 		public int health;
 		public IItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
+		public SoundEffect linkHurtSound;
+		public SoundEffect linkDeadSound;
+		public SoundEffect lowHealthSound;
+		
 		public Link()
 		{
 			item = new NullItem();
 			health = 3;
 			pos = new Vector2(40, 40);
+			
 		}
 
+		public void SetSoundContent(SoundFactory soundFactory)
+        {
+			this.soundFactory = soundFactory;
+			lowHealthSound = soundFactory.getLowHealth();
+			linkHurtSound = soundFactory.getLinkHurt();
+			linkDeadSound = soundFactory.getLinkDead();
+		}
+
+		
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
@@ -70,6 +87,20 @@ namespace Sprint2
 		public void TakeDamage()
         {
 			currState.TakeDamage();
+			if (health == 0)
+            {
+				linkDeadSound.Play();
+            }
+			else if (health == 1)
+            {
+				lowHealthSound.Play();
+            }
+            else
+            {
+				linkHurtSound.Play();
+            }
+			
+            
 		}
 		public void Draw(SpriteBatch spriteBatch)
         {

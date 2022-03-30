@@ -10,6 +10,7 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 
 		public StandingFacingUp(Link link)
@@ -18,6 +19,7 @@ namespace Sprint2
 			this.sprite = link.sprite;
 			link.direction = "up";
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			sprite = spriteFactory.getLinkStandingFacingUpSprite();
 			
 			itemList = new ArrayList();

@@ -10,6 +10,7 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
 
@@ -18,6 +19,7 @@ namespace Sprint2
 			this.link = link;
 			this.sprite = link.sprite;
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			switch (link.direction)
 			{
 				case "down":

@@ -50,9 +50,6 @@ namespace Sprint2
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
             
-
-
-
         }
 
         

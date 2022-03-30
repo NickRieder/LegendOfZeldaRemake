@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
 
+
 namespace Sprint2
 {
     class StandingFacingRight : ILinkState
@@ -10,6 +11,7 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 
 		public StandingFacingRight(Link link)
@@ -18,6 +20,7 @@ namespace Sprint2
 			this.sprite = link.sprite;
 			link.direction = "right";
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			sprite = spriteFactory.getLinkStandingFacingRightSprite();
 			
 			itemList = new ArrayList();

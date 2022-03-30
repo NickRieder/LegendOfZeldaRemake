@@ -44,6 +44,10 @@ namespace Sprint2
 			this.spriteFactory = spriteFactory;
 			this.itemSheet = this.spriteFactory.getItemSheet();
 		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+
+		}
 
 		public  void NextItem()
         {

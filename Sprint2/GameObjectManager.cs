@@ -10,6 +10,7 @@ namespace Sprint2
     public class GameObjectManager
     {
         public SpriteFactory spriteFactory { get; set; }    // Example of a property
+        public SoundFactory soundFactory { get; set; }
         public ArrayList allObjectList { get; set; }
         public ArrayList movableObjectList { get; set; }
         public ArrayList updatableSpritesList;
@@ -39,8 +40,17 @@ namespace Sprint2
             gameTime = new GameTime();
 
             this.AddToDrawableObjectList(background);
+            this.AddToDrawableObjectList(link);
+
 
             
+        }
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+            foreach (ISprite sprite in drawableSpritesList)
+            {
+                sprite.SetSoundContent(soundFactory);
+            }
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
