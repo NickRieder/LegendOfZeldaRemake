@@ -24,7 +24,9 @@ namespace Sprint2
 
         private static Texture2D linkSheetMirrored;
         private static Texture2D transparentSheet;
+        private static Texture2D hudSheet;
 
+        private static SpriteFont font;
         public SpriteFactory(ContentManager content)
         {
             this.content = content;
@@ -49,8 +51,9 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
-            
+            hudSheet = content.Load<Texture2D>("Sheets/HudSprites");
 
+            font = content.Load<SpriteFont>("File");
 
 
         }
@@ -65,6 +68,17 @@ namespace Sprint2
         public Texture2D getItemSheet()
         {
             return itemSheet;
+        }
+
+        public Texture2D getHudSheet()
+        {
+            return hudSheet;
+        }
+
+
+        public SpriteFont getFont()
+        {
+            return font;
         }
 
 
@@ -231,7 +245,13 @@ namespace Sprint2
         public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
         public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
         public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
-         public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
+
+        // HUD
+        public static Rectangle HUD_SPRITE = new Rectangle(342, 26, 160, 34);
+        public static Rectangle EMPTY_HEART = new Rectangle(626, 116, 8, 8);
+        public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
+        public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
 
         public Sprite getBoomerangSprite()
         {
@@ -467,6 +487,21 @@ namespace Sprint2
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
 
+        public Rectangle getEmptyHeartRect()
+        {
+            return EMPTY_HEART;
+        }
+
+        public Rectangle getHalfHeartRect()
+        {
+            return HALF_HEART;
+        }
+
+        public Rectangle getFullHeartRect()
+        {
+            return FULL_HEART;
+        }
+
 
         public Sprite getRoom1Sprite()
         {
@@ -481,6 +516,11 @@ namespace Sprint2
         public Sprite getWallSprite(Rectangle rect)
         {
             return new Sprite(transparentSheet, rect);
+        }
+
+        public Sprite getHUDSprite()
+        {
+            return new Sprite(hudSheet, HUD_SPRITE);
         }
     }
 }

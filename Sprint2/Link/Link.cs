@@ -10,14 +10,16 @@ namespace Sprint2
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		public Sprite sprite;
-		public int health;
+		public int health, maxHealth, rupies, keys, bombs;
 		public IItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
 		public Link()
 		{
 			item = new NullItem();
-			health = 3;
+			health= 8;
+			maxHealth = 10;
+			rupies = keys = bombs = 0;
 			pos = new Vector2(40, 40);
 		}
 

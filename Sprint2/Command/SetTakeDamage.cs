@@ -17,7 +17,6 @@ namespace Sprint2
         public void Execute()
         {
             link.TakeDamage();
-
         }
     }
 }
