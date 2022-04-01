@@ -12,7 +12,6 @@ namespace Sprint2
         void StandingLeft();
         void Move();
         void UseWeapon();
-        void UseItem(string newItem);
         void TakeDamage();
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gameTime);

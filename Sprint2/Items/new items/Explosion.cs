@@ -41,7 +41,7 @@ namespace Sprint2
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+        public void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch, itemPos);
         }
@@ -55,7 +55,7 @@ namespace Sprint2
             }
             if (sprite.GetTotalFrames() <= currFrame)
             {
-                link.item = new NullItem();
+                link.item.SetNull();
             }
             counter++;
         }
