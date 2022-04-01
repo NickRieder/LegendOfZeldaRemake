@@ -38,6 +38,15 @@ namespace Sprint2
                 case "room1":
                     sprite = spriteFactory.getRoom1Sprite();
                     break;
+                case "bridge":
+                    sprite = spriteFactory.getBrickBlockSprite();
+                    break;
+                case "itemRoom":
+                    sprite = spriteFactory.getItemRoomSprite();
+                    break;
+                case "itemRoomFlipped":
+                    sprite = spriteFactory.getItemRoomFlippedSprite();
+                    break;
                 default:
                     sprite = spriteFactory.getRoom1Sprite();
                     break;

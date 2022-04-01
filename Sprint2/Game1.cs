@@ -72,7 +72,7 @@ namespace Sprint2
             hud = new HUD(gom, spriteFactory);
 
 
-            levelLoader.LoadLevel("TestLevel", "Top");
+            levelLoader.LoadLevel("Level 0/L0R1", "Top");
 
             
 

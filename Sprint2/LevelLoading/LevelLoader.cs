@@ -80,9 +80,9 @@ namespace Sprint2
             gom.AddToMovableObjectList(enemy);
         }
 
-        public void LoadDoorObject(String doorType, Vector2 pos, String room, String prevRoom)
+        public void LoadDoorObject(String doorType, Vector2 pos, String room, String prevRoom, String nextClickRoom)
         {
-            Door door = new Door(doorType, room, this, prevRoom);
+            Door door = new Door(doorType, room, this, prevRoom, nextClickRoom);
             door.pos = pos;
             door.SetSpriteContent(spriteFactory);
             gom.mouseController.SetDoor(door);

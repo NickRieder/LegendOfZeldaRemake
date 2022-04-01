@@ -4,25 +4,33 @@
 	</background>
 	
 	<Blocks>
+		<block Type ="Brick">
+			<XCoord>176</XCoord>
+			<YCoord>176</YCoord>
+		</block>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
+			<XCoord>208</XCoord>
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>338</YCoord>
+			<XCoord>224</XCoord>
+			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>338</YCoord>
+			<XCoord>240</XCoord>
+			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>576</XCoord>
-			<YCoord>242</YCoord>
+			<XCoord>256</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>272</XCoord>
+			<YCoord>192</YCoord>
 		</block>
 	</Blocks>
 
@@ -95,38 +103,39 @@
 	</Walls>
 	<Doors>
 		<door Type="TopOpen">
-			<room>Level 0/L0R1</room>    <!-- Next Room-->
-			<room>Level 0/L0R6</room>    <!-- Previous Room-->
-			<clickNext>Level 0/L0R1</clickNext>
+			<room>L0R5</room>    <!-- Next Room-->
+			<room>L0R5</room>    <!-- Previous Room-->
+			<clickNext>L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
-		<door Type="LeftLock">
-			<room>Level 0/L0R1</room>
+		<door Type="LeftWall">
+			<room></room>
 			<!-- Next Room-->
-			<room>Level 0/L0R6</room>
+			<room>L0R5</room>
 			<!-- Previous Room-->
-			<clickNext>Level 0/L0R1</clickNext>
+			<clickNext>L1R1</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="RightOpen">
-			<room>Level 0/L0R1</room>
+		<door Type="RightWall">
+			<room></room>
 			<!-- Next Room-->
-			<room>Level 0/L0R6</room>
+			<room>L0R5</room>
 			<!-- Previous Room-->
-			<clickNext>Level 0/L0R6</clickNext>
+			<clickNext>L0R1</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="BotWall">
-			<room>Level 0/L0R1</room>
+		<door Type="BotOpen"> <!-- To Become stairs to next level-->
+			<room>L0R1</room>
 			<!-- Next Room-->
-			<room>Level 0/L0R6</room>
+			<room>L0R5</room>
 			<!-- Previous Room-->
-			<clickNext>Level 0/L0R1</clickNext>
+			<clickNext>L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>
 	</Doors>
-</Level> 
+	
+</Level>

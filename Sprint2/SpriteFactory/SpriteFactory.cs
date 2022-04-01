@@ -117,6 +117,10 @@ namespace Sprint2
         public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
         public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
         public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
+        public static Rectangle BRIDGE_ROOM = new Rectangle(586, 307, 255, 177);
+        public static Rectangle ITEM_ROOM = new Rectangle(976, 537, 255, 177);
+        public static Rectangle ITEM_FLIPPED_ROOM = new Rectangle(951, 1013, 255, 177);
+
 
         public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
         public static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
@@ -610,6 +614,21 @@ namespace Sprint2
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);
+        }
+
+        public Sprite getItemRoomSprite()
+        {
+            return new Sprite(tileSheet, ITEM_ROOM);
+        }
+
+        public Sprite getItemRoomFlippedSprite()
+        {
+            return new Sprite(tileSheet, ITEM_FLIPPED_ROOM);
+        }
+
+        public Sprite getBridgeRoomSprite()
+        {
+            return new Sprite(tileSheet, BRIDGE_ROOM);
         }
         public Sprite getDefaultSprite()
         {
