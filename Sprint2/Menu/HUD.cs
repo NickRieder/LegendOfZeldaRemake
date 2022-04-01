@@ -37,12 +37,12 @@ namespace Sprint2
             HUDSprite.Draw(spriteBatch, HUDPos);
 
             // numebrs of items link has
-            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y), Color.White);
-            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 48), Color.White);
-            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 74), Color.White);
+            //spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y), Color.White);
+            //spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 48), Color.White);
+            //spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 74), Color.White);
 
             //health
-            for (int i = 2; i <= link.maxHealth; i+=2)
+            for (int i = 2; i <= link.health; i+=2)
             {
                 Rectangle sourceRectangle;
                 Rectangle destinationRectangle;

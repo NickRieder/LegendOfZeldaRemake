@@ -106,29 +106,29 @@
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftLock">
-			<room>L0R1</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>L0R4</room>
+			<room>Level 0/L0R4</room>
 			<!-- Previous Room-->
-			<clickNext>L0R6</clickNext>
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L0R4</room>
+			<room>Level 0/L0R4</room>
 			<!-- Previous Room-->
-			<clickNext>L0R6</clickNext>
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotLock">
-			<room>L0R6</room>
+			<room>Level 0/L0R6</room>
 			<!-- Next Room-->
-			<room>L0R4</room>
+			<room>Level 0/L0R4</room>
 			<!-- Previous Room-->
-			<clickNext>L0R6</clickNext>
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>

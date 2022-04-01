@@ -89,7 +89,7 @@
 		<door Type="TopWall">
 			<room></room>    <!-- Next Room-->
 			<room>Level 0/L0R1</room>    <!-- Previous Room-->
-			<clickNext>L0R3</clickNext>
+			<clickNext>Level 0/L0R3</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>

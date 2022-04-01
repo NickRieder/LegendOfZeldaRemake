@@ -103,36 +103,36 @@
 	</Walls>
 	<Doors>
 		<door Type="TopOpen">
-			<room>L0R5</room>    <!-- Next Room-->
-			<room>L0R5</room>    <!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<room>Level 0/L0R5</room>    <!-- Next Room-->
+			<room>Level 0/L0R5</room>    <!-- Previous Room-->
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L0R5</room>
+			<room>Level 0/L0R5</room>
 			<!-- Previous Room-->
-			<clickNext>L1R1</clickNext>
+			<clickNext>Level 0/L1R1</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L0R5</room>
+			<room>Level 0/L0R5</room>
 			<!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotOpen"> <!-- To Become stairs to next level-->
-			<room>L0R1</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>L0R5</room>
+			<room>Level 0/L0R5</room>
 			<!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>
