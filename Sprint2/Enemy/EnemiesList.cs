@@ -34,13 +34,13 @@ namespace Sprint2
             arrIndex = 0;
             pos = new Vector2(600, 200);
 
-            bluebat = new Enemies("Bluebat");
+            /*bluebat = new Enemies("Bluebat");
             bluegel = new Enemies("Bluegel");
             darknut = new Enemies("Darknut");
             dragon = new Enemies("Dragon");
             goriya = new Enemies("Goriya");
             snake = new Enemies("Snake");
-            wizzrobe = new Enemies("Wizzrobe");
+            wizzrobe = new Enemies("Wizzrobe");*/
 
             enemiesArray.Add(bluebat);
             enemiesArray.Add(bluegel);

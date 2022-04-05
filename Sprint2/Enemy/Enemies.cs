@@ -11,23 +11,24 @@ namespace Sprint2
 		public SpriteFactory spriteFactory { get; set; }
 		public int health;
 		public int spriteSizeMultiplier;
-
+		public string direction;
+		public GameObjectManager gom;
 		public Sprite sprite;
 		public string enemyName;
 
-		public Enemies(string enemyName)
+		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
+			this.gom = gom;
 			spriteSizeMultiplier = 2;
 			health = 3;
 			pos = new Vector2(600, 200);
-			/*pos.X = 600;
-			pos.Y = 200;*/
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
+			direction = "Down";
 
 			switch (enemyName)
 			{
@@ -85,11 +86,12 @@ namespace Sprint2
 			currState.MoveRight();
 		}
 
-		/*public void Attack()
-		{
-			currState.Attack();
-		}*/
-		public void TakeDamage()
+        public void Attack()
+        {
+            currState.Attack();
+        }
+
+        public void TakeDamage()
 		{
 			currState.TakeDamage();
 		}

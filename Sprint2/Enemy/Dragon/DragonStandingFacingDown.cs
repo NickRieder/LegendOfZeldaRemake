@@ -66,10 +66,11 @@ namespace Sprint2
         {
             dragon.currState = new DragonStandingFacingLeft(dragon);
         }
-        /*public void Attack()
+
+        public void Attack()
         {
-            dragon.currState = new DragonAttackingLeft(enemiesList);
-        }*/
+            //dragon.currState = new DragonAttackingLeft(enemiesList);
+        }
 
         public void TakeDamage()
         {

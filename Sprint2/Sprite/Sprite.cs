@@ -24,6 +24,7 @@ namespace Sprint2
             {
                 frameList.Add(frame);
             }
+            currRectangle = frameList[currFrame];
         }
 
         public void Update(GameTime gameTime)

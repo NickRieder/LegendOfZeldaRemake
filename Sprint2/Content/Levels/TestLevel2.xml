@@ -34,26 +34,26 @@
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
+			<YCoord>0</YCoord>
 			<Width>300</Width>
-			<Height>20</Height>
+			<Height>33</Height>
 		</wall>
 		<wall>
 			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
+			<YCoord>437</YCoord>
 			<Width>300</Width>
-			<Height>5</Height>
+			<Height>33</Height>
 		</wall>
 		<wall>
-			<XCoord>25</XCoord>
+			<XCoord>0</XCoord>
 			<YCoord>0</YCoord>
-			<Width>20</Width>
+			<Width>32</Width>
 			<Height>300</Height>
 		</wall>
 		<wall>
-			<XCoord>680</XCoord>
+			<XCoord>673</XCoord>
 			<YCoord>0</YCoord>
-			<Width>20</Width>
+			<Width>33</Width>
 			<Height>300</Height>
 		</wall>
 	</Walls>

@@ -76,7 +76,7 @@ namespace Sprint2
 
             
 
-            keyboardController.Initialize(gom.link, gom.item, gom.block, this);
+            keyboardController.Initialize(gom, this);
         }
 
         protected override void Update(GameTime gameTime)

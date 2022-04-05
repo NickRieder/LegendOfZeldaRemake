@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,10 +11,15 @@ namespace Sprint2
     public class GameObjectManager
     {
         public SpriteFactory spriteFactory { get; set; }    // Example of a property
-        public ArrayList allObjectList { get; set; }
-        public ArrayList movableObjectList { get; set; }
-        public ArrayList updatableSpritesList;
-        public ArrayList drawableSpritesList;
+        public ConcurrentBag<ISprite> allObjectList { get; set; }
+        public ConcurrentBag<ISprite> movableObjectList { get; set; }
+        public ConcurrentBag<ISprite> updatableSpritesList;
+        public ConcurrentBag<ISprite> drawableSpritesList;
+        public ConcurrentBag<ISprite> allObjectListInserts;
+        public ConcurrentBag<ISprite> movableObjectListInserts;
+        public ConcurrentBag<ISprite> updatableSpritesListInserts;
+        public ConcurrentBag<ISprite> drawableSpritesListInserts;
+        private ConcurrentBag<ISprite> tempUpdatableList;
         public GameTime gameTime;
         public Link link;
         public Item item;
@@ -24,27 +30,39 @@ namespace Sprint2
         private Background background;
         public KeyboardController keyboardController;
         public MouseController mouseController;
+        private bool isPaused;
 
         public GameObjectManager()
         {
-            allObjectList = new ArrayList();
-            updatableSpritesList = new ArrayList();
-            drawableSpritesList = new ArrayList();
-            movableObjectList = new ArrayList();
+            // Use ConcurrentBag to allow modifying of a collection while it is being iterated over.
+            allObjectList = new ConcurrentBag<ISprite>();
+            movableObjectList = new ConcurrentBag<ISprite>();
+            drawableSpritesList = new ConcurrentBag<ISprite>();
+            updatableSpritesList = new ConcurrentBag<ISprite>();
+            
+            // Inserts lists are lists that store elements to be added while the actual list corresponding to the name is being iterated through.
+            allObjectListInserts = new ConcurrentBag<ISprite>();
+            movableObjectListInserts = new ConcurrentBag<ISprite>();
+            drawableSpritesListInserts = new ConcurrentBag<ISprite>();
+            updatableSpritesListInserts = new ConcurrentBag<ISprite>();
+            tempUpdatableList = new ConcurrentBag<ISprite>();
+
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
             link = new Link();
             background = new Background();
             gameTime = new GameTime();
-
-            this.AddToDrawableObjectList(background);
+            isPaused = false;
+            //this.AddToDrawableObjectList(background);
 
             
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
         {
+            this.spriteFactory = spriteFactory;
+            background.SetSpriteContent(spriteFactory);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSpriteContent(spriteFactory);
@@ -52,17 +70,32 @@ namespace Sprint2
 
         }
 
+        public void PauseGame()
+        {
+            if(isPaused)
+            {
+                updatableSpritesList = new ConcurrentBag<ISprite>(tempUpdatableList);
+            }
+            else
+            {
+                tempUpdatableList = new ConcurrentBag<ISprite>(updatableSpritesList);
+                updatableSpritesList.Clear();
+            }
+            isPaused = !isPaused;
+            
+        }
+
         public void SetBackgroundRoom(string roomName)
         {
             background.SetRoomName(roomName);
         }
 
-        public ArrayList getListOfAllObjects()
+        public ConcurrentBag<ISprite> getListOfAllObjects()
         {
             return allObjectList;
         }
 
-        public ArrayList getListOfMovableObjects()
+        public ConcurrentBag<ISprite> getListOfMovableObjects()
         {
             return movableObjectList;
         }
@@ -85,18 +118,34 @@ namespace Sprint2
         {
             updatableSpritesList.Add(spriteObject);
         }
+        public void AddToAllObjectListInserts(ISprite spriteObject)
+        {
+            allObjectListInserts.Add(spriteObject);
+        }
+        public void AddToMovableObjectListInserts(ISprite spriteObject)
+        {
+            movableObjectListInserts.Add(spriteObject);
+
+        }
+        public void AddToDrawableObjectListInserts(ISprite spriteObject)
+        {
+            drawableSpritesListInserts.Add(spriteObject);
+            updatableSpritesListInserts.Add(spriteObject);
+        }
+
         public void ClearSpriteList()
         {
             allObjectList.Clear();
             movableObjectList.Clear();
             updatableSpritesList.Clear();
             drawableSpritesList.Clear();
-            drawableSpritesList.Add(background);
-            updatableSpritesList.Add(background);
+            //drawableSpritesList.Add(background);
+            //updatableSpritesList.Add(background);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            background.Draw(spriteBatch);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
@@ -105,6 +154,7 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
+            background.Update(gametime);
             foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);
