@@ -20,8 +20,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            link.UseItem(3);
-            bombSound.Play();
+            link.item.SetItem("Explosion");
 
         }
     }

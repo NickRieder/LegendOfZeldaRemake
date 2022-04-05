@@ -19,8 +19,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            link.UseItem(2);
-            boomerangSound.Play();
+            link.item.SetItem("Boomerang");
 
         }
     }

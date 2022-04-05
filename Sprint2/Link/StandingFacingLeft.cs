@@ -24,10 +24,6 @@ namespace Sprint2
 			soundFactory = link.soundFactory;
 			sprite = spriteFactory.getLinkStandingFacingLeftSprite();
 			
-			itemList = new ArrayList();
-			itemList.Add(new ArrowLeft(this.link, this.link.spriteFactory));
-			itemList.Add(new BoomerangLeft(this.link, this.link.spriteFactory));
-			itemList.Add(new ExplosionLeft(this.link, this.link.spriteFactory));
 		}
 		public void StandingUp()
 		{
@@ -53,10 +49,10 @@ namespace Sprint2
 		{
 			link.currState = new UsingWeapon(link);
 		}
-		public void UseItem(int itemNum)
+		public void UseItem(string newItem)
 		{
 			link.currState = new UsingItem(link);
-			link.item = (IItem)itemList[itemNum - 1];
+			link.SetItem(newItem);
 		}
 		public void TakeDamage()
 		{

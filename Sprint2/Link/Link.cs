@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Sprint2
 {
@@ -14,16 +15,15 @@ namespace Sprint2
 		
 		public Sprite sprite;
 		public int health;
-		public IItem item;
+		public LinkItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
+		public List<IItem> itemList;
 		public SoundEffect linkHurtSound;
 		public SoundEffect linkDeadSound;
 		public SoundEffect lowHealthSound;
-		
 		public Link()
 		{
-			item = new NullItem();
 			health = 3;
 			pos = new Vector2(40, 40);
 			
@@ -44,11 +44,20 @@ namespace Sprint2
 			this.currState = new StandingFacingDown(this);
 			sprite = spriteFactory.getLinkStandingFacingDownSprite();
 			direction = "down";
+			item = new LinkItem(this, spriteFactory);
 		}
 
 		public void SetPos(Vector2 pos)
         {
 			this.pos = pos;
+        }
+		public string GetDirection()
+        {
+			return direction;
+        }
+		public void SetItem(string newItem)
+        {
+			item.SetItem(newItem);
         }
 
 		public Rectangle GetSpriteRectangle()
@@ -80,10 +89,11 @@ namespace Sprint2
         {
 			currState.UseWeapon();
         }
-		public void UseItem(int itemNum)
+		public void UseItem()
         {
-			currState.UseItem(itemNum);
-        }
+			currState = new UsingItem(this);
+			item.Use();
+		}
 		public void TakeDamage()
         {
 			currState.TakeDamage();
@@ -105,7 +115,7 @@ namespace Sprint2
 		public void Draw(SpriteBatch spriteBatch)
         {
 			currState.Draw(spriteBatch);
-			item.Draw(spriteBatch, pos);
+			item.Draw(spriteBatch);
         }
 		public void Update(GameTime gameTime)
 		{

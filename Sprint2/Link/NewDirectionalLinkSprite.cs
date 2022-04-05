@@ -21,7 +21,7 @@ namespace Sprint2
 		public void StandingLeft() { }
 		public void Move() { }
 		public void UseWeapon() { }
-		public void UseItem(int itemNum) { }
+		public void UseItem(string newItem) { }
 		public void TakeDamage() { }
 		public void Draw(SpriteBatch spriteBatch) { }
 		public void Update(GameTime gameTime) 
