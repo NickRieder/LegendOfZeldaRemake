@@ -51,9 +51,11 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
+
             hudSheet = content.Load<Texture2D>("Sheets/HudSprites");
 
             font = content.Load<SpriteFont>("File");
+
 
 
         }
