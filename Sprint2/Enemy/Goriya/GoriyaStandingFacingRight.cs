@@ -10,13 +10,6 @@ namespace Sprint2
     public class GoriyaStandingFacingRight : IEnemyState
     {
         private Enemies goriya;
-        private int currFrame;
-        private int totalFrames;
-        private int counter;
-        private Rectangle frame1;
-        private Rectangle frame2;
-        private Texture2D sheet;
-        private EnemiesList enemiesList;
         private double totalSecondsPassed;
         private double waitTime;
         private TimeSpan elapsedTime;
@@ -49,6 +42,12 @@ namespace Sprint2
             Vector2 currPos = goriya.pos;
             currPos.X++;
             goriya.pos = currPos;
+
+            /*if (!goriya.freeze)
+            {
+                
+            }*/
+            
 
 
             /*if (counter % 5 == 0)
@@ -93,7 +92,7 @@ namespace Sprint2
             secondsPassed = elapsedTime.TotalSeconds;
             totalSecondsPassed = totalSecondsPassed + secondsPassed;
 
-            if (totalSecondsPassed > waitTime)
+            if (totalSecondsPassed > waitTime)  // && !(goriya.freeze)
             {
 
                 randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99

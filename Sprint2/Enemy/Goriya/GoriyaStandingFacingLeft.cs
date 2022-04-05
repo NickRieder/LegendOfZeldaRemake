@@ -10,13 +10,6 @@ namespace Sprint2
     public class GoriyaStandingFacingLeft : IEnemyState
     {
         private Enemies goriya;
-        private int currFrame;
-        private int totalFrames;
-        private int counter;
-        private Rectangle frame1;
-        private Rectangle frame2;
-        private Texture2D sheet;
-        private EnemiesList enemiesList;
         private double totalSecondsPassed;
         private double waitTime;
         private TimeSpan elapsedTime;

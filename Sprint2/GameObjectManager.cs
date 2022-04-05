@@ -37,13 +37,8 @@ namespace Sprint2
             movableObjectList = new ConcurrentBag<ISprite>();
             drawableSpritesList = new ConcurrentBag<ISprite>();
             updatableSpritesList = new ConcurrentBag<ISprite>();
-            
-            // Inserts lists are lists that store elements to be added while the actual list corresponding to the name is being iterated through.
-            allObjectListInserts = new ConcurrentBag<ISprite>();
-            movableObjectListInserts = new ConcurrentBag<ISprite>();
-            drawableSpritesListInserts = new ConcurrentBag<ISprite>();
-            updatableSpritesListInserts = new ConcurrentBag<ISprite>();
 
+            // Initialize Controllers
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
@@ -82,6 +77,7 @@ namespace Sprint2
             return movableObjectList;
         }
 
+        // Add To Collection
         public void AddToAllObjectList(ISprite spriteObject)
         {
             allObjectList.Add(spriteObject);
@@ -100,19 +96,74 @@ namespace Sprint2
         {
             updatableSpritesList.Add(spriteObject);
         }
-        public void AddToAllObjectListInserts(ISprite spriteObject)
-        {
-            allObjectListInserts.Add(spriteObject);
-        }
-        public void AddToMovableObjectListInserts(ISprite spriteObject)
-        {
-            movableObjectListInserts.Add(spriteObject);
 
-        }
-        public void AddToDrawableObjectListInserts(ISprite spriteObject)
+        // Remove From Collections
+        public void RemoveFromEveryCollection(ISprite incoming)
         {
-            drawableSpritesListInserts.Add(spriteObject);
-            updatableSpritesListInserts.Add(spriteObject);
+            RemoveFromAllObjectList(incoming);
+            RemoveFromMovableObjectList(incoming);
+            RemoveFromDrawableObjectList(incoming);
+            RemoveFromUpdatableObjectList(incoming);
+        }
+        public void RemoveFromAllObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = allObjectList;
+            while (bagCopy.TryTake(out removed))    // TryTake returns a bool and sets 'removed' to the object that was taken out of the bag.
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            allObjectList = tempBag;
+        }
+        public void RemoveFromMovableObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = movableObjectList;
+            while (bagCopy.TryTake(out removed))
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            movableObjectList = tempBag;
+        }
+        public void RemoveFromDrawableObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = drawableSpritesList;
+            while (bagCopy.TryTake(out removed))
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            drawableSpritesList = tempBag;
+        }
+        public void RemoveFromUpdatableObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = updatableSpritesList;
+            while (bagCopy.TryTake(out removed))
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            updatableSpritesList = tempBag;
         }
 
         public void ClearSpriteList()

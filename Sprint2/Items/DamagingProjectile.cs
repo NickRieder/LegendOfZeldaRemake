@@ -14,6 +14,7 @@ namespace Sprint2
 		public Vector2 enemyPos { get; set; }
 		public Sprite enemySprite;
 		public SpriteFactory spriteFactory;
+		public GameObjectManager gom;
 
 		public Sprite sprite;
 		public string projectileType;
@@ -22,7 +23,8 @@ namespace Sprint2
 		public DamagingProjectile(Enemies enemy, string projectileType)
 		{
 			this.spriteFactory = enemy.spriteFactory;
-			
+			this.gom = enemy.gom;
+
 			// Enemy fields setup
 			this.enemy = enemy;
 			this.enemySprite = enemy.sprite;
@@ -55,7 +57,7 @@ namespace Sprint2
 		private void CenterProjectilePosition(Sprite projectileSprite)
         {
 			Vector2 centeredPos = enemyPos;
-			Rectangle enemyRectangle = enemySprite.getDestinationRectangle();
+			Rectangle enemyRectangle = enemy.GetSpriteRectangle(); // enemySprite.getDestinationRectangle()
 			Rectangle projectileRectangle = projectileSprite.getCurrentFrameRectangle();
 			int divisorVal = 2;
 			int eWidth = enemyRectangle.Width;
@@ -91,7 +93,7 @@ namespace Sprint2
                 default:
                     break;
             }
-			System.Diagnostics.Debug.WriteLine("DEBUG: Return" + "\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " + centeredPos.Y);
+			//System.Diagnostics.Debug.WriteLine("DEBUG: Return" + "\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " + centeredPos.Y);
 			this.pos = centeredPos;
 		}
 
@@ -110,32 +112,13 @@ namespace Sprint2
 			sprite.Draw(spriteBatch, pos);
 		}
 
-		public void Update(GameTime gameTime)
+		public void RemoveProjectile(ISprite projectile)
+        {
+			gom.RemoveFromEveryCollection(projectile);
+        }
+
+		public virtual void Update(GameTime gameTime) // the virtual keyword allows subclasses to override methods
 		{
-            Vector2 newPos = pos;
-            switch (projectileDirection)
-            {
-                case "Down":
-                    newPos.Y++;
-                    pos = newPos;
-                    break;
-                case "Left":
-                    newPos.X--;
-                    pos = newPos;
-                    break;
-                case "Right":
-                    newPos.X++;
-                    pos = newPos;
-                    break;
-                case "Up":
-                    newPos.Y--;
-                    pos = newPos;
-                    break;
-                default:
-                    newPos.Y++;
-                    pos = newPos;
-                    break;
-            }
             sprite.Update(gameTime);
 		}
 

@@ -40,12 +40,18 @@ namespace Sprint2
             this.goriya = goriya;
             this.gom = goriya.gom;
 
-            ISprite projectile = new DamagingProjectile(goriya, "Boomerang");
+            CreateBoomerang();
+
+            goriya.freeze = true;
+            weaponReturning = false;
+        }
+
+        private void CreateBoomerang()
+        {
+            ISprite projectile = new GoriyaBoomerang(goriya, "Boomerang");
             gom.AddToAllObjectList(projectile);
             gom.AddToMovableObjectList(projectile);
             gom.AddToDrawableObjectList(projectile);
-
-            weaponReturning = false;
         }
 
         public void MoveUp()
@@ -66,59 +72,21 @@ namespace Sprint2
         }
         public void Attack()
         {
-            randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-            chosenDirectionValue = randomNum % 4;
-
-            if (chosenDirectionValue == 0)
-                MoveDown();
-            else if (chosenDirectionValue == 1)
-                MoveUp();
-            else if (chosenDirectionValue == 2)
-                MoveLeft();
-            else if (chosenDirectionValue == 3)
-                MoveRight();
-
-            /*// Goriya standing still and animated
-            if (counter % 5 == 0)
-                currFrame++;
-            if (currFrame == totalFrames)
-                currFrame = 0;
-            counter++;*/
-
-            // MAKE BOOMERANG GO AWAY AND BACK TO THE GORIYA
-            /*if (projectilePos.Y > projectilePos.Y + 150) // 150 is the distance the weapon travels
+            if (!goriya.freeze)
             {
-                weaponReturning = true;
+                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
+                chosenDirectionValue = randomNum % 4;
+
+                if (chosenDirectionValue == 0)
+                    MoveDown();
+                else if (chosenDirectionValue == 1)
+                    MoveUp();
+                else if (chosenDirectionValue == 2)
+                    MoveLeft();
+                else if (chosenDirectionValue == 3)
+                    MoveRight();
             }
-
-            if (weaponReturning)
-            {
-                if (projectilePos.Y < goriya.pos.Y + 10)
-                {
-                    randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                    chosenDirectionValue = randomNum % 4;
-
-                    if (chosenDirectionValue == 0)
-                        MoveDown();
-                    else if (chosenDirectionValue == 1)
-                        MoveUp();
-                    else if (chosenDirectionValue == 2)
-                        MoveLeft();
-                    else if (chosenDirectionValue == 3)
-                        MoveRight();
-                }
-                projectilePos.Y -= 4;
-            }
-            else
-            {
-                projectilePos.Y += 4;
-            }*/
-
-            /*if (weaponCounter % 5 == 0)
-                currWeaponFrame++;
-            if (currWeaponFrame == totalWeaponFrames)
-                currWeaponFrame = 0;
-            weaponCounter++;*/
+            
         }
 
         public void TakeDamage()
@@ -134,6 +102,7 @@ namespace Sprint2
         public void Update(GameTime gameTime)
         {
             Attack();
+            goriya.sprite.Update(gameTime);
         }
     }
 }

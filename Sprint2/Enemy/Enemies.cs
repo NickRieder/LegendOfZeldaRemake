@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace Sprint2
 {
@@ -15,6 +16,8 @@ namespace Sprint2
 		public GameObjectManager gom;
 		public Sprite sprite;
 		public string enemyName;
+		public ArrayList projectileList;
+		public bool freeze { get; set; }
 
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
@@ -23,6 +26,7 @@ namespace Sprint2
 			spriteSizeMultiplier = 2;
 			health = 3;
 			pos = new Vector2(600, 200);
+			this.freeze = false;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)

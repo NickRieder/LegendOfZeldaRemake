@@ -27,8 +27,8 @@ namespace Sprint2
         public CollisionDetector(GameObjectManager gom)
         {
             this.gom = gom;
-            allObjectList = gom.allObjectList;
-            movableObjectList = gom.movableObjectList;
+            /*allObjectList = gom.allObjectList;
+            movableObjectList = gom.movableObjectList;*/
 
             collisionHandler = new CollisionHandler(gom);
             collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
@@ -71,9 +71,9 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach (ISprite movableSprite in movableObjectList)
+            foreach (ISprite movableSprite in gom.movableObjectList)
             {
-                foreach (ISprite otherSprite in allObjectList)
+                foreach (ISprite otherSprite in gom.allObjectList)
                 {
                     if (!(movableSprite == otherSprite))
                     {
