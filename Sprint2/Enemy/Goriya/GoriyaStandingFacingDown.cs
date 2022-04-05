@@ -62,7 +62,6 @@ namespace Sprint2
         public void TakeDamage()
         {
             goriya.health--;
-            //goriya.currState = new BluebatDamagedFacingDown(goriya);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -17,11 +17,12 @@ namespace Sprint2
             counter = 0;
             velocity = 7;
             this.gom = enemy.gom;
-            //enemy.freeze = true;
         }
 
         public override void Update(GameTime gameTime)
         {
+            // // If boomerang collides with a wall (AKA a Block), then it should return to the goriya.
+
             Vector2 newPos = pos;
             switch (projectileDirection)
             {

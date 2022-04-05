@@ -43,7 +43,8 @@ namespace Sprint2
 					sprite = spriteFactory.getBoomerangSprite();
 					break;
 				case "Fireball":
-					//sprite = spriteFactory.getFireballSprite();
+					CenterProjectilePosition(spriteFactory.getFireballSprite());
+					sprite = spriteFactory.getFireballSprite();
 					break;
 				default:
 					sprite = spriteFactory.getNullProjectile();

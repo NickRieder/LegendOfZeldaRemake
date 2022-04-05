@@ -8,10 +8,10 @@ using System.Diagnostics;
 
 namespace Sprint2
 {
-    class GoriyaAttacking : IEnemyState
+    class DragonAttacking : IEnemyState
     {
 
-        private Enemies goriya;
+        private Enemies dragon;
 
         private int currFrame;
         private int totalFrames;
@@ -19,7 +19,16 @@ namespace Sprint2
         private int totalWeaponFrames;
         private int counter;
         private int weaponCounter;
-        private bool weaponReturning;
+        private bool weaponFired;
+        private Rectangle frame1;
+        private Rectangle frame2;
+        private Rectangle weaponFrame1;
+        private Rectangle weaponFrame2;
+        private Rectangle weaponFrame3;
+        private Rectangle weaponFrame4;
+        private Texture2D sheet;
+        private Texture2D weaponSheet;
+        private EnemiesList enemiesList;
         private double totalSecondsPassed;
         private double waitTime;
         private TimeSpan elapsedTime;
@@ -34,49 +43,63 @@ namespace Sprint2
 
         private GameObjectManager gom;
 
-        public GoriyaAttacking(Enemies goriya)
+        public DragonAttacking(Enemies dragon)
         {
             randomNumberGenerator = new Random();
             weaponFrameArray = new ArrayList();
             totalSecondsPassed = 0;
             waitTime = 0.25;
 
-            this.goriya = goriya;
-            this.gom = goriya.gom;
+            this.dragon = dragon;
+            this.gom = dragon.gom;
 
-            CreateBoomerang();
+            CreateFireballs();
 
-            goriya.freeze = true;
-            weaponReturning = false;
+            weaponFired = false;
         }
 
-        private void CreateBoomerang()
+        private void CreateFireballs()
         {
-            GoriyaBoomerang boomerang = new GoriyaBoomerang(goriya, "Boomerang");
-            //gom.AddToAllObjectList(boomerang);
-            gom.AddToMovableObjectList(boomerang);
-            gom.AddToDrawableObjectList(boomerang);
+            DragonFireball fireballTop = new DragonFireball(dragon, "Fireball");
+            DragonFireball fireballMid = new DragonFireball(dragon, "Fireball");
+            DragonFireball fireballBot = new DragonFireball(dragon, "Fireball");
+            fireballTop.SetTrajectory("Upward");
+            fireballMid.SetTrajectory("Straight");
+            fireballBot.SetTrajectory("Downward");
+
+            //gom.AddToAllObjectList(fireballTop);
+            //gom.AddToAllObjectList(fireballMid);
+            //gom.AddToAllObjectList(fireballBot);
+
+            gom.AddToMovableObjectList(fireballTop);
+            gom.AddToMovableObjectList(fireballMid);
+            gom.AddToMovableObjectList(fireballBot);
+
+            gom.AddToDrawableObjectList(fireballTop);
+            gom.AddToDrawableObjectList(fireballMid);
+            gom.AddToDrawableObjectList(fireballBot);
+            
         }
 
         public void MoveUp()
         {
-            goriya.currState = new GoriyaStandingFacingUp(goriya);
+            dragon.currState = new DragonStandingFacingUp(dragon);
         }
         public void MoveDown()
         {
-            goriya.currState = new GoriyaStandingFacingDown(goriya);
+            dragon.currState = new DragonStandingFacingDown(dragon);
         }
         public void MoveRight()
         {
-            goriya.currState = new GoriyaStandingFacingRight(goriya);
+            dragon.currState = new DragonStandingFacingRight(dragon);
         }
         public void MoveLeft()
         {
-            goriya.currState = new GoriyaStandingFacingLeft(goriya);
+            dragon.currState = new DragonStandingFacingLeft(dragon);
         }
         public void Attack()
         {
-            if (!goriya.freeze)
+            if (!dragon.freeze)
             {
                 randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
                 chosenDirectionValue = randomNum % 4;
@@ -90,7 +113,6 @@ namespace Sprint2
                 else if (chosenDirectionValue == 3)
                     MoveRight();
             }
-            
         }
 
         public void TakeDamage()
@@ -100,13 +122,13 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            goriya.sprite.Draw(spriteBatch, goriya.pos);
+            dragon.sprite.Draw(spriteBatch, dragon.pos);
         }
 
         public void Update(GameTime gameTime)
         {
             Attack();
-            goriya.sprite.Update(gameTime);
+            //dragon.sprite.Update(gameTime);
         }
     }
 }

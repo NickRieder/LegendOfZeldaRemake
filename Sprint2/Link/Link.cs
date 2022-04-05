@@ -11,22 +11,20 @@ namespace Sprint2
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		public Sprite sprite;
-		public int health;
+		public int health, maxHealth, rupies, keys, bombs;
 		public LinkItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
 		public List<IItem> itemList;
 		public Link()
 		{
-			health = 3;
+			//item = new NullItem();
+			health= 8;
+			maxHealth = 10;
+			rupies = keys = bombs = 0;
 			pos = new Vector2(40, 40);
 			
 		}
-
-		/*public object GetConcreteObject()
-        {
-			return this; // now its Link that I can get instead of ISprite. watch
-        }*/
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
@@ -42,14 +40,13 @@ namespace Sprint2
 			this.pos = pos;
         }
 		public string GetDirection()
-        {
+		{
 			return direction;
-        }
+		}
 		public void SetItem(string newItem)
-        {
+		{
 			item.SetItem(newItem);
-        }
-
+		}
 		public Rectangle GetSpriteRectangle()
         {
 			return sprite.getDestinationRectangle();
@@ -80,7 +77,7 @@ namespace Sprint2
 			currState.UseWeapon();
         }
 		public void UseItem()
-        {
+		{
 			currState = new UsingItem(this);
 			item.Use();
 		}

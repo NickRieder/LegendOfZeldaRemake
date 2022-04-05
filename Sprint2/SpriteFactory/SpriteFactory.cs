@@ -24,7 +24,9 @@ namespace Sprint2
 
         private static Texture2D linkSheetMirrored;
         private static Texture2D transparentSheet;
+        private static Texture2D hudSheet;
 
+        private static SpriteFont font;
         public SpriteFactory(ContentManager content)
         {
             this.content = content;
@@ -49,6 +51,11 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
+            hudSheet = content.Load<Texture2D>("Sheets/HudSprites");
+
+            font = content.Load<SpriteFont>("File");
+
+
         }
 
         
@@ -61,6 +68,17 @@ namespace Sprint2
         public Texture2D getItemSheet()
         {
             return itemSheet;
+        }
+
+        public Texture2D getHudSheet()
+        {
+            return hudSheet;
+        }
+
+
+        public SpriteFont getFont()
+        {
+            return font;
         }
 
 
@@ -232,12 +250,18 @@ namespace Sprint2
         public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
         public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
         public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
-         public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
-        // Items
+        // HUD
+        public static Rectangle HUD_SPRITE = new Rectangle(342, 26, 160, 34);
+        public static Rectangle EMPTY_HEART = new Rectangle(626, 116, 8, 8);
+        public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
+        public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
+
+        // Projectiles
         public Sprite getBoomerangSprite()
         {
-            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3, BOOMERANG_4, BOOMERANG_5, BOOMERANG_6, BOOMERANG_7, BOOMERANG_8);
+            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);    // , BOOMERANG_4, BOOMERANG_5, BOOMERANG_6, BOOMERANG_7, BOOMERANG_8
         }
         public Sprite getArrowSpriteRight()
         {
@@ -262,17 +286,17 @@ namespace Sprint2
 
         }
 
-        // Enemy Attacks
         public Sprite getNullProjectile()
         {
             return new Sprite(enemySheet2);
         }
-        /*public Sprite getFireballSprite()
+        public Sprite getFireballSprite()
         {
-            return new Sprite();
-        }*/
+            return new Sprite(enemySheet, DRAGON_SHEET1_FIREBALL1, DRAGON_SHEET1_FIREBALL2, DRAGON_SHEET1_FIREBALL2, DRAGON_SHEET1_FIREBALL2);
+        }
 
         // Link
+
         public Sprite getLinkStandingFacingDownSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
@@ -343,6 +367,7 @@ namespace Sprint2
         }
 
         // Tiles
+
         public Sprite getFlatBlockSprite()
         {
             return new Sprite(tileSheet, TILE_FLATBLOCK);
@@ -408,6 +433,7 @@ namespace Sprint2
         }
 
         // Enemies
+
         public Sprite getBluebatSprite()
         {
             return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);
@@ -479,15 +505,26 @@ namespace Sprint2
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
 
-        
+        // Heart
 
-
-        public Sprite getGoriyaBoomerang()
+        public Rectangle getEmptyHeartRect()
         {
-            return new Sprite(enemySheet2, GORIYA_SHEET2_WEAPON4, GORIYA_SHEET2_WEAPON5, GORIYA_SHEET2_WEAPON6);
+            return EMPTY_HEART;
         }
 
+        public Rectangle getHalfHeartRect()
+        {
+            return HALF_HEART;
+        }
+
+        public Rectangle getFullHeartRect()
+        {
+            return FULL_HEART;
+        }
+
+
         // Rooms
+
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);
@@ -501,6 +538,11 @@ namespace Sprint2
         public Sprite getWallSprite(Rectangle rect)
         {
             return new Sprite(transparentSheet, rect);
+        }
+
+        public Sprite getHUDSprite()
+        {
+            return new Sprite(hudSheet, HUD_SPRITE);
         }
     }
 }

@@ -33,12 +33,12 @@ namespace Sprint2
         {
             if(currItem.GetType().ToString().Equals(nullItem.ToString()))
             {
-            /*Debug.WriteLine("currItem = " + currItem.GetType().ToString());
-            Debug.WriteLine("null Item = " + nullItem.GetType().ToString());
-            Debug.WriteLine("Equals: " + currItem.GetType().Equals(nullItem));
-            Debug.WriteLine("Equals: " + currItem.GetType().ToString().Equals(nullItem.ToString()));*/
+                /*Debug.WriteLine("currItem = " + currItem.GetType().ToString());
+                Debug.WriteLine("null Item = " + nullItem.GetType().ToString());
+                Debug.WriteLine("Equals: " + currItem.GetType().Equals(nullItem));
+                Debug.WriteLine("Equals: " + currItem.GetType().ToString().Equals(nullItem.ToString()));*/
 
-            switch (itemString)
+                switch (itemString)
                 {
                     case "Boomerang":
                         currItem = new Boomerang(link, spriteFactory);
@@ -52,7 +52,6 @@ namespace Sprint2
                 }
                 isUsingItem = true;
             }
-            
         }
 
         public void SetNull()

@@ -62,21 +62,10 @@ namespace Sprint2
         public void TakeDamage()
         {
             goriya.health--;
-            //goriya.currState = new BluebatDamagedFacingDown(goriya);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             goriya.sprite.Draw(spriteBatch, goriya.pos);
-            /*Rectangle destinationRectangleFrame1 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame1.Width * goriya.spriteSizeMultiplier, frame1.Height * goriya.spriteSizeMultiplier);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame2.Width * goriya.spriteSizeMultiplier, frame2.Height * goriya.spriteSizeMultiplier);
-            if (currFrame == 0)
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
-            }*/
         }
 
         public void Update(GameTime gameTime)
