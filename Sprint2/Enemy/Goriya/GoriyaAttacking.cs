@@ -50,22 +50,18 @@ namespace Sprint2
 
         public void MoveUp()
         {
-            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveUp");
             goriya.currState = new GoriyaStandingFacingUp(goriya);
         }
         public void MoveDown()
         {
-            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveDown");
             goriya.currState = new GoriyaStandingFacingDown(goriya);
         }
         public void MoveRight()
         {
-            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveRight");
             goriya.currState = new GoriyaStandingFacingRight(goriya);
         }
         public void MoveLeft()
         {
-            System.Diagnostics.Debug.WriteLine("DEBUG: in MoveLeft");
             goriya.currState = new GoriyaStandingFacingLeft(goriya);
         }
         public void Attack()

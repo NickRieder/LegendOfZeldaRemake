@@ -30,12 +30,14 @@ namespace Sprint2
 
 			// Projectile fields setup
 			this.projectileType = projectileType;
-			this.pos = enemy.pos;
+			//this.pos = enemy.pos;
 			this.projectileDirection = enemy.direction;
+			
 
 			switch (projectileType)
 			{
 				case "Boomerang":
+					CenterProjectilePosition(spriteFactory.getBoomerangSprite());
 					sprite = spriteFactory.getBoomerangSprite();
 					break;
 				case "Fireball":
@@ -46,37 +48,50 @@ namespace Sprint2
 					break;
 			}
 
-			CenterProjectilePosition();
+			
 			
 		}
 
-		private void CenterProjectilePosition()
+		private void CenterProjectilePosition(Sprite projectileSprite)
         {
-			Vector2 centeredPos = enemy.pos;
+			Vector2 centeredPos = enemyPos;
 			Rectangle enemyRectangle = enemySprite.getDestinationRectangle();
-			Rectangle projectileRectangle = sprite.getDestinationRectangle();
-
+			Rectangle projectileRectangle = projectileSprite.getCurrentFrameRectangle();
+			int divisorVal = 2;
+			int eWidth = enemyRectangle.Width;
+			int halfEW = enemyRectangle.Width / divisorVal;
+			int pWidth = projectileRectangle.Width;
+			int halfPW = projectileRectangle.Width / divisorVal;
+			int eHeight = enemyRectangle.Height;
+			int halfEH = enemyRectangle.Height / divisorVal;
+			int pHeight = projectileRectangle.Height;
+			int halfPH = projectileRectangle.Height / divisorVal;
+			//System.Diagnostics.Debug.WriteLine("DEBUG: Values" +"\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " +centeredPos.Y +"\n enemy w = " +eWidth +"\n 1/2 enemy w = " +halfEW +"\n proj w = " +pWidth +"\n 1/2 proj w = " +halfPW + "\n enemy h = " + eHeight + "\n 1/2 enemy h = " + halfEH + "\n proj h = " + pHeight + "\n 1/2 proj h = " + halfPH);
+			float centerPosX = centeredPos.X + (float)(halfEW - halfPW);
+			float centerPosY = centeredPos.Y + (float)(halfEH - halfPH);
+			//System.Diagnostics.Debug.WriteLine("DEBUG: Result" +"\n centerPosX = " +centerPosX +"\n centerPosY = " +centerPosY);
 			switch (projectileDirection)
             {
                 case "Up":
-					centeredPos.X += enemyRectangle.Width / 2;
-					centeredPos.Y += projectileRectangle.Height;
+					centeredPos.X = centerPosX;
+					centeredPos.Y -= pHeight;
 					break;
                 case "Down":
-					centeredPos.X += enemyRectangle.Width / 2;
-					centeredPos.Y += enemyRectangle.Height;
+					centeredPos.X = centerPosX;
+					centeredPos.Y += eHeight;
 					break;
                 case "Left":
-					centeredPos.X += projectileRectangle.Width;
-					centeredPos.Y += enemyRectangle.Height / 2;
+					centeredPos.X -= pWidth;
+					centeredPos.Y = centerPosY;
 					break;
                 case "Right":
-					centeredPos.X += enemyRectangle.Width;
-					centeredPos.Y += enemyRectangle.Height / 2;
+					centeredPos.X += eWidth;
+					centeredPos.Y = centerPosY;
 					break;
                 default:
                     break;
             }
+			System.Diagnostics.Debug.WriteLine("DEBUG: Return" + "\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " + centeredPos.Y);
 			this.pos = centeredPos;
 		}
 

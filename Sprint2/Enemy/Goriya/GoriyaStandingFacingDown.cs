@@ -20,8 +20,6 @@ namespace Sprint2
 
         public GoriyaStandingFacingDown(Enemies goriya)
         {
-            System.Diagnostics.Debug.WriteLine("DEBUG: In FacingDownState");
-
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
             waitTime = 0.25;
@@ -40,6 +38,8 @@ namespace Sprint2
             Vector2 currPos = goriya.pos;
             currPos.Y++;
             goriya.pos = currPos;
+
+
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)
