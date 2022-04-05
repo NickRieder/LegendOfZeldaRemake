@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,11 +11,19 @@ namespace Sprint2
     public class GameObjectManager
     {
         public SpriteFactory spriteFactory { get; set; }    // Example of a property
+
+        public ConcurrentBag<ISprite> allObjectList { get; set; }
+        public ConcurrentBag<ISprite> movableObjectList { get; set; }
+        public ConcurrentBag<ISprite> updatableSpritesList;
+        public ConcurrentBag<ISprite> drawableSpritesList;
+        public ConcurrentBag<ISprite> allObjectListInserts;
+        public ConcurrentBag<ISprite> movableObjectListInserts;
+        public ConcurrentBag<ISprite> updatableSpritesListInserts;
+        public ConcurrentBag<ISprite> drawableSpritesListInserts;
+
         public SoundFactory soundFactory { get; set; }
-        public ArrayList allObjectList { get; set; }
-        public ArrayList movableObjectList { get; set; }
-        public ArrayList updatableSpritesList;
-        public ArrayList drawableSpritesList;
+        
+
         public GameTime gameTime;
         public Link link;
         public Item item;
@@ -28,10 +37,13 @@ namespace Sprint2
 
         public GameObjectManager()
         {
-            allObjectList = new ArrayList();
-            updatableSpritesList = new ArrayList();
-            drawableSpritesList = new ArrayList();
-            movableObjectList = new ArrayList();
+            // Use ConcurrentBag to allow modifying of a collection while it is being iterated over.
+            allObjectList = new ConcurrentBag<ISprite>();
+            movableObjectList = new ConcurrentBag<ISprite>();
+            drawableSpritesList = new ConcurrentBag<ISprite>();
+            updatableSpritesList = new ConcurrentBag<ISprite>();
+
+            // Initialize Controllers
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
@@ -39,8 +51,12 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
 
+
+            //this.AddToDrawableObjectList(background);
+
             this.AddToDrawableObjectList(background);
             this.AddToDrawableObjectList(link);
+
 
 
             
@@ -55,6 +71,8 @@ namespace Sprint2
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
         {
+            this.spriteFactory = spriteFactory;
+            background.SetSpriteContent(spriteFactory);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSpriteContent(spriteFactory);
@@ -67,16 +85,17 @@ namespace Sprint2
             background.SetRoomName(roomName);
         }
 
-        public ArrayList getListOfAllObjects()
+        public ConcurrentBag<ISprite> getListOfAllObjects()
         {
             return allObjectList;
         }
 
-        public ArrayList getListOfMovableObjects()
+        public ConcurrentBag<ISprite> getListOfMovableObjects()
         {
             return movableObjectList;
         }
 
+        // Add To Collection
         public void AddToAllObjectList(ISprite spriteObject)
         {
             allObjectList.Add(spriteObject);
@@ -95,18 +114,89 @@ namespace Sprint2
         {
             updatableSpritesList.Add(spriteObject);
         }
+
+        // Remove From Collections
+        public void RemoveFromEveryCollection(ISprite incoming)
+        {
+            RemoveFromAllObjectList(incoming);
+            RemoveFromMovableObjectList(incoming);
+            RemoveFromDrawableObjectList(incoming);
+            RemoveFromUpdatableObjectList(incoming);
+        }
+        public void RemoveFromAllObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = allObjectList;
+            while (bagCopy.TryTake(out removed))    // TryTake returns a bool and sets 'removed' to the object that was taken out of the bag.
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            allObjectList = tempBag;
+        }
+        public void RemoveFromMovableObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = movableObjectList;
+            while (bagCopy.TryTake(out removed))
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            movableObjectList = tempBag;
+        }
+        public void RemoveFromDrawableObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = drawableSpritesList;
+            while (bagCopy.TryTake(out removed))
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            drawableSpritesList = tempBag;
+        }
+        public void RemoveFromUpdatableObjectList(ISprite incoming)
+        {
+            ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
+            ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
+            ISprite removed;
+            bagCopy = updatableSpritesList;
+            while (bagCopy.TryTake(out removed))
+            {
+                if (!(removed.Equals(incoming)))
+                {
+                    tempBag.Add(removed);
+                }
+            }
+            updatableSpritesList = tempBag;
+        }
+
         public void ClearSpriteList()
         {
             allObjectList.Clear();
             movableObjectList.Clear();
             updatableSpritesList.Clear();
             drawableSpritesList.Clear();
-            drawableSpritesList.Add(background);
-            updatableSpritesList.Add(background);
+            //drawableSpritesList.Add(background);
+            //updatableSpritesList.Add(background);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            background.Draw(spriteBatch);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
@@ -115,6 +205,7 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
+            background.Update(gametime);
             foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);

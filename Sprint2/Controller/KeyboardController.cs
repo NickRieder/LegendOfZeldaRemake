@@ -53,6 +53,11 @@ namespace Sprint2
             RegisterCommandTap(Keys.Y, new SetNextBlock(block));
             RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
 
+
+            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
+            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
+            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
+
             //RegisterCommandTap(Keys.P, new SetNextEnemy(enemiesList));
            // RegisterCommandTap(Keys.O, new SetPreviousEnemy(enemiesList));
 

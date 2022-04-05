@@ -22,8 +22,12 @@ namespace Sprint2
         private GameObjectManager gom;
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
+
+        private HUD hud;
+
         private SoundEffect themeSong;
         private SoundEffectInstance themeSongLoop;
+
 
 
         public Game1()
@@ -36,6 +40,13 @@ namespace Sprint2
 
         protected override void Initialize()
         {
+
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 700;
+            graphics.ApplyChanges();
+
+            // TODO: Add your initialization logic here
+
             spriteFactory = new SpriteFactory(this.Content);
             soundFactory = new SoundFactory(this.Content);
 
@@ -50,6 +61,8 @@ namespace Sprint2
             controllerList.Add(gom.mouseController);
 
             collisionDetector = new CollisionDetector(gom);
+            
+
             
 
 
@@ -71,7 +84,12 @@ namespace Sprint2
             gom.soundFactory = soundFactory;
 
             gom.SetSpriteContent(spriteFactory);
+
+            hud = new HUD(gom, spriteFactory);
+
+
             gom.SetSoundContent(soundFactory);
+
 
             levelLoader.LoadLevel("TestLevel", "Top");
 
@@ -89,6 +107,7 @@ namespace Sprint2
 
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
+            hud.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -96,10 +115,11 @@ namespace Sprint2
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
             gom.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
 
             spriteBatch.End();
          

@@ -66,10 +66,10 @@ namespace Sprint2
         {
             snake.currState = new SnakeLeft(snake);
         }
-      /*  public void Attack()
+        public void Attack()
         {
 
-        }*/
+        }
 
         public void TakeDamage()
         {

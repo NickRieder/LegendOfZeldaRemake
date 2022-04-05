@@ -14,7 +14,7 @@ namespace Sprint2
 		public SoundFactory soundFactory;
 		
 		public Sprite sprite;
-		public int health;
+		public int health, maxHealth, rupies, keys, bombs;
 		public LinkItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
@@ -24,7 +24,10 @@ namespace Sprint2
 		public SoundEffect lowHealthSound;
 		public Link()
 		{
-			health = 3;
+			//item = new NullItem();
+			health= 8;
+			maxHealth = 10;
+			rupies = keys = bombs = 0;
 			pos = new Vector2(40, 40);
 			
 		}
@@ -52,14 +55,13 @@ namespace Sprint2
 			this.pos = pos;
         }
 		public string GetDirection()
-        {
+		{
 			return direction;
-        }
+		}
 		public void SetItem(string newItem)
-        {
+		{
 			item.SetItem(newItem);
-        }
-
+		}
 		public Rectangle GetSpriteRectangle()
         {
 			return sprite.getDestinationRectangle();
@@ -90,7 +92,7 @@ namespace Sprint2
 			currState.UseWeapon();
         }
 		public void UseItem()
-        {
+		{
 			currState = new UsingItem(this);
 			item.Use();
 		}

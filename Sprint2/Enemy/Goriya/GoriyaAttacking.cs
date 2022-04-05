@@ -3,43 +3,64 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections;
 using System.Diagnostics;
 
 namespace Sprint2
 {
-    public class GoriyaStandingFacingUp : IEnemyState
+    class GoriyaAttacking : IEnemyState
     {
+
         private Enemies goriya;
+
+        private int currFrame;
+        private int totalFrames;
+        private int currWeaponFrame;
+        private int totalWeaponFrames;
+        private int counter;
+        private int weaponCounter;
+        private bool weaponReturning;
         private double totalSecondsPassed;
         private double waitTime;
         private TimeSpan elapsedTime;
         private double secondsPassed;
+
         Random randomNumberGenerator;
         private int randomNum;
         private int chosenDirectionValue;
 
-        public GoriyaStandingFacingUp(Enemies goriya)
+        private Vector2 weaponPos;
+        private ArrayList weaponFrameArray;
+
+        private GameObjectManager gom;
+
+        public GoriyaAttacking(Enemies goriya)
         {
             randomNumberGenerator = new Random();
+            weaponFrameArray = new ArrayList();
             totalSecondsPassed = 0;
             waitTime = 0.25;
 
             this.goriya = goriya;
-            goriya.sprite = goriya.spriteFactory.getGoriyaUpSprite();
-            goriya.direction = "Up";
+            this.gom = goriya.gom;
+
+            CreateBoomerang();
+
+            goriya.freeze = true;
+            weaponReturning = false;
+        }
+
+        private void CreateBoomerang()
+        {
+            GoriyaBoomerang boomerang = new GoriyaBoomerang(goriya, "Boomerang");
+            //gom.AddToAllObjectList(boomerang);
+            gom.AddToMovableObjectList(boomerang);
+            gom.AddToDrawableObjectList(boomerang);
         }
 
         public void MoveUp()
         {
-            Vector2 currPos = goriya.pos;
-            currPos.Y--;
-            goriya.pos = currPos;
-
-            /*   if (counter % 5 == 0)
-                   currFrame++;
-               if (currFrame == totalFrames)
-                   currFrame = 0;
-               counter++;*/
+            goriya.currState = new GoriyaStandingFacingUp(goriya);
         }
         public void MoveDown()
         {
@@ -53,32 +74,12 @@ namespace Sprint2
         {
             goriya.currState = new GoriyaStandingFacingLeft(goriya);
         }
-        
         public void Attack()
         {
-            goriya.currState = new GoriyaAttacking(goriya);
-        }
-
-        public void TakeDamage()
-        {
-            goriya.health--;
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            goriya.sprite.Draw(spriteBatch, goriya.pos);
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            elapsedTime = gameTime.ElapsedGameTime;
-            secondsPassed = elapsedTime.TotalSeconds;
-            totalSecondsPassed = totalSecondsPassed + secondsPassed;
-
-            if (totalSecondsPassed > waitTime)
+            if (!goriya.freeze)
             {
-
                 randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                chosenDirectionValue = randomNum % 5;
+                chosenDirectionValue = randomNum % 4;
 
                 if (chosenDirectionValue == 0)
                     MoveDown();
@@ -88,18 +89,24 @@ namespace Sprint2
                     MoveLeft();
                 else if (chosenDirectionValue == 3)
                     MoveRight();
-                else if (chosenDirectionValue == 4)
-                    Attack();
-
-                totalSecondsPassed = 0;
             }
-            else
-            {
-                MoveUp();
-            }
-            goriya.sprite.Update(gameTime);
+            
         }
 
+        public void TakeDamage()
+        {
 
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            goriya.sprite.Draw(spriteBatch, goriya.pos);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            Attack();
+            goriya.sprite.Update(gameTime);
+        }
     }
 }

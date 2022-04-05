@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint2.Collison;
 using System.Collections;
+using System.Collections.Concurrent;
 
 namespace Sprint2
 {
@@ -18,16 +19,16 @@ namespace Sprint2
         }
 
         private GameObjectManager gom;
-        private ArrayList allObjectList;
-        private ArrayList movableObjectList;
+        private ConcurrentBag<ISprite> allObjectList;
+        private ConcurrentBag<ISprite> movableObjectList;
         private CollisionHandler collisionHandler;
         private CollisionHandlerEnemy collisionHandlerEnemy;
 
         public CollisionDetector(GameObjectManager gom)
         {
             this.gom = gom;
-            allObjectList = gom.getListOfAllObjects();
-            movableObjectList = gom.getListOfMovableObjects();
+            /*allObjectList = gom.allObjectList;
+            movableObjectList = gom.movableObjectList;*/
 
             collisionHandler = new CollisionHandler(gom);
             collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
@@ -70,15 +71,16 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach (ISprite movableSprite in movableObjectList)
+            foreach (ISprite movableSprite in gom.movableObjectList)
             {
-                foreach (ISprite otherSprite in allObjectList)
+                foreach (ISprite otherSprite in gom.allObjectList)
                 {
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
+                            //System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
                             // collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
 
@@ -86,9 +88,10 @@ namespace Sprint2
                             // collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
                     }
+                    
                 }
-            }
 
+            }
         }
 
     }
