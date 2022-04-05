@@ -14,6 +14,7 @@ namespace Sprint2
         private int arrIndex;
         public Vector2 pos { get; set; }
         public SpriteFactory spriteFactory;
+        public SoundFactory soundFactory;
         public GameObjectManager gom;
 
         public Enemies bluebat;
@@ -69,15 +70,12 @@ namespace Sprint2
                 enemy.SetSpriteContent(spriteFactory);
             }
 
-            /*bluebat.setEnemyType(new BluebatDown(this));
-            bluegel.setEnemyType(new BluegelDown(this));
-            darknut.setEnemyType(new DarknutStandingFacingDown(this));
-            dragon.setEnemyType(new DragonStandingFacingDown(this));
-            goriya.setEnemyType(new GoriyaStandingFacingDown(this));
-            snake.setEnemyType(new SnakeDown(this));
-            wizzrobe.setEnemyType(new WizzrobeDown(this));*/
-
         }
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+         }
+
+       
 
         public void NextEnemy()
         {

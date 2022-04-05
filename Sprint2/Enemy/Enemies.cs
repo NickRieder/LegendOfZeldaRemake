@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,11 +10,13 @@ namespace Sprint2
 		public IEnemyState currState;
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory { get; set; }
+		public SoundFactory soundFactory;
 		public int health;
 		public int spriteSizeMultiplier;
-
 		public Sprite sprite;
 		public string enemyName;
+		public SoundEffect enemyHurtSound;
+		public SoundEffect enemyDeadSound;
 
 		public Enemies(string enemyName)
 		{
@@ -57,6 +60,13 @@ namespace Sprint2
 					break;
 			}
 		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+			this.soundFactory = soundFactory;
+			enemyDeadSound = soundFactory.getEnemyDead();
+			enemyHurtSound = soundFactory.getEnemyHit();
+
+		}
 
 		public Rectangle GetSpriteRectangle()
 		{
@@ -92,6 +102,14 @@ namespace Sprint2
 		public void TakeDamage()
 		{
 			currState.TakeDamage();
+			if(health == 0)
+            {
+				enemyDeadSound.Play();
+            }
+            else
+            {
+				enemyHurtSound.Play();
+            }
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

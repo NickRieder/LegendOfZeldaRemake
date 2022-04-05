@@ -47,5 +47,10 @@ namespace Sprint2
         {
             return this;
         }
+
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+            
+        }
     }
 }
