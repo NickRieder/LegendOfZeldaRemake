@@ -22,8 +22,6 @@ namespace Sprint2
 		public ArrayList projectileList;
 		public bool freeze { get; set; }
 
-		public Sprite sprite;
-		public string enemyName;
 		public SoundEffect enemyHurtSound;
 		public SoundEffect enemyDeadSound;
 

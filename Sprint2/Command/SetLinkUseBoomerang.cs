@@ -9,10 +9,9 @@ namespace Sprint2
     {
         private Link link;
         private SoundEffect boomerangSound;
-        public SetLinkUseBoomerang(Link link, SoundFactory soundFactory)
+        public SetLinkUseBoomerang(Link link)
         {
             this.link = link;
-            boomerangSound = soundFactory.getArrowOrBoomerang();
         }
 
 

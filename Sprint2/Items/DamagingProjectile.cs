@@ -102,6 +102,10 @@ namespace Sprint2
 		{
 
 		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+			
+		}
 
 		public Rectangle GetSpriteRectangle()
 		{
@@ -132,5 +136,7 @@ namespace Sprint2
         {
 			return this;
         }
+
+       
     }
 }
