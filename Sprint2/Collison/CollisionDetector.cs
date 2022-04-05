@@ -92,10 +92,6 @@ namespace Sprint2
                 }
 
             }
-            /*if (gom.allObjectListInserts != null)
-                gom.allObjectList.AddRange(gom.allObjectListInserts);
-            if (gom.movableObjectListInserts != null)
-                gom.movableObjectList.AddRange(gom.movableObjectListInserts);*/
         }
 
     }

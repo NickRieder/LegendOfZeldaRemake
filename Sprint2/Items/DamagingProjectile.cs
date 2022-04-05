@@ -58,7 +58,7 @@ namespace Sprint2
 		private void CenterProjectilePosition(Sprite projectileSprite)
         {
 			Vector2 centeredPos = enemyPos;
-			Rectangle enemyRectangle = enemy.GetSpriteRectangle(); // enemySprite.getDestinationRectangle()
+			Rectangle enemyRectangle = enemy.GetSpriteRectangle();
 			Rectangle projectileRectangle = projectileSprite.getCurrentFrameRectangle();
 			int divisorVal = 2;
 			int eWidth = enemyRectangle.Width;
