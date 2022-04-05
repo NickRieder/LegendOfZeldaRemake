@@ -43,13 +43,6 @@ namespace Sprint2
             currPos.X++;
             goriya.pos = currPos;
 
-            /*if (!goriya.freeze)
-            {
-                
-            }*/
-            
-
-
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)
@@ -92,7 +85,7 @@ namespace Sprint2
             secondsPassed = elapsedTime.TotalSeconds;
             totalSecondsPassed = totalSecondsPassed + secondsPassed;
 
-            if (totalSecondsPassed > waitTime)  // && !(goriya.freeze)
+            if (totalSecondsPassed > waitTime)
             {
 
                 randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
