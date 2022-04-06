@@ -76,6 +76,8 @@ namespace Sprint2
             {
                 foreach (ISprite otherSprite in allObjectList)
                 {
+                    if (movableSprite == otherSprite) { continue; }
+
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
@@ -83,7 +85,7 @@ namespace Sprint2
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
-                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
+                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (COLLISION_SIDE)collisionSide);
                         }
                     }
                 }

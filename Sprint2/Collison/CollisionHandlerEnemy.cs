@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.Xna.Framework;
 using static Sprint2.CollisionDetector;
 
 namespace Sprint2.Collison
@@ -66,7 +67,7 @@ namespace Sprint2.Collison
             return (ICommand)commandConstructor.Invoke(new object[] { subject, target, side });
         }
 
-        public void HandleCollision(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE side)
+        public void HandleCollision(ISprite subject, ISprite target, COLLISION_SIDE side)
         {
             Type subjectType = subject.GetType();
             Type targetType = target.GetType();
@@ -81,17 +82,18 @@ namespace Sprint2.Collison
 
                 if (commandClass != null) { commandClass.Execute(); }
 
+            /*
                 if (subjectType == playerType)
                 {
                     link.TakeDamage();
                 }
 
-                /*
                 if (subjectType == doorType)
                 {
                     door.LoadNextLevel();
                 }
-                */
+            */
+
             }
         }
     }
