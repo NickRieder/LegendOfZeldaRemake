@@ -68,7 +68,6 @@ namespace Sprint2.Collison
             return (ICommand)commandConstructor.Invoke(new object[] { subject, target, side });
         }
 
-        /*
         public void HandleCollision(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE side)
         {
             Type subjectType = subject.GetType();
@@ -84,29 +83,19 @@ namespace Sprint2.Collison
                     link.TakeDamage();
                 }
 
-                if (subjectType == doorType)
-                {
-                    door.LoadNextLevel();
-                }
-            }
-        }
-        */
-
-        public void HandleCollision(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE side)
-        {
-            Type subjectType = subject.GetType();
-            Type targetType = target.GetType();
-            
-            Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> key = new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(subjectType, targetType, side);
-            if (keySet.Contains(key))
-            {
                 Type commandType = commandMap[key];
                 Console.WriteLine(commandType);
                 ICommand commandClass = parseConstructor(subject, target, side, commandType);
 
                 if (commandClass != null) { commandClass.Execute(); }
+
+                /*
+                if (subjectType == doorType)
+                {
+                    door.LoadNextLevel();
+                }
+                */
             }
         }
-
     }
 }
