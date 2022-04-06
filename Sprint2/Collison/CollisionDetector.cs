@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint2.Collison;
+using System;
 using System.Collections;
 
 namespace Sprint2
@@ -22,6 +23,7 @@ namespace Sprint2
         private ArrayList movableObjectList;
         private CollisionHandler collisionHandler;
         private CollisionHandlerEnemy collisionHandlerEnemy;
+
 
         public CollisionDetector(GameObjectManager gom)
         {
@@ -77,17 +79,15 @@ namespace Sprint2
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
+
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
-                            collisionHandler.Collide(movableSprite, otherSprite, collisionSide); // goes through a for each loop twide
+                            collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
                             collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
                     }
                 }
             }
-
         }
-
     }
-    
 }

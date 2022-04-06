@@ -38,10 +38,8 @@ namespace Sprint2.Collison
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 //System.Diagnostics.Debug.WriteLine($" {side}");
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Enemies), playerType, side), typeof(SetTakeDamage));
                 commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Enemies), side), typeof(SetTakeDamage));
 
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Door), playerType, side), typeof(SetNextRoom));
                 commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Door), side), typeof(SetNextRoom));
 
             }
@@ -77,17 +75,16 @@ namespace Sprint2.Collison
 
             if (keySet.Contains(key))
             {
-                //System.Diagnostics.Debug.WriteLine($" {key}");
-                if (subjectType == playerType)
-                {
-                    link.TakeDamage();
-                }
-
                 Type commandType = commandMap[key];
                 Console.WriteLine(commandType);
                 ICommand commandClass = parseConstructor(subject, target, side, commandType);
 
                 if (commandClass != null) { commandClass.Execute(); }
+
+                if (subjectType == playerType)
+                {
+                    link.TakeDamage();
+                }
 
                 /*
                 if (subjectType == doorType)
