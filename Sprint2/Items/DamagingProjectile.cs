@@ -136,6 +136,14 @@ namespace Sprint2
             sprite.Update(gameTime);
 		}
 
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+			throw new NotImplementedException();
+		}
+
+
+
+
 		public DamagingProjectile GetConcreteObject()
 		{
 			return this;
@@ -145,5 +153,7 @@ namespace Sprint2
         {
 			return this;
         }
+
+        
     }
 }

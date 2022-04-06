@@ -43,5 +43,9 @@ namespace Sprint2
 
         }
 
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

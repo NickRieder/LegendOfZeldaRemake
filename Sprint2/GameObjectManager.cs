@@ -11,6 +11,7 @@ namespace Sprint2
     public class GameObjectManager
     {
         public SpriteFactory spriteFactory { get; set; }    // Example of a property
+
         public ConcurrentBag<ISprite> allObjectList { get; set; }
         public ConcurrentBag<ISprite> movableObjectList { get; set; }
         public ConcurrentBag<ISprite> updatableSpritesList;
@@ -19,6 +20,10 @@ namespace Sprint2
         public ConcurrentBag<ISprite> movableObjectListInserts;
         public ConcurrentBag<ISprite> updatableSpritesListInserts;
         public ConcurrentBag<ISprite> drawableSpritesListInserts;
+
+        public SoundFactory soundFactory { get; set; }
+        
+
         public GameTime gameTime;
         public Link link;
         public Item item;
@@ -46,9 +51,22 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
 
+
             //this.AddToDrawableObjectList(background);
 
+            this.AddToDrawableObjectList(background);
+            this.AddToDrawableObjectList(link);
+
+
+
             
+        }
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+            foreach (ISprite sprite in drawableSpritesList)
+            {
+                sprite.SetSoundContent(soundFactory);
+            }
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
