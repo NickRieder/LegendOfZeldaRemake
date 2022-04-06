@@ -47,19 +47,19 @@ namespace Sprint2
 				switch (link.direction)
 				{
 					case "down":
-						currPos.Y -= 3;
+						currPos.Y -= 2;
 						link.pos = currPos;
 						break;
 					case "left":
-						currPos.X += 3;
+						currPos.X += 2;
 						link.pos = currPos;
 						break;
 					case "right":
-						currPos.X -= 3;
+						currPos.X -= 2;
 						link.pos = currPos;
 						break;
 					default: // facing up
-						currPos.Y += 3;
+						currPos.Y += 2;
 						link.pos = currPos;
 						break;
 				}
