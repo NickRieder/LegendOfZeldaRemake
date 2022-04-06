@@ -65,7 +65,6 @@ namespace Sprint2
                     return (int)COLLISION_SIDE.NONE;
                 }
             }
-            
             return collisionSide;
         }
 

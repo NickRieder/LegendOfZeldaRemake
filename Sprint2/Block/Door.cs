@@ -79,6 +79,11 @@ namespace Sprint2
             }
         }
 
+        public static explicit operator Door(Type v)
+        {
+            throw new NotImplementedException();
+        }
+
         public Rectangle GetSpriteRectangle()
         {
             return sprite.getDestinationRectangle();

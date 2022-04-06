@@ -20,6 +20,8 @@ namespace Sprint2
         public Block block;
         //public Door door;
         public EnemiesList enemiesList;
+        private List<Door> doorList;
+        private Type objectType;
 
         private Background background;
         public KeyboardController keyboardController;
@@ -38,9 +40,7 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
 
-            this.AddToDrawableObjectList(background);
-
-            
+            this.AddToDrawableObjectList(background); 
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -49,7 +49,6 @@ namespace Sprint2
             {
                 sprite.SetSpriteContent(spriteFactory);
             }
-
         }
 
         public void SetBackgroundRoom(string roomName)
@@ -73,8 +72,7 @@ namespace Sprint2
         }
         public void AddToMovableObjectList(ISprite spriteObject)
         {
-            movableObjectList.Add(spriteObject);
-            
+            movableObjectList.Add(spriteObject);  
         }
         public void AddToDrawableObjectList(ISprite spriteObject)
         {

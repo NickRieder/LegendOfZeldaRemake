@@ -18,6 +18,8 @@ namespace Sprint2.Collison
         Type doorType;
         private Door door;
 
+
+
         public CollisionHandlerEnemy(GameObjectManager gom)
         {
             this.link = gom.link;
@@ -29,60 +31,28 @@ namespace Sprint2.Collison
         private void BuildDictionary()
         {
             playerType = typeof(Link);
-            doorType = typeof(Door);
-               
-            //Enemy Types
-            Type enemyType = typeof(Enemies);
-
-            //Type[] enemyTypes = { bluebatType };
+            Type enemyType = typeof(Enemies); // type is Sprint2.Enemies
 
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 //System.Diagnostics.Debug.WriteLine($" {side}");
                 commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Enemies), side), typeof(SetTakeDamage));
-
                 commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Door), side), typeof(SetNextRoom));
-
             }
-        }
-
-        public ICommand parseConstructor(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE side, Type commandType)
-        {
-            Type targetType = target.GetType();
-            Type subjectType = subject.GetType();
-
-            // Search for a valid constructor for this commandType.
-            List<Type[]> signatures = new List<Type[]> {
-                new Type[] { subjectType, targetType, typeof(CollisionDetector.COLLISION_SIDE) },
-            };
-
-            ConstructorInfo commandConstructor = null;
-            foreach (Type[] signature in signatures)
-            {
-                commandConstructor = commandType.GetConstructor(signature);
-                if (commandConstructor != null) { break; }
-            }
-            if (commandConstructor == null) { return null; }
-
-            return (ICommand)commandConstructor.Invoke(new object[] { subject, target, side });
         }
 
         public void HandleCollision(ISprite subject, ISprite target, COLLISION_SIDE side)
         {
             Type subjectType = subject.GetType();
             Type targetType = target.GetType();
+            Type doorType = typeof(Door); // type is Sprint2.Door
 
             Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> key = new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(subjectType, targetType, side);
 
             if (keySet.Contains(key))
             {
-                Type commandType = commandMap[key];
-                Console.WriteLine(commandType);
-                ICommand commandClass = parseConstructor(subject, target, side, commandType);
+                //System.Diagnostics.Debug.WriteLine($" {key}");
 
-                if (commandClass != null) { commandClass.Execute(); }
-
-            /*
                 if (subjectType == playerType)
                 {
                     link.TakeDamage();
@@ -90,10 +60,9 @@ namespace Sprint2.Collison
 
                 if (subjectType == doorType)
                 {
-                    door.LoadNextLevel();
+                    //(Door)door.LoadNextLevel;
                 }
-            */
-
+                // try to figure out concrete type of the door so that we can do subjectType==doorType
             }
         }
     }
