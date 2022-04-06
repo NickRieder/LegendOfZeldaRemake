@@ -21,6 +21,9 @@ namespace Sprint2
         private CollisionDetector collisionDetector;
         private HUD hud;
 
+        // For the Camera class
+        public static int ScreenHeight;
+        public static int ScreenWidth;
 
         public Game1()
         {
@@ -35,6 +38,15 @@ namespace Sprint2
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 700;
             graphics.ApplyChanges();
+
+            // For the Camera class
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+
+            System.Diagnostics.Debug.WriteLine(
+                "DEBUG: Window Size"
+                + "\n ScreenWidth = " + ScreenWidth
+                + "\n ScreenHeight = " + ScreenHeight);
 
             // TODO: Add your initialization logic here
             spriteFactory = new SpriteFactory(this.Content);

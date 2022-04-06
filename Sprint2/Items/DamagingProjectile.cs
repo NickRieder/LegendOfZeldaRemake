@@ -35,7 +35,6 @@ namespace Sprint2
 			//this.pos = enemy.pos;
 			this.projectileDirection = enemy.direction;
 			
-
 			switch (projectileType)
 			{
 				case "Boomerang":
@@ -50,9 +49,6 @@ namespace Sprint2
 					sprite = spriteFactory.getNullProjectile();
 					break;
 			}
-
-			
-			
 		}
 
 		private void CenterProjectilePosition(Sprite projectileSprite)
@@ -69,10 +65,24 @@ namespace Sprint2
 			int halfEH = enemyRectangle.Height / divisorVal;
 			int pHeight = projectileRectangle.Height;
 			int halfPH = projectileRectangle.Height / divisorVal;
-			//System.Diagnostics.Debug.WriteLine("DEBUG: Values" +"\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " +centeredPos.Y +"\n enemy w = " +eWidth +"\n 1/2 enemy w = " +halfEW +"\n proj w = " +pWidth +"\n 1/2 proj w = " +halfPW + "\n enemy h = " + eHeight + "\n 1/2 enemy h = " + halfEH + "\n proj h = " + pHeight + "\n 1/2 proj h = " + halfPH);
+			/*System.Diagnostics.Debug.WriteLine(
+				"DEBUG: Values" 
+				+"\n centeredPos.X = " +centeredPos.X 
+				+"\n centeredPos.Y = " +centeredPos.Y 
+				+"\n enemy w = " +eWidth 
+				+"\n 1/2 enemy w = " +halfEW 
+				+"\n proj w = " +pWidth 
+				+"\n 1/2 proj w = " +halfPW 
+				+"\n enemy h = " +eHeight 
+				+"\n 1/2 enemy h = " +halfEH 
+				+"\n proj h = " +pHeight 
+				+"\n 1/2 proj h = " +halfPH);*/
 			float centerPosX = centeredPos.X + (float)(halfEW - halfPW);
 			float centerPosY = centeredPos.Y + (float)(halfEH - halfPH);
-			//System.Diagnostics.Debug.WriteLine("DEBUG: Result" +"\n centerPosX = " +centerPosX +"\n centerPosY = " +centerPosY);
+			/*System.Diagnostics.Debug.WriteLine(
+				"DEBUG: Result" 
+				+"\n centerPosX = " +centerPosX 
+				+"\n centerPosY = " +centerPosY);*/
 			switch (projectileDirection)
             {
                 case "Up":
@@ -94,7 +104,10 @@ namespace Sprint2
                 default:
                     break;
             }
-			//System.Diagnostics.Debug.WriteLine("DEBUG: Return" + "\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " + centeredPos.Y);
+			/*System.Diagnostics.Debug.WriteLine(
+				"DEBUG: Return" 
+				+"\n centeredPos.X = " +centeredPos.X 
+				+"\n centeredPos.Y = " +centeredPos.Y);*/
 			this.pos = centeredPos;
 		}
 
