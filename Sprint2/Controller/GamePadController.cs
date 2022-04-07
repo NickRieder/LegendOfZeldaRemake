@@ -13,9 +13,6 @@ namespace Sprint2.Controller
         private Dictionary<Buttons, ICommand> controllerMappingsTap;
         private Dictionary<Buttons, ICommand> controllerMappingsRelease;
 
-        private Dictionary<Buttons, ICommand> commandDict = new Dictionary<Buttons, ICommand>();
-        private Dictionary<Buttons, ICommand> releasedCommandDict = new Dictionary<Buttons, ICommand>();
-
         private Buttons[] pressedButtons = new Buttons[0];
 
         public GamePadController()
@@ -142,7 +139,6 @@ namespace Sprint2.Controller
                     }
                 }
             }
-
             pressedButtons = pressedKeys;
         }
 
