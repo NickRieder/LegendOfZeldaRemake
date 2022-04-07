@@ -18,6 +18,11 @@ namespace Sprint2
 
         }
 
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+
+        }
+
         public Rectangle GetSpriteRectangle()
         {
             return new Rectangle(0, 0, 0, 0);
@@ -43,9 +48,5 @@ namespace Sprint2
 
         }
 
-        public void SetSoundContent(SoundFactory soundFactory)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

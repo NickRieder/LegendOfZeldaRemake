@@ -61,9 +61,9 @@ namespace Sprint2
             RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
 =======
             RegisterCommandTap(Keys.D4, new SetLinkUseItem(gom.link));
-            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link, soundFactory));
-            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link, soundFactory));
-            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link, soundFactory));
+            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link));
+            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link));
+            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link));
             RegisterCommandTap(Keys.Z, new SetLinkAttacking(gom.link, soundFactory));
             RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link, soundFactory));
 

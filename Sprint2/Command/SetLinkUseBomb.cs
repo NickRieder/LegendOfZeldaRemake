@@ -9,11 +9,11 @@ namespace Sprint2
     class SetLinkUseBomb : ICommand
     {
         private Link link;
-        private SoundEffect bombSound;
-        public SetLinkUseBomb(Link link, SoundFactory soundFactory)
+        
+        public SetLinkUseBomb(Link link)
         {
             this.link = link;
-            bombSound = soundFactory.getBombBlow();
+           
         }
 
 

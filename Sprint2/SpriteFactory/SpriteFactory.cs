@@ -148,6 +148,10 @@ namespace Sprint2
         private static Rectangle BOSS_SHEET1_3 = new Rectangle(106, 154, 32, 32);
         private static Rectangle BOSS_SHEET1_4 = new Rectangle(139, 154, 32, 32);
         private static Rectangle BOSS_SHEET1_5 = new Rectangle(172, 154, 32, 32);
+        private static Rectangle HURT_BOSS = new Rectangle(206, 154, 32, 32);
+        private static Rectangle BOSS_MINION_1 = new Rectangle(18, 158, 8, 8);
+        private static Rectangle BOSS_MINION_2 = new Rectangle(27, 158, 8, 8);
+
 
         private static Rectangle BLUEBAT_SHEET2_POS1 = new Rectangle(183, 11, 16, 16);
         private static Rectangle BLUEBAT_SHEET2_POS2 = new Rectangle(200, 11, 16, 16);
@@ -388,6 +392,10 @@ namespace Sprint2
             return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
 
         }
+        public Sprite getBossMinion()
+        {
+            return new Sprite(enemySheet, BOSS_MINION_1, BOSS_MINION_2);
+        }
 
         public Sprite getNullProjectile()
         {
@@ -605,6 +613,17 @@ namespace Sprint2
         {
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
+
+        public Sprite getBossSprite()
+        {
+            return new Sprite(enemySheet, BOSS_SHEET1_1, BOSS_SHEET1_2, BOSS_SHEET1_3, BOSS_SHEET1_4, BOSS_SHEET1_5);
+        }
+
+        public Sprite getHurtBossSprite()
+        {
+            return new Sprite(enemySheet,HURT_BOSS);
+        }
+
 
         // Heart
 
