@@ -1,4 +1,5 @@
-﻿<Level>
+﻿<!--Key2 and exit-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
@@ -95,37 +96,37 @@
 	</Walls>
 	<Doors>
 		<door Type="TopOpen">
-			<room>L3R8</room>    <!-- Next Room-->
-			<room>L3R8</room>
+			<room>Level 3/L3R8</room>    <!-- Next Room-->
+			<room>Level 3/L3R8</room>
 			<!-- Previous Room-->
-			<clickNext>L4R1</clickNext>
+			<clickNext>Level 4/L4R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L3R8</room>
+			<room>Level 3/L3R8</room>
 			<!-- Previous Room-->
-			<clickNext>L4R1</clickNext>
+			<clickNext>Level 4/L4R1</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L3R8</room>
+			<room>Level 3/L3R8</room>
 			<!-- Previous Room-->
-			<clickNext>L4R1</clickNext>
+			<clickNext>Level 4/L4R1</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotWall"> <!--To Become Stairs-->
-			<room>L4R1</room>
+			<room>Level 4/L4R1</room>
 			<!-- Next Room-->
-			<room>L3R8</room>
+			<room>Level 3/L3R8</room>
 			<!-- Previous Room-->
-			<clickNext>L4R1</clickNext>
+			<clickNext>Level 4/L4R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>

@@ -63,6 +63,18 @@ namespace Sprint2
 
                             levelLoader.LoadEnemyObject(objType, pos);
                             break;
+                        case "item":
+                            reader.MoveToFirstAttribute();
+                            objType = reader.Value;
+
+                            reader.ReadToFollowing("XCoord");
+                            pos.X = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("YCoord");
+                            pos.Y = reader.ReadElementContentAsInt();
+
+                            levelLoader.LoadItemObject(objType, pos);
+                            break;
                         case "door":
                             reader.MoveToFirstAttribute();
                             objType = reader.Value;

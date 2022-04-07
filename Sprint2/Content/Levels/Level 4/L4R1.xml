@@ -1,4 +1,5 @@
-﻿<Level>
+﻿<!--Celebration room-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
@@ -95,37 +96,37 @@
 	</Walls>
 	<Doors>
 		<door Type="TopOpen">
-			<room>L3R9</room>    <!-- Next Room-->
-			<room>L3R9</room>
+			<room>Level 3/L3R9</room>    <!-- Next Room-->
+			<room>Level 3/L3R9</room>
 			<!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L3R9</room>
+			<room>Level 3/L3R9</room>
 			<!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L3R9</room>
+			<room>Level 3/L3R9</room>
 			<!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotDoor"> <!--To become stairs-->
-			<room>L0R1</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>L3R9</room>
+			<room>Level 3/L3R9</room>
 			<!-- Previous Room-->
-			<clickNext>L0R1</clickNext>
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>

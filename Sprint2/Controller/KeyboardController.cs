@@ -44,8 +44,7 @@ namespace Sprint2
 
         public void Initialize(Link link, Item item, Block block, Game1 game1)
         {
-            RegisterCommandTap(Keys.I, new SetNextItem(item));
-            RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+  
 
             RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
             RegisterCommandTap(Keys.N, new SetLinkAttacking(link));

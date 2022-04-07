@@ -118,9 +118,9 @@ namespace Sprint2
         public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
         public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
         public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
-        public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
+        public static Rectangle FULL_ROOM = new Rectangle(521, 11, 255, 177);
         public static Rectangle BRIDGE_ROOM = new Rectangle(586, 307, 255, 177);
-        public static Rectangle ITEM_ROOM = new Rectangle(976, 537, 255, 177);
+        public static Rectangle ITEM_ROOM = new Rectangle(975, 536, 255, 177);
         public static Rectangle ITEM_FLIPPED_ROOM = new Rectangle(951, 1013, 255, 177);
 
 
@@ -231,6 +231,7 @@ namespace Sprint2
         public static Rectangle BLUE_CANDLE = new Rectangle(160, 16, 8, 16);
         public static Rectangle ORANGE_RUBY = new Rectangle(71, 0, 9, 16);
         public static Rectangle BLUE_RUBY = new Rectangle(71, 16, 9, 16);
+        public static Rectangle KEY = new Rectangle(240, 0, 8, 16);
 
         //Link
         private static Rectangle LINK_MOVE_DOWN_1 = new Rectangle(1, 11, 16, 16);
@@ -522,6 +523,25 @@ namespace Sprint2
         public Sprite getBottomDoorLockedSprite()
         {
             return new Sprite(tileSheet, TILE_DOOR_BOTTOM_LOCKED);
+        }
+
+        //Items
+        public Sprite getSwordSprite()
+        {
+            return new Sprite(itemSheet, MAGIC_SWORD);
+        }
+
+        public Sprite getBoomerangPickUpSprite()
+        {
+            return new Sprite(itemSheet, BOOMERANG);
+        }
+        public Sprite getBombSprite()
+        {
+            return new Sprite(itemSheet, BOMB);
+        }
+        public Sprite getKeySprite()
+        {
+            return new Sprite(itemSheet, KEY);
         }
 
         // Enemies

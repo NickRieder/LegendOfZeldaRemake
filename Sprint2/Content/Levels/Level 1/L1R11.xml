@@ -1,4 +1,5 @@
-﻿<Level>
+﻿<!--Key and Triforce-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
@@ -96,36 +97,36 @@
 	<Doors>
 		<door Type="TopWall">
 			<room></room>    <!-- Next Room-->
-			<room>L1R10</room>
+			<room>Level 1/L1R10</room>
 			<!-- Previous Room-->
-			<clickNext>L1R12</clickNext>
+			<clickNext>Level 1/L1R12</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L1R10</room>
+			<room>Level 1/L1R10</room>
 			<!-- Previous Room-->
-			<clickNext>L1R12</clickNext>
+			<clickNext>Level 1/L1R12</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L1R10</room>
+			<room>Level 1/L1R10</room>
 			<!-- Previous Room-->
-			<clickNext>L1R12</clickNext>
+			<clickNext>Level 1/L1R12</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotOpen">
-			<room>L1R10</room>
+			<room>Level 1/L1R10</room>
 			<!-- Next Room-->
-			<room>L1R10</room>
+			<room>Level 1/L1R10</room>
 			<!-- Previous Room-->
-			<clickNext>L1R12</clickNext>
+			<clickNext>Level 1/L1R12</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>

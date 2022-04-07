@@ -1,4 +1,5 @@
-﻿<Level>
+﻿<!--Enemy-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
@@ -96,36 +97,36 @@
 	<Doors>
 		<door Type="TopWall">
 			<room></room>    <!-- Next Room-->
-			<room>L2R5</room>
+			<room>Level 2/L2R5</room>
 			<!-- Previous Room-->
-			<clickNext>L2R7</clickNext>
+			<clickNext>Level 2/L2R7</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftOpen">
-			<room>L2R5</room>
+			<room>Level 2/L2R5</room>
 			<!-- Next Room-->
-			<room>L2R5</room>
+			<room>Level 2/L2R5</room>
 			<!-- Previous Room-->
-			<clickNext>L2R7</clickNext>
+			<clickNext>Level 2/L2R7</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L2R5</room>
+			<room>Level 2/L2R5</room>
 			<!-- Previous Room-->
-			<clickNext>L2R7</clickNext>
+			<clickNext>Level 2/L2R7</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotOpen">
-			<room>L2R7</room>
+			<room>Level 2/L2R7</room>
 			<!-- Next Room-->
-			<room>L2R5</room>
+			<room>Level 2/L2R5</room>
 			<!-- Previous Room-->
-			<clickNext>L2R7</clickNext>
+			<clickNext>Level 2/L2R7</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>

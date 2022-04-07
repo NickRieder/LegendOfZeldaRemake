@@ -1,76 +1,37 @@
-﻿<Level>
+﻿<!--Pickup Bomb-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
 	
 	<Blocks>
-		<block Type ="Brick">
-			<XCoord>176</XCoord>
-			<YCoord>176</YCoord>
-		</block>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
+			<XCoord>239</XCoord>
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>208</XCoord>
-			<YCoord>192</YCoord>
+			<XCoord>239</XCoord>
+			<YCoord>239</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>224</XCoord>
-			<YCoord>192</YCoord>
+			<XCoord>286</XCoord>
+			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>240</XCoord>
-			<YCoord>192</YCoord>
+			<XCoord>333</XCoord>
+			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>256</XCoord>
-			<YCoord>192</YCoord>
+			<XCoord>382</XCoord>
+			<YCoord>286</YCoord>
 		</block>
 	</Blocks>
-
-	<Walls>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
-			<Width>300</Width>
-			<Height>20</Height>
-		</wall>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
-			<Width>300</Width>
-			<Height>5</Height>
-		</wall>
-		<wall>
-			<XCoord>25</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-		<wall>
-			<XCoord>680</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-	</Walls>
-	
-	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
-		<enemy Type="Dragon">
-			<XCoord>500</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-	</Enemies>
+	<Items>
+		<item Type="bomb">
+			<XCoord>343</XCoord>
+			<YCoord>229</YCoord>
+		</item>
+	</Items>
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
@@ -105,7 +66,7 @@
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
-		<door Type="LeftLock">
+		<door Type="LeftOpen">
 			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
 			<room>Level 0/L0R4</room>

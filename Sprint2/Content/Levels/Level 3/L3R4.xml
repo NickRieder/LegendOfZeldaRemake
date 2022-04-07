@@ -1,4 +1,5 @@
-﻿<Level>
+﻿<!--Key-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
@@ -96,36 +97,36 @@
 	<Doors>
 		<door Type="TopWall">
 			<room></room>    <!-- Next Room-->
-			<room>L3R3</room>
+			<room>Level 3/L3R3</room>
 			<!-- Previous Room-->
-			<clickNext>L3R5</clickNext>
+			<clickNext>Level 3/L3R5</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L3R3</room>
+			<room>Level 3/L3R3</room>
 			<!-- Previous Room-->
-			<clickNext>L3R5</clickNext>
+			<clickNext>Level 3/L3R5</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightWall">
 			<room></room>
 			<!-- Next Room-->
-			<room>L3R3</room>
+			<room>Level 3/L3R3</room>
 			<!-- Previous Room-->
-			<clickNext>L3R5</clickNext>
+			<clickNext>Level 3/L3R5</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotOpen">
-			<room>L3R3</room>
+			<room>Level 3/L3R3</room>
 			<!-- Next Room-->
-			<room>L3R3</room>
+			<room>Level 3/L3R3</room>
 			<!-- Previous Room-->
-			<clickNext>L3R5</clickNext>
+			<clickNext>Level 3/L3R5</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>

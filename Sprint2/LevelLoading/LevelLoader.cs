@@ -11,6 +11,7 @@ namespace Sprint2
         private string doorType;
         private Link link;
         private MouseController mouse;
+        private string itemName;
         public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory)
         {
             this.gom = gom;
@@ -67,6 +68,16 @@ namespace Sprint2
 
             gom.AddToAllObjectList(block);
             gom.AddToDrawableObjectList(block);
+        }
+
+        public void LoadItemObject(String itemName, Vector2 pos)
+        {
+            Item item = new Item(itemName, pos);
+            item.SetSpriteContent(spriteFactory);
+
+            gom.AddToAllObjectList(item);
+            gom.AddToDrawableObjectList(item);
+            gom.AddToUpdatableObjectList(item);
         }
 
         public void LoadEnemyObject(String enemyName, Vector2 pos)
