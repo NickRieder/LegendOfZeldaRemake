@@ -24,7 +24,7 @@ namespace Sprint2
         private CollisionDetector collisionDetector;
 
         private HUD hud;
-        private Camera camera;
+        public Camera camera;
 
         private SoundEffect themeSong;
         private SoundEffectInstance themeSongLoop;
@@ -112,8 +112,9 @@ namespace Sprint2
 
             levelLoader.LoadLevel("TestLevel", "Top");
 
-          
-            keyboardController.Initialize(gom.link, gom.item, gom.block, this, soundFactory);
+            
+
+            keyboardController.Initialize(gom, this, soundFactory);
         }
 
         protected override void Update(GameTime gameTime)
@@ -127,6 +128,7 @@ namespace Sprint2
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
             hud.Update(gameTime);
+
             camera.Update(gameTime);
 
             base.Update(gameTime);
@@ -136,6 +138,7 @@ namespace Sprint2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+
             spriteBatch.Begin(transformMatrix: camera.transform);
 
             gom.Draw(spriteBatch);

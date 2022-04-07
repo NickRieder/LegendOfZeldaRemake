@@ -70,7 +70,6 @@ namespace Sprint2
             level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
             level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
 
-
         }
 
         
@@ -469,7 +468,6 @@ namespace Sprint2
         }
 
         // Tiles
-
         public Sprite getFlatBlockSprite()
         {
             return new Sprite(tileSheet, TILE_FLATBLOCK);
@@ -535,7 +533,6 @@ namespace Sprint2
         }
 
         // Enemies
-
         public Sprite getBluebatSprite()
         {
             return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);

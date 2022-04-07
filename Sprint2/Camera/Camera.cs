@@ -20,17 +20,17 @@ namespace Sprint2
         {
             //view = newView;
 
-            currState = new StaticCamera(this);
+            currState = new StaticCamera(this, 0, 0);
         }
 
-        public void FreezeCamera()
+        public void FreezeCamera(int xPos, int yPos)
         {
-            currState.FreezeCamera();
+            currState.FreezeCamera(xPos, yPos);
         }
 
-        public void AnimateRoomTransition() // also pass in the side the door was on
+        public void AnimateRoomTransition(string direction) // pass in the side of the door later
         {
-            currState.AnimateRoomTransition();
+            currState.AnimateRoomTransition(direction);
         }
 
         public void Update(GameTime gameTime)

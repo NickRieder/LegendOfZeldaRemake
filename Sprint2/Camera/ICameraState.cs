@@ -8,8 +8,8 @@ namespace Sprint2
 {
     public interface ICameraState
     {
-        public void FreezeCamera();
-        public void AnimateRoomTransition();
+        public void FreezeCamera(int xPos, int yPos);
+        public void AnimateRoomTransition(string direction);
         public void Update(GameTime gameTime);
         public void Draw(SpriteBatch spriteBatch);
         

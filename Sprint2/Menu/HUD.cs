@@ -25,9 +25,9 @@ namespace Sprint2
             this.link = gom.link;
             this.spriteFactory = spriteFactory;
             font = this.spriteFactory.getFont();
-            HUDSprite = spriteFactory.getHUDSprite();
-            sheet = spriteFactory.getHudSheet();
-            HUDPos = new Vector2(300, 550); // 300, 550
+            HUDSprite = this.spriteFactory.getHUDSprite();
+            sheet = this.spriteFactory.getHudSheet();
+            HUDPos = new Vector2(300, 550);
         }
 
 
@@ -63,7 +63,7 @@ namespace Sprint2
                         //draw empty heart
                         sourceRectangle = spriteFactory.getEmptyHeartRect();
                     }
-                    destinationRectangle = new Rectangle(550 + ((3 *sourceRectangle.Width) * (i / 2)), 600, 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
+                    destinationRectangle = new Rectangle((int)(HUDPos.X + 250 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
                     spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
                 
                 

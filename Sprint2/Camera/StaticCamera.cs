@@ -9,28 +9,32 @@ namespace Sprint2
     public class StaticCamera : ICameraState
     {
         Camera camera;
+        private int xCount;
+        private int yCount;
 
-        public StaticCamera(Camera camera)
+        public StaticCamera(Camera camera, int xCount, int yCount)
         {
             this.camera = camera;
+            this.xCount = xCount;
+            this.yCount = yCount;
         }
 
-        public void FreezeCamera()
+        public void FreezeCamera(int xPos, int yPos)
         {
-            var position = Matrix.CreateTranslation(0, 0, 0);
+            var position = Matrix.CreateTranslation(xPos, yPos, 0);
 
             var offset = Matrix.CreateTranslation(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2, 0);
 
             camera.transform = position;
         }
-        public void AnimateRoomTransition()
+        public void AnimateRoomTransition(string direction)
         {
-            camera.currState = new MovingCamera(camera);
+            camera.currState = new MovingCamera(camera, direction);
         }
 
         public void Update(GameTime gameTime)
         {
-            FreezeCamera();
+            FreezeCamera(xCount, yCount);
         }
 
         public void Draw(SpriteBatch spriteBatch)
