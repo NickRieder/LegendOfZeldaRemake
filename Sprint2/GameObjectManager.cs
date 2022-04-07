@@ -118,20 +118,6 @@ namespace Sprint2
         {
             updatableSpritesList.Add(spriteObject);
         }
-        public void AddToAllObjectListInserts(ISprite spriteObject)
-        {
-            allObjectListInserts.Add(spriteObject);
-        }
-        public void AddToMovableObjectListInserts(ISprite spriteObject)
-        {
-            movableObjectListInserts.Add(spriteObject);
-
-        }
-        public void AddToDrawableObjectListInserts(ISprite spriteObject)
-        {
-            drawableSpritesListInserts.Add(spriteObject);
-            updatableSpritesListInserts.Add(spriteObject);
-        }
 
         public void ClearSpriteList()
         {
