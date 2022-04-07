@@ -24,7 +24,7 @@ namespace Sprint2
 		{
 			this.spriteFactory = enemy.spriteFactory;
 			this.gom = enemy.gom;
-			
+
 			// Enemy fields setup
 			this.enemy = enemy;
 			this.enemySprite = enemy.sprite;
@@ -34,6 +34,7 @@ namespace Sprint2
 			this.projectileType = projectileType;
 			//this.pos = enemy.pos;
 			this.projectileDirection = enemy.direction;
+			
 
 			switch (projectileType)
 			{
@@ -44,6 +45,10 @@ namespace Sprint2
 				case "Fireball":
 					CenterProjectilePosition(spriteFactory.getFireballSprite());
 					sprite = spriteFactory.getFireballSprite();
+					break;
+				case "Minion":
+					CenterProjectilePosition(spriteFactory.getBossMinion());
+					sprite = spriteFactory.getBossMinion();
 					break;
 				default:
 					sprite = spriteFactory.getNullProjectile();
@@ -65,24 +70,10 @@ namespace Sprint2
 			int halfEH = enemyRectangle.Height / divisorVal;
 			int pHeight = projectileRectangle.Height;
 			int halfPH = projectileRectangle.Height / divisorVal;
-			/*System.Diagnostics.Debug.WriteLine(
-				"DEBUG: Values" 
-				+"\n centeredPos.X = " +centeredPos.X 
-				+"\n centeredPos.Y = " +centeredPos.Y 
-				+"\n enemy w = " +eWidth 
-				+"\n 1/2 enemy w = " +halfEW 
-				+"\n proj w = " +pWidth 
-				+"\n 1/2 proj w = " +halfPW 
-				+"\n enemy h = " +eHeight 
-				+"\n 1/2 enemy h = " +halfEH 
-				+"\n proj h = " +pHeight 
-				+"\n 1/2 proj h = " +halfPH);*/
+			//System.Diagnostics.Debug.WriteLine("DEBUG: Values" +"\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " +centeredPos.Y +"\n enemy w = " +eWidth +"\n 1/2 enemy w = " +halfEW +"\n proj w = " +pWidth +"\n 1/2 proj w = " +halfPW + "\n enemy h = " + eHeight + "\n 1/2 enemy h = " + halfEH + "\n proj h = " + pHeight + "\n 1/2 proj h = " + halfPH);
 			float centerPosX = centeredPos.X + (float)(halfEW - halfPW);
 			float centerPosY = centeredPos.Y + (float)(halfEH - halfPH);
-			/*System.Diagnostics.Debug.WriteLine(
-				"DEBUG: Result" 
-				+"\n centerPosX = " +centerPosX 
-				+"\n centerPosY = " +centerPosY);*/
+			//System.Diagnostics.Debug.WriteLine("DEBUG: Result" +"\n centerPosX = " +centerPosX +"\n centerPosY = " +centerPosY);
 			switch (projectileDirection)
             {
                 case "Up":
@@ -104,16 +95,17 @@ namespace Sprint2
                 default:
                     break;
             }
-			/*System.Diagnostics.Debug.WriteLine(
-				"DEBUG: Return" 
-				+"\n centeredPos.X = " +centeredPos.X 
-				+"\n centeredPos.Y = " +centeredPos.Y);*/
+			//System.Diagnostics.Debug.WriteLine("DEBUG: Return" + "\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " + centeredPos.Y);
 			this.pos = centeredPos;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
 
+		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+			
 		}
 
 		public Rectangle GetSpriteRectangle()
@@ -136,14 +128,6 @@ namespace Sprint2
             sprite.Update(gameTime);
 		}
 
-		public void SetSoundContent(SoundFactory soundFactory)
-		{
-			throw new NotImplementedException();
-		}
-
-
-
-
 		public DamagingProjectile GetConcreteObject()
 		{
 			return this;
@@ -153,7 +137,5 @@ namespace Sprint2
         {
 			return this;
         }
-
-        
     }
 }

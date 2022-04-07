@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
+
 namespace Sprint2
 {
     public class LinkItem
@@ -10,10 +11,12 @@ namespace Sprint2
         private string itemString;
         private IItem currItem;
         private SpriteFactory spriteFactory;
+        
         private Link link;
         private NullItem nullItem;
         private Boolean isUsingItem;
         private TimeSpan startTimeUsing;
+      
 
         public LinkItem(Link link, SpriteFactory spriteFactory)
         {
@@ -22,6 +25,7 @@ namespace Sprint2
             currItem = new NullItem();
             nullItem = new NullItem();
             isUsingItem = false;
+           
         }
 
         public void SetItem(string item)
@@ -42,12 +46,15 @@ namespace Sprint2
                 {
                     case "Boomerang":
                         currItem = new Boomerang(link, spriteFactory);
+                        link.boomerangSound.Play();
                         break;
                     case "Arrow":
                         currItem = new Arrow(link, spriteFactory);
+                        link.arrowSound.Play();
                         break;
                     case "Explosion":
                         currItem = new Explosion(link, spriteFactory);
+                        link.explosion.Play();
                         break;
                 }
                 isUsingItem = true;

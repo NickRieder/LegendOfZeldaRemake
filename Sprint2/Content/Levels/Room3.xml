@@ -68,6 +68,7 @@
 			<XCoord>200</XCoord>
 			<YCoord>200</YCoord>
 		</enemy>
+		
 	</Enemies>
 
 	<Doors>

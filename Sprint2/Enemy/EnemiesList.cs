@@ -24,6 +24,7 @@ namespace Sprint2
         public Enemies goriya;
         public Enemies snake;
         public Enemies wizzrobe;
+        public Enemies boss;
 
         Enemies enemyToBeDrawn;
 
@@ -50,6 +51,7 @@ namespace Sprint2
             enemiesArray.Add(goriya);
             enemiesArray.Add(snake);
             enemiesArray.Add(wizzrobe);
+            enemiesArray.Add(boss);
 
         }
 

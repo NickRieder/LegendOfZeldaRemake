@@ -22,6 +22,9 @@ namespace Sprint2
 		public SoundEffect linkHurtSound;
 		public SoundEffect linkDeadSound;
 		public SoundEffect lowHealthSound;
+		public SoundEffect arrowSound;
+		public SoundEffect boomerangSound;
+		public SoundEffect explosion;
 		public Link()
 		{
 			//item = new NullItem();
@@ -39,6 +42,9 @@ namespace Sprint2
 			lowHealthSound = soundFactory.getLowHealth();
 			linkHurtSound = soundFactory.getLinkHurt();
 			linkDeadSound = soundFactory.getLinkDead();
+			arrowSound = soundFactory.getArrowOrBoomerang();
+			boomerangSound = soundFactory.getArrowOrBoomerang();
+			explosion = soundFactory.getBombBlow();
 		}
 
 		
