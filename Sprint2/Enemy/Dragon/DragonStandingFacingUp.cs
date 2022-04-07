@@ -32,16 +32,8 @@ namespace Sprint2
             waitTime = 0.25;
 
             this.dragon = dragon;
-            dragon.sprite = dragon.spriteFactory.getDragonRightSprite();
-
-            /*this.enemiesList = enemiesList;
-            dragon = enemiesList.dragon;
-            counter = 0;
-            currFrame = 0;
-            totalFrames = 2;
-            frame3 = SpriteFactory.DRAGON_SHEET1_LEFT3;
-            frame4 = SpriteFactory.DRAGON_SHEET1_LEFT4;
-            this.sheet = dragon.spriteFactory.getEnemySheet1();*/
+            dragon.sprite = dragon.spriteFactory.getDragonLeftSprite();
+            dragon.direction = "Left";
         }
 
         public void MoveUp()
@@ -49,6 +41,7 @@ namespace Sprint2
             Vector2 currPos = dragon.pos;
             currPos.Y--;
             dragon.pos = currPos;
+
             /*    if (counter % 5 == 0)
                     currFrame++;
                 if (currFrame == totalFrames)
@@ -67,29 +60,18 @@ namespace Sprint2
         {
             dragon.currState = new DragonStandingFacingLeft(dragon);
         }
-       /* public void Attack()
+        public void Attack()
         {
-            dragon.currState = new DragonAttackingRight(dragon);
-        }*/
+            dragon.currState = new DragonAttacking(dragon);
+        }
 
         public void TakeDamage()
         {
             dragon.health--;
-            //dragon.currState = new BluebatDamagedFacingDown(dragon);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             dragon.sprite.Draw(spriteBatch, dragon.pos);
-            /*Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width * dragon.spriteSizeMultiplier, frame3.Height * dragon.spriteSizeMultiplier);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame4.Width * dragon.spriteSizeMultiplier, frame4.Height * dragon.spriteSizeMultiplier);
-            if (currFrame == 0)
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame1, frame3, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame2, frame4, Color.White);
-            }*/
         }
 
         public void Update(GameTime gameTime)
@@ -113,7 +95,7 @@ namespace Sprint2
                 else if (chosenDirectionValue == 3)
                     MoveRight();
                 else if (chosenDirectionValue == 4)
-                   // Attack();
+                    Attack();
 
                 totalSecondsPassed = 0;
             }

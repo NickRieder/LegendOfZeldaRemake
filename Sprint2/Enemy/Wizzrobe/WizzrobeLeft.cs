@@ -66,10 +66,10 @@ namespace Sprint2
                  currFrame = 0;
              counter++;*/
         }
-      /*  public void Attack()
+        public void Attack()
         {
 
-        }*/
+        }
 
         public void TakeDamage()
         {

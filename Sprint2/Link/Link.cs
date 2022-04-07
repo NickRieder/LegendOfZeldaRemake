@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Sprint2
 {
@@ -9,33 +11,57 @@ namespace Sprint2
 		public ILinkState currState;
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
+		public SoundFactory soundFactory;
+		
 		public Sprite sprite;
 		public int health, maxHealth, rupies, keys, bombs;
-		public IItem item;
+		public LinkItem item;
 		public int sizeMuliplier = 3;
 		public string direction;
+		public List<IItem> itemList;
+		public SoundEffect linkHurtSound;
+		public SoundEffect linkDeadSound;
+		public SoundEffect lowHealthSound;
 		public Link()
 		{
-			item = new NullItem();
+			//item = new NullItem();
 			health= 8;
 			maxHealth = 10;
 			rupies = keys = bombs = 0;
 			pos = new Vector2(40, 40);
+			
 		}
 
+		public void SetSoundContent(SoundFactory soundFactory)
+        {
+			this.soundFactory = soundFactory;
+			lowHealthSound = soundFactory.getLowHealth();
+			linkHurtSound = soundFactory.getLinkHurt();
+			linkDeadSound = soundFactory.getLinkDead();
+		}
+
+		
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
 			this.currState = new StandingFacingDown(this);
 			sprite = spriteFactory.getLinkStandingFacingDownSprite();
 			direction = "down";
+			item = new LinkItem(this, spriteFactory);
 		}
 
 		public void SetPos(Vector2 pos)
         {
 			this.pos = pos;
         }
-
+		public string GetDirection()
+		{
+			return direction;
+		}
+		public void SetItem(string newItem)
+		{
+			item.SetItem(newItem);
+		}
 		public Rectangle GetSpriteRectangle()
         {
 			return sprite.getDestinationRectangle();
@@ -65,18 +91,33 @@ namespace Sprint2
         {
 			currState.UseWeapon();
         }
-		public void UseItem(int itemNum)
-        {
-			currState.UseItem(itemNum);
-        }
+		public void UseItem()
+		{
+			currState = new UsingItem(this);
+			item.Use();
+		}
 		public void TakeDamage()
         {
 			currState.TakeDamage();
+			if (health == 0)
+            {
+				linkDeadSound.Play();
+            }
+			else if (health == 1)
+            {
+				lowHealthSound.Play();
+            }
+            else
+            {
+				linkHurtSound.Play();
+            }
+			
+            
 		}
 		public void Draw(SpriteBatch spriteBatch)
         {
 			currState.Draw(spriteBatch);
-			item.Draw(spriteBatch, pos);
+			item.Draw(spriteBatch);
         }
 		public void Update(GameTime gameTime)
 		{

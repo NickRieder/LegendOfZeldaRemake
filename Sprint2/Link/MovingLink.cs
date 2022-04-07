@@ -10,6 +10,7 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
 
@@ -18,6 +19,7 @@ namespace Sprint2
 			this.link = link;
 			this.sprite = link.sprite;
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			switch (link.direction)
 			{
 				case "down":
@@ -34,10 +36,6 @@ namespace Sprint2
 					break;
 			}
 			link.sprite = sprite;
-			itemList = new ArrayList();
-			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
-			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
-			itemList.Add(new ExplosionDown(this.link, this.link.spriteFactory));
 		}
 		public void StandingUp()
 		{
@@ -87,10 +85,10 @@ namespace Sprint2
 		{
 			link.currState = new UsingWeapon(link);
 		}
-		public void UseItem(int itemNum)
+		public void UseItem(string newItem)
 		{
 			link.currState = new UsingItem(link);
-			link.item = (IItem)itemList[itemNum - 1];
+			link.SetItem(newItem);
 		}
 		public void TakeDamage()
 		{

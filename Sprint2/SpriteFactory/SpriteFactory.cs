@@ -57,6 +57,7 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
+
             hudSheet = content.Load<Texture2D>("Sheets/HudSprites");
 
             font = content.Load<SpriteFont>("File");
@@ -66,6 +67,7 @@ namespace Sprint2
             level2Sheet = content.Load<Texture2D>("Sheets/Level 2 SpriteSheet");
             level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
             level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
+
 
         }
 
@@ -201,9 +203,14 @@ namespace Sprint2
         private static Rectangle ARROW_MIRRORED_LEFT = new Rectangle(345, 185, 15, 15);
 
 
-        private static Rectangle BOOMERANG_1 = new Rectangle(65, 189, 7, 7);
-        private static Rectangle BOOMERANG_2 = new Rectangle(73, 189, 7, 7);
-        private static Rectangle BOOMERANG_3 = new Rectangle(81, 189, 7, 7);
+        private static Rectangle BOOMERANG_1 = new Rectangle(63, 189, 8, 8);
+        private static Rectangle BOOMERANG_2 = new Rectangle(73, 189, 8, 8);
+        private static Rectangle BOOMERANG_3 = new Rectangle(82, 189, 8, 8);
+        private static Rectangle BOOMERANG_4 = new Rectangle(128, 202, 8, 8);
+        private static Rectangle BOOMERANG_5 = new Rectangle(137, 202, 8, 8);
+        private static Rectangle BOOMERANG_6 = new Rectangle(146, 202, 8, 8);
+        private static Rectangle BOOMERANG_7 = new Rectangle(155, 202, 8, 8);
+        private static Rectangle BOOMERANG_8 = new Rectangle(164, 202, 8, 8);
 
         private static Rectangle EXPLOSION_1 = new Rectangle(138, 185, 16, 16);
         private static Rectangle EXPLOSION_2 = new Rectangle(155, 185, 16, 16);
@@ -351,10 +358,10 @@ namespace Sprint2
         public static Rectangle L3P_R9 = new Rectangle(316, 518, 131, 109);
 
         public static Rectangle L4P_R1 = new Rectangle(186, 27, 131, 131);
-
+        // Projectiles
         public Sprite getBoomerangSprite()
         {
-            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);
+            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);    // , BOOMERANG_4, BOOMERANG_5, BOOMERANG_6, BOOMERANG_7, BOOMERANG_8
         }
         public Sprite getArrowSpriteRight()
         {
@@ -378,6 +385,18 @@ namespace Sprint2
             return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
 
         }
+
+        public Sprite getNullProjectile()
+        {
+            return new Sprite(enemySheet2);
+        }
+        public Sprite getFireballSprite()
+        {
+            return new Sprite(enemySheet, DRAGON_SHEET1_FIREBALL1, DRAGON_SHEET1_FIREBALL2, DRAGON_SHEET1_FIREBALL2, DRAGON_SHEET1_FIREBALL2);
+        }
+
+        // Link
+
         public Sprite getLinkStandingFacingDownSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
@@ -586,6 +605,8 @@ namespace Sprint2
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
 
+        // Heart
+
         public Rectangle getEmptyHeartRect()
         {
             return EMPTY_HEART;
@@ -601,6 +622,8 @@ namespace Sprint2
             return FULL_HEART;
         }
 
+
+        // Rooms
 
         public Sprite getRoom1Sprite()
         {

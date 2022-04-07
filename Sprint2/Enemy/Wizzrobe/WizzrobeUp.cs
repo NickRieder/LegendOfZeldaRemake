@@ -66,10 +66,10 @@ namespace Sprint2
         {
             wizzrobe.currState = new WizzrobeLeft(wizzrobe);
         }
-       /* public void Attack()
+        public void Attack()
         {
 
-        }*/
+        }
 
         public void TakeDamage()
         {

@@ -7,6 +7,6 @@ namespace Sprint2
     public interface IItem
     {
         void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch, Vector2 location);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

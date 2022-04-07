@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
@@ -10,8 +11,11 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
+		
+	
 		
 
 		public StandingFacingDown(Link link)
@@ -20,13 +24,11 @@ namespace Sprint2
 			this.sprite = link.sprite;
 			link.direction = "down";
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			sprite = spriteFactory.getLinkStandingFacingDownSprite();
 			
-			itemList = new ArrayList();
-			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
-			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
-			itemList.Add(new ExplosionDown(this.link, this.link.spriteFactory));
 		}
+	
 		public void StandingUp()
 		{
 			link.currState = new StandingFacingUp(link);
@@ -48,10 +50,10 @@ namespace Sprint2
 		{
 			link.currState = new UsingWeapon(link);
 		}
-		public void UseItem(int itemNum)
+		public void UseItem(string newItem)
 		{
 			link.currState = new UsingItem(link);
-			link.item = (IItem) itemList[itemNum - 1];
+			link.item.Use();
 		}
 		public void TakeDamage()
 		{
