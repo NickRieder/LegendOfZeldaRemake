@@ -27,19 +27,19 @@ namespace Sprint2
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
             sheet = this.spriteFactory.getHudSheet();
-            HUDPos = new Vector2(300, 550);
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //draw HUD background
+            HUDPos = new Vector2(0, gom.GetBackgroud().GetSpriteRectangle().Height);
             HUDSprite.Draw(spriteBatch, HUDPos);
 
             // numebrs of items link has
-            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y), Color.White);
-            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 48), Color.White);
-            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 74), Color.White);
+            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y), Color.White);
+            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y + 48), Color.White);
+            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y + 74), Color.White);
 
             //health
             for (int i = 2; i <= link.maxHealth; i+=2)
@@ -63,7 +63,7 @@ namespace Sprint2
                         //draw empty heart
                         sourceRectangle = spriteFactory.getEmptyHeartRect();
                     }
-                    destinationRectangle = new Rectangle((int)(HUDPos.X + 250 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
+                    destinationRectangle = new Rectangle((int)(HUDPos.X + 525 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
                     spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
                 
                 

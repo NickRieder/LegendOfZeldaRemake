@@ -69,12 +69,12 @@ namespace Sprint2
             gom.spriteFactory = spriteFactory;
 
             gom.SetSpriteContent(spriteFactory);
-            hud = new HUD(gom, spriteFactory);
+            
 
 
             levelLoader.LoadLevel("TestLevel", "Top");
+            hud = new HUD(gom, spriteFactory);
 
-            
 
             keyboardController.Initialize(gom, this);
         }
