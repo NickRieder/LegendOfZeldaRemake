@@ -16,7 +16,7 @@ namespace Sprint2.Controller
         private Dictionary<Buttons, ICommand> commandDict = new Dictionary<Buttons, ICommand>();
         private Dictionary<Buttons, ICommand> releasedCommandDict = new Dictionary<Buttons, ICommand>();
 
-        private Buttons[] preKeys = new Buttons[0];
+        private Buttons[] pressedButtons = new Buttons[0];
 
         public GamePadController()
         {
@@ -132,18 +132,18 @@ namespace Sprint2.Controller
                 controllerMappingsTap[Buttons.DPadDown].Execute();
             }
         
-            if (preKeys != null)
+            if (pressedButtons != null)
             {
-                foreach (Buttons key in preKeys)
+                foreach (Buttons button in pressedButtons)
                 {
-                    if (preKeys.Contains(key) && GamePad.GetState(0).IsButtonUp(key))
+                    if (pressedButtons.Contains(button) && GamePad.GetState(0).IsButtonUp(button))
                     {
-                        controllerMappingsRelease[key].Execute();
+                        controllerMappingsRelease[button].Execute();
                     }
                 }
             }
 
-            preKeys = pressedKeys;
+            pressedButtons = pressedKeys;
         }
 
         private bool Left(Buttons[] pressedKeys)
