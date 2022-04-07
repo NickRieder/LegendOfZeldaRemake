@@ -24,7 +24,7 @@ namespace Sprint2
 		{
 			this.spriteFactory = enemy.spriteFactory;
 			this.gom = enemy.gom;
-
+			
 			// Enemy fields setup
 			this.enemy = enemy;
 			this.enemySprite = enemy.sprite;
@@ -34,7 +34,7 @@ namespace Sprint2
 			this.projectileType = projectileType;
 			//this.pos = enemy.pos;
 			this.projectileDirection = enemy.direction;
-			
+
 			switch (projectileType)
 			{
 				case "Boomerang":
@@ -127,9 +127,9 @@ namespace Sprint2
 		}
 
 		public void RemoveProjectile(ISprite projectile)
-        {
+            {
 			gom.RemoveFromEveryCollection(projectile);
-        }
+            }
 
 		public virtual void Update(GameTime gameTime) // the virtual keyword allows subclasses to override methods
 		{

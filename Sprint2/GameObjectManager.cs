@@ -20,7 +20,7 @@ namespace Sprint2
         public ConcurrentBag<ISprite> movableObjectListInserts;
         public ConcurrentBag<ISprite> updatableSpritesListInserts;
         public ConcurrentBag<ISprite> drawableSpritesListInserts;
-
+        private ConcurrentBag<ISprite> tempUpdatableList;
         public SoundFactory soundFactory { get; set; }
         
 
@@ -34,6 +34,7 @@ namespace Sprint2
         private Background background;
         public KeyboardController keyboardController;
         public MouseController mouseController;
+        private bool isPaused;
 
         public GameObjectManager()
         {
@@ -42,6 +43,7 @@ namespace Sprint2
             movableObjectList = new ConcurrentBag<ISprite>();
             drawableSpritesList = new ConcurrentBag<ISprite>();
             updatableSpritesList = new ConcurrentBag<ISprite>();
+            tempUpdatableList = new ConcurrentBag<ISprite>();
 
             // Initialize Controllers
             keyboardController = new KeyboardController();
@@ -78,6 +80,21 @@ namespace Sprint2
                 sprite.SetSpriteContent(spriteFactory);
             }
 
+        }
+
+        public void PauseGame()
+        {
+            if(isPaused)
+            {
+                updatableSpritesList = new ConcurrentBag<ISprite>(tempUpdatableList);
+            }
+            else
+            {
+                tempUpdatableList = new ConcurrentBag<ISprite>(updatableSpritesList);
+                updatableSpritesList.Clear();
+            }
+            isPaused = !isPaused;
+            
         }
 
         public void SetBackgroundRoom(string roomName)

@@ -27,7 +27,8 @@ namespace Sprint2
         private static Texture2D hudSheet;
 
         private static Texture2D basementSheet;
-        private static Texture2D level1Sheet;
+        private static Texture2D level1Sheet1;
+        private static Texture2D level1Sheet2;
         private static Texture2D level2Sheet;
         private static Texture2D level3Sheet;
         private static Texture2D level4Sheet;
@@ -63,11 +64,11 @@ namespace Sprint2
             font = content.Load<SpriteFont>("File");
 
             basementSheet = content.Load<Texture2D>("Sheets/Level 0 SpriteSheet");
-            level1Sheet = content.Load<Texture2D>("Sheets/Level 1 SpriteSheet");
+            level1Sheet1 = content.Load<Texture2D>("Sheets/Level 1 P1 SpriteSheet");
+            level1Sheet2 = content.Load<Texture2D>("Sheets/Level 1 P2 SpriteSheet");
             level2Sheet = content.Load<Texture2D>("Sheets/Level 2 SpriteSheet");
             level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
             level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
-
 
         }
 
@@ -467,7 +468,6 @@ namespace Sprint2
         }
 
         // Tiles
-
         public Sprite getFlatBlockSprite()
         {
             return new Sprite(tileSheet, TILE_FLATBLOCK);
@@ -533,7 +533,6 @@ namespace Sprint2
         }
 
         // Enemies
-
         public Sprite getBluebatSprite()
         {
             return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);

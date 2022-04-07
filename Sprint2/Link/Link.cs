@@ -29,6 +29,7 @@ namespace Sprint2
 			maxHealth = 10;
 			rupies = keys = bombs = 0;
 			pos = new Vector2(40, 40);
+			itemList = new List<IItem>();
 			
 		}
 
