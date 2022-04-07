@@ -19,6 +19,7 @@ namespace Sprint2
 		{
 			this.link = link;
 			this.sprite = link.sprite;
+			this.isMoving = link.isMoving;
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
 			switch (link.direction)

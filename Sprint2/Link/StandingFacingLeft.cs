@@ -14,11 +14,13 @@ namespace Sprint2
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private int counter;
+		private bool isMoving;
 
 		public StandingFacingLeft(Link link)
 		{
 			this.link = link;
 			this.sprite = link.sprite;
+			this.isMoving = link.isMoving;
 			link.direction = "left";
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;

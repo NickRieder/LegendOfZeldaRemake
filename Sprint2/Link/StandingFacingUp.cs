@@ -12,11 +12,13 @@ namespace Sprint2
 		private SpriteFactory spriteFactory;
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
+		private bool isMoving;
 
 		public StandingFacingUp(Link link)
 		{
 			this.link = link;
 			this.sprite = link.sprite;
+			this.isMoving = link.isMoving;
 			link.direction = "up";
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
@@ -26,19 +28,27 @@ namespace Sprint2
 		public void StandingUp() { }
 		public void StandingDown()
 		{
-			link.currState = new StandingFacingDown(link);
+			//if (!isMoving) 
+				link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
-			link.currState = new StandingFacingRight(link);
+			//if (!isMoving) 
+				link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			link.currState = new StandingFacingLeft(link);
+			//if (!isMoving) 
+				link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
-			link.currState = new MovingLink(link);
+			//if (!isMoving)
+			//{
+			//	isMoving = true;
+				link.isMoving = isMoving;
+				link.currState = new MovingLink(link);
+			//}
         }
 		public void UseWeapon()
 		{

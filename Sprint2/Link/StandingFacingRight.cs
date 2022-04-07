@@ -13,11 +13,13 @@ namespace Sprint2
 		private SpriteFactory spriteFactory;
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
+		private bool isMoving;
 
 		public StandingFacingRight(Link link)
 		{
 			this.link = link;
 			this.sprite = link.sprite;
+			this.isMoving = link.isMoving;
 			link.direction = "right";
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
@@ -26,7 +28,8 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.currState = new StandingFacingUp(link);
+			//if (!isMoving) 
+				link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{ 
@@ -35,7 +38,8 @@ namespace Sprint2
 		public void StandingRight() { }
 		public void StandingLeft()
 		{
-			link.currState = new StandingFacingLeft(link);
+		//	if (!isMoving) 
+				link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
