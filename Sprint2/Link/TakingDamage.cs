@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -10,20 +11,26 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;		
 		private Vector2 currPos;
 		private static TimeSpan damagedTime;
 		private TimeSpan startDamagedTime;
 		bool isDamaged;
+		
 
 		public TakingDamage(Link link)
 		{
 			this.link = link;
-			this.sprite = link.sprite;
+			sprite = link.sprite;
+			
+			
 			spriteFactory = link.spriteFactory;
+			
 			sprite = spriteFactory.getLinkDamaged();
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 			isDamaged = true;
+			
 		}
 
 
@@ -35,6 +42,7 @@ namespace Sprint2
 		{
 			if (isDamaged)
 			{
+
 				startDamagedTime = gameTime.TotalGameTime;
 				isDamaged = false;
 			}
@@ -47,7 +55,12 @@ namespace Sprint2
 				switch (link.direction)
 				{
 					case "down":
+<<<<<<< HEAD
 						currPos.Y -= 2;
+=======
+
+						currPos.Y -= 3;
+>>>>>>> origin/Sprint4
 						link.pos = currPos;
 						break;
 					case "left":
@@ -59,7 +72,12 @@ namespace Sprint2
 						link.pos = currPos;
 						break;
 					default: // facing up
+<<<<<<< HEAD
 						currPos.Y += 2;
+=======
+						currPos.Y += 3;
+
+>>>>>>> origin/Sprint4
 						link.pos = currPos;
 						break;
 				}
@@ -76,12 +94,13 @@ namespace Sprint2
 		public void StandingLeft() { }
 		public void Move() { }
 		public void UseWeapon() { }
-		public void UseItem(int itemNum) { }
+		public void UseItem(string newItem) { }
 
         public void Execute()
         {
+
 			link.TakeDamage();
-        }
+		}
     }
 }
 

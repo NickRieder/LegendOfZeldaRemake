@@ -10,14 +10,6 @@ namespace Sprint2
     public class GoriyaStandingFacingDown : IEnemyState
     {
         private Enemies goriya;
-        private int currFrame;
-        private int totalFrames;
-        private int counter;
-        private Rectangle frame1;
-        private Rectangle frame2;
-        private Texture2D sheet;
-        private Texture2D sheetMirrored;
-        private EnemiesList enemiesList;
         private double totalSecondsPassed;
         private double waitTime;
         private TimeSpan elapsedTime;
@@ -28,21 +20,15 @@ namespace Sprint2
 
         public GoriyaStandingFacingDown(Enemies goriya)
         {
+            System.Diagnostics.Debug.WriteLine("DEBUG: In FacingDownState");
+
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
             waitTime = 0.25;
 
             this.goriya = goriya;
             goriya.sprite = goriya.spriteFactory.getGoriyaDownSprite();
-            /*this.enemiesList = enemiesList;
-            goriya = enemiesList.goriya;
-            counter = 0;
-            currFrame = 0;
-            totalFrames = 2;
-            frame1 = SpriteFactory.GORIYA_SHEET2_FRONT;
-            frame2 = SpriteFactory.GORIYA_SHEET2MIRROR_FRONT;
-            this.sheet = goriya.spriteFactory.getEnemySheet2();
-            this.sheetMirrored = goriya.spriteFactory.getEnemySheet2Mirror();*/
+            goriya.direction = "Down";
         }
 
         public void MoveUp()
@@ -54,6 +40,8 @@ namespace Sprint2
             Vector2 currPos = goriya.pos;
             currPos.Y++;
             goriya.pos = currPos;
+
+
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)
@@ -68,29 +56,18 @@ namespace Sprint2
         {
             goriya.currState = new GoriyaStandingFacingLeft(goriya);
         }
-       /* public void Attack()
+        public void Attack()
         {
-            goriya.currState = new GoriyaAttackingDown(goriya);
-        }*/
+            goriya.currState = new GoriyaAttacking(goriya);
+        }
 
         public void TakeDamage()
         {
             goriya.health--;
-            //goriya.currState = new BluebatDamagedFacingDown(goriya);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             goriya.sprite.Draw(spriteBatch, goriya.pos);
-            /*Rectangle destinationRectangleFrame1 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame1.Width * goriya.spriteSizeMultiplier, frame1.Height * goriya.spriteSizeMultiplier);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)goriya.pos.X, (int)goriya.pos.Y, frame2.Width * goriya.spriteSizeMultiplier, frame2.Height * goriya.spriteSizeMultiplier);
-            if (currFrame == 0)
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(sheetMirrored, destinationRectangleFrame2, frame2, Color.White);
-            }*/
         }
 
      
@@ -108,15 +85,15 @@ namespace Sprint2
                 chosenDirectionValue = randomNum % 5;
 
                 if (chosenDirectionValue == 0)
-                    MoveDown();
-                else if (chosenDirectionValue == 1)
                     MoveUp();
+                else if (chosenDirectionValue == 1)
+                    MoveDown();
                 else if (chosenDirectionValue == 2)
                     MoveLeft();
                 else if (chosenDirectionValue == 3)
                     MoveRight();
                 else if (chosenDirectionValue == 4)
-                    //Attack();
+                    Attack();
 
                 totalSecondsPassed = 0;
             }

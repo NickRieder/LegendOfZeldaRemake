@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace Sprint2
 {
@@ -9,25 +11,35 @@ namespace Sprint2
 		public IEnemyState currState;
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory { get; set; }
+		public SoundFactory soundFactory;
 		public int health;
 		public int spriteSizeMultiplier;
 
+		public string direction;
+		public GameObjectManager gom;
 		public Sprite sprite;
 		public string enemyName;
+		public ArrayList projectileList;
+		public bool freeze { get; set; }
 
-		public Enemies(string enemyName)
+		public SoundEffect enemyHurtSound;
+		public SoundEffect enemyDeadSound;
+
+
+		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
+			this.gom = gom;
 			spriteSizeMultiplier = 2;
 			health = 3;
 			pos = new Vector2(600, 200);
-			/*pos.X = 600;
-			pos.Y = 200;*/
+			this.freeze = false;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
+			direction = "Down";
 
 			switch (enemyName)
 			{
@@ -57,6 +69,13 @@ namespace Sprint2
 					break;
 			}
 		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+			this.soundFactory = soundFactory;
+			enemyDeadSound = soundFactory.getEnemyDead();
+			enemyHurtSound = soundFactory.getEnemyHit();
+
+		}
 
 		public Rectangle GetSpriteRectangle()
 		{
@@ -85,13 +104,22 @@ namespace Sprint2
 			currState.MoveRight();
 		}
 
-		/*public void Attack()
-		{
-			currState.Attack();
-		}*/
-		public void TakeDamage()
+        public void Attack()
+        {
+            currState.Attack();
+        }
+
+        public void TakeDamage()
 		{
 			currState.TakeDamage();
+			if(health == 0)
+            {
+				enemyDeadSound.Play();
+            }
+            else
+            {
+				enemyHurtSound.Play();
+            }
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

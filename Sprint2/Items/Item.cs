@@ -14,6 +14,7 @@ namespace Sprint2
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		private Texture2D itemSheet;
+		private Sprite sprite;
 
 		public Item()
 		{
@@ -43,6 +44,10 @@ namespace Sprint2
         {
 			this.spriteFactory = spriteFactory;
 			this.itemSheet = this.spriteFactory.getItemSheet();
+		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+
 		}
 
 		public  void NextItem()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
@@ -10,14 +10,12 @@ namespace Sprint2
 {
     public class KeyboardController : IController
     {
-        private KeyboardState currentState;
-        private KeyboardState previousState;
         private Dictionary<Keys, ICommand> controllerMappingsHold;
         private Dictionary<Keys, ICommand> controllerMappingsTap;
         private Dictionary<Keys, ICommand> controllerMappingsRelease;
-        private Dictionary<Keys, bool> currentKeyStates;
-        private Dictionary<Keys, bool> previousKeyStates;
+        private Dictionary<Keys, ICommand> controllerMappingsPause;
         private Keys[] previousPressedKeys;
+        private bool isPaused;
 
         public KeyboardController()
         {
@@ -25,6 +23,8 @@ namespace Sprint2
             controllerMappingsHold = new Dictionary<Keys, ICommand>();
             controllerMappingsTap = new Dictionary<Keys, ICommand>();
             controllerMappingsRelease = new Dictionary<Keys, ICommand>();
+            controllerMappingsPause = new Dictionary<Keys, ICommand>();
+            isPaused = false;
         }
 
         public void RegisterCommandHold(Keys key, ICommand command)
@@ -42,74 +42,113 @@ namespace Sprint2
             controllerMappingsRelease.Add(key, command);
         }
 
-        public void Initialize(Link link, Item item, Block block, Game1 game1)
+        public void RegisterCommandPause(Keys key, ICommand command)
         {
-            RegisterCommandTap(Keys.I, new SetNextItem(item));
-            RegisterCommandTap(Keys.U, new SetPreviousItem(item));
+            controllerMappingsPause.Add(key, command);
+        }
 
-            RegisterCommandTap(Keys.Z, new SetLinkAttacking(link));
-            RegisterCommandTap(Keys.N, new SetLinkAttacking(link));
+        public void SetPauseUnpauseState()
+        {
+            isPaused = !isPaused;
+        }
 
-            RegisterCommandTap(Keys.Y, new SetNextBlock(block));
-            RegisterCommandTap(Keys.T, new SetPreviousBlock(block));
+        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory)
+        {
 
+<<<<<<< HEAD
             RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
             RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
             RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
+=======
+            RegisterCommandTap(Keys.D4, new SetLinkUseItem(gom.link));
+            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link, soundFactory));
+            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link, soundFactory));
+            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link, soundFactory));
+            RegisterCommandTap(Keys.Z, new SetLinkAttacking(gom.link, soundFactory));
+            RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link, soundFactory));
 
-            RegisterCommandHold(Keys.S, new SetLinkMoving(link));
-            RegisterCommandHold(Keys.W, new SetLinkMoving(link));
-            RegisterCommandHold(Keys.A, new SetLinkMoving(link));
-            RegisterCommandHold(Keys.D, new SetLinkMoving(link));
+            RegisterCommandTap(Keys.P, new PauseGame(gom, this));
+>>>>>>> origin/Sprint4
 
-            RegisterCommandTap(Keys.S, new SetLinkStandingDown(link));
-            RegisterCommandTap(Keys.W, new SetLinkStandingUp(link));
-            RegisterCommandTap(Keys.A, new SetLinkStandingLeft(link));
-            RegisterCommandTap(Keys.D, new SetLinkStandingRight(link));
+            RegisterCommandHold(Keys.S, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.W, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.A, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.D, new SetLinkMoving(gom.link));
 
-            RegisterCommandRelease(Keys.S, new SetLinkStandingDown(link));
-            RegisterCommandRelease(Keys.W, new SetLinkStandingUp(link));
-            RegisterCommandRelease(Keys.A, new SetLinkStandingLeft(link));
-            RegisterCommandRelease(Keys.D, new SetLinkStandingRight(link));
+            RegisterCommandTap(Keys.S, new SetLinkStandingDown(gom.link));
+            RegisterCommandTap(Keys.W, new SetLinkStandingUp(gom.link));
+            RegisterCommandTap(Keys.A, new SetLinkStandingLeft(gom.link));
+            RegisterCommandTap(Keys.D, new SetLinkStandingRight(gom.link));
 
-            RegisterCommandTap(Keys.E, new SetTakeDamage(link));
+            RegisterCommandRelease(Keys.S, new SetLinkStandingDown(gom.link));
+            RegisterCommandRelease(Keys.W, new SetLinkStandingUp(gom.link));
+            RegisterCommandRelease(Keys.A, new SetLinkStandingLeft(gom.link));
+            RegisterCommandRelease(Keys.D, new SetLinkStandingRight(gom.link));
 
-            RegisterCommandTap(Keys.Down, new SetLinkStandingDown(link));
-            RegisterCommandTap(Keys.Up, new SetLinkStandingUp(link));
-            RegisterCommandTap(Keys.Left, new SetLinkStandingLeft(link));
-            RegisterCommandTap(Keys.Right, new SetLinkStandingRight(link));
+            RegisterCommandTap(Keys.E, new SetTakeDamage(gom.link));
 
-            RegisterCommandRelease(Keys.Down, new SetLinkStandingDown(link));
-            RegisterCommandRelease(Keys.Up, new SetLinkStandingUp(link));
-            RegisterCommandRelease(Keys.Left, new SetLinkStandingLeft(link));
-            RegisterCommandRelease(Keys.Right, new SetLinkStandingRight(link));
+            RegisterCommandTap(Keys.Down, new SetLinkStandingDown(gom.link));
+            RegisterCommandTap(Keys.Up, new SetLinkStandingUp(gom.link));
+            RegisterCommandTap(Keys.Left, new SetLinkStandingLeft(gom.link));
+            RegisterCommandTap(Keys.Right, new SetLinkStandingRight(gom.link));
 
-            RegisterCommandHold(Keys.Down, new SetLinkMoving(link));
-            RegisterCommandHold(Keys.Up, new SetLinkMoving(link));
-            RegisterCommandHold(Keys.Left, new SetLinkMoving(link));
-            RegisterCommandHold(Keys.Right, new SetLinkMoving(link));
+            RegisterCommandRelease(Keys.Down, new SetLinkStandingDown(gom.link));
+            RegisterCommandRelease(Keys.Up, new SetLinkStandingUp(gom.link));
+            RegisterCommandRelease(Keys.Left, new SetLinkStandingLeft(gom.link));
+            RegisterCommandRelease(Keys.Right, new SetLinkStandingRight(gom.link));
+
+            RegisterCommandHold(Keys.Down, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.Up, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.Left, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.Right, new SetLinkMoving(gom.link));
 
             RegisterCommandTap(Keys.Q, new QuitCommand(game1));
             RegisterCommandTap(Keys.R, new ResetGame(game1));
+<<<<<<< HEAD
+=======
+
+            RegisterCommandPause(Keys.P, new PauseGame(gom, this));
+
+            RegisterCommandTap(Keys.NumPad6, new SetCameraMovingRight(game1.camera));
+            RegisterCommandTap(Keys.NumPad4, new SetCameraMovingLeft(game1.camera));
+            RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(game1.camera));
+            RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(game1.camera));
+
+
+>>>>>>> origin/Sprint4
         }
 
         public void Update(GameTime gameTime)
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-            currentState = Keyboard.GetState();
 
-            foreach (Keys key in pressedKeys.Union<Keys>(previousPressedKeys))
+            if(!isPaused)
             {
-                if(controllerMappingsTap.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) == -1) {
-                    controllerMappingsTap[key].Execute();
-                }
-                else if (controllerMappingsRelease.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) != -1 && Array.IndexOf(pressedKeys, key) == -1)
+                foreach (Keys key in pressedKeys.Union(previousPressedKeys))
                 {
-                    controllerMappingsRelease[key].Execute();
+                    if (controllerMappingsTap.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) == -1)
+                    {
+                        controllerMappingsTap[key].Execute();
+                    }
+                    else if (controllerMappingsRelease.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) != -1 && Array.IndexOf(pressedKeys, key) == -1)
+                    {
+                        controllerMappingsRelease[key].Execute();
+                    }
+                    else if (controllerMappingsHold.ContainsKey(key))
+                    {
+                        controllerMappingsHold[key].Execute();
+                    }
                 }
-                else if (controllerMappingsHold.ContainsKey(key))
+            }
+            else
+            {
+                foreach (Keys key in pressedKeys)
                 {
-                    controllerMappingsHold[key].Execute();
+                    if(controllerMappingsPause.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) == -1)
+                    {
+                        controllerMappingsPause[key].Execute();
+                    }
+                    
                 }
             }
             previousPressedKeys = pressedKeys;

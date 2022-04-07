@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
 
+
 namespace Sprint2
 {
     class StandingFacingRight : ILinkState
@@ -10,6 +11,7 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 
 		public StandingFacingRight(Link link)
@@ -18,12 +20,9 @@ namespace Sprint2
 			this.sprite = link.sprite;
 			link.direction = "right";
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			sprite = spriteFactory.getLinkStandingFacingRightSprite();
 			
-			itemList = new ArrayList();
-			itemList.Add(new ArrowRight(this.link, this.link.spriteFactory));
-			itemList.Add(new BoomerangRight(this.link, this.link.spriteFactory));
-			itemList.Add(new ExplosionRight(this.link, this.link.spriteFactory));
 		}
 		public void StandingUp()
 		{
@@ -46,10 +45,10 @@ namespace Sprint2
 		{
 			link.currState = new UsingWeapon(link);
 		}
-		public void UseItem(int itemNum)
+		public void UseItem(string newItem)
 		{
 			link.currState = new UsingItem(link);
-			link.item = (IItem)itemList[itemNum - 1];
+			link.SetItem(newItem);
 		}
 		public void TakeDamage()
 		{

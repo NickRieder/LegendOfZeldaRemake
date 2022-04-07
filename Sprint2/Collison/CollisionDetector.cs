@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint2.Collison;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 
 namespace Sprint2
 {
@@ -19,8 +20,8 @@ namespace Sprint2
         }
 
         private GameObjectManager gom;
-        private ArrayList allObjectList;
-        private ArrayList movableObjectList;
+        private ConcurrentBag<ISprite> allObjectList;
+        private ConcurrentBag<ISprite> movableObjectList;
         private CollisionHandler collisionHandler;
         private CollisionHandlerEnemy collisionHandlerEnemy;
 
@@ -28,8 +29,8 @@ namespace Sprint2
         public CollisionDetector(GameObjectManager gom)
         {
             this.gom = gom;
-            allObjectList = gom.getListOfAllObjects();
-            movableObjectList = gom.getListOfMovableObjects();
+            /*allObjectList = gom.allObjectList;
+            movableObjectList = gom.movableObjectList;*/
 
             collisionHandler = new CollisionHandler(gom);
             collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
@@ -71,9 +72,9 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            foreach (ISprite movableSprite in movableObjectList)
+            foreach (ISprite movableSprite in gom.movableObjectList)
             {
-                foreach (ISprite otherSprite in allObjectList)
+                foreach (ISprite otherSprite in gom.allObjectList)
                 {
                     if (movableSprite == otherSprite) { continue; }
 
@@ -83,11 +84,17 @@ namespace Sprint2
 
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
+                            //System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
                             collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (COLLISION_SIDE)collisionSide);
                         }
                     }
+                    
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Sprint4
             }
         }
     }

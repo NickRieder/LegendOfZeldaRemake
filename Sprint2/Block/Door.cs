@@ -78,6 +78,10 @@ namespace Sprint2
 
             }
         }
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+
+        }
 
         public static explicit operator Door(Type v)
         {
@@ -118,5 +122,7 @@ namespace Sprint2
         {
             return this;
         }
+
+       
     }
 }
