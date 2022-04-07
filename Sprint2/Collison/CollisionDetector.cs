@@ -91,10 +91,6 @@ namespace Sprint2
                     }
                     
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Sprint4
             }
         }
     }

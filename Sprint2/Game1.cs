@@ -5,12 +5,8 @@ using Microsoft.Xna.Framework.Input;
 using System.Xml;
 using System.Collections;
 using System.IO;
-<<<<<<< HEAD
-using Sprint2.Controller;
-=======
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
->>>>>>> origin/Sprint4
 
 namespace Sprint2
 {
@@ -28,9 +24,6 @@ namespace Sprint2
         private CollisionDetector collisionDetector;
 
         private HUD hud;
-<<<<<<< HEAD
-        private GamePadController GamePadController;
-=======
         public Camera camera;
 
         private SoundEffect themeSong;
@@ -39,7 +32,6 @@ namespace Sprint2
         public static int ScreenHeight;
         public static int ScreenWidth;
 
->>>>>>> origin/Sprint4
 
 
         public Game1()
@@ -57,7 +49,7 @@ namespace Sprint2
             /// Sprite : (width, height)
             /// Room : (256, 176)
             /// HUD : (256, 56)
-            
+
 
             graphics.PreferredBackBufferWidth = 766;
             graphics.PreferredBackBufferHeight = 696;
@@ -75,36 +67,24 @@ namespace Sprint2
             // TODO: Add your initialization logic here
 
             spriteFactory = new SpriteFactory(this.Content);
-<<<<<<< HEAD
-            gom = new GameObjectManager();
-=======
             soundFactory = new SoundFactory(this.Content);
->>>>>>> origin/Sprint4
 
-            // controllers
             controllerList = new ArrayList();
-            keyboardController = new KeyboardController();
-            GamePadController = new GamePadController();
-            controllerList.Add(keyboardController);
-            controllerList.Add(gom.mouseController);
-            controllerList.Add(GamePadController);
 
-<<<<<<< HEAD
-            levelLoader = new LevelLoader(gom, spriteFactory);
-=======
+            keyboardController = new KeyboardController();
+            controllerList.Add(keyboardController);
+
             gom = new GameObjectManager();
-            levelLoader = new LevelLoader(gom, spriteFactory,soundFactory);
->>>>>>> origin/Sprint4
+            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
+
+            controllerList.Add(gom.mouseController);
 
             collisionDetector = new CollisionDetector(gom);
 
-<<<<<<< HEAD
-=======
             camera = new Camera();
-            
 
 
->>>>>>> origin/Sprint4
+
             base.Initialize();
         }
 
@@ -113,12 +93,12 @@ namespace Sprint2
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             spriteFactory.LoadSpriteSheets();
-            soundFactory.LoadSounds();        
+            soundFactory.LoadSounds();
             themeSong = soundFactory.getThemeSong();
             themeSongLoop = themeSong.CreateInstance();
             themeSongLoop.IsLooped = true;
             themeSongLoop.Play();
-           
+
             gom.spriteFactory = spriteFactory;
             gom.soundFactory = soundFactory;
 
@@ -126,21 +106,15 @@ namespace Sprint2
 
             hud = new HUD(gom, spriteFactory);
 
-<<<<<<< HEAD
-            levelLoader.LoadLevel("TestLevel", "Top");
-
-            keyboardController.Initialize(gom.link, gom.item, gom.block, this);
-=======
 
             gom.SetSoundContent(soundFactory);
 
 
             levelLoader.LoadLevel("TestLevel", "Top");
 
-            
+
 
             keyboardController.Initialize(gom, this, soundFactory);
->>>>>>> origin/Sprint4
         }
 
         protected override void Update(GameTime gameTime)
@@ -158,6 +132,7 @@ namespace Sprint2
             camera.Update(gameTime);
 
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -170,7 +145,7 @@ namespace Sprint2
             hud.Draw(spriteBatch);
 
             spriteBatch.End();
-         
+
 
             base.Draw(gameTime);
         }
@@ -178,7 +153,7 @@ namespace Sprint2
         internal void Reset()
         {
             // new link, enemy, block, item
-            this. Initialize();
+            this.Initialize();
         }
     }
 }

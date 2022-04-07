@@ -55,11 +55,6 @@ namespace Sprint2
         public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory)
         {
 
-<<<<<<< HEAD
-            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(link));
-            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(link));
-            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(link));
-=======
             RegisterCommandTap(Keys.D4, new SetLinkUseItem(gom.link));
             RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link));
             RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link));
@@ -68,7 +63,6 @@ namespace Sprint2
             RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link, soundFactory));
 
             RegisterCommandTap(Keys.P, new PauseGame(gom, this));
->>>>>>> origin/Sprint4
 
             RegisterCommandHold(Keys.S, new SetLinkMoving(gom.link));
             RegisterCommandHold(Keys.W, new SetLinkMoving(gom.link));
@@ -104,8 +98,6 @@ namespace Sprint2
 
             RegisterCommandTap(Keys.Q, new QuitCommand(game1));
             RegisterCommandTap(Keys.R, new ResetGame(game1));
-<<<<<<< HEAD
-=======
 
             RegisterCommandPause(Keys.P, new PauseGame(gom, this));
 
@@ -114,8 +106,6 @@ namespace Sprint2
             RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(game1.camera));
             RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(game1.camera));
 
-
->>>>>>> origin/Sprint4
         }
 
         public void Update(GameTime gameTime)

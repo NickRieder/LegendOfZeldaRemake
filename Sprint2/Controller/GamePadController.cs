@@ -76,9 +76,9 @@ namespace Sprint2.Controller
             RegisterCommandTap(Buttons.Y, new ResetGame(game1));
 
             // using arrow boomerang bomb
-            RegisterCommandTap(Buttons.RightThumbstickUp, new SetLinkUseArrow(link));
-            RegisterCommandTap(Buttons.RightThumbstickLeft, new SetLinkUseBoomerang(link));
-            RegisterCommandTap(Buttons.RightThumbstickRight, new SetLinkUseBomb(link));
+            //RegisterCommandTap(Buttons.RightThumbstickUp, new SetLinkUseArrow(link));
+            //RegisterCommandTap(Buttons.RightThumbstickLeft, new SetLinkUseBoomerang(link));
+            //RegisterCommandTap(Buttons.RightThumbstickRight, new SetLinkUseBomb(link));
 
             // Pause - UNCOMMENT WHEN MERGED
             // RegisterCommandTap(Buttons.Start, new SetLinkUseArrow(link));

@@ -11,26 +11,26 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
-		private SoundFactory soundFactory;		
+		private SoundFactory soundFactory;
 		private Vector2 currPos;
 		private static TimeSpan damagedTime;
 		private TimeSpan startDamagedTime;
 		bool isDamaged;
-		
+
 
 		public TakingDamage(Link link)
 		{
 			this.link = link;
 			sprite = link.sprite;
-			
-			
+
+
 			spriteFactory = link.spriteFactory;
-			
+
 			sprite = spriteFactory.getLinkDamaged();
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 			isDamaged = true;
-			
+
 		}
 
 
@@ -47,41 +47,33 @@ namespace Sprint2
 				isDamaged = false;
 			}
 			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
-            {
+			{
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
-			}	
-            else
-            {
+			}
+			else
+			{
 				switch (link.direction)
 				{
 					case "down":
-<<<<<<< HEAD
-						currPos.Y -= 2;
-=======
 
 						currPos.Y -= 3;
->>>>>>> origin/Sprint4
 						link.pos = currPos;
 						break;
 					case "left":
-						currPos.X += 2;
+						currPos.X += 3;
 						link.pos = currPos;
 						break;
 					case "right":
-						currPos.X -= 2;
+						currPos.X -= 3;
 						link.pos = currPos;
 						break;
 					default: // facing up
-<<<<<<< HEAD
-						currPos.Y += 2;
-=======
 						currPos.Y += 3;
 
->>>>>>> origin/Sprint4
 						link.pos = currPos;
 						break;
 				}
-            }
+			}
 			sprite.Update(gameTime);
 			link.sprite.Update(gameTime);
 		}
@@ -96,11 +88,10 @@ namespace Sprint2
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
 
-        public void Execute()
-        {
+		public void Execute()
+		{
 
 			link.TakeDamage();
 		}
-    }
+	}
 }
-

@@ -22,7 +22,7 @@ namespace Sprint2
         public ConcurrentBag<ISprite> drawableSpritesListInserts;
         private ConcurrentBag<ISprite> tempUpdatableList;
         public SoundFactory soundFactory { get; set; }
-        
+
 
         public GameTime gameTime;
         public Link link;
@@ -30,8 +30,6 @@ namespace Sprint2
         public Block block;
         //public Door door;
         public EnemiesList enemiesList;
-        private List<Door> doorList;
-        private Type objectType;
 
         private Background background;
         public KeyboardController keyboardController;
@@ -55,9 +53,6 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
 
-<<<<<<< HEAD
-            this.AddToDrawableObjectList(background); 
-=======
 
             //this.AddToDrawableObjectList(background);
 
@@ -66,8 +61,7 @@ namespace Sprint2
 
 
 
-            
->>>>>>> origin/Sprint4
+
         }
         public void SetSoundContent(SoundFactory soundFactory)
         {
@@ -85,11 +79,12 @@ namespace Sprint2
             {
                 sprite.SetSpriteContent(spriteFactory);
             }
+
         }
 
         public void PauseGame()
         {
-            if(isPaused)
+            if (isPaused)
             {
                 updatableSpritesList = new ConcurrentBag<ISprite>(tempUpdatableList);
             }
@@ -99,7 +94,7 @@ namespace Sprint2
                 updatableSpritesList.Clear();
             }
             isPaused = !isPaused;
-            
+
         }
 
         public void SetBackgroundRoom(string roomName)
@@ -124,7 +119,8 @@ namespace Sprint2
         }
         public void AddToMovableObjectList(ISprite spriteObject)
         {
-            movableObjectList.Add(spriteObject);  
+            movableObjectList.Add(spriteObject);
+
         }
         public void AddToDrawableObjectList(ISprite spriteObject)
         {
