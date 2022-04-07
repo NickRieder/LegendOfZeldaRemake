@@ -13,6 +13,7 @@ namespace Sprint2
 		public SpriteFactory spriteFactory { get; set; }
 		public SoundFactory soundFactory;
 		public int health;
+		public int bossHealth;
 		public int spriteSizeMultiplier;
 
 		public string direction;
@@ -24,6 +25,8 @@ namespace Sprint2
 
 		public SoundEffect enemyHurtSound;
 		public SoundEffect enemyDeadSound;
+		public SoundEffect bossHurtSound;
+		public SoundEffect bossDeadSound;
 
 
 		public Enemies(string enemyName, GameObjectManager gom)
@@ -31,6 +34,7 @@ namespace Sprint2
 			this.enemyName = enemyName;
 			this.gom = gom;
 			spriteSizeMultiplier = 2;
+			bossHealth = 10;
 			health = 3;
 			pos = new Vector2(600, 200);
 			this.freeze = false;
@@ -63,8 +67,11 @@ namespace Sprint2
 					break;
 				case "Wizzrobe":
 					currState = new WizzrobeDown(this);
+                    break;
+                case "Boss":
+					currState = new BossDown(this);
 					break;
-				default: // facing up
+                default: // facing up
 					currState = null;
 					break;
 			}
@@ -74,6 +81,8 @@ namespace Sprint2
 			this.soundFactory = soundFactory;
 			enemyDeadSound = soundFactory.getEnemyDead();
 			enemyHurtSound = soundFactory.getEnemyHit();
+			bossDeadSound = soundFactory.getBossScream3();
+			bossHurtSound = soundFactory.getBossScream1();
 
 		}
 
@@ -112,14 +121,29 @@ namespace Sprint2
         public void TakeDamage()
 		{
 			currState.TakeDamage();
-			if(health == 0)
+			if (enemyName == "Boss")
             {
-				enemyDeadSound.Play();
-            }
+				if (bossHealth == 0)
+				{
+					bossDeadSound.Play();
+				}
+				else
+				{
+					bossHurtSound.Play();
+				}
+			}
             else
             {
-				enemyHurtSound.Play();
-            }
+				if (health == 0)
+				{
+					enemyDeadSound.Play();
+				}
+				else
+				{
+					enemyHurtSound.Play();
+				}
+			}
+		
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
