@@ -30,6 +30,10 @@
 			<XCoord>400</XCoord>
 			<YCoord>300</YCoord>
 		</enemy>
+		<enemy Type="Boss">
+			<XCoord>400</XCoord>
+			<YCoord>200</YCoord>
+		</enemy>
 	</Enemies>
 	<Walls>
 		<wall>

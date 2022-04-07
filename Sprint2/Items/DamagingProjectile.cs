@@ -46,6 +46,10 @@ namespace Sprint2
 					CenterProjectilePosition(spriteFactory.getFireballSprite());
 					sprite = spriteFactory.getFireballSprite();
 					break;
+				case "Minion":
+					CenterProjectilePosition(spriteFactory.getBossMinion());
+					sprite = spriteFactory.getBossMinion();
+					break;
 				default:
 					sprite = spriteFactory.getNullProjectile();
 					break;

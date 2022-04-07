@@ -13,9 +13,11 @@ namespace Sprint2
         private List<Rectangle> frameList;
         private Rectangle destinationRectangle;
         private int scaleMultiplier;
+        private int counter;
 
         public Sprite(Texture2D spriteSheet, params Rectangle[] frames)
         {
+            counter = 0;
             this.spriteSheet = spriteSheet;
             currFrame = 0;
             totalFrames = frames.Length;
@@ -30,11 +32,16 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            currFrame++;
+            if (counter % 10 == 0)
+            {
+                currFrame++;
+            }
+            
             if (currFrame == totalFrames)
             {
                 currFrame = 0;
             }
+            counter++;
             currRectangle = frameList[currFrame];
         }
 
