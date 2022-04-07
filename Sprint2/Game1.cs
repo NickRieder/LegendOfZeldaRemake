@@ -24,6 +24,7 @@ namespace Sprint2
         private CollisionDetector collisionDetector;
 
         private HUD hud;
+        private Camera camera;
 
         private SoundEffect themeSong;
         private SoundEffectInstance themeSongLoop;
@@ -43,9 +44,15 @@ namespace Sprint2
 
         protected override void Initialize()
         {
+            /// Sizes of sprites (before x3 scale multiplier is applied).
+            /// These could be changed into constants later.
+            /// Sprite : (width, height)
+            /// Room : (256, 176)
+            /// HUD : (256, 56)
+            
 
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 700;
+            graphics.PreferredBackBufferWidth = 766;
+            graphics.PreferredBackBufferHeight = 696;
             graphics.ApplyChanges();
 
             // For the Camera class
@@ -73,8 +80,8 @@ namespace Sprint2
             controllerList.Add(gom.mouseController);
 
             collisionDetector = new CollisionDetector(gom);
-            
 
+            camera = new Camera();
             
 
 
@@ -120,6 +127,7 @@ namespace Sprint2
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
             hud.Update(gameTime);
+            camera.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -128,7 +136,7 @@ namespace Sprint2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: camera.transform);
 
             gom.Draw(spriteBatch);
             hud.Draw(spriteBatch);

@@ -27,7 +27,7 @@ namespace Sprint2
             font = this.spriteFactory.getFont();
             HUDSprite = spriteFactory.getHUDSprite();
             sheet = spriteFactory.getHudSheet();
-            HUDPos = new Vector2(300, 550);
+            HUDPos = new Vector2(300, 550); // 300, 550
         }
 
 
