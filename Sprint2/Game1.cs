@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Xml;
 using System.Collections;
 using System.IO;
+using Sprint2.Controller;
 
 namespace Sprint2
 {
@@ -20,6 +21,7 @@ namespace Sprint2
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
         private HUD hud;
+        private GamePadController GamePadController;
 
 
         public Game1()
@@ -38,22 +40,20 @@ namespace Sprint2
 
             // TODO: Add your initialization logic here
             spriteFactory = new SpriteFactory(this.Content);
-
-            controllerList = new ArrayList();
-            
-            keyboardController = new KeyboardController();
-            controllerList.Add(keyboardController);
-
             gom = new GameObjectManager();
-            levelLoader = new LevelLoader(gom, spriteFactory);
 
+            // controllers
+            controllerList = new ArrayList();
+            keyboardController = new KeyboardController();
+            GamePadController = new GamePadController();
+            controllerList.Add(keyboardController);
             controllerList.Add(gom.mouseController);
+            controllerList.Add(GamePadController);
+
+            levelLoader = new LevelLoader(gom, spriteFactory);
 
             collisionDetector = new CollisionDetector(gom);
             //levelLoader = new LevelLoader(gom, spriteFactory);
-
-            
-
 
             base.Initialize();
         }
@@ -71,10 +71,7 @@ namespace Sprint2
             gom.SetSpriteContent(spriteFactory);
             hud = new HUD(gom, spriteFactory);
 
-
             levelLoader.LoadLevel("TestLevel", "Top");
-
-            
 
             keyboardController.Initialize(gom.link, gom.item, gom.block, this);
         }
@@ -95,7 +92,6 @@ namespace Sprint2
             hud.Update(gameTime);
 
             base.Update(gameTime);
-
         }
 
         protected override void Draw(GameTime gameTime)
