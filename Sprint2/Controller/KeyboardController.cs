@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
+using System.Windows.Input;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using System.Linq;
@@ -128,7 +129,26 @@ namespace Sprint2
                     }
                     else if (controllerMappingsHold.ContainsKey(key))
                     {
-                        controllerMappingsHold[key].Execute();
+                        if (key == Keys.D)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.W))
+                                controllerMappingsHold[key].Execute();
+                        }
+                        else if (key == Keys.W)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.D))
+                                controllerMappingsHold[key].Execute();
+                        }
+                        else if (key == Keys.A)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.D) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.W))
+                                controllerMappingsHold[key].Execute();
+                        }
+                        else if (key == Keys.S)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.D) && !pressedKeys.Contains<Keys>(Keys.W))
+                                controllerMappingsHold[key].Execute();
+                        }
                     }
                 }
             }

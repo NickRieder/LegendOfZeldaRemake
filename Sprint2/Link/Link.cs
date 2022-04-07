@@ -12,7 +12,7 @@ namespace Sprint2
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		public SoundFactory soundFactory;
-		
+		public Game1 game;
 		public Sprite sprite;
 		public int health, maxHealth, rupies, keys, bombs;
 		public LinkItem item;
@@ -25,9 +25,10 @@ namespace Sprint2
 		public SoundEffect arrowSound;
 		public SoundEffect boomerangSound;
 		public SoundEffect explosion;
-		public Link()
+		public Link(Game1 game)
 		{
 			//item = new NullItem();
+			this.game = game;
 			health= 8;
 			maxHealth = 10;
 			rupies = keys = bombs = 0;

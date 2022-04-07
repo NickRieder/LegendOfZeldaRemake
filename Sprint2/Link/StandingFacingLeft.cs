@@ -27,23 +27,20 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.direction = "up";
 			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			link.direction = "down";
 			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
 			link.currState = new StandingFacingRight(link);
-			link.direction = "right";
 		}
 		public void StandingLeft() { }
 		public void Move()
         {
-			link.currState = new MovingLink(link);
+			link.currState = new MovingLink(link);			
 		}
 		public void UseWeapon()
 		{

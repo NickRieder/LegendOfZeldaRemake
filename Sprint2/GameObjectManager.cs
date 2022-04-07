@@ -36,7 +36,7 @@ namespace Sprint2
         public MouseController mouseController;
         private bool isPaused;
 
-        public GameObjectManager()
+        public GameObjectManager(Game1 game)
         {
             // Use ConcurrentBag to allow modifying of a collection while it is being iterated over.
             allObjectList = new ConcurrentBag<ISprite>();
@@ -49,7 +49,7 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
-            link = new Link();
+            link = new Link(game);
             background = new Background();
             gameTime = new GameTime();
 

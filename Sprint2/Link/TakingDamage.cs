@@ -15,11 +15,14 @@ namespace Sprint2
 		private Vector2 currPos;
 		private static TimeSpan damagedTime;
 		private TimeSpan startDamagedTime;
+		private static TimeSpan resetTime;
+		private TimeSpan startResetTime;
 		bool isDamaged;
-		
+		private Game1 game;
 
 		public TakingDamage(Link link)
 		{
+			this.game = link.game;
 			this.link = link;
 			sprite = link.sprite;
 			
@@ -28,6 +31,7 @@ namespace Sprint2
 			
 			sprite = spriteFactory.getLinkDamaged();
 			damagedTime = TimeSpan.FromMilliseconds(500);
+			resetTime = TimeSpan.FromSeconds(5);
 			currPos = link.pos;
 			isDamaged = true;
 			
@@ -44,11 +48,23 @@ namespace Sprint2
 			{
 
 				startDamagedTime = gameTime.TotalGameTime;
-				isDamaged = false;
 			}
 			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
             {
-				link.currState = new NewDirectionalLinkSprite(link, link.direction);
+				if (link.health > 0)
+                {
+					isDamaged = false;
+					link.currState = new NewDirectionalLinkSprite(link, link.direction);
+				}
+				else
+                {
+					startResetTime = gameTime.TotalGameTime;
+					// draw game over screen
+					if (startResetTime + resetTime < gameTime.TotalGameTime)
+                    {
+						game.Reset();
+					}
+                }
 			}	
             else
             {

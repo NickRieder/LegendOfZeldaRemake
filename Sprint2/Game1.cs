@@ -74,7 +74,7 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
 
-            gom = new GameObjectManager();
+            gom = new GameObjectManager(this);
             levelLoader = new LevelLoader(gom, spriteFactory,soundFactory);
 
             controllerList.Add(gom.mouseController);
@@ -150,7 +150,7 @@ namespace Sprint2
             base.Draw(gameTime);
         }
 
-        internal void Reset()
+        public void Reset()
         {
             // new link, enemy, block, item
             this. Initialize();

@@ -22,6 +22,7 @@ namespace Sprint2
 		{
 			this.link = link;
 			this.sprite = link.sprite;
+			this.isMoving = link.isMoving;
 			link.direction = "down";
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
@@ -31,20 +32,29 @@ namespace Sprint2
 	
 		public void StandingUp()
 		{
-			link.currState = new StandingFacingUp(link);
+		//	if(!isMoving)
+				link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown() { }
 		public void StandingRight()
 		{
-			link.currState = new StandingFacingRight(link);
+		//	if (!isMoving)
+				link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			link.currState = new StandingFacingLeft(link);
+		//	if (!isMoving)
+				link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
-			link.currState = new MovingLink(link);
+			//if (!isMoving)
+           // {
+				//isMoving = true;
+				link.isMoving = isMoving;
+				link.currState = new MovingLink(link);
+			//}
+				
         }
 		public void UseWeapon()
 		{

@@ -10,8 +10,8 @@ namespace Sprint2
     {
         public Vector2 pos { get; set; }
         public SpriteFactory spriteFactory;
-        private String nextLevel; // why is the string type have "S" capitalized?
-        private String prevRoom;
+        public String nextLevel; // why is the string type have "S" capitalized?
+        public String prevRoom;
         private LevelLoader levelLoader;
 
         public Sprite sprite;
