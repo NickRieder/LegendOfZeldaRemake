@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,7 +12,11 @@ namespace Sprint2.Controller
         private Dictionary<Buttons, ICommand> controllerMappingsHold;
         private Dictionary<Buttons, ICommand> controllerMappingsTap;
         private Dictionary<Buttons, ICommand> controllerMappingsRelease;
-        private GamePadButtons[] previousPressedButtons;
+
+        private Dictionary<Buttons, ICommand> commandDict = new Dictionary<Buttons, ICommand>();
+        private Dictionary<Buttons, ICommand> releasedCommandDict = new Dictionary<Buttons, ICommand>();
+
+        private Buttons[] preKeys = new Buttons[0];
 
         public GamePadController()
         {
@@ -85,6 +90,89 @@ namespace Sprint2.Controller
         public void Update(GameTime gameTime)
         {
             GamePadState state = GamePad.GetState(PlayerIndex.One);
+
+            List<Buttons> tempList = new List<Buttons>();
+            if (GamePad.GetState(0).DPad.Left == ButtonState.Pressed)
+            {
+                tempList.Add(Buttons.DPadLeft);
+            }
+            if (GamePad.GetState(0).DPad.Right == ButtonState.Pressed)
+            {
+                tempList.Add(Buttons.DPadRight);
+            }
+            if (GamePad.GetState(0).DPad.Up == ButtonState.Pressed)
+            {
+                tempList.Add(Buttons.DPadUp);
+            }
+            if (GamePad.GetState(0).DPad.Down == ButtonState.Pressed)
+            {
+                tempList.Add(Buttons.DPadDown);
+            }
+
+            Buttons[] pressedKeys = new Buttons[tempList.LongCount()];
+            for (int i = 0; i < pressedKeys.LongCount(); i++)
+            {
+                pressedKeys[i] = tempList[i];
+            }
+
+            if (Left(pressedKeys))
+            {
+                controllerMappingsTap[Buttons.DPadLeft].Execute();
+            }
+            else if (Right(pressedKeys))
+            {
+                controllerMappingsTap[Buttons.DPadRight].Execute();
+            }
+            else if (Up(pressedKeys))
+            {
+                controllerMappingsTap[Buttons.DPadUp].Execute();
+            }
+            else if (Down(pressedKeys))
+            {
+                controllerMappingsTap[Buttons.DPadDown].Execute();
+            }
+        
+            if (preKeys != null)
+            {
+                foreach (Buttons key in preKeys)
+                {
+                    if (preKeys.Contains(key) && GamePad.GetState(0).IsButtonUp(key))
+                    {
+                        controllerMappingsRelease[key].Execute();
+                    }
+                }
+            }
+
+            preKeys = pressedKeys;
+        }
+
+        private bool Left(Buttons[] pressedKeys)
+        {
+            return pressedKeys.Contains(Buttons.DPadLeft) &&
+                !pressedKeys.Contains(Buttons.DPadRight) &&
+                !pressedKeys.Contains(Buttons.DPadUp) &&
+                !pressedKeys.Contains(Buttons.DPadDown);
+        }
+        private bool Right(Buttons[] pressedKeys)
+        {
+            return !pressedKeys.Contains(Buttons.DPadLeft) &&
+                !pressedKeys.Contains(Buttons.DPadUp) &&
+                pressedKeys.Contains(Buttons.DPadRight) &&
+                !pressedKeys.Contains(Buttons.DPadDown);
+        }
+        private bool Up(Buttons[] pressedKeys)
+        {
+            return !pressedKeys.Contains(Buttons.DPadLeft) &&
+                 !pressedKeys.Contains(Buttons.DPadRight) &&
+                 pressedKeys.Contains(Buttons.DPadUp) &&
+                 !pressedKeys.Contains(Buttons.DPadDown);
+        }
+        private bool Down(Buttons[] pressedKeys)
+        {
+            return !pressedKeys.Contains(Buttons.DPadLeft) &&
+                !pressedKeys.Contains(Buttons.DPadRight) &&
+                !pressedKeys.Contains(Buttons.DPadUp) &&
+                pressedKeys.Contains(Buttons.DPadDown);
         }
     }
 }
