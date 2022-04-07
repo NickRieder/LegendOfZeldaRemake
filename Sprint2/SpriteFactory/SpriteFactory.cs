@@ -26,6 +26,12 @@ namespace Sprint2
         private static Texture2D transparentSheet;
         private static Texture2D hudSheet;
 
+        private static Texture2D basementSheet;
+        private static Texture2D level1Sheet;
+        private static Texture2D level2Sheet;
+        private static Texture2D level3Sheet;
+        private static Texture2D level4Sheet;
+
         private static SpriteFont font;
         public SpriteFactory(ContentManager content)
         {
@@ -56,6 +62,11 @@ namespace Sprint2
 
             font = content.Load<SpriteFont>("File");
 
+            basementSheet = content.Load<Texture2D>("Sheets/Level 0 SpriteSheet");
+            level1Sheet = content.Load<Texture2D>("Sheets/Level 1 SpriteSheet");
+            level2Sheet = content.Load<Texture2D>("Sheets/Level 2 SpriteSheet");
+            level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
+            level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
 
 
         }
@@ -260,6 +271,93 @@ namespace Sprint2
         public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
         public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
 
+        // Levels
+        public static Rectangle B_R1 = new Rectangle(32, 27, 164, 164);
+        public static Rectangle B_R2 = new Rectangle(217, 27, 164, 164);
+        public static Rectangle B_R3 = new Rectangle(402, 27, 164, 164);
+        public static Rectangle B_R4 = new Rectangle(587, 27, 164, 164);
+        public static Rectangle B_R5 = new Rectangle(772, 27, 164, 164);
+        public static Rectangle B_R6 = new Rectangle(32, 212, 164, 164);
+
+        public static Rectangle L1_R1 = new Rectangle(39, 31, 130, 145);
+        public static Rectangle L1_R2 = new Rectangle(186, 31, 130, 145);
+        public static Rectangle L1_R3 = new Rectangle(333, 31, 130, 145);
+        public static Rectangle L1_R4 = new Rectangle(481, 31, 130, 145);
+        public static Rectangle L1_R5 = new Rectangle(628, 31, 130, 145);
+        public static Rectangle L1_R6 = new Rectangle(39, 193, 130, 145);
+        public static Rectangle L1_R7 = new Rectangle(185, 193, 130, 145);
+        public static Rectangle L1_R8 = new Rectangle(333, 193, 130, 145);
+        public static Rectangle L1_R9 = new Rectangle(481, 193, 130, 145);
+        public static Rectangle L1_R10 = new Rectangle(626, 193, 130, 145);
+        public static Rectangle L1_R11 = new Rectangle(39, 354, 130, 145);
+        public static Rectangle L1_R12 = new Rectangle(185, 354, 130, 145);
+        public static Rectangle L1_R13 = new Rectangle(332, 212, 130, 145);
+
+        public static Rectangle L2_R1 = new Rectangle(33, 36, 108, 133);
+        public static Rectangle L2_R2 = new Rectangle(155, 36, 108, 133);
+        public static Rectangle L2_R3 = new Rectangle(277, 36, 108, 133);
+        public static Rectangle L2_R4 = new Rectangle(399, 36, 108, 133);
+        public static Rectangle L2_R5 = new Rectangle(521, 36, 108, 133);
+        public static Rectangle L2_R6 = new Rectangle(33, 183, 108, 133);
+        public static Rectangle L2_R7 = new Rectangle(155, 182, 108, 133);
+        public static Rectangle L2_R8 = new Rectangle(278, 182, 108, 133);
+        public static Rectangle L2_R9 = new Rectangle(400, 182, 108, 133);
+
+        public static Rectangle L3_R1 = new Rectangle(25, 26, 131, 109);
+        public static Rectangle L3_R2 = new Rectangle(170, 26, 131, 109);
+        public static Rectangle L3_R3 = new Rectangle(315, 26, 131, 109);
+        public static Rectangle L3_R4 = new Rectangle(460, 26, 131, 109);
+        public static Rectangle L3_R5 = new Rectangle(25, 149, 131, 109);
+        public static Rectangle L3_R6 = new Rectangle(170, 149, 131, 109);
+        public static Rectangle L3_R7 = new Rectangle(315, 149, 131, 109);
+        public static Rectangle L3_R8 = new Rectangle(460, 149, 131, 109);
+        public static Rectangle L3_R9 = new Rectangle(25, 272, 131, 109);
+
+        public static Rectangle L4_R1 = new Rectangle(41, 27, 131, 131);
+
+        //Minimap Position
+        public static Rectangle BP_R1 = new Rectangle(217, 212, 164, 164);
+        public static Rectangle BP_R2 = new Rectangle(402, 212, 164, 164);
+        public static Rectangle BP_R3 = new Rectangle(587, 212, 164, 164);
+        public static Rectangle BP_R4 = new Rectangle(772, 212, 164, 164);
+        public static Rectangle BP_R5 = new Rectangle(217, 397, 164, 164);
+        public static Rectangle BP_R6 = new Rectangle(402, 397, 164, 164);
+
+        public static Rectangle L1P_R1 = new Rectangle(480, 354, 130, 145);
+        public static Rectangle L1P_R2 = new Rectangle(626, 354, 130, 145);
+        public static Rectangle L1P_R3 = new Rectangle(32, 14, 129, 146);
+        public static Rectangle L1P_R4 = new Rectangle(178, 14, 129, 146);
+        public static Rectangle L1P_R5 = new Rectangle(324, 14, 129, 146);
+        public static Rectangle L1P_R6 = new Rectangle(470, 14, 129, 146);
+        public static Rectangle L1P_R7 = new Rectangle(617, 14, 129, 146);
+        public static Rectangle L1P_R8 = new Rectangle(32, 175, 129, 146);
+        public static Rectangle L1P_R9 = new Rectangle(178, 175, 129, 146);
+        public static Rectangle L1P_R10 = new Rectangle(324, 175, 129, 146);
+        public static Rectangle L1P_R11 = new Rectangle(470, 175, 129, 146);
+        public static Rectangle L1P_R12 = new Rectangle(617, 175, 129, 146);
+        //public static Rectangle L1P_R13 = new Rectangle(332, 212, 130, 145); //Missing
+
+        public static Rectangle L2P_R1 = new Rectangle(523, 182, 108, 133);
+        public static Rectangle L2P_R2 = new Rectangle(33, 329, 108, 133);
+        public static Rectangle L2P_R3 = new Rectangle(156, 329, 108, 133);
+        public static Rectangle L2P_R4 = new Rectangle(278, 329, 108, 133);
+        public static Rectangle L2P_R5 = new Rectangle(401, 329, 108, 133);
+        public static Rectangle L2P_R6 = new Rectangle(523, 183, 108, 133);
+        public static Rectangle L2P_R7 = new Rectangle(34, 475, 108, 133);
+        public static Rectangle L2P_R8 = new Rectangle(156, 475, 108, 133);
+        public static Rectangle L2P_R9 = new Rectangle(478, 475, 108, 133);
+
+        public static Rectangle L3P_R1 = new Rectangle(171, 272, 131, 109);
+        public static Rectangle L3P_R2 = new Rectangle(316, 272, 131, 109);
+        public static Rectangle L3P_R3 = new Rectangle(461, 272, 131, 109);
+        public static Rectangle L3P_R4 = new Rectangle(26, 395, 131, 109);
+        public static Rectangle L3P_R5 = new Rectangle(171, 395, 131, 109);
+        public static Rectangle L3P_R6 = new Rectangle(316, 395, 131, 109);
+        public static Rectangle L3P_R7 = new Rectangle(461, 395, 131, 109);
+        public static Rectangle L3P_R8 = new Rectangle(171, 518, 131, 109);
+        public static Rectangle L3P_R9 = new Rectangle(316, 518, 131, 109);
+
+        public static Rectangle L4P_R1 = new Rectangle(186, 27, 131, 131);
         // Projectiles
         public Sprite getBoomerangSprite()
         {
