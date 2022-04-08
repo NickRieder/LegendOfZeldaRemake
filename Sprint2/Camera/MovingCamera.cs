@@ -8,10 +8,9 @@ namespace Sprint2
 {
     public class MovingCamera : ICameraState
     {
-        //We will have to write the raw size of sprites somewhere for easy access.
         private const int START_ANIMATION = 0;
-        private const int STOP_VERTICAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_HEIGHT;    // Raw height of room sprite is 176, so 176 * 3 = 528
-        private const int STOP_HORIZONTAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_WIDTH;    // Raw width of room sprite is 256, so 256 * 3 = 768
+        private const int STOP_VERTICAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_HEIGHT;
+        private const int STOP_HORIZONTAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_WIDTH;
 
 
         Camera camera;
