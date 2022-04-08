@@ -87,7 +87,7 @@ namespace Sprint2
             controllerList.Add(keyboardController);
 
             gom = new GameObjectManager();
-            levelLoader = new LevelLoader(gom, spriteFactory,soundFactory);
+            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
 
             controllerList.Add(gom.mouseController);
 
@@ -118,7 +118,7 @@ namespace Sprint2
             gom.SetSoundContent(soundFactory);
 
 
-            levelLoader.LoadLevel("TestLevel", "Top");
+            levelLoader.LoadLevel("Level 0/L0R1", "Top");
             hud = new HUD(this, spriteFactory);
 
 

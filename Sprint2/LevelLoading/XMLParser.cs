@@ -63,6 +63,18 @@ namespace Sprint2
 
                             levelLoader.LoadEnemyObject(objType, pos);
                             break;
+                        case "item":
+                            reader.MoveToFirstAttribute();
+                            objType = reader.Value;
+
+                            reader.ReadToFollowing("XCoord");
+                            pos.X = reader.ReadElementContentAsInt();
+
+                            reader.ReadToFollowing("YCoord");
+                            pos.Y = reader.ReadElementContentAsInt();
+
+                            levelLoader.LoadItemObject(objType, pos);
+                            break;
                         case "door":
                             reader.MoveToFirstAttribute();
                             objType = reader.Value;
@@ -73,13 +85,16 @@ namespace Sprint2
                             reader.ReadToFollowing("room");
                             string prevRoom = reader.ReadElementContentAsString();
 
+                            reader.ReadToFollowing("clickNext");
+                            string nextClickRoom = reader.ReadElementContentAsString();
+
                             reader.ReadToFollowing("XCoord");
                             pos.X = reader.ReadElementContentAsInt();
 
                             reader.ReadToFollowing("YCoord");
                             pos.Y = reader.ReadElementContentAsInt();
 
-                            levelLoader.LoadDoorObject(objType, pos, room, prevRoom);
+                            levelLoader.LoadDoorObject(objType, pos, room, prevRoom, nextClickRoom);
                             break;
                         case "background":
                             reader.ReadToFollowing("sprite");

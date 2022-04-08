@@ -20,8 +20,7 @@ namespace Sprint2
         private Vector2 HUDPos;
         private int HUDPosX;
         private int HUDPosY;
-        private int gameWindowWidth;
-        private int gameWindowHeight;
+
 
         public HUD(Game1 game1, SpriteFactory spriteFactory)
         {
@@ -29,7 +28,7 @@ namespace Sprint2
             this.gom = game1.gom;
             this.camera = game1.camera;
             this.link = gom.link;
-            //gameWindowWidth = game1.GAME_WINDOW;
+
             this.spriteFactory = spriteFactory;
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
@@ -55,7 +54,7 @@ namespace Sprint2
             spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y + 74), Color.White);
 
             //health
-            for (int i = 2; i <= link.maxHealth; i+=2)
+            for (int i = 2; i <= link.health; i+=2)
             {
                 Rectangle sourceRectangle;
                 Rectangle destinationRectangle;

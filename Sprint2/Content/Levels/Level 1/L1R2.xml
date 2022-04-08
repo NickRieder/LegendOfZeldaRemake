@@ -1,4 +1,5 @@
-﻿<Level>
+﻿<!--First Enemies-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
@@ -6,65 +7,65 @@
 	<Blocks>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
-			<YCoord>192</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>192</YCoord>
+			<YCoord>239</YCoord>
 		</block>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
-			<YCoord>338</YCoord>
+			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>338</YCoord>
+			<XCoord>429</XCoord>
+			<YCoord>239</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>576</XCoord>
-			<YCoord>242</YCoord>
+			<XCoord>239</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>476</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>286</YCoord>
 		</block>
 	</Blocks>
 
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
-			<YCoord>0</YCoord>
+			<YCoord>22</YCoord>
 			<Width>300</Width>
-			<Height>33</Height>
+			<Height>20</Height>
 		</wall>
 		<wall>
 			<XCoord>0</XCoord>
-			<YCoord>437</YCoord>
+			<YCoord>435</YCoord>
 			<Width>300</Width>
-			<Height>33</Height>
+			<Height>5</Height>
 		</wall>
 		<wall>
-			<XCoord>0</XCoord>
+			<XCoord>25</XCoord>
 			<YCoord>0</YCoord>
-			<Width>32</Width>
+			<Width>20</Width>
 			<Height>300</Height>
 		</wall>
 		<wall>
-			<XCoord>673</XCoord>
+			<XCoord>680</XCoord>
 			<YCoord>0</YCoord>
-			<Width>33</Width>
+			<Width>20</Width>
 			<Height>300</Height>
 		</wall>
 	</Walls>
 	
 	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
-			<YCoord>150</YCoord>
+		<enemy Type="Bluegel">
+			<XCoord>239</XCoord>
+			<YCoord>286</YCoord>
 		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
-		<enemy Type="Dragon">
-			<XCoord>500</XCoord>
-			<YCoord>150</YCoord>
+		<enemy Type="Bluegel">
+			<XCoord>476</XCoord>
+			<YCoord>286</YCoord>
 		</enemy>
 	</Enemies>
 	<Walls>
@@ -94,39 +95,40 @@
 		</wall>
 	</Walls>
 	<Doors>
-		<door Type="TopOpen">
-			<room>Level 0/L0R1</room>    <!-- Next Room-->
-			<room>Level 0/L0R6</room>    <!-- Previous Room-->
-			<clickNext>Level 0/L0R1</clickNext>
+		<door Type="TopWall">
+			<room></room>    <!-- Next Room-->
+			<room>Level 1/L1R1</room>    <!-- Previous Room-->
+			<clickNext>Level 1/L1R3</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
-		<door Type="LeftLock">
-			<room>Level 0/L0R1</room>
+		<door Type="LeftOpen">
+			<room>Level 1/L1R1</room>
 			<!-- Next Room-->
-			<room>Level 0/L0R6</room>
+			<room>Level 1/L1R1</room>
 			<!-- Previous Room-->
-			<clickNext>Level 0/L0R1</clickNext>
+			<clickNext>Level 1/L1R3</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightOpen">
-			<room>Level 0/L0R1</room>
+			<room>Level 1/L1R3</room>
 			<!-- Next Room-->
-			<room>Level 0/L0R6</room>
+			<room>Level 1/L1R1</room>
 			<!-- Previous Room-->
-			<clickNext>Level 0/L0R6</clickNext>
+			<clickNext>Level 1/L1R3</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="BotWall">
-			<room>Level 0/L0R1</room>
+		<door Type="BotLock">
+			<room>Level 1/L1R5</room>
 			<!-- Next Room-->
-			<room>Level 0/L0R6</room>
+			<room>Level 1/L1R1</room>
 			<!-- Previous Room-->
-			<clickNext>Level 0/L0R1</clickNext>
+			<clickNext>Level 1/L1R3</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>
 	</Doors>
-</Level> 
+	
+</Level>
