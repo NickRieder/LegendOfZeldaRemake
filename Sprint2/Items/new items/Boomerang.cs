@@ -49,32 +49,32 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            switch(direction)
+            switch (direction)
             {
                 case "down":
-                    itemPos.Y += (int) speed;
+                    itemPos.Y += (int)speed;
                     break;
                 case "up":
-                    itemPos.Y -= (int) speed;
+                    itemPos.Y -= (int)speed;
                     break;
                 case "right":
-                    itemPos.X += (int) speed;
+                    itemPos.X += (int)speed;
                     break;
                 case "left":
-                    itemPos.X -= (int) speed;
+                    itemPos.X -= (int)speed;
                     break;
                 default:
                     break;
             }
-            
-            
 
-            if (((int) gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
+
+
+            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
             {
                 sprite.Update(gameTime);
-                speed-= 0.5;
+                speed -= 0.5;
             }
-            if(sprite.getDestinationRectangle().Intersects(link.GetSpriteRectangle()))
+            if (sprite.getDestinationRectangle().Intersects(link.GetSpriteRectangle()))
             {
                 link.item.SetNull();
             }

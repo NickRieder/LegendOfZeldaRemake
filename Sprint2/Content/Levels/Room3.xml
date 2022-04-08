@@ -60,14 +60,7 @@
 		</wall>
 	</Walls>
 	<Enemies>
-		<enemy Type="Wizzrobe">
-			<XCoord>450</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-		<enemy Type="Darknut">
-			<XCoord>200</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
+		
 		
 	</Enemies>
 
