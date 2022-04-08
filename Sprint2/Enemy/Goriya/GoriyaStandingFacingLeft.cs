@@ -11,19 +11,21 @@ namespace Sprint2
     {
         private Enemies goriya;
         private double totalSecondsPassed;
-        private double waitTime;
         private TimeSpan elapsedTime;
         private double secondsPassed;
         Random randomNumberGenerator;
         private int randomNum;
         private int chosenDirectionValue;
 
+        private const int numActions = 5;
+        private const int numPossibleInts = 100;
+        private const double waitTime = 0.25;
+
         public GoriyaStandingFacingLeft(Enemies goriya)
         {
             System.Diagnostics.Debug.WriteLine("DEBUG: In FacingLeftState");
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
-            waitTime = 0.25;
 
             this.goriya = goriya;
             goriya.sprite = goriya.spriteFactory.getGoriyaLeftSprite();
@@ -78,8 +80,8 @@ namespace Sprint2
             if (totalSecondsPassed > waitTime)
             {
 
-                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                chosenDirectionValue = randomNum % 5;
+                randomNum = randomNumberGenerator.Next(0, numPossibleInts); // random number between 0-99
+                chosenDirectionValue = randomNum % numActions;
 
                 if (chosenDirectionValue == 0)
                     MoveDown();

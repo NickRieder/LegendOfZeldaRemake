@@ -20,6 +20,8 @@ namespace Sprint2
 		public string projectileType;
 		public string projectileDirection;
 
+		private static int divisorVal = 2;
+
 		public DamagingProjectile(Enemies enemy, string projectileType)
 		{
 			this.spriteFactory = enemy.spriteFactory;
@@ -61,7 +63,6 @@ namespace Sprint2
 			Vector2 centeredPos = enemyPos;
 			Rectangle enemyRectangle = enemy.GetSpriteRectangle();
 			Rectangle projectileRectangle = projectileSprite.getCurrentFrameRectangle();
-			int divisorVal = 2;
 			int eWidth = enemyRectangle.Width;
 			int halfEW = enemyRectangle.Width / divisorVal;
 			int pWidth = projectileRectangle.Width;

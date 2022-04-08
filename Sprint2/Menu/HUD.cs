@@ -17,7 +17,20 @@ namespace Sprint2
         private Texture2D sheet;
         private Vector2 HUDPos;
 
+        private const int HUDPosX = 300;
+        private const int HUDPosY = 550;
 
+        private const int HUDPosOffsetX = 250;
+        private const int HUDPosOffsetY = 50;
+
+        private const int itemStringOffsetX = 38;
+        private const int keysStringOffsetY = 48;
+        private const int bombsStringOffsetY = 74;
+
+        private const int sourceRectangleMultiplier = 3;
+
+        private const int fullHeart = 2;
+        private const int halfHeart = 1;
 
         public HUD(GameObjectManager gom, SpriteFactory spriteFactory)
         {
@@ -27,7 +40,7 @@ namespace Sprint2
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
             sheet = this.spriteFactory.getHudSheet();
-            HUDPos = new Vector2(300, 550);
+            HUDPos = new Vector2(HUDPosX, HUDPosY);
         }
 
 
@@ -37,12 +50,12 @@ namespace Sprint2
             HUDSprite.Draw(spriteBatch, HUDPos);
 
             // numebrs of items link has
-            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y), Color.White);
-            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 48), Color.White);
-            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 74), Color.White);
+            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y), Color.White);
+            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + keysStringOffsetY), Color.White);
+            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + bombsStringOffsetY), Color.White);
 
             //health
-            for (int i = 2; i <= link.maxHealth; i+=2)
+            for (int i = fullHeart; i <= link.maxHealth; i+=fullHeart)
             {
                 Rectangle sourceRectangle;
                 Rectangle destinationRectangle;
@@ -53,7 +66,7 @@ namespace Sprint2
                         sourceRectangle = spriteFactory.getFullHeartRect();
 
                     }
-                    else if(link.health == i - 1)
+                    else if(link.health == i - halfHeart)
                     {
                         //draw half heart
                         sourceRectangle = spriteFactory.getHalfHeartRect();
@@ -63,7 +76,7 @@ namespace Sprint2
                         //draw empty heart
                         sourceRectangle = spriteFactory.getEmptyHeartRect();
                     }
-                    destinationRectangle = new Rectangle((int)(HUDPos.X + 250 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
+                    destinationRectangle = new Rectangle((int)(HUDPos.X + HUDPosOffsetX + ((sourceRectangleMultiplier * sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + HUDPosOffsetY), sourceRectangleMultiplier * sourceRectangle.Width, sourceRectangleMultiplier * sourceRectangle.Height);
                     spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
                 
                 

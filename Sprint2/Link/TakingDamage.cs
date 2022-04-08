@@ -20,6 +20,8 @@ namespace Sprint2
 		bool isDamaged;
 		private Game1 game;
 
+		private const int linkKnockedSpeed = 3;
+
 		public TakingDamage(Link link)
 		{
 			this.game = link.game;
@@ -72,19 +74,19 @@ namespace Sprint2
 				{
 					case "down":
 
-						currPos.Y -= 3;
+						currPos.Y -= linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					case "left":
-						currPos.X += 3;
+						currPos.X += linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					case "right":
-						currPos.X -= 3;
+						currPos.X -= linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					default: // facing up
-						currPos.Y += 3;
+						currPos.Y += linkKnockedSpeed;
 
 						link.pos = currPos;
 						break;

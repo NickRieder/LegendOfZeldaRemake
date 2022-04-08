@@ -12,6 +12,8 @@ namespace Sprint2
         private int xCount;
         private int yCount;
 
+        private static int screenSizeHalf = 2;
+
         public StaticCamera(Camera camera, int xCount, int yCount)
         {
             this.camera = camera;
@@ -23,7 +25,7 @@ namespace Sprint2
         {
             var position = Matrix.CreateTranslation(xPos, yPos, 0);
 
-            var offset = Matrix.CreateTranslation(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2, 0);
+            var offset = Matrix.CreateTranslation(Game1.ScreenWidth / screenSizeHalf, Game1.ScreenHeight / screenSizeHalf, 0);
 
             camera.transform = position;
         }

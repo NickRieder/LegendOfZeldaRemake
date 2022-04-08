@@ -19,18 +19,20 @@ namespace Sprint2
         private Texture2D sheetMirrored;
         private EnemiesList enemiesList;
         private double totalSecondsPassed;
-        private double waitTime;
         public TimeSpan elapsedTime;
         private double secondsPassed;
         Random randomNumberGenerator;
         private int randomNum;
         private int chosenDirectionValue;
 
+        private const int numDirections = 4;
+        private const int numPossibleInts = 100;
+        private const double waitTime = 0.25;
+
         public DarknutStandingFacingUp(Enemies darknut)
         {
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
-            waitTime = 0.25;
 
             this.darknut = darknut;
             darknut.sprite = darknut.spriteFactory.getDarknutUpSprite();
@@ -101,8 +103,8 @@ namespace Sprint2
 
             if (totalSecondsPassed > waitTime)
             {
-                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                chosenDirectionValue = randomNum % 4;
+                randomNum = randomNumberGenerator.Next(0, numPossibleInts); // random number between 0-99
+                chosenDirectionValue = randomNum % numDirections;
 
                 if (chosenDirectionValue == 0)
                     MoveDown();

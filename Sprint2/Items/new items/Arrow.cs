@@ -9,13 +9,13 @@ namespace Sprint2
         private Vector2 itemPos;
         private Sprite sprite;
         private string direction;
-        private int speed;
+
+        private const int arrowSpeed = 5;
 
         public Arrow(Link link, SpriteFactory spriteFactory)
         {
             itemPos.X = link.pos.X;
             itemPos.Y = link.pos.Y;
-            speed = 5;
             direction = link.GetDirection();
             switch (direction)
             {
@@ -53,16 +53,16 @@ namespace Sprint2
             switch (direction)
             {
                 case "down":
-                    itemPos.Y += speed;
+                    itemPos.Y += arrowSpeed;
                     break;
                 case "up":
-                    itemPos.Y -= speed;
+                    itemPos.Y -= arrowSpeed;
                     break;
                 case "right":
-                    itemPos.X += speed;
+                    itemPos.X += arrowSpeed;
                     break;
                 case "left":
-                    itemPos.X -= speed;
+                    itemPos.X -= arrowSpeed;
                     break;
                 default:
                     break;

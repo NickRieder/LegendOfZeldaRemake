@@ -17,9 +17,13 @@ namespace Sprint2
         public Sprite sprite;
         public string doorType;
 
+        private const int initialDoorPosX = 100;
+        private const int initialDoorPosY = 500;
+
+
         public Door(string doorType, String nextLevel, LevelLoader levelLoader, String prevRoom) 
         {
-            pos = new Vector2(100, 500);
+            pos = new Vector2(initialDoorPosX, initialDoorPosY);
             this.nextLevel = nextLevel;
             this.levelLoader = levelLoader;
             this.prevRoom = prevRoom;

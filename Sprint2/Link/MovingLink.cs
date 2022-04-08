@@ -14,12 +14,12 @@ namespace Sprint2
 		private ArrayList itemList;
 		private IItem item;
 		private bool isMoving;
+		private const int movementSpeed = 2;
 
 		public MovingLink(Link link)
 		{
 			this.link = link;
 			this.sprite = link.sprite;
-			this.isMoving = link.isMoving;
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
 			switch (link.direction)
@@ -79,19 +79,19 @@ namespace Sprint2
 			switch (link.direction)
 			{
 				case "down":
-					currPos.Y += 2;
+					currPos.Y += movementSpeed;
 					link.pos = currPos;
 					break;
 				case "left":
-					currPos.X -= 2;
+					currPos.X -= movementSpeed;
 					link.pos = currPos;
 					break;
 				case "right":
-					currPos.X += 2;
+					currPos.X += movementSpeed;
 					link.pos = currPos;
 					break;
 				default: // facing up
-					currPos.Y -= 2;
+					currPos.Y -= movementSpeed;
 					link.pos = currPos;
 					break;
 			}

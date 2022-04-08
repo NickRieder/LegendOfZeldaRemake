@@ -13,7 +13,7 @@ namespace Sprint2
         private const int STOP_VERTICAL_ANIMATION = 500;    // Raw height of room sprite is 176, so 176 * 3 = 528
         private const int STOP_HORIZONTAL_ANIMATION = 700;    // Raw width of room sprite is 256, so 256 * 3 = 768
 
-
+        private const int cameraMovementAmount = 5;
         Camera camera;
         private int xPos;
         private int yPos;
@@ -38,28 +38,28 @@ namespace Sprint2
             switch (direction)
             {
                 case "Up":
-                    yPos += 5;
+                    yPos += cameraMovementAmount;
                     if (yPos >= STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Down":
-                    yPos -= 5;
+                    yPos -= cameraMovementAmount;
                     if (yPos <= -STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Left":
-                    xPos += 5;
+                    xPos += cameraMovementAmount;
                     if (xPos >= STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Right":
-                    xPos -= 5;
+                    xPos -= cameraMovementAmount;
                     if (xPos <= -STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;

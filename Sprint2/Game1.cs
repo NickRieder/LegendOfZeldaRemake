@@ -32,7 +32,8 @@ namespace Sprint2
         public static int ScreenHeight;
         public static int ScreenWidth;
 
-
+        private const int gameSizeWidth = 766;
+        private const int gameSizeHeight = 696;
 
         public Game1()
         {
@@ -51,8 +52,8 @@ namespace Sprint2
             /// HUD : (256, 56)
             
 
-            graphics.PreferredBackBufferWidth = 766;
-            graphics.PreferredBackBufferHeight = 696;
+            graphics.PreferredBackBufferWidth = gameSizeWidth;
+            graphics.PreferredBackBufferHeight = gameSizeHeight;
             graphics.ApplyChanges();
 
             // For the Camera class
