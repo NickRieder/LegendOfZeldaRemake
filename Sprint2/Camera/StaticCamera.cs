@@ -9,14 +9,14 @@ namespace Sprint2
     public class StaticCamera : ICameraState
     {
         Camera camera;
-        private int xCount;
-        private int yCount;
+        private int xPos;
+        private int yPos;
 
-        public StaticCamera(Camera camera, int xCount, int yCount)
+        public StaticCamera(Camera camera, int xPos, int yPos)
         {
             this.camera = camera;
-            this.xCount = xCount;
-            this.yCount = yCount;
+            this.xPos = xPos;
+            this.yPos = yPos;
         }
 
         public void FreezeCamera(int xPos, int yPos)
@@ -34,7 +34,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            FreezeCamera(xCount, yCount);
+            FreezeCamera(xPos, yPos);
         }
 
         public void Draw(SpriteBatch spriteBatch)

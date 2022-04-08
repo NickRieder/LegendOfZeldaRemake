@@ -8,19 +8,27 @@ namespace Sprint2
 {
     public class Camera
     {
-        
+        private const int STARTING_X_POS = 0;
+        private const int STARTING_Y_POS = 0;
+        public int xPos { get; set; }
+        public int yPos { get; set; }
+
         private GameTime gameTime;
         public ICameraState currState;
         public Matrix transform;
         public Viewport view;
         public Vector2 center;
 
+        
 
         public Camera()    // , Viewport newView
         {
             //view = newView;
 
-            currState = new StaticCamera(this, 0, 0);
+            xPos = STARTING_X_POS;
+            yPos = STARTING_Y_POS;
+
+            currState = new StaticCamera(this, xPos, yPos);
         }
 
         public void FreezeCamera(int xPos, int yPos)

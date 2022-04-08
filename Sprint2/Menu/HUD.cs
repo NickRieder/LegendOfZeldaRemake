@@ -8,7 +8,9 @@ namespace Sprint2
 {
     public class HUD
     {
+        private Game1 game1;
         private GameObjectManager gom;
+        private Camera camera;
         private SpriteFactory spriteFactory;
         private SpriteFont font;
         private Sprite HUDSprite;
@@ -16,13 +18,18 @@ namespace Sprint2
         private Sprite HeartSprite;
         private Texture2D sheet;
         private Vector2 HUDPos;
+        private int HUDPosX;
+        private int HUDPosY;
+        private int gameWindowWidth;
+        private int gameWindowHeight;
 
-
-
-        public HUD(GameObjectManager gom, SpriteFactory spriteFactory)
+        public HUD(Game1 game1, SpriteFactory spriteFactory)
         {
-            this.gom = gom;
+            this.game1 = game1;
+            this.gom = game1.gom;
+            this.camera = game1.camera;
             this.link = gom.link;
+            //gameWindowWidth = game1.GAME_WINDOW;
             this.spriteFactory = spriteFactory;
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
@@ -33,7 +40,13 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             //draw HUD background
-            HUDPos = new Vector2(0, gom.GetBackgroud().GetSpriteRectangle().Height);
+            //HUDPos = new Vector2(0, gom.GetBackgroud().GetSpriteRectangle().Height);
+
+            // HUD position is based on the camera position
+            HUDPosX = camera.xPos; 
+            HUDPosY = (int)Game1.GAME_WINDOW.ROOM_HEIGHT + camera.yPos;
+            HUDPos = new Vector2(HUDPosX, HUDPosY);
+
             HUDSprite.Draw(spriteBatch, HUDPos);
 
             // numebrs of items link has

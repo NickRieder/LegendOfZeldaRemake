@@ -12,6 +12,18 @@ namespace Sprint2
 {
     public class Game1 : Game
     {
+        public enum GAME_WINDOW : int
+        {
+            WIDTH = 765,
+            HEIGHT = 630,
+            ROOM_WIDTH = 765,
+            ROOM_HEIGHT = 528,
+            HUD_WIDTH = 765
+        }
+
+        /*public const int GAME_WINDOW_WIDTH = 765;
+        public const int GAME_WINDOW_HEIGHT = 633;*/
+
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public Rectangle windowRectangle;
@@ -19,7 +31,7 @@ namespace Sprint2
         private SoundFactory soundFactory;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
-        private GameObjectManager gom;
+        public GameObjectManager gom;
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
 
@@ -51,8 +63,8 @@ namespace Sprint2
             /// HUD : (256, 56)
             
             // Game window size
-            graphics.PreferredBackBufferWidth = 765;
-            graphics.PreferredBackBufferHeight = 633;
+            graphics.PreferredBackBufferWidth = (int)GAME_WINDOW.WIDTH;
+            graphics.PreferredBackBufferHeight = (int)GAME_WINDOW.HEIGHT;
             graphics.ApplyChanges();
 
             // For the Camera class
@@ -107,7 +119,7 @@ namespace Sprint2
 
 
             levelLoader.LoadLevel("TestLevel", "Top");
-            hud = new HUD(gom, spriteFactory);
+            hud = new HUD(this, spriteFactory);
 
 
             keyboardController.Initialize(gom, this, soundFactory);
