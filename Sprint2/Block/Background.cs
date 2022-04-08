@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    class Background : ISprite
+    public class Background : ISprite
     {
         public Vector2 pos { get; set; }
         private string roomName;

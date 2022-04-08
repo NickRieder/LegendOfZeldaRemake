@@ -101,6 +101,10 @@ namespace Sprint2
         {
             background.SetRoomName(roomName);
         }
+        public Background GetBackgroud()
+        {
+            return background;
+        }
 
         public ConcurrentBag<ISprite> getListOfAllObjects()
         {

@@ -50,9 +50,9 @@ namespace Sprint2
             /// Room : (256, 176)
             /// HUD : (256, 56)
             
-
-            graphics.PreferredBackBufferWidth = 766;
-            graphics.PreferredBackBufferHeight = 696;
+            // Game window size
+            graphics.PreferredBackBufferWidth = 765;
+            graphics.PreferredBackBufferHeight = 633;
             graphics.ApplyChanges();
 
             // For the Camera class
@@ -103,16 +103,12 @@ namespace Sprint2
             gom.soundFactory = soundFactory;
 
             gom.SetSpriteContent(spriteFactory);
-
-            hud = new HUD(gom, spriteFactory);
-
-
             gom.SetSoundContent(soundFactory);
 
 
             levelLoader.LoadLevel("TestLevel", "Top");
+            hud = new HUD(gom, spriteFactory);
 
-            
 
             keyboardController.Initialize(gom, this, soundFactory);
         }

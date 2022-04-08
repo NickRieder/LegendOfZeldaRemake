@@ -271,7 +271,7 @@ namespace Sprint2
         public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
         // HUD
-        public static Rectangle HUD_SPRITE = new Rectangle(342, 26, 160, 34);
+        public static Rectangle HUD_SPRITE = new Rectangle(258, 26, 255, 34);
         public static Rectangle EMPTY_HEART = new Rectangle(626, 116, 8, 8);
         public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
         public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
