@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using System.Linq;
+using Sprint2.Command;
+using Sprint2.GameStates;
 
 namespace Sprint2
 {
@@ -52,7 +54,7 @@ namespace Sprint2
             isPaused = !isPaused;
         }
 
-        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory)
+        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory, WinningState winningState)
         {
 
             RegisterCommandTap(Keys.D4, new SetLinkUseItem(gom.link));
@@ -106,6 +108,7 @@ namespace Sprint2
             RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(game1.camera));
             RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(game1.camera));
 
+            RegisterCommandTap(Keys.M, new SetWinningState(winningState));
         }
 
         public void Update(GameTime gameTime)

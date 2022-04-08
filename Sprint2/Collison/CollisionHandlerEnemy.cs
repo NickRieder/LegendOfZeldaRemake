@@ -14,7 +14,7 @@ namespace Sprint2.Collison
         public Game1 myGame;
         private Link link;
         // ArrayList[] enumValues = { 0, 1, 2, 3, 4 };
-        Type playerType;
+        Type linkType;
         Type doorType;
         private Door door;
 
@@ -30,14 +30,15 @@ namespace Sprint2.Collison
         
         private void BuildDictionary()
         {
-            playerType = typeof(Link);
+            linkType = typeof(Link);
             Type enemyType = typeof(Enemies); // type is Sprint2.Enemies
 
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 //System.Diagnostics.Debug.WriteLine($" {side}");
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Enemies), side), typeof(SetTakeDamage));
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Door), side), typeof(SetNextRoom));
+                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Enemies), side), typeof(SetTakeDamage));
+                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Door), side), typeof(SetNextRoom));
+                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Item), side), typeof(SetLinkUseItem));
             }
         }
 
@@ -46,6 +47,7 @@ namespace Sprint2.Collison
             Type subjectType = subject.GetType();
             Type targetType = target.GetType();
             Type doorType = typeof(Door); // type is Sprint2.Door
+            Type itemType = typeof(Item);
 
             Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> key = new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(subjectType, targetType, side);
 
@@ -53,16 +55,15 @@ namespace Sprint2.Collison
             {
                 //System.Diagnostics.Debug.WriteLine($" {key}");
 
-                if (subjectType == playerType)
+                if (linkType == subjectType)
                 {
                     link.TakeDamage();
                 }
 
-                if (subjectType == doorType)
+                if (linkType == doorType) // door collision - doesnt work yet - will have to refactor
                 {
                     //(Door)door.LoadNextLevel;
                 }
-                // try to figure out concrete type of the door so that we can do subjectType==doorType
             }
         }
     }

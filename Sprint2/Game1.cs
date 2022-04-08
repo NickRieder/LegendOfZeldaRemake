@@ -7,6 +7,7 @@ using System.Collections;
 using System.IO;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using Sprint2.GameStates;
 
 namespace Sprint2
 {
@@ -31,6 +32,8 @@ namespace Sprint2
         // For the Camera class
         public static int ScreenHeight;
         public static int ScreenWidth;
+
+        private WinningState winningState;
 
 
 
@@ -114,7 +117,7 @@ namespace Sprint2
 
 
 
-            keyboardController.Initialize(gom, this, soundFactory);
+            keyboardController.Initialize(gom, this, soundFactory, winningState);
         }
 
         protected override void Update(GameTime gameTime)

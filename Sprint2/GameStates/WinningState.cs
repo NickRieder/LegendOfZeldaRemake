@@ -16,6 +16,9 @@ namespace Sprint2.GameStates
         private bool previously_start;
         private bool previously_select;
         private bool isStartPressed;
+        private SpriteBatch sb;
+
+        bool canContinue;
 
         public WinningState(Game1 game, SpriteFont font)
         {
@@ -45,8 +48,10 @@ namespace Sprint2.GameStates
             }
         }
 
-        public void Update()
+        public void AnimateWinningState()
         {
+            System.Diagnostics.Debug.WriteLine("debug message");
+
             GamePadState state = GamePad.GetState(PlayerIndex.One);
             bool select_pressed = Keyboard.GetState().IsKeyDown(Keys.RightShift);
             bool start_pressed = Keyboard.GetState().IsKeyDown(Keys.Enter) || state.IsButtonDown(Buttons.Start);
@@ -64,6 +69,18 @@ namespace Sprint2.GameStates
 
             previously_start = start_pressed;
             previously_select = select_pressed;
+        }
+
+        public void Update()
+        {
+            if (canContinue)
+            {
+                AnimateWinningState();
+            }
+            else
+            {
+                game.Exit();
+            }
         }
 
         public void Draw(SpriteBatch sb)
