@@ -224,6 +224,7 @@ namespace Sprint2
         private static Rectangle BOOMERANG_7 = new Rectangle(155, 202, 8, 8);
         private static Rectangle BOOMERANG_8 = new Rectangle(164, 202, 8, 8);
 
+        private static Rectangle BOMB_SPRITE = new Rectangle(135, 0, 9, 14);
         private static Rectangle EXPLOSION_1 = new Rectangle(138, 185, 16, 16);
         private static Rectangle EXPLOSION_2 = new Rectangle(155, 185, 16, 16);
         private static Rectangle EXPLOSION_3 = new Rectangle(172, 185, 16, 16);
@@ -233,7 +234,7 @@ namespace Sprint2
         public static Rectangle WOODEN_SWORD = new Rectangle(104, 0, 8, 16);
         public static Rectangle MAGIC_SWORD = new Rectangle(104, 16, 8, 16);
         public static Rectangle BOW = new Rectangle(136, 16, 9, 17);
-        public static Rectangle BOMB = new Rectangle(136, 0, 9, 14);
+        public static Rectangle BOMB = new Rectangle(135, 0, 9, 14);
         public static Rectangle BOOMERANG = new Rectangle(129, 3, 6, 8);
         public static Rectangle RED_CANDLE = new Rectangle(160, 0, 8, 16);
         public static Rectangle BLUE_CANDLE = new Rectangle(160, 16, 8, 16);
@@ -392,6 +393,14 @@ namespace Sprint2
         {
             return new Sprite(linkSheetUpsideDown, ARROW_UPSIDEDOWN_DOWN);
         }
+
+        public Sprite getBombSprite()
+        {
+
+            return new Sprite(itemSheet, BOMB_SPRITE);
+
+        }
+
         public Sprite getExplosionSprite()
         {
 
@@ -558,10 +567,10 @@ namespace Sprint2
         {
             return new Sprite(itemSheet, BOOMERANG);
         }
-        public Sprite getBombSprite()
+/*        public Sprite getBombSprite()
         {
             return new Sprite(itemSheet, BOMB);
-        }
+        }*/
         public Sprite getKeySprite()
         {
             return new Sprite(itemSheet, KEY);

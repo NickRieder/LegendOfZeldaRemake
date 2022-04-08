@@ -49,7 +49,7 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
-            link = new Link();
+            link = new Link(this);
             background = new Background();
             gameTime = new GameTime();
 
@@ -125,11 +125,13 @@ namespace Sprint2
         {
             movableObjectList.Add(spriteObject);
             
+            
         }
         public void AddToDrawableObjectList(ISprite spriteObject)
         {
             drawableSpritesList.Add(spriteObject);
             updatableSpritesList.Add(spriteObject);
+            
         }
         public void AddToUpdatableObjectList(ISprite spriteObject)
         {
@@ -146,10 +148,12 @@ namespace Sprint2
         }
         public void RemoveFromAllObjectList(ISprite incoming)
         {
+            //System.Diagnostics.Debug.WriteLine("I'm in remove");
             ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
             ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
             ISprite removed;
             bagCopy = allObjectList;
+            
             while (bagCopy.TryTake(out removed))    // TryTake returns a bool and sets 'removed' to the object that was taken out of the bag.
             {
                 if (!(removed.Equals(incoming)))

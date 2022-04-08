@@ -1,22 +1,20 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections;
 
 namespace Sprint2
 {
-    public class GoriyaBoomerang : EnemyDamagingProjectile
+    class LinkBoomerang : LinkDamagingProjectile
     {
         private int counter;
         private double velocity;
 
-		public GoriyaBoomerang(Enemies enemy, string projectileType) : base(enemy, projectileType)
-		{
+        public LinkBoomerang(Link link, string projectileType) : base(link, projectileType)
+        {
             counter = 0;
             velocity = 7;
-            this.gom = enemy.gom;
+            this.gom = link.gom;
         }
 
         public override void Update(GameTime gameTime)
@@ -26,38 +24,42 @@ namespace Sprint2
             Vector2 newPos = pos;
             switch (projectileDirection)
             {
-                case "Down":
+                case "down":
                     newPos.Y += (int)velocity;
-                    pos = newPos; 
+                    pos = newPos;
                     break;
-                case "Up":
+                case "up":
                     newPos.Y -= (int)velocity;
                     pos = newPos;
                     break;
-                case "Right":
+                case "right":
                     newPos.X += (int)velocity;
                     pos = newPos;
                     break;
-                case "Left":
+                case "left":
                     newPos.X -= (int)velocity;
                     pos = newPos;
                     break;
                 default:
                     break;
-            }
 
-            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
+                   
+            }
+            base.Update(gameTime);
+
+            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 10== 0)
             {
-                base.Update(gameTime);
+
                 velocity -= 0.5;
+                if (sprite.getDestinationRectangle().Intersects(link.GetSpriteRectangle()))
+                {
+                    base.RemoveProjectile(this);
+                    link.isUsingItem = false;
+                    //link.freeze = false;
+                }
             }
-            if (sprite.getDestinationRectangle().Intersects(enemy.GetSpriteRectangle()))   // 
-            {
-                base.RemoveProjectile(this);
-                enemy.freeze = false;
-            }
+            
             counter++;
         }
-
     }
 }

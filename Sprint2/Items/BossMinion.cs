@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Sprint2
 {
-    public class BossMinion : DamagingProjectile
+    public class BossMinion : EnemyDamagingProjectile
     {
         private int counter;
         private double velocity;

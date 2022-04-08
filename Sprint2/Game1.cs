@@ -71,11 +71,6 @@ namespace Sprint2
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
 
-            System.Diagnostics.Debug.WriteLine(
-                "DEBUG: Window Size"
-                + "\n ScreenWidth = " + ScreenWidth
-                + "\n ScreenHeight = " + ScreenHeight);
-
             // TODO: Add your initialization logic here
 
             spriteFactory = new SpriteFactory(this.Content);
@@ -92,10 +87,6 @@ namespace Sprint2
             controllerList.Add(gom.mouseController);
 
             collisionDetector = new CollisionDetector(gom);
-
-            
-            
-
 
             base.Initialize();
         }
@@ -163,7 +154,7 @@ namespace Sprint2
         internal void Reset()
         {
             // new link, enemy, block, item
-            this. Initialize();
+            this.Initialize();
         }
     }
 }

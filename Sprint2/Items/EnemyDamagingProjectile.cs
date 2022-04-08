@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Sprint2
 {
-    public class DamagingProjectile : ISprite
+    public class EnemyDamagingProjectile : ISprite
     {
 		public Vector2 pos { get; set; }
 		public Enemies enemy;
@@ -19,8 +19,9 @@ namespace Sprint2
 		public Sprite sprite;
 		public string projectileType;
 		public string projectileDirection;
+		
 
-		public DamagingProjectile(Enemies enemy, string projectileType)
+		public EnemyDamagingProjectile(Enemies enemy, string projectileType)
 		{
 			this.spriteFactory = enemy.spriteFactory;
 			this.gom = enemy.gom;
@@ -34,7 +35,7 @@ namespace Sprint2
 			this.projectileType = projectileType;
 			//this.pos = enemy.pos;
 			this.projectileDirection = enemy.direction;
-			
+
 
 			switch (projectileType)
 			{
@@ -128,7 +129,7 @@ namespace Sprint2
             sprite.Update(gameTime);
 		}
 
-		public DamagingProjectile GetConcreteObject()
+		public EnemyDamagingProjectile GetConcreteObject()
 		{
 			return this;
 		}

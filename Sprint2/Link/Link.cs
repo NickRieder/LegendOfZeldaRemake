@@ -25,14 +25,17 @@ namespace Sprint2
 		public SoundEffect arrowSound;
 		public SoundEffect boomerangSound;
 		public SoundEffect explosion;
-		public Link()
+		public SoundEffect bombThrow;
+		public GameObjectManager gom;
+		public bool isUsingItem;
+		public Link(GameObjectManager gom)
 		{
 			//item = new NullItem();
 			health= 8;
 			maxHealth = 10;
 			rupies = keys = bombs = 0;
 			pos = new Vector2(40, 40);
-			itemList = new List<IItem>();
+			this.gom = gom;
 			
 		}
 
@@ -45,6 +48,7 @@ namespace Sprint2
 			arrowSound = soundFactory.getArrowOrBoomerang();
 			boomerangSound = soundFactory.getArrowOrBoomerang();
 			explosion = soundFactory.getBombBlow();
+			bombThrow = soundFactory.getBombDrop();
 		}
 
 		
@@ -124,13 +128,13 @@ namespace Sprint2
 		public void Draw(SpriteBatch spriteBatch)
         {
 			currState.Draw(spriteBatch);
-			item.Draw(spriteBatch);
+			//item.Draw(spriteBatch);
         }
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
 			sprite.Update(gameTime);
-			item.Update(gameTime);
+			//item.Update(gameTime);
 		}
 
 		public Link GetConcreteObject()

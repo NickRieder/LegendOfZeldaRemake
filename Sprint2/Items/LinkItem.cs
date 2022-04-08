@@ -8,22 +8,24 @@ namespace Sprint2
     public class LinkItem
     {
         private string itemString;
-        private IItem currItem;
+        private ISprite currItem;
         private SpriteFactory spriteFactory;
         
         private Link link;
-        private NullItem nullItem;
+       // private NullSprite nullItem;
         private Boolean isUsingItem;
         private TimeSpan startTimeUsing;
+        private GameObjectManager gom;
       
 
         public LinkItem(Link link, SpriteFactory spriteFactory)
         {
             this.spriteFactory = spriteFactory;
             this.link = link;
-            currItem = new NullItem();
-            nullItem = new NullItem();
+            currItem = new NullSprite();
+           // nullItem = new NullSprite();
             isUsingItem = false;
+            this.gom = link.gom;
            
         }
 
@@ -31,10 +33,10 @@ namespace Sprint2
         {
             itemString = item;
         }
-
+        //currItem.GetType().ToString().Equals(nullItem.ToString())
         public void Use()
         {
-            if(currItem.GetType().ToString().Equals(nullItem.ToString()))
+            if(link.isUsingItem == false)
             {
                 /*Debug.WriteLine("currItem = " + currItem.GetType().ToString());
                 Debug.WriteLine("null Item = " + nullItem.GetType().ToString());
@@ -44,44 +46,50 @@ namespace Sprint2
                 switch (itemString)
                 {
                     case "Boomerang":
-                        currItem = new Boomerang(link, spriteFactory);
+                        currItem = new LinkBoomerang(link, "Boomerang");                      
+                        gom.AddToMovableObjectList(currItem);
+                        gom.AddToDrawableObjectList(currItem);
                         link.boomerangSound.Play();
                         break;
                     case "Arrow":
-                        currItem = new Arrow(link, spriteFactory);
+                        currItem = new LinkArrow(link, "Arrow");
+                        gom.AddToMovableObjectList(currItem);
+                        gom.AddToDrawableObjectList(currItem);
                         link.arrowSound.Play();
                         break;
                     case "Explosion":
-                        currItem = new Explosion(link, spriteFactory);
-                        link.explosion.Play();
+                        currItem = new LinkExplosion(link,"Explosion" );
+                        gom.AddToMovableObjectList(currItem);
+                        gom.AddToDrawableObjectList(currItem);
+                        link.bombThrow.Play();
                         break;
                 }
-                isUsingItem = true;
+               
             }
         }
 
         public void SetNull()
         {
-            currItem = new NullItem();
+            currItem = new NullSprite();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            currItem.Draw(spriteBatch);
+            //currItem.Draw(spriteBatch);
         }
 
         public void Update(GameTime gameTime)
         {
-            currItem.Update(gameTime);
+           /* currItem.Update(gameTime);
             if (isUsingItem)
             {
                 startTimeUsing = gameTime.TotalGameTime;
                 isUsingItem = false;
             }
-            if (startTimeUsing + TimeSpan.FromMilliseconds(3000) < gameTime.TotalGameTime)
+            if (startTimeUsing + TimeSpan.FromMilliseconds(1000) < gameTime.TotalGameTime)
             {
                 SetNull();
-            }
+            }*/
         }
     }
 }

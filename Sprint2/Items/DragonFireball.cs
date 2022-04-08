@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Sprint2
 {
-    public class DragonFireball : DamagingProjectile
+    public class DragonFireball : EnemyDamagingProjectile
     {
         private int counter;
         private double velocity;
