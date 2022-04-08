@@ -6,8 +6,9 @@ using System.Text;
 
 namespace Sprint2
 {
-    public class HUD
+    public class HUD : ISprite
     {
+        public Vector2 pos { get; set; }
         private GameObjectManager gom;
         private SpriteFactory spriteFactory;
         private SpriteFont font;
@@ -87,6 +88,23 @@ namespace Sprint2
         {
             HUDSprite.Update(gameTime);
             
+        }
+
+        public void SetSpriteContent(SpriteFactory spriteFactory)
+        {
+
+        }
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+
+        }
+        public Rectangle GetSpriteRectangle()
+        {
+            return new Rectangle(0,0,0,0);
+        }
+        public object GetConcreteObject()
+        {
+            return this;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Sprint2
         public Block block;
         //public Door door;
         public EnemiesList enemiesList;
-
+        public HUD Hud;
         private Background background;
         public KeyboardController keyboardController;
         public MouseController mouseController;
@@ -52,13 +52,14 @@ namespace Sprint2
             link = new Link(game);
             background = new Background();
             gameTime = new GameTime();
+            //Hud = new HUD(this, spriteFactory);
 
 
             //this.AddToDrawableObjectList(background);
 
             this.AddToDrawableObjectList(background);
             this.AddToDrawableObjectList(link);
-
+            //this.AddToDrawableObjectList(Hud);
 
 
             

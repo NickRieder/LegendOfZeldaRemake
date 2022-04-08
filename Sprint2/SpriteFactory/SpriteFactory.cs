@@ -33,6 +33,8 @@ namespace Sprint2
         private static Texture2D level3Sheet;
         private static Texture2D level4Sheet;
 
+        private static Texture2D deathScreen;
+
         private static SpriteFont font;
         public SpriteFactory(ContentManager content)
         {
@@ -70,6 +72,7 @@ namespace Sprint2
             level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
             level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
 
+            deathScreen = content.Load<Texture2D>("Sheets/YouDiedScreen");
         }
 
         
@@ -363,6 +366,10 @@ namespace Sprint2
         public static Rectangle L3P_R9 = new Rectangle(316, 518, 131, 109);
 
         public static Rectangle L4P_R1 = new Rectangle(186, 27, 131, 131);
+
+        // Death Screen
+        public static Rectangle DEATH_SCREEN = new Rectangle(0, 0, 255, 300);
+
         // Projectiles
         public Sprite getBoomerangSprite()
         {
@@ -661,6 +668,12 @@ namespace Sprint2
         public Sprite getHUDSprite()
         {
             return new Sprite(hudSheet, HUD_SPRITE);
+        }
+
+        // Death Screen
+        public Sprite getDeathScreen()
+        {
+            return new Sprite(deathScreen, DEATH_SCREEN);
         }
     }
 }

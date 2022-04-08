@@ -107,6 +107,8 @@ namespace Sprint2
 
             hud = new HUD(gom, spriteFactory);
 
+            gom.AddToDrawableObjectList(hud);
+
 
             gom.SetSoundContent(soundFactory);
 
