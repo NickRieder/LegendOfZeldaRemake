@@ -93,7 +93,7 @@ namespace Sprint2
 
             collisionDetector = new CollisionDetector(gom);
 
-            camera = new Camera();
+            
             
 
 
@@ -119,8 +119,9 @@ namespace Sprint2
 
 
             levelLoader.LoadLevel("Level 0/L0R1", "Top");
+            camera = new Camera(gom);
             hud = new HUD(this, spriteFactory);
-
+            
 
             keyboardController.Initialize(gom, this, soundFactory);
         }
@@ -150,6 +151,7 @@ namespace Sprint2
             spriteBatch.Begin(transformMatrix: camera.transform);
 
             gom.Draw(spriteBatch);
+            camera.Draw(spriteBatch);
             hud.Draw(spriteBatch);
 
             spriteBatch.End();

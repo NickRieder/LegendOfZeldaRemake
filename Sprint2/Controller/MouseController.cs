@@ -11,7 +11,7 @@ namespace Sprint2
     public class MouseController : IController
     {
 
-        private Door door;
+        public Door door;
         public MouseState pastState;
 
         public MouseController()

@@ -37,6 +37,7 @@ namespace Sprint2
             FreezeCamera(xPos, yPos);
         }
 
+        // Not necessary because there's already a spriteBatch.Begin(transformMatrix: camera.transform) in Game1.cs
         public void Draw(SpriteBatch spriteBatch)
         {
 

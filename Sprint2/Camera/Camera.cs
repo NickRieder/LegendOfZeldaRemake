@@ -8,8 +8,15 @@ namespace Sprint2
 {
     public class Camera
     {
-        private const int STARTING_X_POS = 0;
-        private const int STARTING_Y_POS = 0;
+        public enum CAMERA_SETTING : int
+        {
+            STARTING_X_POS = 0,
+            STARTING_Y_POS = 0,
+            START_ANIMATION = 0,
+            STOP_VERTICAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_HEIGHT,
+            STOP_HORIZONTAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_WIDTH
+        }
+
         public int xPos { get; set; }
         public int yPos { get; set; }
 
@@ -18,15 +25,34 @@ namespace Sprint2
         public Matrix transform;
         public Viewport view;
         public Vector2 center;
+        private Sprite topRoomSprite;
+        private Sprite bottomRoomSprite;
+        private Sprite leftRoomSprite;
+        private Sprite rightRoomSprite;
+        private Vector2 topRoomSpritePos = new Vector2(0, -(int)Game1.GAME_WINDOW.ROOM_HEIGHT);
+        private Vector2 bottomRoomSpritePos = new Vector2(0, (int)Game1.GAME_WINDOW.ROOM_HEIGHT);
+        private Vector2 leftRoomSpritePos = new Vector2(-(int)Game1.GAME_WINDOW.ROOM_WIDTH, 0);
+        private Vector2 rightRoomSpritePos = new Vector2((int)Game1.GAME_WINDOW.ROOM_WIDTH, 0);
 
-        
+        public GameObjectManager gom;
+        private SpriteFactory spriteFactory;
 
-        public Camera()    // , Viewport newView
+        public Camera(GameObjectManager gom)    // , Viewport newView
         {
+            this.gom = gom;
+            this.spriteFactory = gom.spriteFactory;
+
             //view = newView;
 
-            xPos = STARTING_X_POS;
-            yPos = STARTING_Y_POS;
+            // Initialize starting camera position
+            xPos = (int)CAMERA_SETTING.STARTING_X_POS;
+            yPos = (int)CAMERA_SETTING.STARTING_Y_POS;
+
+            // Empty room sprites that border the main center room. Used for camera to scroll over to it.
+            topRoomSprite = spriteFactory.getEmptyRoomSprite();
+            bottomRoomSprite = spriteFactory.getEmptyRoomSprite();
+            leftRoomSprite = spriteFactory.getEmptyRoomSprite();
+            rightRoomSprite = spriteFactory.getEmptyRoomSprite();
 
             currState = new StaticCamera(this, xPos, yPos);
         }
@@ -48,7 +74,12 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            currState.Draw(spriteBatch);
+            topRoomSprite.Draw(spriteBatch, topRoomSpritePos);
+            bottomRoomSprite.Draw(spriteBatch, bottomRoomSpritePos);
+            leftRoomSprite.Draw(spriteBatch, leftRoomSpritePos);
+            rightRoomSprite.Draw(spriteBatch, rightRoomSpritePos);
+
+            //currState.Draw(spriteBatch);
         }
     }
 }

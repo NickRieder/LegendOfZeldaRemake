@@ -9,6 +9,7 @@ namespace Sprint2
     public class SpriteFactory : ISpriteFactory
     {
         private static Texture2D tileSheet;
+        private static Texture2D tileSheet2;
         private ContentManager content;
 
         private static Texture2D enemySheet;
@@ -42,6 +43,7 @@ namespace Sprint2
         public void LoadSpriteSheets()
         {
             tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
+            tileSheet2 = content.Load<Texture2D>("Sheets/TileSheet2");
 
             enemySheet = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet2 = content.Load<Texture2D>("Sheets/EnemySheet2");
@@ -123,6 +125,7 @@ namespace Sprint2
         public static Rectangle BRIDGE_ROOM = new Rectangle(586, 307, 255, 177);
         public static Rectangle ITEM_ROOM = new Rectangle(975, 536, 255, 177);
         public static Rectangle ITEM_FLIPPED_ROOM = new Rectangle(951, 1013, 255, 177);
+        public static Rectangle EMPTY_ROOM = new Rectangle(521, 11, 256, 176);
 
 
         public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
@@ -666,7 +669,10 @@ namespace Sprint2
 
 
         // Rooms
-
+        public Sprite getEmptyRoomSprite()
+        {
+            return new Sprite(tileSheet2, EMPTY_ROOM);
+        }
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);

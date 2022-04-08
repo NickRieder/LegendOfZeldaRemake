@@ -8,11 +8,6 @@ namespace Sprint2
 {
     public class MovingCamera : ICameraState
     {
-        private const int START_ANIMATION = 0;
-        private const int STOP_VERTICAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_HEIGHT;
-        private const int STOP_HORIZONTAL_ANIMATION = (int)Game1.GAME_WINDOW.ROOM_WIDTH;
-
-
         Camera camera;
         private int xPos;
         private int yPos;
@@ -22,8 +17,8 @@ namespace Sprint2
         public MovingCamera(Camera camera, string direction)
         {
             this.camera = camera;
-            xPos = START_ANIMATION;
-            yPos = START_ANIMATION;
+            xPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
+            yPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
             this.direction = direction;
             canContinue = true;
         }
@@ -38,28 +33,28 @@ namespace Sprint2
             {
                 case "Up":
                     yPos += 5;
-                    if (yPos >= STOP_VERTICAL_ANIMATION)
+                    if (yPos >= (int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Down":
                     yPos -= 5;
-                    if (yPos <= -STOP_VERTICAL_ANIMATION)
+                    if (yPos <= -(int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Left":
                     xPos += 5;
-                    if (xPos >= STOP_HORIZONTAL_ANIMATION)
+                    if (xPos >= (int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Right":
                     xPos -= 5;
-                    if (xPos <= -STOP_HORIZONTAL_ANIMATION)
+                    if (xPos <= -(int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
@@ -84,11 +79,18 @@ namespace Sprint2
             }
             else
             {
-                FreezeCamera(xPos, yPos);
+                // We know this looks bad with all the dots, but we will refactor this once our door collision works
+                camera.gom.mouseController.door.LoadNextRoom();
+
+                // Reset camera position back to the center playable room and freeze it there.
+                camera.xPos = (int)Camera.CAMERA_SETTING.STARTING_X_POS;
+                camera.yPos = (int)Camera.CAMERA_SETTING.STARTING_Y_POS;
+                FreezeCamera(camera.xPos, camera.yPos);
             }
             
         }
 
+        // Not necessary because there's already a spriteBatch.Begin(transformMatrix: camera.transform) in Game1.cs
         public void Draw(SpriteBatch spriteBatch)
         {
 
