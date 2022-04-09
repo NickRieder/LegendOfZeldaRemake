@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.Xna.Framework;
 using static Sprint2.CollisionDetector;
 
 namespace Sprint2.Collison
@@ -13,9 +14,11 @@ namespace Sprint2.Collison
         public Game1 myGame;
         private Link link;
         // ArrayList[] enumValues = { 0, 1, 2, 3, 4 };
-        Type playerType;
+        Type linkType;
         Type doorType;
         private Door door;
+
+
 
         public CollisionHandlerEnemy(GameObjectManager gom)
         {
@@ -27,59 +30,40 @@ namespace Sprint2.Collison
         
         private void BuildDictionary()
         {
-            playerType = typeof(Link);
-            doorType = typeof(Door);
-               
-            //Enemy Types
-            Type bluebatType = typeof(Enemies);
-            //Type bluegelType = typeof(Enemies);
-            //Type darknutType = typeof(Enemies);
-            //Type dragonType = typeof(Enemies);
-            //Type goriyaType = typeof(Enemies);
-            //Type snakeType = typeof(Enemies);
-            //Type wizzrobeType = typeof(Enemies);
-
-            Type[] enemyTypes = { bluebatType };
+            linkType = typeof(Link);
+            Type enemyType = typeof(Enemies); // type is Sprint2.Enemies
 
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 //System.Diagnostics.Debug.WriteLine($" {side}");
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Enemies), playerType, side), typeof(SetTakeDamage));
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(playerType, typeof(Enemies), side), typeof(SetTakeDamage));
-
-                // commandMap.Add(new Tuple<Type, Type, COLLISION_SIDE>(typeof(Wall), enemySubject, side), typeof(ResetEnemy));
-
-                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Door), playerType, side), typeof(SetNextRoom));
-                // commandMap.Add(new Tuple<Type, Type, COLLISION_SIDE>(playerType, typeof(Door), side), typeof(SetNextRoom));
+                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Enemies), side), typeof(SetTakeDamage));
+                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Door), side), typeof(SetNextRoom));
+                commandMap.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Item), side), typeof(SetLinkUseItem));
             }
         }
-        
-        public void HandleCollision(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE side)
+
+        public void HandleCollision(ISprite subject, ISprite target, COLLISION_SIDE side)
         {
             Type subjectType = subject.GetType();
             Type targetType = target.GetType();
+            Type doorType = typeof(Door); // type is Sprint2.Door
+            Type itemType = typeof(Item);
 
             Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> key = new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(subjectType, targetType, side);
 
             if (keySet.Contains(key))
             {
                 //System.Diagnostics.Debug.WriteLine($" {key}");
-                if (subjectType == playerType)
+
+                if (linkType == subjectType)
                 {
                     link.TakeDamage();
                 }
 
-                // door collision goes here - very buggy. having an issue with passing 'this' as a reference to access the Door's methods (loadNextLevel)
-                /*
-                if (subjectType == doorType)
+                if (linkType == doorType) // door collision - doesnt work yet - will have to refactor
                 {
-                    Door door;
-                    object obj;
-                    obj = subject.GetConcreteObject();
-                    door = (Door)obj;
-                    door.LoadNextLevel();
+                    //(Door)door.LoadNextLevel;
                 }
-                */
             }
         }
     }

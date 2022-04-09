@@ -10,14 +10,18 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
+		private bool isMoving;
+		private const int movementSpeed = 2;
 
 		public MovingLink(Link link)
 		{
 			this.link = link;
 			this.sprite = link.sprite;
 			spriteFactory = link.spriteFactory;
+			soundFactory = link.soundFactory;
 			switch (link.direction)
 			{
 				case "down":
@@ -34,63 +38,73 @@ namespace Sprint2
 					break;
 			}
 			link.sprite = sprite;
-			itemList = new ArrayList();
-			itemList.Add(new ArrowDown(this.link, this.link.spriteFactory));
-			itemList.Add(new BoomerangDown(this.link, this.link.spriteFactory));
-			itemList.Add(new ExplosionDown(this.link, this.link.spriteFactory));
 		}
 		public void StandingUp()
 		{
-			link.direction = "up";
-			link.currState = new StandingFacingUp(link);
+			if (link.direction != "up")
+			{
+				link.direction = "up";
+				link.currState = new StandingFacingUp(link);
+			}
 		}
 		public void StandingDown()
 		{
-			link.direction = "down";
-			link.currState = new StandingFacingDown(link);
+			if (link.direction != "down")
+			{
+				link.direction = "down";
+				link.currState = new StandingFacingDown(link);
+			}
 		}
 		public void StandingRight()
 		{
-			link.direction = "right";
-			link.currState = new StandingFacingRight(link);
+			if (link.direction != "right")
+			{
+				link.direction = "right";
+				link.currState = new StandingFacingRight(link);
+			}
 		}
 		public void StandingLeft()
 		{
-			link.direction = "left";
-			link.currState = new StandingFacingLeft(link);
+			if (link.direction != "left")
+            {
+				link.direction = "left";
+				link.currState = new StandingFacingLeft(link);
+			}
+			
 		}
 		public void Move()
         {
 			Vector2 currPos = link.pos;
-			
+
 			switch (link.direction)
 			{
 				case "down":
-					currPos.Y += 2;
+					currPos.Y += movementSpeed;
 					link.pos = currPos;
 					break;
 				case "left":
-					currPos.X -= 2;
+					currPos.X -= movementSpeed;
 					link.pos = currPos;
 					break;
 				case "right":
-					currPos.X += 2;
+					currPos.X += movementSpeed;
 					link.pos = currPos;
 					break;
 				default: // facing up
-					currPos.Y -= 2;
+					currPos.Y -= movementSpeed;
 					link.pos = currPos;
 					break;
 			}
+			
 		}
 		public void UseWeapon()
 		{
 			link.currState = new UsingWeapon(link);
 		}
-		public void UseItem(int itemNum)
+		public void UseItem(string newItem)
 		{
 			link.currState = new UsingItem(link);
-			link.item = (IItem)itemList[itemNum - 1];
+			link.SetItem(newItem);
 		}
 		public void TakeDamage()
 		{

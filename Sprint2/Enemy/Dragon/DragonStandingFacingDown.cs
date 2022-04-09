@@ -18,29 +18,24 @@ namespace Sprint2
         private Texture2D sheet;
         private EnemiesList enemiesList;
         private double totalSecondsPassed;
-        private double waitTime;
         private TimeSpan elapsedTime;
         private double secondsPassed;
         Random randomNumberGenerator;
         private int randomNum;
         private int chosenDirectionValue;
 
+        private const int numActions = 5;
+        private const int numPossibleInts = 100;
+        private const double waitTime = 0.25;
+
         public DragonStandingFacingDown(Enemies dragon)
         {
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
-            waitTime = 0.25;
 
             this.dragon = dragon;
-            dragon.sprite = dragon.spriteFactory.getDragonRightSprite();
-            /*this.enemiesList = enemiesList;
-            dragon = enemiesList.dragon;
-            counter = 0;
-            currFrame = 0;
-            totalFrames = 2;
-            frame3 = SpriteFactory.DRAGON_SHEET1_LEFT3;
-            frame4 = SpriteFactory.DRAGON_SHEET1_LEFT4;
-            this.sheet = dragon.spriteFactory.getEnemySheet1();*/
+            dragon.sprite = dragon.spriteFactory.getDragonLeftSprite();
+            dragon.direction = "Left";
         }
 
         public void MoveUp()
@@ -52,6 +47,7 @@ namespace Sprint2
             Vector2 currPos = dragon.pos;
             currPos.Y++;
             dragon.pos = currPos;
+
             /*if (counter % 5 == 0)
                 currFrame++;
             if (currFrame == totalFrames)
@@ -66,29 +62,19 @@ namespace Sprint2
         {
             dragon.currState = new DragonStandingFacingLeft(dragon);
         }
-        /*public void Attack()
+
+        public void Attack()
         {
-            dragon.currState = new DragonAttackingLeft(enemiesList);
-        }*/
+            dragon.currState = new DragonAttacking(dragon);
+        }
 
         public void TakeDamage()
         {
             dragon.health--;
-            //dragon.currState = new BluebatDamagedFacingDown(dragon);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             dragon.sprite.Draw(spriteBatch, dragon.pos);
-            /* Rectangle destinationRectangleFrame1 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame3.Width * dragon.spriteSizeMultiplier, frame3.Height * dragon.spriteSizeMultiplier);
-             Rectangle destinationRectangleFrame2 = new Rectangle((int)dragon.pos.X, (int)dragon.pos.Y, frame4.Width * dragon.spriteSizeMultiplier, frame4.Height * dragon.spriteSizeMultiplier);
-             if (currFrame == 0)
-             {
-                 spriteBatch.Draw(sheet, destinationRectangleFrame1, frame3, Color.White);
-             }
-             else
-             {
-                 spriteBatch.Draw(sheet, destinationRectangleFrame2, frame4, Color.White);
-             }*/
         }
 
         public void Update(GameTime gameTime)
@@ -100,8 +86,8 @@ namespace Sprint2
             if (totalSecondsPassed > waitTime)
             {
 
-                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                chosenDirectionValue = randomNum % 5;
+                randomNum = randomNumberGenerator.Next(0, numPossibleInts); // random number between 0-99
+                chosenDirectionValue = randomNum % numActions;
 
                 if (chosenDirectionValue == 0)
                     MoveDown();
@@ -112,7 +98,7 @@ namespace Sprint2
                 else if (chosenDirectionValue == 3)
                     MoveRight();
                 else if (chosenDirectionValue == 4)
-                  /*  Attack();*/
+                    Attack();
 
                 totalSecondsPassed = 0;
             }

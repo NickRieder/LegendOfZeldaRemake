@@ -8,24 +8,28 @@ namespace Sprint2
     {
         private GameObjectManager gom;
         private SpriteFactory spriteFactory;
+        private SoundFactory soundFactory;
         private string doorType;
         private Link link;
         private MouseController mouse;
-        public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory)
+        private string itemName;
+        public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory, SoundFactory soundFactory)
         {
             this.gom = gom;
             this.link = gom.link;
             this.spriteFactory = spriteFactory;
+            this.soundFactory = soundFactory;
             doorType = "Right";
         }
 
         public void LoadLevel(String fileName, string doorType)
         {
             gom.ClearSpriteList();
+            gom.SetSpriteContent(spriteFactory);
+            gom.SetSoundContent(soundFactory);
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
-            gom.SetSpriteContent(spriteFactory);
         }
 
         public void LoadLink(string doorType)
@@ -69,20 +73,30 @@ namespace Sprint2
             gom.AddToDrawableObjectList(block);
         }
 
+        public void LoadItemObject(String itemName, Vector2 pos)
+        {
+            Item item = new Item(itemName, pos);
+            item.SetSpriteContent(spriteFactory);
+
+            gom.AddToAllObjectList(item);
+            gom.AddToDrawableObjectList(item);
+            gom.AddToUpdatableObjectList(item);
+        }
+
         public void LoadEnemyObject(String enemyName, Vector2 pos)
         {
-            Enemies enemy = new Enemies(enemyName);
+            Enemies enemy = new Enemies(enemyName, gom);
             enemy.pos = pos;
             enemy.SetSpriteContent(spriteFactory);
-
+            enemy.SetSoundContent(soundFactory);
             gom.AddToAllObjectList(enemy);
             gom.AddToDrawableObjectList(enemy);
             gom.AddToMovableObjectList(enemy);
         }
 
-        public void LoadDoorObject(String doorType, Vector2 pos, String room, String prevRoom)
+        public void LoadDoorObject(String doorType, Vector2 pos, String room, String prevRoom, String nextClickRoom)
         {
-            Door door = new Door(doorType, room, this, prevRoom);
+            Door door = new Door(doorType, room, this, prevRoom, nextClickRoom);
             door.pos = pos;
             door.SetSpriteContent(spriteFactory);
             gom.mouseController.SetDoor(door);

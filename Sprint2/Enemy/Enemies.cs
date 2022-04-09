@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace Sprint2
 {
@@ -9,25 +11,44 @@ namespace Sprint2
 		public IEnemyState currState;
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory { get; set; }
+		public SoundFactory soundFactory;
 		public int health;
-		public int spriteSizeMultiplier;
+		public int bossHealth;
 
+		public string direction;
+		public GameObjectManager gom;
 		public Sprite sprite;
 		public string enemyName;
+		public ArrayList projectileList;
+		public bool freeze { get; set; }
 
-		public Enemies(string enemyName)
+		public SoundEffect enemyHurtSound;
+		public SoundEffect enemyDeadSound;
+		public SoundEffect bossHurtSound;
+		public SoundEffect bossDeadSound;
+
+		public const int spriteSizeMultiplier = 2;
+
+		private const int startingHealth = 3;
+		private const int startingBossHealth = 10;
+
+		private const int startingPosX = 600;
+		private const int startingPosY = 200;
+
+		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
-			spriteSizeMultiplier = 2;
-			health = 3;
-			pos = new Vector2(600, 200);
-			/*pos.X = 600;
-			pos.Y = 200;*/
+			this.gom = gom;
+			bossHealth = startingBossHealth;
+			health = startingHealth;
+			pos = new Vector2(startingPosX, startingPosY);
+			this.freeze = false;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
+			direction = "Down";
 
 			switch (enemyName)
 			{
@@ -51,11 +72,23 @@ namespace Sprint2
 					break;
 				case "Wizzrobe":
 					currState = new WizzrobeDown(this);
+                    break;
+                case "Boss":
+					currState = new BossDown(this);
 					break;
-				default: // facing up
+                default: // facing up
 					currState = null;
 					break;
 			}
+		}
+		public void SetSoundContent(SoundFactory soundFactory)
+		{
+			this.soundFactory = soundFactory;
+			enemyDeadSound = soundFactory.getEnemyDead();
+			enemyHurtSound = soundFactory.getEnemyHit();
+			bossDeadSound = soundFactory.getBossScream3();
+			bossHurtSound = soundFactory.getBossScream1();
+
 		}
 
 		public Rectangle GetSpriteRectangle()
@@ -85,13 +118,37 @@ namespace Sprint2
 			currState.MoveRight();
 		}
 
-		/*public void Attack()
-		{
-			currState.Attack();
-		}*/
-		public void TakeDamage()
+        public void Attack()
+        {
+            currState.Attack();
+        }
+
+        public void TakeDamage()
 		{
 			currState.TakeDamage();
+			if (enemyName == "Boss")
+            {
+				if (bossHealth == 0)
+				{
+					bossDeadSound.Play();
+				}
+				else
+				{
+					bossHurtSound.Play();
+				}
+			}
+            else
+            {
+				if (health == 0)
+				{
+					enemyDeadSound.Play();
+				}
+				else
+				{
+					enemyHurtSound.Play();
+				}
+			}
+		
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -10,20 +11,32 @@ namespace Sprint2
 		private Link link;
 		private Sprite sprite;
 		private SpriteFactory spriteFactory;
+		private SoundFactory soundFactory;		
 		private Vector2 currPos;
 		private static TimeSpan damagedTime;
 		private TimeSpan startDamagedTime;
+		private static TimeSpan resetTime;
+		private TimeSpan startResetTime;
 		bool isDamaged;
+		
+		private Game1 game;
+
+		private const int linkKnockedSpeed = 3;
 
 		public TakingDamage(Link link)
 		{
+			this.game = link.game;
 			this.link = link;
-			this.sprite = link.sprite;
+			sprite = link.sprite;
+			
+			
 			spriteFactory = link.spriteFactory;
+			
 			sprite = spriteFactory.getLinkDamaged();
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 			isDamaged = true;
+			
 		}
 
 
@@ -38,32 +51,38 @@ namespace Sprint2
 				startDamagedTime = gameTime.TotalGameTime;
 				isDamaged = false;
 			}
-			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
+			if (link.health == 0)
             {
+				link.currState = new DeadLink(link);
+			}
+			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
+			{
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
-			}	
-            else
+			}
+			else
             {
 				switch (link.direction)
 				{
 					case "down":
-						currPos.Y -= 5;
+
+						currPos.Y -= linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					case "left":
-						currPos.X += 5;
+						currPos.X += linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					case "right":
-						currPos.X -= 5;
+						currPos.X -= linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					default: // facing up
-						currPos.Y += 5;
+						currPos.Y += linkKnockedSpeed;
+
 						link.pos = currPos;
 						break;
 				}
-            }
+			}
 			sprite.Update(gameTime);
 			link.sprite.Update(gameTime);
 		}
@@ -76,12 +95,12 @@ namespace Sprint2
 		public void StandingLeft() { }
 		public void Move() { }
 		public void UseWeapon() { }
-		public void UseItem(int itemNum) { }
+		public void UseItem(string newItem) { }
 
-        public void Execute()
-        {
+		public void Execute()
+		{
+
 			link.TakeDamage();
-        }
-    }
+		}
+	}
 }
-

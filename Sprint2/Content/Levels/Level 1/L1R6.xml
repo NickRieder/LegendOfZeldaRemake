@@ -1,0 +1,81 @@
+﻿<!--Enemy-->
+<Level>
+	<background>
+		<sprite>room1</sprite>
+	</background>
+	
+	<Enemies>
+		<enemy Type="Bluebat">
+			<XCoord>150</XCoord>
+			<YCoord>150</YCoord>
+		</enemy>
+		<enemy Type="Bluegel">
+			<XCoord>400</XCoord>
+			<YCoord>200</YCoord>
+		</enemy>
+	</Enemies>
+	<Walls>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>22</YCoord>
+			<Width>300</Width>
+			<Height>20</Height>
+		</wall>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>435</YCoord>
+			<Width>300</Width>
+			<Height>5</Height>
+		</wall>
+		<wall>
+			<XCoord>25</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+		<wall>
+			<XCoord>680</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+	</Walls>
+	<Doors>
+		<door Type="TopOpen">
+			<room>Level 1/L1R5</room>    <!-- Next Room-->
+			<room>Level 1/L1R5</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R7</clickNext>
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+		<door Type="LeftWall">
+			<room></room>
+			<!-- Next Room-->
+			<room>Level 1/L1R5</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R7</clickNext>
+			<XCoord>0</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="RightOpen">
+			<room>Level 1/L1R7</room>
+			<!-- Next Room-->
+			<room>Level 1/L1R5</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R7</clickNext>
+			<XCoord>672</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="BotWall">
+			<room></room>
+			<!-- Next Room-->
+			<room>Level 1/L1R5</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R7</clickNext>
+			<XCoord>336</XCoord>
+			<YCoord>435</YCoord>
+		</door>
+	</Doors>
+	
+</Level>

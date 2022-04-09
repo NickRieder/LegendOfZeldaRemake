@@ -6,15 +6,15 @@ namespace Sprint2
 {
     class SetPreviousItem : ICommand
     {
-        private Item item;
-        public SetPreviousItem(Item item)
+        private Menu menu;
+        public SetPreviousItem(Menu menu)
         {
-            this.item = item;
+            this.menu = menu;
         }
 
         public void Execute()
         {
-            item.PreviousItem();
+            menu.PreviousItem();
         }
     }
 }

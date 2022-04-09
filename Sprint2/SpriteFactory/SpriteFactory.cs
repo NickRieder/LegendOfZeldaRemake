@@ -9,6 +9,7 @@ namespace Sprint2
     public class SpriteFactory : ISpriteFactory
     {
         private static Texture2D tileSheet;
+        private static Texture2D tileSheet2;
         private ContentManager content;
 
         private static Texture2D enemySheet;
@@ -24,7 +25,18 @@ namespace Sprint2
 
         private static Texture2D linkSheetMirrored;
         private static Texture2D transparentSheet;
+        private static Texture2D hudSheet;
 
+        private static Texture2D basementSheet;
+        private static Texture2D level1Sheet1;
+        private static Texture2D level1Sheet2;
+        private static Texture2D level2Sheet;
+        private static Texture2D level3Sheet;
+        private static Texture2D level4Sheet;
+
+        private static Texture2D deathScreen;
+
+        private static SpriteFont font;
         public SpriteFactory(ContentManager content)
         {
             this.content = content;
@@ -33,6 +45,7 @@ namespace Sprint2
         public void LoadSpriteSheets()
         {
             tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
+            tileSheet2 = content.Load<Texture2D>("Sheets/TileSheet2");
 
             enemySheet = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet2 = content.Load<Texture2D>("Sheets/EnemySheet2");
@@ -49,10 +62,21 @@ namespace Sprint2
             itemSheet = content.Load<Texture2D>("Sheets/ItemSheet");
 
             transparentSheet = content.Load<Texture2D>("Sheets/TransparentSheet");
-            
 
+            hudSheet = content.Load<Texture2D>("Sheets/HudSprites");
 
+            font = content.Load<SpriteFont>("File");
 
+            /*
+            basementSheet = content.Load<Texture2D>("Sheets/Level 0 SpriteSheet");
+            level1Sheet1 = content.Load<Texture2D>("Sheets/Level 1 P1 SpriteSheet");
+            level1Sheet2 = content.Load<Texture2D>("Sheets/Level 1 P2 SpriteSheet");
+            level2Sheet = content.Load<Texture2D>("Sheets/Level 2 SpriteSheet");
+            level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
+            level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
+            */
+
+            deathScreen = content.Load<Texture2D>("Sheets/YouDiedScreen");
         }
 
         
@@ -65,6 +89,17 @@ namespace Sprint2
         public Texture2D getItemSheet()
         {
             return itemSheet;
+        }
+
+        public Texture2D getHudSheet()
+        {
+            return hudSheet;
+        }
+
+
+        public SpriteFont getFont()
+        {
+            return font;
         }
 
 
@@ -91,7 +126,11 @@ namespace Sprint2
         public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
         public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
         public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
-        public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
+        public static Rectangle FULL_ROOM = new Rectangle(521, 11, 255, 177);
+        public static Rectangle BRIDGE_ROOM = new Rectangle(586, 307, 255, 177);
+        public static Rectangle ITEM_ROOM = new Rectangle(975, 536, 255, 177);
+        public static Rectangle ITEM_FLIPPED_ROOM = new Rectangle(951, 1013, 255, 177);
+        public static Rectangle EMPTY_ROOM = new Rectangle(521, 11, 256, 176);
 
         public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
         public static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
@@ -118,6 +157,10 @@ namespace Sprint2
         private static Rectangle BOSS_SHEET1_3 = new Rectangle(106, 154, 32, 32);
         private static Rectangle BOSS_SHEET1_4 = new Rectangle(139, 154, 32, 32);
         private static Rectangle BOSS_SHEET1_5 = new Rectangle(172, 154, 32, 32);
+        private static Rectangle HURT_BOSS = new Rectangle(206, 154, 32, 32);
+        private static Rectangle BOSS_MINION_1 = new Rectangle(18, 158, 8, 8);
+        private static Rectangle BOSS_MINION_2 = new Rectangle(27, 158, 8, 8);
+
 
         private static Rectangle BLUEBAT_SHEET2_POS1 = new Rectangle(183, 11, 16, 16);
         private static Rectangle BLUEBAT_SHEET2_POS2 = new Rectangle(200, 11, 16, 16);
@@ -176,10 +219,16 @@ namespace Sprint2
         private static Rectangle ARROW_MIRRORED_LEFT = new Rectangle(345, 185, 15, 15);
 
 
-        private static Rectangle BOOMERANG_1 = new Rectangle(65, 189, 7, 7);
-        private static Rectangle BOOMERANG_2 = new Rectangle(73, 189, 7, 7);
-        private static Rectangle BOOMERANG_3 = new Rectangle(81, 189, 7, 7);
+        private static Rectangle BOOMERANG_1 = new Rectangle(63, 189, 8, 8);
+        private static Rectangle BOOMERANG_2 = new Rectangle(73, 189, 8, 8);
+        private static Rectangle BOOMERANG_3 = new Rectangle(82, 189, 8, 8);
+        private static Rectangle BOOMERANG_4 = new Rectangle(128, 202, 8, 8);
+        private static Rectangle BOOMERANG_5 = new Rectangle(137, 202, 8, 8);
+        private static Rectangle BOOMERANG_6 = new Rectangle(146, 202, 8, 8);
+        private static Rectangle BOOMERANG_7 = new Rectangle(155, 202, 8, 8);
+        private static Rectangle BOOMERANG_8 = new Rectangle(164, 202, 8, 8);
 
+        private static Rectangle BOMB_SPRITE = new Rectangle(135, 0, 9, 14);
         private static Rectangle EXPLOSION_1 = new Rectangle(138, 185, 16, 16);
         private static Rectangle EXPLOSION_2 = new Rectangle(155, 185, 16, 16);
         private static Rectangle EXPLOSION_3 = new Rectangle(172, 185, 16, 16);
@@ -188,13 +237,14 @@ namespace Sprint2
         public static Rectangle HEART_CANISTER = new Rectangle(25, 1, 14, 14);
         public static Rectangle WOODEN_SWORD = new Rectangle(104, 0, 8, 16);
         public static Rectangle MAGIC_SWORD = new Rectangle(104, 16, 8, 16);
-        public static Rectangle BOW = new Rectangle(136, 16, 9, 17);
+        public static Rectangle BOW = new Rectangle(136, 15, 8, 16);
         public static Rectangle BOMB = new Rectangle(136, 0, 9, 14);
         public static Rectangle BOOMERANG = new Rectangle(129, 3, 6, 8);
         public static Rectangle RED_CANDLE = new Rectangle(160, 0, 8, 16);
         public static Rectangle BLUE_CANDLE = new Rectangle(160, 16, 8, 16);
         public static Rectangle ORANGE_RUBY = new Rectangle(71, 0, 9, 16);
         public static Rectangle BLUE_RUBY = new Rectangle(71, 16, 9, 16);
+        public static Rectangle KEY = new Rectangle(240, 0, 8, 16);
 
         //Link
         private static Rectangle LINK_MOVE_DOWN_1 = new Rectangle(1, 11, 16, 16);
@@ -231,11 +281,111 @@ namespace Sprint2
         public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
         public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
         public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
-         public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
+        // HUD
+        public static Rectangle HUD_SPRITE = new Rectangle(258, 26, 255, 34);
+        public static Rectangle EMPTY_HEART = new Rectangle(626, 116, 8, 8);
+        public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
+        public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
+        private static Rectangle MENU = new Rectangle(0, 10, 256, 176);
+        private static Rectangle SELECTOR = new Rectangle(518, 136, 17, 17);
+
+        // Levels
+        public static Rectangle B_R1 = new Rectangle(32, 27, 164, 164);
+        public static Rectangle B_R2 = new Rectangle(217, 27, 164, 164);
+        public static Rectangle B_R3 = new Rectangle(402, 27, 164, 164);
+        public static Rectangle B_R4 = new Rectangle(587, 27, 164, 164);
+        public static Rectangle B_R5 = new Rectangle(772, 27, 164, 164);
+        public static Rectangle B_R6 = new Rectangle(32, 212, 164, 164);
+
+        public static Rectangle L1_R1 = new Rectangle(39, 31, 130, 145);
+        public static Rectangle L1_R2 = new Rectangle(186, 31, 130, 145);
+        public static Rectangle L1_R3 = new Rectangle(333, 31, 130, 145);
+        public static Rectangle L1_R4 = new Rectangle(481, 31, 130, 145);
+        public static Rectangle L1_R5 = new Rectangle(628, 31, 130, 145);
+        public static Rectangle L1_R6 = new Rectangle(39, 193, 130, 145);
+        public static Rectangle L1_R7 = new Rectangle(185, 193, 130, 145);
+        public static Rectangle L1_R8 = new Rectangle(333, 193, 130, 145);
+        public static Rectangle L1_R9 = new Rectangle(481, 193, 130, 145);
+        public static Rectangle L1_R10 = new Rectangle(626, 193, 130, 145);
+        public static Rectangle L1_R11 = new Rectangle(39, 354, 130, 145);
+        public static Rectangle L1_R12 = new Rectangle(185, 354, 130, 145);
+        public static Rectangle L1_R13 = new Rectangle(332, 212, 130, 145);
+
+        public static Rectangle L2_R1 = new Rectangle(33, 36, 108, 133);
+        public static Rectangle L2_R2 = new Rectangle(155, 36, 108, 133);
+        public static Rectangle L2_R3 = new Rectangle(277, 36, 108, 133);
+        public static Rectangle L2_R4 = new Rectangle(399, 36, 108, 133);
+        public static Rectangle L2_R5 = new Rectangle(521, 36, 108, 133);
+        public static Rectangle L2_R6 = new Rectangle(33, 183, 108, 133);
+        public static Rectangle L2_R7 = new Rectangle(155, 182, 108, 133);
+        public static Rectangle L2_R8 = new Rectangle(278, 182, 108, 133);
+        public static Rectangle L2_R9 = new Rectangle(400, 182, 108, 133);
+
+        public static Rectangle L3_R1 = new Rectangle(25, 26, 131, 109);
+        public static Rectangle L3_R2 = new Rectangle(170, 26, 131, 109);
+        public static Rectangle L3_R3 = new Rectangle(315, 26, 131, 109);
+        public static Rectangle L3_R4 = new Rectangle(460, 26, 131, 109);
+        public static Rectangle L3_R5 = new Rectangle(25, 149, 131, 109);
+        public static Rectangle L3_R6 = new Rectangle(170, 149, 131, 109);
+        public static Rectangle L3_R7 = new Rectangle(315, 149, 131, 109);
+        public static Rectangle L3_R8 = new Rectangle(460, 149, 131, 109);
+        public static Rectangle L3_R9 = new Rectangle(25, 272, 131, 109);
+
+        public static Rectangle L4_R1 = new Rectangle(41, 27, 131, 131);
+
+        //Minimap Position
+        public static Rectangle BP_R1 = new Rectangle(217, 212, 164, 164);
+        public static Rectangle BP_R2 = new Rectangle(402, 212, 164, 164);
+        public static Rectangle BP_R3 = new Rectangle(587, 212, 164, 164);
+        public static Rectangle BP_R4 = new Rectangle(772, 212, 164, 164);
+        public static Rectangle BP_R5 = new Rectangle(217, 397, 164, 164);
+        public static Rectangle BP_R6 = new Rectangle(402, 397, 164, 164);
+
+        public static Rectangle L1P_R1 = new Rectangle(480, 354, 130, 145);
+        public static Rectangle L1P_R2 = new Rectangle(626, 354, 130, 145);
+        public static Rectangle L1P_R3 = new Rectangle(32, 14, 129, 146);
+        public static Rectangle L1P_R4 = new Rectangle(178, 14, 129, 146);
+        public static Rectangle L1P_R5 = new Rectangle(324, 14, 129, 146);
+        public static Rectangle L1P_R6 = new Rectangle(470, 14, 129, 146);
+        public static Rectangle L1P_R7 = new Rectangle(617, 14, 129, 146);
+        public static Rectangle L1P_R8 = new Rectangle(32, 175, 129, 146);
+        public static Rectangle L1P_R9 = new Rectangle(178, 175, 129, 146);
+        public static Rectangle L1P_R10 = new Rectangle(324, 175, 129, 146);
+        public static Rectangle L1P_R11 = new Rectangle(470, 175, 129, 146);
+        public static Rectangle L1P_R12 = new Rectangle(617, 175, 129, 146);
+        //public static Rectangle L1P_R13 = new Rectangle(332, 212, 130, 145); //Missing
+
+        public static Rectangle L2P_R1 = new Rectangle(523, 182, 108, 133);
+        public static Rectangle L2P_R2 = new Rectangle(33, 329, 108, 133);
+        public static Rectangle L2P_R3 = new Rectangle(156, 329, 108, 133);
+        public static Rectangle L2P_R4 = new Rectangle(278, 329, 108, 133);
+        public static Rectangle L2P_R5 = new Rectangle(401, 329, 108, 133);
+        public static Rectangle L2P_R6 = new Rectangle(523, 183, 108, 133);
+        public static Rectangle L2P_R7 = new Rectangle(34, 475, 108, 133);
+        public static Rectangle L2P_R8 = new Rectangle(156, 475, 108, 133);
+        public static Rectangle L2P_R9 = new Rectangle(478, 475, 108, 133);
+
+        public static Rectangle L3P_R1 = new Rectangle(171, 272, 131, 109);
+        public static Rectangle L3P_R2 = new Rectangle(316, 272, 131, 109);
+        public static Rectangle L3P_R3 = new Rectangle(461, 272, 131, 109);
+        public static Rectangle L3P_R4 = new Rectangle(26, 395, 131, 109);
+        public static Rectangle L3P_R5 = new Rectangle(171, 395, 131, 109);
+        public static Rectangle L3P_R6 = new Rectangle(316, 395, 131, 109);
+        public static Rectangle L3P_R7 = new Rectangle(461, 395, 131, 109);
+        public static Rectangle L3P_R8 = new Rectangle(171, 518, 131, 109);
+        public static Rectangle L3P_R9 = new Rectangle(316, 518, 131, 109);
+
+        public static Rectangle L4P_R1 = new Rectangle(186, 27, 131, 131);
+
+        // Death Screen
+        public static Rectangle DEATH_SCREEN = new Rectangle(0, 0, 255, 300);
+
+        // Projectiles
         public Sprite getBoomerangSprite()
         {
-            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);
+            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3, BOOMERANG_4, BOOMERANG_5, BOOMERANG_6, BOOMERANG_7, BOOMERANG_8);
         }
         public Sprite getArrowSpriteRight()
         {
@@ -253,12 +403,36 @@ namespace Sprint2
         {
             return new Sprite(linkSheetUpsideDown, ARROW_UPSIDEDOWN_DOWN);
         }
+
+/*        public Sprite getBombSprite()
+        {
+
+            return new Sprite(itemSheet, BOMB_SPRITE);
+
+        }*/
+
         public Sprite getExplosionSprite()
         {
 
             return new Sprite(linkSheet, EXPLOSION_1, EXPLOSION_2, EXPLOSION_3);
 
         }
+        public Sprite getBossMinion()
+        {
+            return new Sprite(enemySheet, BOSS_MINION_1, BOSS_MINION_2);
+        }
+
+        public Sprite getNullProjectile()
+        {
+            return new Sprite(enemySheet2);
+        }
+        public Sprite getFireballSprite()
+        {
+            return new Sprite(enemySheet, DRAGON_SHEET1_FIREBALL1, DRAGON_SHEET1_FIREBALL2, DRAGON_SHEET1_FIREBALL2, DRAGON_SHEET1_FIREBALL2);
+        }
+
+        // Link
+
         public Sprite getLinkStandingFacingDownSprite()
         {
             return new Sprite(linkSheet, LINK_MOVE_DOWN_1);
@@ -329,7 +503,6 @@ namespace Sprint2
         }
 
         // Tiles
-
         public Sprite getFlatBlockSprite()
         {
             return new Sprite(tileSheet, TILE_FLATBLOCK);
@@ -394,8 +567,22 @@ namespace Sprint2
             return new Sprite(tileSheet, TILE_DOOR_BOTTOM_LOCKED);
         }
 
-        // Enemies
+        //Items
+        public Sprite getSwordSprite()
+        {
+            return new Sprite(itemSheet, MAGIC_SWORD);
+        }
 
+        public Sprite getBoomerangPickUpSprite()
+        {
+            return new Sprite(itemSheet, BOOMERANG);
+        }
+        public Sprite getKeySprite()
+        {
+            return new Sprite(itemSheet, KEY);
+        }
+
+        // Enemies
         public Sprite getBluebatSprite()
         {
             return new Sprite(enemySheet2, BLUEBAT_SHEET2_POS1, BLUEBAT_SHEET2_POS2);
@@ -467,10 +654,58 @@ namespace Sprint2
             return new Sprite(enemySheet2, WIZZROBE_SHEET2_BACK1, WIZZROBE_SHEET2_BACK2);
         }
 
+        public Sprite getBossSprite()
+        {
+            return new Sprite(enemySheet, BOSS_SHEET1_1, BOSS_SHEET1_2, BOSS_SHEET1_3, BOSS_SHEET1_4, BOSS_SHEET1_5);
+        }
 
+        public Sprite getHurtBossSprite()
+        {
+            return new Sprite(enemySheet,HURT_BOSS);
+        }
+
+
+        // Heart
+
+        public Rectangle getEmptyHeartRect()
+        {
+            return EMPTY_HEART;
+        }
+
+        public Rectangle getHalfHeartRect()
+        {
+            return HALF_HEART;
+        }
+
+        public Rectangle getFullHeartRect()
+        {
+            return FULL_HEART;
+        }
+
+
+        // Rooms
+        public Sprite getEmptyRoomSprite()
+        {
+            return new Sprite(tileSheet2, EMPTY_ROOM);
+        }
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);
+        }
+
+        public Sprite getItemRoomSprite()
+        {
+            return new Sprite(tileSheet, ITEM_ROOM);
+        }
+
+        public Sprite getItemRoomFlippedSprite()
+        {
+            return new Sprite(tileSheet, ITEM_FLIPPED_ROOM);
+        }
+
+        public Sprite getBridgeRoomSprite()
+        {
+            return new Sprite(tileSheet, BRIDGE_ROOM);
         }
         public Sprite getDefaultSprite()
         {
@@ -481,6 +716,35 @@ namespace Sprint2
         public Sprite getWallSprite(Rectangle rect)
         {
             return new Sprite(transparentSheet, rect);
+        }
+
+        public Sprite getHUDSprite()
+        {
+            return new Sprite(hudSheet, HUD_SPRITE);
+        }
+
+        //menu
+        public Sprite getMenuSprite()
+        {
+            return new Sprite(hudSheet, MENU);
+        }
+        public Sprite getSelectorSprite()
+        {
+            return new Sprite(hudSheet, SELECTOR);
+        }
+        public Sprite getBowSprite()
+        {
+            return new Sprite(itemSheet, BOW);
+        }
+        public Sprite getBombSprite()
+        {
+            return new Sprite(itemSheet, BOMB);
+        }
+
+        // death
+        public Sprite getDeathScreen()
+        {
+            return new Sprite(deathScreen, DEATH_SCREEN);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    class Background : ISprite
+    public class Background : ISprite
     {
         public Vector2 pos { get; set; }
         private string roomName;
@@ -38,6 +38,15 @@ namespace Sprint2
                 case "room1":
                     sprite = spriteFactory.getRoom1Sprite();
                     break;
+                case "bridge":
+                    sprite = spriteFactory.getBrickBlockSprite();
+                    break;
+                case "itemRoom":
+                    sprite = spriteFactory.getItemRoomSprite();
+                    break;
+                case "itemRoomFlipped":
+                    sprite = spriteFactory.getItemRoomFlippedSprite();
+                    break;
                 default:
                     sprite = spriteFactory.getRoom1Sprite();
                     break;
@@ -57,6 +66,11 @@ namespace Sprint2
         object ISprite.GetConcreteObject()
         {
             return this;
+        }
+
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+           
         }
     }
 }

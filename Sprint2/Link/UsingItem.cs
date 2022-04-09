@@ -11,6 +11,8 @@ namespace Sprint2
 		private SpriteFactory spriteFactory;
 		private int totalFrames;
 		private int currFrame;
+
+		private const int frameMultiplier = 5;
 		public UsingItem(Link link)
 		{
 			this.link = link;
@@ -47,7 +49,7 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			sprite.Update(gameTime);
-			if (currFrame == totalFrames * 5)
+			if (currFrame == totalFrames * frameMultiplier)
             {
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
 			}
@@ -61,7 +63,7 @@ namespace Sprint2
 		public void StandingLeft() { }
 		public void Move() { }
 		public void UseWeapon() { }
-		public void UseItem(int itemNum) { }
+		public void UseItem(string newItem) { }
 		public void TakeDamage() { }
 	}
 }
