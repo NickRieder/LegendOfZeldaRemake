@@ -37,8 +37,8 @@ namespace Sprint2.Controller
             controllerMappingsRelease.Add(gpbutton, command);
         }
 
-        public void Initialize(Link link, Item item, Block block, Game1 game1)
-        {
+        public void Initialize(Link link, Item item, Block block, Game1 game1, GameObjectManager gom, SoundFactory soundFactory) {
+
             // movement - needs hold tap release - DPadD
             RegisterCommandHold(Buttons.DPadDown, new SetLinkMoving(link));
             RegisterCommandHold(Buttons.DPadUp, new SetLinkMoving(link));
@@ -80,8 +80,8 @@ namespace Sprint2.Controller
             //RegisterCommandTap(Buttons.RightThumbstickLeft, new SetLinkUseBoomerang(link));
             //RegisterCommandTap(Buttons.RightThumbstickRight, new SetLinkUseBomb(link));
 
-            // Pause - UNCOMMENT WHEN MERGED
-            // RegisterCommandTap(Buttons.Start, new SetLinkUseArrow(link));
+            // Reset Game
+            RegisterCommandTap(Buttons.Start, new ResetGame(game1));
         }
 
         public void Update(GameTime gameTime)

@@ -6,21 +6,21 @@ namespace Sprint2.Command
 {
     public class SetWinningState : ICommand
     {
-        private WinningState winningState;
-        private SpriteBatch sb;
-        private Game1 game;
-        private int cursorpos;
+        private Camera camera;
         private SpriteFont font;
+        private SpriteFactory spriteFactory;
+        private SpriteBatch spriteBatch;
 
-        public SetWinningState(WinningState winningState)
+        public SetWinningState(Camera camera, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
         {
-            winningState = new WinningState(game, font);
-            this.winningState = winningState;
+            this.camera = camera;
+            this.spriteFactory = spriteFactory;
+            this.spriteBatch = spriteBatch;
         }
 
         public void Execute()
         {
-            winningState.AnimateWinningState();
+            camera.AnimateWinningState("Up", spriteFactory, spriteBatch);
         }
     }
 }

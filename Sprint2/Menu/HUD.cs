@@ -64,9 +64,7 @@ namespace Sprint2
                         sourceRectangle = spriteFactory.getEmptyHeartRect();
                     }
                     destinationRectangle = new Rectangle((int)(HUDPos.X + 250 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
-                    spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
-                
-                
+                    spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White); 
             }
         }
 

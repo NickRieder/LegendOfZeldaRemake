@@ -33,10 +33,6 @@ namespace Sprint2
         public static int ScreenHeight;
         public static int ScreenWidth;
 
-        private WinningState winningState;
-
-
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -87,7 +83,6 @@ namespace Sprint2
             camera = new Camera();
 
 
-
             base.Initialize();
         }
 
@@ -115,9 +110,7 @@ namespace Sprint2
 
             levelLoader.LoadLevel("TestLevel", "Top");
 
-
-
-            keyboardController.Initialize(gom, this, soundFactory, winningState);
+            keyboardController.Initialize(gom, this, soundFactory, spriteFactory, spriteBatch);
         }
 
         protected override void Update(GameTime gameTime)
@@ -142,7 +135,9 @@ namespace Sprint2
         {
             GraphicsDevice.Clear(Color.Green);
 
+            //System.Diagnostics.Debug.WriteLine(camera.transform);
             spriteBatch.Begin(transformMatrix: camera.transform);
+            //System.Diagnostics.Debug.WriteLine(camera.transform);
 
             gom.Draw(spriteBatch);
             hud.Draw(spriteBatch);

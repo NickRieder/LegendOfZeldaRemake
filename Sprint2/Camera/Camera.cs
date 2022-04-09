@@ -14,7 +14,7 @@ namespace Sprint2
         public Matrix transform;
         public Viewport view;
         public Vector2 center;
-
+        SpriteFactory spriteFactory;
 
         public Camera()    // , Viewport newView
         {
@@ -41,6 +41,11 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             currState.Draw(spriteBatch);
+        }
+
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
+        {
+            currState.AnimateWinningState(direction, spriteFactory, spriteBatch);
         }
     }
 }

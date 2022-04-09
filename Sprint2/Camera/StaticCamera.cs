@@ -42,5 +42,9 @@ namespace Sprint2
 
         }
 
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
+        {
+            camera.currState = new MovingWinningState(camera, direction, spriteFactory, spriteBatch);
+        }
     }
 }

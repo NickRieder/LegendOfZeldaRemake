@@ -19,6 +19,7 @@ namespace Sprint2
         private int yPos;
         string direction;
         bool canContinue;
+        private SpriteFactory spriteFactory;
 
         public MovingCamera(Camera camera, string direction)
         {
@@ -85,13 +86,13 @@ namespace Sprint2
             {
                 FreezeCamera(xPos, yPos);
             }
-            
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch) { }
+
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
         {
-
+            throw new NotImplementedException();
         }
-
     }
 }

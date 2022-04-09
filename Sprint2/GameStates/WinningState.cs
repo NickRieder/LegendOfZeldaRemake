@@ -9,88 +9,78 @@ namespace Sprint2.GameStates
 {
     public class WinningState : IGameState
     {
+        private const int START_ANIMATION = 0;
+        private const int STOP_VERTICAL_ANIMATION = 800;    // Raw height of room sprite is 176, so 176 * 3 = 528
+        private const int STOP_HORIZONTAL_ANIMATION = 700;
+
+        Camera camera;
 
         private Game1 game;
-        private int cursorpos;
         private SpriteFont font;
-        private bool previously_start;
-        private bool previously_select;
-        private bool isStartPressed;
         private SpriteBatch sb;
+
+        private int xPos;
+        private int yPos;
+        string direction;
 
         bool canContinue;
 
         public WinningState(Game1 game, SpriteFont font)
         {
+            this.camera = game.camera;
             this.game = game;
             this.font = font;
-            cursorpos = 0;
-            previously_select = previously_select = isStartPressed = false;
+            xPos = START_ANIMATION;
+            yPos = START_ANIMATION;
+            this.direction = direction;
+            canContinue = true;
         }
 
-        private void MoveCursor()
+        public void AnimateWinningState(String direction)
         {
-            cursorpos += 1;
-            cursorpos %= 2;
-        }
+            System.Diagnostics.Debug.WriteLine("debug message 1");
 
-        private void Confirm(bool start_pressed)
-        {
-            switch (start_pressed)
+            switch (direction)
             {
-                case true:
-                    Thread.Sleep(500);
-                    new ResetGame(game).Execute();
+                case "Up":
+                    yPos += 5;
+                    if (yPos >= STOP_VERTICAL_ANIMATION)
+                    {
+                        canContinue = false;
+                    }
                     break;
-                case false:
-                    game.Exit();
+                default:
                     break;
             }
-        }
 
-        public void AnimateWinningState()
-        {
-            System.Diagnostics.Debug.WriteLine("debug message");
+            System.Diagnostics.Debug.WriteLine(yPos);
 
-            GamePadState state = GamePad.GetState(PlayerIndex.One);
-            bool select_pressed = Keyboard.GetState().IsKeyDown(Keys.RightShift);
-            bool start_pressed = Keyboard.GetState().IsKeyDown(Keys.Enter) || state.IsButtonDown(Buttons.Start);
+            //var position = Matrix.CreateTranslation(xPos, yPos, 0);
+            Vector3 pos = new Vector3(xPos, yPos, 0);
+            camera.transform = Matrix.CreateTranslation(pos);
 
-            if ((start_pressed && !previously_start) || state.IsButtonDown(Buttons.Start))
-            {
-                Confirm(start_pressed);
-                return;
-            }
-
-            if ((select_pressed && !previously_select) || state.ThumbSticks.Left.Y < -0.5f || state.ThumbSticks.Left.Y > 0.5f || state.IsButtonDown(Buttons.DPadDown) || state.IsButtonDown(Buttons.DPadUp))
-            {
-                MoveCursor();
-            }
-
-            previously_start = start_pressed;
-            previously_select = select_pressed;
+            //System.Diagnostics.Debug.WriteLine(camera.transform);
         }
 
         public void Update()
         {
             if (canContinue)
             {
-                AnimateWinningState();
-            }
-            else
-            {
-                game.Exit();
+                while (yPos < STOP_VERTICAL_ANIMATION)
+                    AnimateWinningState("Up");
             }
         }
 
         public void Draw(SpriteBatch sb)
         {
+            /*
             sb.DrawString(font, "Thanks Link, You're", new Vector2(50, 30), Color.Red);
             sb.DrawString(font, "The Hero of Hyrule.", new Vector2(50, 80), Color.Red);
             sb.DrawString(font, "Finally", new Vector2(50, 130), Color.Red);
             sb.DrawString(font, "Peace returns to Hyrule.", new Vector2(50, 180), Color.Red);
             sb.DrawString(font, "This ends the story.", new Vector2(50, 205), Color.Blue);
-            sb.DrawString(font, "Another story awaits! Press the Start button.", new Vector2(50, 230), Color.Red);
+            sb.DrawString(font, "Another story awaits! Press the Start or Enter button.", new Vector2(50, 230), Color.Red);
+            */
         }
     }
 }
