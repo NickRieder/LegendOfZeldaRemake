@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,11 +15,17 @@ namespace Sprint2
 		private Vector2 currPos;
 		private static TimeSpan damagedTime;
 		private TimeSpan startDamagedTime;
+		private static TimeSpan resetTime;
+		private TimeSpan startResetTime;
 		bool isDamaged;
 		
+		private Game1 game;
+
+		private const int linkKnockedSpeed = 3;
 
 		public TakingDamage(Link link)
 		{
+			this.game = link.game;
 			this.link = link;
 			sprite = link.sprite;
 			
@@ -42,38 +48,41 @@ namespace Sprint2
 		{
 			if (isDamaged)
 			{
-
 				startDamagedTime = gameTime.TotalGameTime;
 				isDamaged = false;
 			}
-			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
+			if (link.health == 0)
             {
+				link.currState = new DeadLink(link);
+			}
+			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
+			{
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
-			}	
-            else
+			}
+			else
             {
 				switch (link.direction)
 				{
 					case "down":
 
-						currPos.Y -= 3;
+						currPos.Y -= linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					case "left":
-						currPos.X += 3;
+						currPos.X += linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					case "right":
-						currPos.X -= 3;
+						currPos.X -= linkKnockedSpeed;
 						link.pos = currPos;
 						break;
 					default: // facing up
-						currPos.Y += 3;
+						currPos.Y += linkKnockedSpeed;
 
 						link.pos = currPos;
 						break;
 				}
-            }
+			}
 			sprite.Update(gameTime);
 			link.sprite.Update(gameTime);
 		}
@@ -88,11 +97,10 @@ namespace Sprint2
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
 
-        public void Execute()
-        {
+		public void Execute()
+		{
 
 			link.TakeDamage();
 		}
-    }
+	}
 }
-

@@ -13,6 +13,8 @@ namespace Sprint2
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
+		private bool isMoving;
+		private const int movementSpeed = 2;
 
 		public MovingLink(Link link)
 		{
@@ -39,47 +41,61 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.direction = "up";
-			link.currState = new StandingFacingUp(link);
+			if (link.direction != "up")
+			{
+				link.direction = "up";
+				link.currState = new StandingFacingUp(link);
+			}
 		}
 		public void StandingDown()
 		{
-			link.direction = "down";
-			link.currState = new StandingFacingDown(link);
+			if (link.direction != "down")
+			{
+				link.direction = "down";
+				link.currState = new StandingFacingDown(link);
+			}
 		}
 		public void StandingRight()
 		{
-			link.direction = "right";
-			link.currState = new StandingFacingRight(link);
+			if (link.direction != "right")
+			{
+				link.direction = "right";
+				link.currState = new StandingFacingRight(link);
+			}
 		}
 		public void StandingLeft()
 		{
-			link.direction = "left";
-			link.currState = new StandingFacingLeft(link);
+			if (link.direction != "left")
+            {
+				link.direction = "left";
+				link.currState = new StandingFacingLeft(link);
+			}
+			
 		}
 		public void Move()
         {
 			Vector2 currPos = link.pos;
-			
+
 			switch (link.direction)
 			{
 				case "down":
-					currPos.Y += 2;
+					currPos.Y += movementSpeed;
 					link.pos = currPos;
 					break;
 				case "left":
-					currPos.X -= 2;
+					currPos.X -= movementSpeed;
 					link.pos = currPos;
 					break;
 				case "right":
-					currPos.X += 2;
+					currPos.X += movementSpeed;
 					link.pos = currPos;
 					break;
 				default: // facing up
-					currPos.Y -= 2;
+					currPos.Y -= movementSpeed;
 					link.pos = currPos;
 					break;
 			}
+			
 		}
 		public void UseWeapon()
 		{

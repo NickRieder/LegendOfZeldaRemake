@@ -9,30 +9,23 @@ namespace Sprint2
 {
 	public class Item : ISprite
 	{
-		private ArrayList itemArray;
-		private int arrIndex;
 		public Vector2 pos { get; set; }
 		public SpriteFactory spriteFactory;
 		private Texture2D itemSheet;
+		public int spriteSizeMultiplier;
 		private Sprite sprite;
+		public string itemName;
 
-		public Item()
+		private static int itemPosX = 200;
+		private static int itemPosY = 200;
+
+		private static int sourceRectangleMultiplier = 5;
+
+		public Item(string itemName, Vector2 pos)
 		{
-			itemArray = new ArrayList();
-
-			arrIndex = 0;
-			pos = new Vector2(200, 200);
-
-			itemArray.Add(SpriteFactory.BOOMERANG);
-			itemArray.Add(SpriteFactory.BOMB);
-			itemArray.Add(SpriteFactory.BOW);
-			itemArray.Add(SpriteFactory.RED_CANDLE);
-			itemArray.Add(SpriteFactory.BLUE_CANDLE);
-			itemArray.Add(SpriteFactory.WOODEN_SWORD);
-			itemArray.Add(SpriteFactory.MAGIC_SWORD);
-			itemArray.Add(SpriteFactory.HEART_CANISTER);
-			itemArray.Add(SpriteFactory.ORANGE_RUBY);
-			itemArray.Add(SpriteFactory.BLUE_RUBY);
+			this.itemName = itemName;
+			spriteSizeMultiplier = 2;
+			this.pos = pos;
 
 		}
 
@@ -41,53 +34,46 @@ namespace Sprint2
 			return new Rectangle(0, 0, 0, 0); // Change this to Item Sprite
 		}
 		public void SetSpriteContent(SpriteFactory spriteFactory)
-        {
+		{
 			this.spriteFactory = spriteFactory;
 			this.itemSheet = this.spriteFactory.getItemSheet();
+
+			switch (itemName)
+			{
+				case "sword":
+					sprite = spriteFactory.getSwordSprite();
+					break;
+				case "boomerang":
+					sprite = spriteFactory.getBoomerangPickUpSprite();
+					break;
+				case "bomb":
+					sprite = spriteFactory.getBombSprite();
+					break;
+				case "key":
+					sprite = spriteFactory.getKeySprite();
+					break;
+				default:
+					break;
+			}
 		}
 		public void SetSoundContent(SoundFactory soundFactory)
 		{
 
 		}
 
-		public  void NextItem()
-        {
-			if(arrIndex == itemArray.Count - 1)
-            {
-				arrIndex = 0;
-            }
-			else
-            {
-				arrIndex++;
-			}
-			
-        }
 
-		public void PreviousItem()
-        {
-			if (arrIndex == 0)
-			{
-				arrIndex = itemArray.Count - 1;
-			}
-			else
-			{
-				arrIndex--;
-			}
-		}
+
+
 
 		public void Draw(SpriteBatch spriteBatch)
-        {
-
-			Rectangle sourceRectangle = (Rectangle)itemArray[arrIndex];
-
-			Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, sourceRectangle.Width * 5, sourceRectangle.Height * 5);
-			spriteBatch.Draw(itemSheet, destinationRectangle, sourceRectangle, Color.White);
+		{
+			sprite.Draw(spriteBatch, pos);
 		}
 
 		public void Update(GameTime gameTime)
-        {
-			// No Op
-        }
+		{
+			sprite.Update(gameTime);
+		}
 
 		public Item GetConcreteObject()
 		{

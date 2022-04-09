@@ -12,6 +12,6 @@ namespace Sprint2
         public void AnimateRoomTransition(string direction);
         public void Update(GameTime gameTime);
         public void Draw(SpriteBatch spriteBatch);
-        
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch);
     }
 }

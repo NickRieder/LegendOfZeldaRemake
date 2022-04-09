@@ -44,7 +44,7 @@ namespace Sprint2
 		}
 		public void Move()
         {
-			link.currState = new MovingLink(link);
+			link.currState = new MovingLink(link);			
         }
 		public void UseWeapon()
 		{

@@ -1,0 +1,96 @@
+﻿<!--Enemy-->
+<Level>
+	<background>
+		<sprite>room1</sprite>
+	</background>
+	<Enemies>
+		<enemy Type="Bluebat">
+			<XCoord>400</XCoord>
+			<YCoord>350</YCoord>
+		</enemy>
+		<enemy Type="Bluegel">
+			<XCoord>145</XCoord>
+			<YCoord>192</YCoord>
+		</enemy>
+		<enemy Type="Bluebat">
+			<XCoord>286</XCoord>
+			<YCoord>333</YCoord>
+		</enemy>
+		<enemy Type="Bluegel">
+			<XCoord>573</XCoord>
+			<YCoord>192</YCoord>
+		</enemy>
+		<enemy Type="Bluebat">
+			<XCoord>382</XCoord>
+			<YCoord>336</YCoord>
+		</enemy>
+		<enemy Type="Bluegel">
+			<XCoord>333</XCoord>
+			<YCoord>293</YCoord>
+		</enemy>
+	</Enemies>
+	<Walls>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>22</YCoord>
+			<Width>300</Width>
+			<Height>20</Height>
+		</wall>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>435</YCoord>
+			<Width>300</Width>
+			<Height>5</Height>
+		</wall>
+		<wall>
+			<XCoord>25</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+		<wall>
+			<XCoord>680</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+	</Walls>
+	<Doors>
+		<door Type="TopOpen">
+			<room>Level 1/L1R7</room>    <!-- Next Room-->
+			<room>Level 1/L1R7</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R9</clickNext>
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+		<door Type="LeftOpen">
+			<room>Level 1/L1R9</room>
+			<!-- Next Room-->
+			<room>Level 1/L1R7</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R9</clickNext>
+			<XCoord>0</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="RightWall">
+			<room></room>
+			<!-- Next Room-->
+			<room>Level 1/L1R7</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R9</clickNext>
+			<XCoord>672</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="BotWall">
+			<room></room>
+			<!-- Next Room-->
+			<room>Level 1/L1R7</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R9</clickNext>
+			<XCoord>336</XCoord>
+			<YCoord>435</YCoord>
+		</door>
+	</Doors>
+	
+</Level>

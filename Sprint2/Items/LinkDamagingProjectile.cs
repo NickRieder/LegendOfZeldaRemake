@@ -1,55 +1,82 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections;
 
 namespace Sprint2
 {
-    public class DamagingProjectile : ISprite
+    public class LinkDamagingProjectile: ISprite
     {
 		public Vector2 pos { get; set; }
-		public Enemies enemy;
-		public Vector2 enemyPos { get; set; }
-		public Sprite enemySprite;
+		public Link link;
+		public Vector2 linkPos { get; set; }
+		public Sprite linkSprite;
 		public SpriteFactory spriteFactory;
 		public GameObjectManager gom;
 
 		public Sprite sprite;
 		public string projectileType;
 		public string projectileDirection;
+		//private string linkDirection;
+		Vector2 itemPos;
+		
 
-		public DamagingProjectile(Enemies enemy, string projectileType)
+		public LinkDamagingProjectile(Link link, string projectileType)
 		{
-			this.spriteFactory = enemy.spriteFactory;
-			this.gom = enemy.gom;
+			//System.Diagnostics.Debug.WriteLine(projectileType);
+			this.spriteFactory = link.spriteFactory;
+			this.gom = link.gom;
 
 			// Enemy fields setup
-			this.enemy = enemy;
-			this.enemySprite = enemy.sprite;
-			this.enemyPos = enemy.pos;
+			this.link = link;
+			this.linkSprite = link.sprite;
+			this.linkPos = link.pos;
 
 			// Projectile fields setup
 			this.projectileType = projectileType;
+
 			//this.pos = enemy.pos;
-			this.projectileDirection = enemy.direction;
-			
+			this.projectileDirection = link.direction;
+
+			link.isUsingItem = true;
 
 			switch (projectileType)
 			{
 				case "Boomerang":
 					CenterProjectilePosition(spriteFactory.getBoomerangSprite());
 					sprite = spriteFactory.getBoomerangSprite();
+					
 					break;
-				case "Fireball":
-					CenterProjectilePosition(spriteFactory.getFireballSprite());
-					sprite = spriteFactory.getFireballSprite();
+				case "Arrow":
+					switch (link.direction)
+					{
+						case "down":
+							CenterProjectilePosition(spriteFactory.getArrowSpriteDown());
+							sprite = spriteFactory.getArrowSpriteDown();
+							break;
+						case "up":
+							CenterProjectilePosition(spriteFactory.getArrowSpriteUp());
+							sprite = spriteFactory.getArrowSpriteUp();
+							break;
+						case "right":
+							CenterProjectilePosition(spriteFactory.getArrowSpriteRight());
+							sprite = spriteFactory.getArrowSpriteRight();
+							break;
+						case "left":
+							CenterProjectilePosition(spriteFactory.getArrowSpriteLeft());
+							sprite = spriteFactory.getArrowSpriteLeft();
+							break;
+						default:
+							break;
+					}
 					break;
-				case "Minion":
-					CenterProjectilePosition(spriteFactory.getBossMinion());
-					sprite = spriteFactory.getBossMinion();
+				case "Explosion":
+					CenterProjectilePosition(spriteFactory.getBombSprite());
+					sprite = spriteFactory.getBombSprite();
+
 					break;
+			
 				default:
 					sprite = spriteFactory.getNullProjectile();
 					break;
@@ -57,9 +84,9 @@ namespace Sprint2
 		}
 
 		private void CenterProjectilePosition(Sprite projectileSprite)
-        {
-			Vector2 centeredPos = enemyPos;
-			Rectangle enemyRectangle = enemy.GetSpriteRectangle();
+		{
+			Vector2 centeredPos = linkPos;
+			Rectangle enemyRectangle = link.GetSpriteRectangle();
 			Rectangle projectileRectangle = projectileSprite.getCurrentFrameRectangle();
 			int divisorVal = 2;
 			int eWidth = enemyRectangle.Width;
@@ -75,26 +102,26 @@ namespace Sprint2
 			float centerPosY = centeredPos.Y + (float)(halfEH - halfPH);
 			//System.Diagnostics.Debug.WriteLine("DEBUG: Result" +"\n centerPosX = " +centerPosX +"\n centerPosY = " +centerPosY);
 			switch (projectileDirection)
-            {
-                case "Up":
+			{
+				case "up":
 					centeredPos.X = centerPosX;
 					centeredPos.Y -= pHeight;
 					break;
-                case "Down":
+				case "down":
 					centeredPos.X = centerPosX;
 					centeredPos.Y += eHeight;
 					break;
-                case "Left":
+				case "left":
 					centeredPos.X -= pWidth;
 					centeredPos.Y = centerPosY;
 					break;
-                case "Right":
+				case "right":
 					centeredPos.X += eWidth;
 					centeredPos.Y = centerPosY;
 					break;
-                default:
-                    break;
-            }
+				default:
+					break;
+			}
 			//System.Diagnostics.Debug.WriteLine("DEBUG: Return" + "\n centeredPos.X = " + centeredPos.X + "\n centeredPos.Y = " + centeredPos.Y);
 			this.pos = centeredPos;
 		}
@@ -105,7 +132,7 @@ namespace Sprint2
 		}
 		public void SetSoundContent(SoundFactory soundFactory)
 		{
-			
+
 		}
 
 		public Rectangle GetSpriteRectangle()
@@ -119,23 +146,24 @@ namespace Sprint2
 		}
 
 		public void RemoveProjectile(ISprite projectile)
-            {
+		{
 			gom.RemoveFromEveryCollection(projectile);
-            }
+		}
 
 		public virtual void Update(GameTime gameTime) // the virtual keyword allows subclasses to override methods
 		{
-            sprite.Update(gameTime);
+			sprite.Update(gameTime);
 		}
 
-		public DamagingProjectile GetConcreteObject()
+		public LinkDamagingProjectile GetConcreteObject()
 		{
 			return this;
 		}
 
-		object ISprite.GetConcreteObject()
+        object ISprite.GetConcreteObject()
         {
-			return this;
+            throw new NotImplementedException();
         }
     }
 }
+

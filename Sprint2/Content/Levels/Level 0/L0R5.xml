@@ -1,99 +1,98 @@
-﻿<Level>
+﻿<!--Pickup Bomb-->
+<Level>
 	<background>
 		<sprite>room1</sprite>
 	</background>
-
+	
 	<Blocks>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
+			<XCoord>239</XCoord>
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>240</XCoord>
-			<YCoord>192</YCoord>
+			<XCoord>239</XCoord>
+			<YCoord>239</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>240</YCoord>
+			<XCoord>286</XCoord>
+			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>240</XCoord>
-			<YCoord>240</YCoord>
+			<XCoord>333</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>382</XCoord>
+			<YCoord>286</YCoord>
 		</block>
 	</Blocks>
-	<Enemies>
-		<enemy Type="Goriya">
-			<XCoord>200</XCoord>
-			<YCoord>300</YCoord>
-		</enemy>
-		<enemy Type="Dragon">
-			<XCoord>400</XCoord>
-			<YCoord>300</YCoord>
-		</enemy>
-		<enemy Type="Boss">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
-	</Enemies>
+	<Items>
+		<item Type="bomb">
+			<XCoord>343</XCoord>
+			<YCoord>229</YCoord>
+		</item>
+	</Items>
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
-			<YCoord>0</YCoord>
+			<YCoord>22</YCoord>
 			<Width>300</Width>
-			<Height>33</Height>
+			<Height>20</Height>
 		</wall>
 		<wall>
 			<XCoord>0</XCoord>
-			<YCoord>437</YCoord>
+			<YCoord>435</YCoord>
 			<Width>300</Width>
-			<Height>33</Height>
+			<Height>5</Height>
 		</wall>
 		<wall>
-			<XCoord>0</XCoord>
+			<XCoord>25</XCoord>
 			<YCoord>0</YCoord>
-			<Width>32</Width>
+			<Width>20</Width>
 			<Height>300</Height>
 		</wall>
 		<wall>
-			<XCoord>673</XCoord>
+			<XCoord>680</XCoord>
 			<YCoord>0</YCoord>
-			<Width>33</Width>
+			<Width>20</Width>
 			<Height>300</Height>
 		</wall>
 	</Walls>
 	<Doors>
 		<door Type="TopWall">
-			<room>Room3</room>
-			<!-- Next Room-->
-			<room>TestLevel</room>
-			<!-- Previous Room-->
+			<room></room>    <!-- Next Room-->
+			<room>L0R4</room>    <!-- Previous Room-->
+			<clickNext>L0R6</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftOpen">
-			<room>Room3</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>TestLevel</room>
+			<room>Level 0/L0R4</room>
 			<!-- Previous Room-->
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="RightOpen">
-			<room>Room3</room>
+		<door Type="RightWall">
+			<room></room>
 			<!-- Next Room-->
-			<room>TestLevel</room>
+			<room>Level 0/L0R4</room>
 			<!-- Previous Room-->
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotLock">
-			<room>Room3</room>
+			<room>Level 0/L0R6</room>
 			<!-- Next Room-->
-			<room>TestLevel</room>
+			<room>Level 0/L0R4</room>
 			<!-- Previous Room-->
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>
 	</Doors>
-
+	
 </Level>

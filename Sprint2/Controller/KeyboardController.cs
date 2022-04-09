@@ -1,10 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
+using System.Windows.Input;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using System.Linq;
+using Sprint2.Command;
+using Sprint2.GameStates;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2
 {
@@ -52,13 +56,10 @@ namespace Sprint2
             isPaused = !isPaused;
         }
 
-        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory)
+        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
         {
 
-            RegisterCommandTap(Keys.D4, new SetLinkUseItem(gom.link));
-            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link));
-            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link));
-            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link));
+            RegisterCommandTap(Keys.C, new SetLinkUseItem(gom.link));
             RegisterCommandTap(Keys.Z, new SetLinkAttacking(gom.link, soundFactory));
             RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link, soundFactory));
 
@@ -98,20 +99,23 @@ namespace Sprint2
 
             RegisterCommandTap(Keys.Q, new QuitCommand(game1));
             RegisterCommandTap(Keys.R, new ResetGame(game1));
+            RegisterCommandTap(Keys.Enter, new ResetGame(game1)); // for after winning screen
 
             RegisterCommandPause(Keys.P, new PauseGame(gom, this));
+            RegisterCommandPause(Keys.A, new SetPreviousItem(gom.menu));
+            RegisterCommandPause(Keys.D, new SetNextItem(gom.menu));
+            RegisterCommandPause(Keys.Z, new SetLinkItem(gom.menu));
 
-            RegisterCommandTap(Keys.NumPad6, new SetCameraMovingRight(game1.camera));
-            RegisterCommandTap(Keys.NumPad4, new SetCameraMovingLeft(game1.camera));
-            RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(game1.camera));
-            RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(game1.camera));
+            RegisterCommandTap(Keys.NumPad6, new SetCameraMovingRight(gom.camera));
+            RegisterCommandTap(Keys.NumPad4, new SetCameraMovingLeft(gom.camera));
+            RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(gom.camera));
+            RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(gom.camera));
 
-
+            RegisterCommandTap(Keys.M, new SetWinningState(gom.camera, spriteFactory, spriteBatch));
         }
 
         public void Update(GameTime gameTime)
         {
-            
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
             if(!isPaused)
@@ -128,7 +132,26 @@ namespace Sprint2
                     }
                     else if (controllerMappingsHold.ContainsKey(key))
                     {
-                        controllerMappingsHold[key].Execute();
+                        if (key == Keys.D)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.W))
+                                controllerMappingsHold[key].Execute();
+                        }
+                        else if (key == Keys.W)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.D))
+                                controllerMappingsHold[key].Execute();
+                        }
+                        else if (key == Keys.A)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.D) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.W))
+                                controllerMappingsHold[key].Execute();
+                        }
+                        else if (key == Keys.S)
+                        {
+                            if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.D) && !pressedKeys.Contains<Keys>(Keys.W))
+                                controllerMappingsHold[key].Execute();
+                        }
                     }
                 }
             }

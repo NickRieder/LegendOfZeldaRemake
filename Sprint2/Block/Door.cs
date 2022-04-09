@@ -10,19 +10,25 @@ namespace Sprint2
     {
         public Vector2 pos { get; set; }
         public SpriteFactory spriteFactory;
-        private String nextLevel; // why is the string type have "S" capitalized?
-        private String prevRoom;
+        private string nextLevel; // why is the string type have "S" capitalized?
+        private string prevRoom;
+        private string nextClickRoom;
+
         private LevelLoader levelLoader;
 
         public Sprite sprite;
         public string doorType;
 
-        public Door(string doorType, String nextLevel, LevelLoader levelLoader, String prevRoom) 
+
+        private const int initialDoorPosX = 100;
+        private const int initialDoorPosY = 500;
+        public Door(string doorType, String nextLevel, LevelLoader levelLoader, String prevRoom, String nextClickRoom) 
         {
-            pos = new Vector2(100, 500);
+            pos = new Vector2(initialDoorPosX, initialDoorPosY);
             this.nextLevel = nextLevel;
             this.levelLoader = levelLoader;
             this.prevRoom = prevRoom;
+            this.nextClickRoom = nextClickRoom;
             this.doorType = doorType;
         }
         public void Draw(SpriteBatch spritebatch)
@@ -83,6 +89,11 @@ namespace Sprint2
 
         }
 
+        public static explicit operator Door(Type v)
+        {
+            throw new NotImplementedException();
+        }
+
         public Rectangle GetSpriteRectangle()
         {
             return sprite.getDestinationRectangle();
@@ -100,7 +111,7 @@ namespace Sprint2
 
         public void LoadNextRoom()
         {
-            levelLoader.LoadLevel(nextLevel, "Right");
+            levelLoader.LoadLevel(nextClickRoom, "Right");
         }
 
         public void LoadPreviousRoom()

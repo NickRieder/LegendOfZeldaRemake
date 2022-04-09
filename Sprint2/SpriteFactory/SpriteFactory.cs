@@ -9,6 +9,7 @@ namespace Sprint2
     public class SpriteFactory : ISpriteFactory
     {
         private static Texture2D tileSheet;
+        private static Texture2D tileSheet2;
         private ContentManager content;
 
         private static Texture2D enemySheet;
@@ -33,6 +34,8 @@ namespace Sprint2
         private static Texture2D level3Sheet;
         private static Texture2D level4Sheet;
 
+        private static Texture2D deathScreen;
+
         private static SpriteFont font;
         public SpriteFactory(ContentManager content)
         {
@@ -42,6 +45,7 @@ namespace Sprint2
         public void LoadSpriteSheets()
         {
             tileSheet = content.Load<Texture2D>("Sheets/TileSheet");
+            tileSheet2 = content.Load<Texture2D>("Sheets/TileSheet2");
 
             enemySheet = content.Load<Texture2D>("Sheets/EnemySheet");
             enemySheet2 = content.Load<Texture2D>("Sheets/EnemySheet2");
@@ -63,13 +67,16 @@ namespace Sprint2
 
             font = content.Load<SpriteFont>("File");
 
+            /*
             basementSheet = content.Load<Texture2D>("Sheets/Level 0 SpriteSheet");
             level1Sheet1 = content.Load<Texture2D>("Sheets/Level 1 P1 SpriteSheet");
             level1Sheet2 = content.Load<Texture2D>("Sheets/Level 1 P2 SpriteSheet");
             level2Sheet = content.Load<Texture2D>("Sheets/Level 2 SpriteSheet");
             level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
             level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
+            */
 
+            deathScreen = content.Load<Texture2D>("Sheets/YouDiedScreen");
         }
 
         
@@ -119,7 +126,11 @@ namespace Sprint2
         public static Rectangle TILE_BRICK_BLOCK = new Rectangle(984, 45, 16, 16);
         public static Rectangle TILE_FLOOR_BASIC = new Rectangle(1, 92, 191, 111);
         public static Rectangle TILE_FLOOR_DESIGN1 = new Rectangle(976, 192, 191, 111);
-        public static Rectangle FULL_ROOM = new Rectangle(521, 10, 255, 177);
+        public static Rectangle FULL_ROOM = new Rectangle(521, 11, 255, 177);
+        public static Rectangle BRIDGE_ROOM = new Rectangle(586, 307, 255, 177);
+        public static Rectangle ITEM_ROOM = new Rectangle(975, 536, 255, 177);
+        public static Rectangle ITEM_FLIPPED_ROOM = new Rectangle(951, 1013, 255, 177);
+        public static Rectangle EMPTY_ROOM = new Rectangle(521, 11, 256, 176);
 
         public static Rectangle TOP_DOOR_OPEN = new Rectangle(848, 10, 32, 32);
         public static Rectangle BOT_DOOR_OPEN = new Rectangle(848, 110, 32, 32);
@@ -217,6 +228,7 @@ namespace Sprint2
         private static Rectangle BOOMERANG_7 = new Rectangle(155, 202, 8, 8);
         private static Rectangle BOOMERANG_8 = new Rectangle(164, 202, 8, 8);
 
+        private static Rectangle BOMB_SPRITE = new Rectangle(135, 0, 9, 14);
         private static Rectangle EXPLOSION_1 = new Rectangle(138, 185, 16, 16);
         private static Rectangle EXPLOSION_2 = new Rectangle(155, 185, 16, 16);
         private static Rectangle EXPLOSION_3 = new Rectangle(172, 185, 16, 16);
@@ -225,13 +237,14 @@ namespace Sprint2
         public static Rectangle HEART_CANISTER = new Rectangle(25, 1, 14, 14);
         public static Rectangle WOODEN_SWORD = new Rectangle(104, 0, 8, 16);
         public static Rectangle MAGIC_SWORD = new Rectangle(104, 16, 8, 16);
-        public static Rectangle BOW = new Rectangle(136, 16, 9, 17);
+        public static Rectangle BOW = new Rectangle(136, 15, 8, 16);
         public static Rectangle BOMB = new Rectangle(136, 0, 9, 14);
         public static Rectangle BOOMERANG = new Rectangle(129, 3, 6, 8);
         public static Rectangle RED_CANDLE = new Rectangle(160, 0, 8, 16);
         public static Rectangle BLUE_CANDLE = new Rectangle(160, 16, 8, 16);
         public static Rectangle ORANGE_RUBY = new Rectangle(71, 0, 9, 16);
         public static Rectangle BLUE_RUBY = new Rectangle(71, 16, 9, 16);
+        public static Rectangle KEY = new Rectangle(240, 0, 8, 16);
 
         //Link
         private static Rectangle LINK_MOVE_DOWN_1 = new Rectangle(1, 11, 16, 16);
@@ -271,10 +284,12 @@ namespace Sprint2
         public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
 
         // HUD
-        public static Rectangle HUD_SPRITE = new Rectangle(342, 26, 160, 34);
+        public static Rectangle HUD_SPRITE = new Rectangle(258, 26, 255, 34);
         public static Rectangle EMPTY_HEART = new Rectangle(626, 116, 8, 8);
         public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
         public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
+        private static Rectangle MENU = new Rectangle(0, 10, 256, 176);
+        private static Rectangle SELECTOR = new Rectangle(518, 136, 17, 17);
 
         // Levels
         public static Rectangle B_R1 = new Rectangle(32, 27, 164, 164);
@@ -363,10 +378,14 @@ namespace Sprint2
         public static Rectangle L3P_R9 = new Rectangle(316, 518, 131, 109);
 
         public static Rectangle L4P_R1 = new Rectangle(186, 27, 131, 131);
+
+        // Death Screen
+        public static Rectangle DEATH_SCREEN = new Rectangle(0, 0, 255, 300);
+
         // Projectiles
         public Sprite getBoomerangSprite()
         {
-            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3);    // , BOOMERANG_4, BOOMERANG_5, BOOMERANG_6, BOOMERANG_7, BOOMERANG_8
+            return new Sprite(linkSheet, BOOMERANG_1, BOOMERANG_2, BOOMERANG_3, BOOMERANG_4, BOOMERANG_5, BOOMERANG_6, BOOMERANG_7, BOOMERANG_8);
         }
         public Sprite getArrowSpriteRight()
         {
@@ -384,6 +403,14 @@ namespace Sprint2
         {
             return new Sprite(linkSheetUpsideDown, ARROW_UPSIDEDOWN_DOWN);
         }
+
+/*        public Sprite getBombSprite()
+        {
+
+            return new Sprite(itemSheet, BOMB_SPRITE);
+
+        }*/
+
         public Sprite getExplosionSprite()
         {
 
@@ -540,6 +567,21 @@ namespace Sprint2
             return new Sprite(tileSheet, TILE_DOOR_BOTTOM_LOCKED);
         }
 
+        //Items
+        public Sprite getSwordSprite()
+        {
+            return new Sprite(itemSheet, MAGIC_SWORD);
+        }
+
+        public Sprite getBoomerangPickUpSprite()
+        {
+            return new Sprite(itemSheet, BOOMERANG);
+        }
+        public Sprite getKeySprite()
+        {
+            return new Sprite(itemSheet, KEY);
+        }
+
         // Enemies
         public Sprite getBluebatSprite()
         {
@@ -642,10 +684,28 @@ namespace Sprint2
 
 
         // Rooms
-
+        public Sprite getEmptyRoomSprite()
+        {
+            return new Sprite(tileSheet2, EMPTY_ROOM);
+        }
         public Sprite getRoom1Sprite()
         {
             return new Sprite(tileSheet, FULL_ROOM);
+        }
+
+        public Sprite getItemRoomSprite()
+        {
+            return new Sprite(tileSheet, ITEM_ROOM);
+        }
+
+        public Sprite getItemRoomFlippedSprite()
+        {
+            return new Sprite(tileSheet, ITEM_FLIPPED_ROOM);
+        }
+
+        public Sprite getBridgeRoomSprite()
+        {
+            return new Sprite(tileSheet, BRIDGE_ROOM);
         }
         public Sprite getDefaultSprite()
         {
@@ -661,6 +721,30 @@ namespace Sprint2
         public Sprite getHUDSprite()
         {
             return new Sprite(hudSheet, HUD_SPRITE);
+        }
+
+        //menu
+        public Sprite getMenuSprite()
+        {
+            return new Sprite(hudSheet, MENU);
+        }
+        public Sprite getSelectorSprite()
+        {
+            return new Sprite(hudSheet, SELECTOR);
+        }
+        public Sprite getBowSprite()
+        {
+            return new Sprite(itemSheet, BOW);
+        }
+        public Sprite getBombSprite()
+        {
+            return new Sprite(itemSheet, BOMB);
+        }
+
+        // death
+        public Sprite getDeathScreen()
+        {
+            return new Sprite(deathScreen, DEATH_SCREEN);
         }
     }
 }

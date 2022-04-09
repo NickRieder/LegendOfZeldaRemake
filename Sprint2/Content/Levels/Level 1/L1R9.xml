@@ -1,0 +1,238 @@
+﻿<!--Enemy-->
+<Level>
+	<background>
+		<sprite>room1</sprite>
+	</background>
+	
+	<Blocks>
+		<block Type ="NonFlat">
+			<XCoord>145</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>145</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>145</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>145</XCoord>
+			<YCoord>336</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>186</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>192</XCoord>
+			<YCoord>336</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>98</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>478</XCoord>
+			<YCoord>98</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>526</XCoord>
+			<YCoord>98</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>573</XCoord>
+			<YCoord>98</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>620</XCoord>
+			<YCoord>98</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>145</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>478</XCoord>
+			<YCoord>145</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>526</XCoord>
+			<YCoord>145</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>573</XCoord>
+			<YCoord>145</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>620</XCoord>
+			<YCoord>145</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>239</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>286</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>333</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>382</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>129</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>478</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>526</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>620</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>286</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>333</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>382</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>478</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>526</XCoord>
+			<YCoord>239</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>286</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>333</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>382</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>478</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>526</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>620</XCoord>
+			<YCoord>383</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>620</XCoord>
+			<YCoord>336</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>620</XCoord>
+			<YCoord>286</YCoord>
+		</block>
+	</Blocks>
+
+	<Walls>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>22</YCoord>
+			<Width>300</Width>
+			<Height>20</Height>
+		</wall>
+		<wall>
+			<XCoord>0</XCoord>
+			<YCoord>435</YCoord>
+			<Width>300</Width>
+			<Height>5</Height>
+		</wall>
+		<wall>
+			<XCoord>25</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+		<wall>
+			<XCoord>680</XCoord>
+			<YCoord>0</YCoord>
+			<Width>20</Width>
+			<Height>300</Height>
+		</wall>
+	</Walls>
+	<Doors>
+		<door Type="TopWall">
+			<room></room>    <!-- Next Room-->
+			<room>Level 1/L1R8</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R10</clickNext>
+			<XCoord>336</XCoord>
+			<YCoord>3</YCoord>
+		</door>
+		<door Type="LeftOpen">
+			<room>Level 1/L1R10</room>
+			<!-- Next Room-->
+			<room>Level 1/L1R8</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R10</clickNext>
+			<XCoord>0</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="RightOpen">
+			<room>Level 1/L1R8</room>
+			<!-- Next Room-->
+			<room>Level 1/L1R8</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R10</clickNext>
+			<XCoord>672</XCoord>
+			<YCoord>218</YCoord>
+		</door>
+		<door Type="BotLock">
+			<room>Level 1/L1R12</room>
+			<!-- Next Room-->
+			<room>Level 1/L1R8</room>
+			<!-- Previous Room-->
+			<clickNext>Level 1/L1R10</clickNext>
+			<XCoord>336</XCoord>
+			<YCoord>435</YCoord>
+		</door>
+	</Doors>
+	
+</Level>

@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint2.Collison;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 using System.Collections.Concurrent;
 
 namespace Sprint2
@@ -64,7 +66,6 @@ namespace Sprint2
                     return (int)COLLISION_SIDE.NONE;
                 }
             }
-            
             return collisionSide;
         }
 
@@ -78,22 +79,20 @@ namespace Sprint2
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSide = GetCollisionSide(movableSprite, otherSprite);
+
                         if (collisionSide != (int)COLLISION_SIDE.NONE)
                         {
                             //System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
-                            // collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
-
+                            //collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
                             collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
-                            // collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
+    
+                        
                     }
                     
                 }
-
             }
         }
-
     }
-    
 }

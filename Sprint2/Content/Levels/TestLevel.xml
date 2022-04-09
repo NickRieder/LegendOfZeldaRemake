@@ -95,35 +95,38 @@
 	</Walls>
 	<Doors>
 		<door Type="TopOpen">
-			<room>TestLevel2</room>    <!-- Next Room-->
-			<room>Room3</room>    <!-- Previous Room-->
+			<room>Level 0/L0R1</room>    <!-- Next Room-->
+			<room>Level 0/L0R6</room>    <!-- Previous Room-->
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
 		<door Type="LeftLock">
-			<room>TestLevel2</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>Room3</room>
+			<room>Level 0/L0R6</room>
 			<!-- Previous Room-->
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="RightOpen">
-			<room>TestLevel2</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>Room3</room>
+			<room>Level 0/L0R6</room>
 			<!-- Previous Room-->
+			<clickNext>Level 0/L0R6</clickNext>
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
 		<door Type="BotWall">
-			<room>TestLevel2</room>
+			<room>Level 0/L0R1</room>
 			<!-- Next Room-->
-			<room>Room3</room>
+			<room>Level 0/L0R6</room>
 			<!-- Previous Room-->
+			<clickNext>Level 0/L0R1</clickNext>
 			<XCoord>336</XCoord>
 			<YCoord>435</YCoord>
 		</door>
 	</Doors>
-	
-</Level>
+</Level> 

@@ -18,18 +18,20 @@ namespace Sprint2
         private Texture2D sheet;
         private EnemiesList enemiesList;
         private double totalSecondsPassed;
-        private double waitTime;
         private TimeSpan elapsedTime;
         private double secondsPassed;
         Random randomNumberGenerator;
         private int randomNum;
         private int chosenDirectionValue;
 
+        private const int numActions = 5;
+        private const int numPossibleInts = 100;
+        private const double waitTime = 0.25;
+
         public DragonStandingFacingUp(Enemies dragon)
         {
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
-            waitTime = 0.25;
 
             this.dragon = dragon;
             dragon.sprite = dragon.spriteFactory.getDragonLeftSprite();
@@ -83,8 +85,8 @@ namespace Sprint2
             if (totalSecondsPassed > waitTime)
             {
 
-                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                chosenDirectionValue = randomNum % 5;
+                randomNum = randomNumberGenerator.Next(0, numPossibleInts); // random number between 0-99
+                chosenDirectionValue = randomNum % numActions;
 
                 if (chosenDirectionValue == 0)
                     MoveDown();

@@ -7,15 +7,19 @@ using System.Collections;
 
 namespace Sprint2
 {
-    public class BossMinion : DamagingProjectile
+    public class BossMinion : EnemyDamagingProjectile
     {
         private int counter;
         private double velocity;
 
-		public BossMinion(Enemies enemy, string projectileType) : base(enemy, projectileType)
+        private static int initialVelocity = 7;
+        private static double velocityUpdate = 0.5;
+        private static int velocityUpdateMod = 10;
+
+        public BossMinion(Enemies enemy, string projectileType) : base(enemy, projectileType)
 		{
             counter = 0;
-            velocity = 7;
+            velocity = initialVelocity;
             this.gom = enemy.gom;
         }
 
@@ -46,10 +50,10 @@ namespace Sprint2
                     break;
             }
 
-            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
+            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % velocityUpdateMod == 0)
             {
                 base.Update(gameTime);
-                velocity -= 0.5;
+                velocity -= velocityUpdate;
             }
             if (sprite.getDestinationRectangle().Intersects(enemy.GetSpriteRectangle()))  
             {

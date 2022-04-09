@@ -8,23 +8,18 @@ namespace Sprint2
 {
     public class MovingCamera : ICameraState
     {
-        //We will have to write the raw size of sprites somewhere for easy access.
-        private const int START_ANIMATION = 0;
-        private const int STOP_VERTICAL_ANIMATION = 500;    // Raw height of room sprite is 176, so 176 * 3 = 528
-        private const int STOP_HORIZONTAL_ANIMATION = 700;    // Raw width of room sprite is 256, so 256 * 3 = 768
-
-
         Camera camera;
         private int xPos;
         private int yPos;
         string direction;
         bool canContinue;
+        private SpriteFactory spriteFactory;
 
         public MovingCamera(Camera camera, string direction)
         {
             this.camera = camera;
-            xPos = START_ANIMATION;
-            yPos = START_ANIMATION;
+            xPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
+            yPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
             this.direction = direction;
             canContinue = true;
         }
@@ -39,28 +34,28 @@ namespace Sprint2
             {
                 case "Up":
                     yPos += 5;
-                    if (yPos >= STOP_VERTICAL_ANIMATION)
+                    if (yPos >= (int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Down":
                     yPos -= 5;
-                    if (yPos <= -STOP_VERTICAL_ANIMATION)
+                    if (yPos <= -(int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Left":
                     xPos += 5;
-                    if (xPos >= STOP_HORIZONTAL_ANIMATION)
+                    if (xPos >= (int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Right":
                     xPos -= 5;
-                    if (xPos <= -STOP_HORIZONTAL_ANIMATION)
+                    if (xPos <= -(int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
@@ -68,6 +63,8 @@ namespace Sprint2
                 default:
                     break;
             }
+            camera.xPos = -xPos;
+            camera.yPos = -yPos;
             var position = Matrix.CreateTranslation(xPos, yPos, 0);
 
             //var offset = Matrix.CreateTranslation(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2, 0);
@@ -83,9 +80,14 @@ namespace Sprint2
             }
             else
             {
-                FreezeCamera(xPos, yPos);
+                // We know this looks bad with all the dots, but we will refactor this once our door collision works
+                camera.gom.mouseController.door.LoadNextRoom();
+
+                // Reset camera position back to the center playable room and freeze it there.
+                camera.xPos = (int)Camera.CAMERA_SETTING.STARTING_X_POS;
+                camera.yPos = (int)Camera.CAMERA_SETTING.STARTING_Y_POS;
+                FreezeCamera(camera.xPos, camera.yPos);
             }
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -93,5 +95,9 @@ namespace Sprint2
 
         }
 
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
+        {
+            camera.currState = new MovingWinningState(camera, direction, spriteFactory, spriteBatch);
+        }
     }
 }

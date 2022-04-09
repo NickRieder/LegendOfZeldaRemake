@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -7,11 +7,21 @@ using System.Collections;
 using System.IO;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using Sprint2.GameStates;
 
 namespace Sprint2
 {
     public class Game1 : Game
     {
+        public enum GAME_WINDOW : int
+        {
+            WIDTH = 765,
+            HEIGHT = 630,
+            ROOM_WIDTH = 765,
+            ROOM_HEIGHT = 528,
+            HUD_WIDTH = 765
+        }
+
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public Rectangle windowRectangle;
@@ -19,20 +29,19 @@ namespace Sprint2
         private SoundFactory soundFactory;
         private ArrayList controllerList;
         private KeyboardController keyboardController;
-        private GameObjectManager gom;
+        public GameObjectManager gom;
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
 
         private HUD hud;
         public Camera camera;
 
-        private SoundEffect themeSong;
-        private SoundEffectInstance themeSongLoop;
+        public SoundEffect themeSong;
+        public SoundEffectInstance themeSongLoop;
+
         // For the Camera class
         public static int ScreenHeight;
         public static int ScreenWidth;
-
-
 
         public Game1()
         {
@@ -44,25 +53,13 @@ namespace Sprint2
 
         protected override void Initialize()
         {
-            /// Sizes of sprites (before x3 scale multiplier is applied).
-            /// These could be changed into constants later.
-            /// Sprite : (width, height)
-            /// Room : (256, 176)
-            /// HUD : (256, 56)
-            
-
-            graphics.PreferredBackBufferWidth = 766;
-            graphics.PreferredBackBufferHeight = 696;
+            graphics.PreferredBackBufferWidth = (int)GAME_WINDOW.WIDTH;
+            graphics.PreferredBackBufferHeight = (int)GAME_WINDOW.HEIGHT;
             graphics.ApplyChanges();
 
             // For the Camera class
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
-
-            System.Diagnostics.Debug.WriteLine(
-                "DEBUG: Window Size"
-                + "\n ScreenWidth = " + ScreenWidth
-                + "\n ScreenHeight = " + ScreenHeight);
 
             // TODO: Add your initialization logic here
 
@@ -70,51 +67,48 @@ namespace Sprint2
             soundFactory = new SoundFactory(this.Content);
 
             controllerList = new ArrayList();
-            
-            keyboardController = new KeyboardController();
-            controllerList.Add(keyboardController);
 
-            gom = new GameObjectManager();
+            keyboardController = new KeyboardController();
+            gom = new GameObjectManager(this);
+            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
+            gom = new GameObjectManager(this);
             levelLoader = new LevelLoader(gom, spriteFactory,soundFactory);
 
             controllerList.Add(gom.mouseController);
+            controllerList.Add(keyboardController);
+
 
             collisionDetector = new CollisionDetector(gom);
 
-            camera = new Camera();
-            
 
 
             base.Initialize();
         }
 
         protected override void LoadContent()
-        {
+        { 
+            
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            soundFactory.LoadSounds();
 
             spriteFactory.LoadSpriteSheets();
-            soundFactory.LoadSounds();        
+            soundFactory.LoadSounds();
             themeSong = soundFactory.getThemeSong();
             themeSongLoop = themeSong.CreateInstance();
             themeSongLoop.IsLooped = true;
             themeSongLoop.Play();
-           
+
             gom.spriteFactory = spriteFactory;
             gom.soundFactory = soundFactory;
 
             gom.SetSpriteContent(spriteFactory);
-
-            hud = new HUD(gom, spriteFactory);
-
-
             gom.SetSoundContent(soundFactory);
 
+            levelLoader.LoadLevel("Level 0/L0R1", "Top");
 
-            levelLoader.LoadLevel("TestLevel", "Top");
+            keyboardController.Initialize(gom, this, soundFactory, spriteFactory, spriteBatch);
 
             
-
-            keyboardController.Initialize(gom, this, soundFactory);
         }
 
         protected override void Update(GameTime gameTime)
@@ -127,9 +121,6 @@ namespace Sprint2
 
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
-            hud.Update(gameTime);
-
-            camera.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -137,20 +128,19 @@ namespace Sprint2
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
-
-            spriteBatch.Begin(transformMatrix: camera.transform);
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin(transformMatrix: gom.camera.transform);
 
             gom.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
+            //hud.Draw(spriteBatch);
 
             spriteBatch.End();
-         
+            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
 
-        internal void Reset()
+        public void Reset()
         {
             // new link, enemy, block, item
             this. Initialize();

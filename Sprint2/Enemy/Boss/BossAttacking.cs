@@ -21,7 +21,6 @@ namespace Sprint2
         private int weaponCounter;
         private bool weaponReturning;
         private double totalSecondsPassed;
-        private double waitTime;
         private TimeSpan elapsedTime;
         private double secondsPassed;
 
@@ -34,12 +33,15 @@ namespace Sprint2
 
         private GameObjectManager gom;
 
+        private const int numDirections = 4;
+        private const int numPossibleInts = 100;
+        private const double waitTime = 0.25;
+
         public BossAttacking(Enemies boss)
         {
             randomNumberGenerator = new Random();
             weaponFrameArray = new ArrayList();
             totalSecondsPassed = 0;
-            waitTime = 0.25;
 
             this.boss = boss;
             this.gom = boss.gom;
@@ -78,8 +80,8 @@ namespace Sprint2
         {
             if (!boss.freeze)
             {
-                randomNum = randomNumberGenerator.Next(0, 100); // random number between 0-99
-                chosenDirectionValue = randomNum % 4;
+                randomNum = randomNumberGenerator.Next(0, numPossibleInts); // random number between 0-99
+                chosenDirectionValue = randomNum % numDirections;
 
                 if (chosenDirectionValue == 0)
                     MoveDown();

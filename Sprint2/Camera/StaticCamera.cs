@@ -9,21 +9,22 @@ namespace Sprint2
     public class StaticCamera : ICameraState
     {
         Camera camera;
-        private int xCount;
-        private int yCount;
+        private int xPos;
+        private int yPos;
 
-        public StaticCamera(Camera camera, int xCount, int yCount)
+        private static int screenSizeHalf = 2;
+        public StaticCamera(Camera camera, int xPos, int yPos)
         {
             this.camera = camera;
-            this.xCount = xCount;
-            this.yCount = yCount;
+            this.xPos = xPos;
+            this.yPos = yPos;
         }
 
         public void FreezeCamera(int xPos, int yPos)
         {
             var position = Matrix.CreateTranslation(xPos, yPos, 0);
 
-            var offset = Matrix.CreateTranslation(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2, 0);
+            var offset = Matrix.CreateTranslation(Game1.ScreenWidth / screenSizeHalf, Game1.ScreenHeight / screenSizeHalf, 0);
 
             camera.transform = position;
         }
@@ -34,13 +35,18 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            FreezeCamera(xCount, yCount);
+            FreezeCamera(xPos, yPos);
         }
 
+        // Not necessary because there's already a spriteBatch.Begin(transformMatrix: camera.transform) in Game1.cs
         public void Draw(SpriteBatch spriteBatch)
         {
 
         }
 
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
+        {
+            camera.currState = new MovingWinningState(camera, direction, spriteFactory, spriteBatch);
+        }
     }
 }

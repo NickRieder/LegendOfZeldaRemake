@@ -8,7 +8,9 @@ namespace Sprint2
 {
     public class HUD
     {
+        private Game1 game1;
         private GameObjectManager gom;
+        private Camera camera;
         private SpriteFactory spriteFactory;
         private SpriteFont font;
         private Sprite HUDSprite;
@@ -16,33 +18,65 @@ namespace Sprint2
         private Sprite HeartSprite;
         private Texture2D sheet;
         private Vector2 HUDPos;
+        private Sprite itemSprite;
+        private int HUDPosX;
+        private int HUDPosY;
 
+        private const int HUDPosOffsetX = 525;
+        private const int HUDPosOffsetY = 50;
 
+        private const int itemStringOffsetX = 290;
+        private const int keysStringOffsetY = 48;
+        private const int bombsStringOffsetY = 74;
 
-        public HUD(GameObjectManager gom, SpriteFactory spriteFactory)
+        private const int sourceRectangleMultiplier = 3;
+
+        private const int fullHeart = 2;
+        private const int halfHeart = 1;
+
+        public HUD(GameObjectManager gom)
         {
             this.gom = gom;
+            
             this.link = gom.link;
+            
+        }
+
+        public void SetCamera(Camera camera)
+        {
+            this.camera = camera;
+        }
+
+        public void SetSpriteContent(SpriteFactory spriteFactory)
+        {
             this.spriteFactory = spriteFactory;
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
             sheet = this.spriteFactory.getHudSheet();
-            HUDPos = new Vector2(300, 550);
+            itemSprite = spriteFactory.getWallSprite(new Rectangle(0, 0, 0, 0));
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //draw HUD background
+            //HUDPos = new Vector2(0, gom.GetBackgroud().GetSpriteRectangle().Height);
+
+            // HUD position is based on the camera position
+            HUDPosX = camera.xPos; 
+            HUDPosY = (int)Game1.GAME_WINDOW.ROOM_HEIGHT + camera.yPos;
+            HUDPos = new Vector2(HUDPosX, HUDPosY);
+
             HUDSprite.Draw(spriteBatch, HUDPos);
+            itemSprite.Draw(spriteBatch, new Vector2(HUDPos.X + 385, HUDPos.Y + 40));
 
             // numebrs of items link has
-            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y), Color.White);
-            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 48), Color.White);
-            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 38, HUDPos.Y + 74), Color.White);
+            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y), Color.White);
+            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + keysStringOffsetY), Color.White);
+            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + bombsStringOffsetY), Color.White);
 
             //health
-            for (int i = 2; i <= link.maxHealth; i+=2)
+            for (int i = fullHeart; i <= link.maxHealth; i+=fullHeart)
             {
                 Rectangle sourceRectangle;
                 Rectangle destinationRectangle;
@@ -53,7 +87,7 @@ namespace Sprint2
                         sourceRectangle = spriteFactory.getFullHeartRect();
 
                     }
-                    else if(link.health == i - 1)
+                    else if(link.health == i - halfHeart)
                     {
                         //draw half heart
                         sourceRectangle = spriteFactory.getHalfHeartRect();
@@ -63,7 +97,7 @@ namespace Sprint2
                         //draw empty heart
                         sourceRectangle = spriteFactory.getEmptyHeartRect();
                     }
-                    destinationRectangle = new Rectangle((int)(HUDPos.X + 250 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
+                    destinationRectangle = new Rectangle((int)(HUDPos.X + HUDPosOffsetX + ((sourceRectangleMultiplier * sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + HUDPosOffsetY), sourceRectangleMultiplier * sourceRectangle.Width, sourceRectangleMultiplier * sourceRectangle.Height);
                     spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
                 
                 
@@ -74,6 +108,20 @@ namespace Sprint2
         {
             HUDSprite.Update(gameTime);
             
+        }
+
+        public void SetItemSprite(Sprite sprite)
+        {
+            itemSprite = sprite;
+        }
+
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+
+        }
+        public object GetConcreteObject()
+        {
+            return this;
         }
     }
 }
