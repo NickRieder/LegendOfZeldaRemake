@@ -40,6 +40,7 @@ namespace Sprint2
 
         private SoundEffect themeSong;
         private SoundEffectInstance themeSongLoop;
+
         // For the Camera class
         public static int ScreenHeight;
         public static int ScreenWidth;
@@ -110,9 +111,7 @@ namespace Sprint2
 
 
             levelLoader.LoadLevel("Level 0/L0R1", "Top");
-            camera = new Camera(gom);
-            hud = new HUD(this, spriteFactory);
-            
+
 
             keyboardController.Initialize(gom, this, soundFactory);
         }
@@ -127,9 +126,6 @@ namespace Sprint2
 
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
-            hud.Update(gameTime);
-
-            camera.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -137,13 +133,12 @@ namespace Sprint2
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
+            GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(transformMatrix: camera.transform);
+            spriteBatch.Begin(transformMatrix: gom.camera.transform);
 
             gom.Draw(spriteBatch);
-            camera.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
+
 
             spriteBatch.End();
          

@@ -24,6 +24,8 @@ namespace Sprint2
         public SoundFactory soundFactory { get; set; }
         
 
+        private ConcurrentBag<ISprite> tempDrawableList;
+        private ConcurrentBag<ISprite> pauseMenuList;
         public GameTime gameTime;
         public Link link;
         public Item item;
@@ -36,14 +38,28 @@ namespace Sprint2
         public MouseController mouseController;
         private bool isPaused;
 
+        public Game1 game1;
+        public Menu menu;
+        public HUD hud;
+        public Camera camera;
+
         public GameObjectManager()
         {
+
             // Use ConcurrentBag to allow modifying of a collection while it is being iterated over.
             allObjectList = new ConcurrentBag<ISprite>();
             movableObjectList = new ConcurrentBag<ISprite>();
             drawableSpritesList = new ConcurrentBag<ISprite>();
             updatableSpritesList = new ConcurrentBag<ISprite>();
+            
+            // Inserts lists are lists that store elements to be added while the actual list corresponding to the name is being iterated through.
+            allObjectListInserts = new ConcurrentBag<ISprite>();
+            movableObjectListInserts = new ConcurrentBag<ISprite>();
+            drawableSpritesListInserts = new ConcurrentBag<ISprite>();
+            updatableSpritesListInserts = new ConcurrentBag<ISprite>();
             tempUpdatableList = new ConcurrentBag<ISprite>();
+            tempDrawableList = new ConcurrentBag<ISprite>();
+            pauseMenuList = new ConcurrentBag<ISprite>();
 
             // Initialize Controllers
             keyboardController = new KeyboardController();
@@ -52,17 +68,23 @@ namespace Sprint2
             link = new Link(this);
             background = new Background();
             gameTime = new GameTime();
-
-
+            isPaused = false;
+            menu = new Menu(this);
+            this.camera = new Camera(this);
+            hud = new HUD(this);
+            hud.SetCamera(camera);
             //this.AddToDrawableObjectList(background);
 
             this.AddToDrawableObjectList(background);
             this.AddToDrawableObjectList(link);
-
-
-
             
         }
+
+        public void SetGame(Game1 game1)
+        {
+            this.game1 = game1;
+        }
+
         public void SetSoundContent(SoundFactory soundFactory)
         {
             foreach (ISprite sprite in drawableSpritesList)
@@ -74,7 +96,11 @@ namespace Sprint2
         public void SetSpriteContent(SpriteFactory spriteFactory)
         {
             this.spriteFactory = spriteFactory;
+
+            camera.SetSpriteContent(spriteFactory);
             background.SetSpriteContent(spriteFactory);
+            menu.SetSpriteContent(spriteFactory);
+            hud.SetSpriteContent(spriteFactory);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSpriteContent(spriteFactory);
@@ -87,11 +113,14 @@ namespace Sprint2
             if(isPaused)
             {
                 updatableSpritesList = new ConcurrentBag<ISprite>(tempUpdatableList);
+                drawableSpritesList = new ConcurrentBag<ISprite>(tempDrawableList);
             }
             else
             {
                 tempUpdatableList = new ConcurrentBag<ISprite>(updatableSpritesList);
                 updatableSpritesList.Clear();
+                tempDrawableList = new ConcurrentBag<ISprite>(drawableSpritesList);
+                drawableSpritesList.Clear();
             }
             isPaused = !isPaused;
             
@@ -221,7 +250,10 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            background.Draw(spriteBatch);
+            camera.Draw(spriteBatch);
+            if (!isPaused) background.Draw(spriteBatch);
+            else menu.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
@@ -230,7 +262,7 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            background.Update(gametime);
+            camera.Update(gameTime);
             foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);

@@ -55,10 +55,7 @@ namespace Sprint2
         public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory)
         {
 
-            RegisterCommandTap(Keys.D4, new SetLinkUseItem(gom.link));
-            RegisterCommandTap(Keys.D1, new SetLinkUseArrow(gom.link));
-            RegisterCommandTap(Keys.D2, new SetLinkUseBoomerang(gom.link));
-            RegisterCommandTap(Keys.D3, new SetLinkUseBomb(gom.link));
+            RegisterCommandTap(Keys.C, new SetLinkUseItem(gom.link));
             RegisterCommandTap(Keys.Z, new SetLinkAttacking(gom.link, soundFactory));
             RegisterCommandTap(Keys.N, new SetLinkAttacking(gom.link, soundFactory));
 
@@ -100,11 +97,14 @@ namespace Sprint2
             RegisterCommandTap(Keys.R, new ResetGame(game1));
 
             RegisterCommandPause(Keys.P, new PauseGame(gom, this));
+            RegisterCommandPause(Keys.A, new SetPreviousItem(gom.menu));
+            RegisterCommandPause(Keys.D, new SetNextItem(gom.menu));
+            RegisterCommandPause(Keys.Z, new SetLinkItem(gom.menu));
 
-            RegisterCommandTap(Keys.NumPad6, new SetCameraMovingRight(game1.camera));
-            RegisterCommandTap(Keys.NumPad4, new SetCameraMovingLeft(game1.camera));
-            RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(game1.camera));
-            RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(game1.camera));
+            RegisterCommandTap(Keys.NumPad6, new SetCameraMovingRight(gom.camera));
+            RegisterCommandTap(Keys.NumPad4, new SetCameraMovingLeft(gom.camera));
+            RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(gom.camera));
+            RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(gom.camera));
 
 
         }

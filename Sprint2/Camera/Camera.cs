@@ -40,7 +40,7 @@ namespace Sprint2
         public Camera(GameObjectManager gom)    // , Viewport newView
         {
             this.gom = gom;
-            this.spriteFactory = gom.spriteFactory;
+            //this.spriteFactory = gom.spriteFactory;
 
             //view = newView;
 
@@ -49,12 +49,23 @@ namespace Sprint2
             yPos = (int)CAMERA_SETTING.STARTING_Y_POS;
 
             // Empty room sprites that border the main center room. Used for camera to scroll over to it.
+            /*topRoomSprite = spriteFactory.getEmptyRoomSprite();
+            bottomRoomSprite = spriteFactory.getEmptyRoomSprite();
+            leftRoomSprite = spriteFactory.getEmptyRoomSprite();
+            rightRoomSprite = spriteFactory.getEmptyRoomSprite();*/
+
+            currState = new StaticCamera(this, xPos, yPos);
+        }
+
+        public void SetSpriteContent(SpriteFactory spriteFactory)
+        {
+            this.spriteFactory = spriteFactory;
+
+            // Empty room sprites that border the main center room. Used for camera to scroll over to it.
             topRoomSprite = spriteFactory.getEmptyRoomSprite();
             bottomRoomSprite = spriteFactory.getEmptyRoomSprite();
             leftRoomSprite = spriteFactory.getEmptyRoomSprite();
             rightRoomSprite = spriteFactory.getEmptyRoomSprite();
-
-            currState = new StaticCamera(this, xPos, yPos);
         }
 
         public void FreezeCamera(int xPos, int yPos)
@@ -69,6 +80,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
+            
             currState.Update(gameTime);
         }
 
