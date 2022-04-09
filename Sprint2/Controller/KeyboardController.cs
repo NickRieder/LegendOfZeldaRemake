@@ -100,6 +100,9 @@ namespace Sprint2
             RegisterCommandTap(Keys.R, new ResetGame(game1));
 
             RegisterCommandPause(Keys.P, new PauseGame(gom, this));
+            RegisterCommandPause(Keys.A, new SetPreviousItem(gom.menu));
+            RegisterCommandPause(Keys.D, new SetNextItem(gom.menu));
+            RegisterCommandPause(Keys.Z, new SetLinkItem(gom.menu));
 
 
 

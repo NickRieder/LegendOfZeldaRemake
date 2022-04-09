@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Sprint2
 {
-    class SetPreviousItem : ICommand
+    class SetLinkItem : ICommand
     {
         private Menu menu;
-        public SetPreviousItem(Menu menu)
+        public SetLinkItem(Menu menu)
         {
             this.menu = menu;
         }
 
         public void Execute()
         {
-            menu.PreviousItem();
+            menu.SetItem();
         }
     }
 }

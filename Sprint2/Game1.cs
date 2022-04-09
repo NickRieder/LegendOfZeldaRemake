@@ -73,7 +73,7 @@ namespace Sprint2
 
 
             levelLoader.LoadLevel("TestLevel", "Top");
-            hud = new HUD(gom, spriteFactory);
+            //hud = new HUD(gom, spriteFactory);
 
 
             keyboardController.Initialize(gom, this);
@@ -92,7 +92,7 @@ namespace Sprint2
 
             gom.Update(gameTime);
             collisionDetector.Update(gameTime);
-            hud.Update(gameTime);
+            //hud.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -104,7 +104,7 @@ namespace Sprint2
             spriteBatch.Begin();
 
             gom.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
+            //hud.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here

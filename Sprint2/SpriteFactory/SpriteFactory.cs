@@ -209,7 +209,7 @@ namespace Sprint2
         public static Rectangle HEART_CANISTER = new Rectangle(25, 1, 14, 14);
         public static Rectangle WOODEN_SWORD = new Rectangle(104, 0, 8, 16);
         public static Rectangle MAGIC_SWORD = new Rectangle(104, 16, 8, 16);
-        public static Rectangle BOW = new Rectangle(136, 16, 9, 17);
+        public static Rectangle BOW = new Rectangle(136, 15, 8, 16);
         public static Rectangle BOMB = new Rectangle(136, 0, 9, 14);
         public static Rectangle BOOMERANG = new Rectangle(129, 3, 6, 8);
         public static Rectangle RED_CANDLE = new Rectangle(160, 0, 8, 16);
@@ -259,6 +259,9 @@ namespace Sprint2
         public static Rectangle EMPTY_HEART = new Rectangle(626, 116, 8, 8);
         public static Rectangle HALF_HEART = new Rectangle(635, 116, 8, 8);
         public static Rectangle FULL_HEART = new Rectangle(644, 116, 8, 8);
+
+        private static Rectangle MENU = new Rectangle(0, 10, 256, 176);
+        private static Rectangle SELECTOR = new Rectangle(518, 136, 17, 17);
 
         public Sprite getBoomerangSprite()
         {
@@ -545,6 +548,24 @@ namespace Sprint2
         public Sprite getHUDSprite()
         {
             return new Sprite(hudSheet, HUD_SPRITE);
+        }
+
+        //menu
+        public Sprite getMenuSprite()
+        {
+            return new Sprite(hudSheet, MENU);
+        }
+        public Sprite getSelectorSprite()
+        {
+            return new Sprite(hudSheet, SELECTOR);
+        }
+        public Sprite getBowSprite()
+        {
+            return new Sprite(itemSheet, BOW);
+        }
+        public Sprite getBombSprite()
+        {
+            return new Sprite(itemSheet, BOMB);
         }
     }
 }

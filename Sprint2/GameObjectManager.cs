@@ -20,6 +20,8 @@ namespace Sprint2
         public ConcurrentBag<ISprite> updatableSpritesListInserts;
         public ConcurrentBag<ISprite> drawableSpritesListInserts;
         private ConcurrentBag<ISprite> tempUpdatableList;
+        private ConcurrentBag<ISprite> tempDrawableList;
+        private ConcurrentBag<ISprite> pauseMenuList;
         public GameTime gameTime;
         public Link link;
         public Item item;
@@ -31,6 +33,9 @@ namespace Sprint2
         public KeyboardController keyboardController;
         public MouseController mouseController;
         private bool isPaused;
+
+        public Menu menu;
+        public HUD hud;
 
         public GameObjectManager()
         {
@@ -46,6 +51,8 @@ namespace Sprint2
             drawableSpritesListInserts = new ConcurrentBag<ISprite>();
             updatableSpritesListInserts = new ConcurrentBag<ISprite>();
             tempUpdatableList = new ConcurrentBag<ISprite>();
+            tempDrawableList = new ConcurrentBag<ISprite>();
+            pauseMenuList = new ConcurrentBag<ISprite>();
 
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
@@ -54,6 +61,8 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
             isPaused = false;
+            menu = new Menu(this);
+            hud = new HUD(this);
             //this.AddToDrawableObjectList(background);
 
             
@@ -63,6 +72,8 @@ namespace Sprint2
         {
             this.spriteFactory = spriteFactory;
             background.SetSpriteContent(spriteFactory);
+            menu.SetSpriteContent(spriteFactory);
+            hud.SetSpriteContent(spriteFactory);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSpriteContent(spriteFactory);
@@ -75,11 +86,14 @@ namespace Sprint2
             if(isPaused)
             {
                 updatableSpritesList = new ConcurrentBag<ISprite>(tempUpdatableList);
+                drawableSpritesList = new ConcurrentBag<ISprite>(tempDrawableList);
             }
             else
             {
                 tempUpdatableList = new ConcurrentBag<ISprite>(updatableSpritesList);
                 updatableSpritesList.Clear();
+                tempDrawableList = new ConcurrentBag<ISprite>(drawableSpritesList);
+                drawableSpritesList.Clear();
             }
             isPaused = !isPaused;
             
@@ -135,7 +149,9 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            background.Draw(spriteBatch);
+            if (!isPaused) background.Draw(spriteBatch);
+            else menu.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
@@ -144,7 +160,6 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            background.Update(gametime);
             foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);

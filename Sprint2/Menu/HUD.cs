@@ -16,17 +16,24 @@ namespace Sprint2
         private Sprite HeartSprite;
         private Texture2D sheet;
         private Vector2 HUDPos;
+        private Sprite itemSprite;
 
 
 
-        public HUD(GameObjectManager gom, SpriteFactory spriteFactory)
+        public HUD(GameObjectManager gom)
         {
             this.gom = gom;
             this.link = gom.link;
+            
+        }
+
+        public void SetSpriteContent(SpriteFactory spriteFactory)
+        {
             this.spriteFactory = spriteFactory;
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
             sheet = this.spriteFactory.getHudSheet();
+            itemSprite = spriteFactory.getWallSprite(new Rectangle(0, 0, 0, 0));
         }
 
 
@@ -35,6 +42,7 @@ namespace Sprint2
             //draw HUD background
             HUDPos = new Vector2(0, gom.GetBackgroud().GetSpriteRectangle().Height);
             HUDSprite.Draw(spriteBatch, HUDPos);
+            itemSprite.Draw(spriteBatch, new Vector2(HUDPos.X + 385, HUDPos.Y + 40));
 
             // numebrs of items link has
             spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y), Color.White);
@@ -74,6 +82,11 @@ namespace Sprint2
         {
             HUDSprite.Update(gameTime);
             
+        }
+
+        public void SetItemSprite(Sprite sprite)
+        {
+            itemSprite = sprite;
         }
     }
 }
