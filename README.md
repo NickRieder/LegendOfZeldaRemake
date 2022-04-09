@@ -10,6 +10,8 @@ DISCLAIMER:
 Our game is trash and unfinished so if you give us a bad grade, we told you so.
 We didnt get to implementing collision so many of our state stuff is tied to keys.
 Also PLEASE only use the master branch, and not any other branch. Not even the Sprint4 branch
+We had multiple problems merging branches and pulling down from github with the correct code being pulled since we were pulling so many changes at one time, 
+so if you try to run our code an encounter errors before or during, please contact us. This should not happen. 
 
 Link:
 To move link around the map, use w,a,s,d and the arrow keys.
