@@ -17,7 +17,7 @@ To attack with link's sword, use z.
 To damage link, use e.
 To pause the game and view the menu press p
 Once in the menu use a and d to navigate through your items, then press z to select one.
-Press M to show winning screen.
+Press M to show winning screen. (Not Working rn)
 
 Levels:
 To rotate through levels, use the right key on your mouse for the next level, and the left key for the previous.
@@ -44,5 +44,6 @@ Backlog:
 Collision Detction works but handling still is not fully implemented
 Minimap (sprites have been made but not implemented)
 Finish implementing more levels
+Winning State does not work yet
 
 
