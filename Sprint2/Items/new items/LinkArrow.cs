@@ -5,25 +5,25 @@ using System.Text;
 
 namespace Sprint2
 {
-    // testing
     public class LinkArrow : LinkDamagingProjectile
     {
         private int counter;
         private double speed;
         private TimeSpan startTimeUsing;
-        
+        private bool startUsingItem;
+
         public LinkArrow(Link link, string projectileType) : base(link, projectileType)
         {
             counter = 0;
             speed = 7;
             this.gom = link.gom;
-
+            startUsingItem = true;
         }
 
         public override void Update(GameTime gameTime)
         {
             Vector2 newPos = pos;
-            
+
             switch (projectileDirection)
             {
                 case "down":
@@ -45,20 +45,28 @@ namespace Sprint2
                 default:
                     break;
             }
-            base.Update(gameTime);
-            if (link.isUsingItem)
+
+            
+
+            if (startUsingItem)
             {
-               // System.Diagnostics.Debug.WriteLine("isUsingItem");
                 startTimeUsing = gameTime.TotalGameTime;
-                link.isUsingItem = false;
+                startUsingItem = false;
 
             }
+
+            
+
             if (startTimeUsing + TimeSpan.FromMilliseconds(1500) < gameTime.TotalGameTime)
             {
+                System.Diagnostics.Debug.WriteLine("DEBUG: (LinkArrow/Update) removing projectile...");
                 link.isUsingItem = false;
-                //System.Diagnostics.Debug.WriteLine("no longer using Item");
                 base.RemoveProjectile(this);
+                
             }
+
+            base.Update(gameTime);
+
         }
     }
 }

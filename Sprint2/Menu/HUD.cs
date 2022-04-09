@@ -54,7 +54,7 @@ namespace Sprint2
             spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y + 74), Color.White);
 
             //health
-            for (int i = 2; i <= link.health; i+=2)
+            for (int i = 2; i <= link.maxHealth; i+=2)
             {
                 Rectangle sourceRectangle;
                 Rectangle destinationRectangle;

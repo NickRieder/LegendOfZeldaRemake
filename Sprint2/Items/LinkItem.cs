@@ -80,7 +80,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-           /* currItem.Update(gameTime);
+            currItem.Update(gameTime);
             if (isUsingItem)
             {
                 startTimeUsing = gameTime.TotalGameTime;
@@ -89,7 +89,7 @@ namespace Sprint2
             if (startTimeUsing + TimeSpan.FromMilliseconds(1000) < gameTime.TotalGameTime)
             {
                 SetNull();
-            }*/
+            }
         }
     }
 }
