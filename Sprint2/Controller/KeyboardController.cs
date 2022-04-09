@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
@@ -6,6 +6,9 @@ using System.Windows.Input;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using System.Linq;
+using Sprint2.Command;
+using Sprint2.GameStates;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2
 {
@@ -53,7 +56,7 @@ namespace Sprint2
             isPaused = !isPaused;
         }
 
-        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory)
+        public void Initialize(GameObjectManager gom, Game1 game1, SoundFactory soundFactory, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
         {
 
             RegisterCommandTap(Keys.C, new SetLinkUseItem(gom.link));
@@ -96,6 +99,7 @@ namespace Sprint2
 
             RegisterCommandTap(Keys.Q, new QuitCommand(game1));
             RegisterCommandTap(Keys.R, new ResetGame(game1));
+            RegisterCommandTap(Keys.Enter, new ResetGame(game1)); // for after winning screen
 
             RegisterCommandPause(Keys.P, new PauseGame(gom, this));
             RegisterCommandPause(Keys.A, new SetPreviousItem(gom.menu));
@@ -107,12 +111,11 @@ namespace Sprint2
             RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(gom.camera));
             RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(gom.camera));
 
-
+            RegisterCommandTap(Keys.M, new SetWinningState(gom.camera, spriteFactory, spriteBatch));
         }
 
         public void Update(GameTime gameTime)
         {
-            
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
             if(!isPaused)

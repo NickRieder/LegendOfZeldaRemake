@@ -93,5 +93,10 @@ namespace Sprint2
 
             //currState.Draw(spriteBatch);
         }
+
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
+        {
+            currState.AnimateWinningState(direction, spriteFactory, spriteBatch);
+        }
     }
 }

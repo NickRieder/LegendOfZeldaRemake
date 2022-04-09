@@ -13,6 +13,7 @@ namespace Sprint2
         private int yPos;
         string direction;
         bool canContinue;
+        private SpriteFactory spriteFactory;
 
         public MovingCamera(Camera camera, string direction)
         {
@@ -87,14 +88,16 @@ namespace Sprint2
                 camera.yPos = (int)Camera.CAMERA_SETTING.STARTING_Y_POS;
                 FreezeCamera(camera.xPos, camera.yPos);
             }
-            
         }
 
-        // Not necessary because there's already a spriteBatch.Begin(transformMatrix: camera.transform) in Game1.cs
         public void Draw(SpriteBatch spriteBatch)
         {
 
         }
 
+        public void AnimateWinningState(string direction, SpriteFactory spriteFactory, SpriteBatch spriteBatch)
+        {
+            camera.currState = new MovingWinningState(camera, direction, spriteFactory, spriteBatch);
+        }
     }
 }

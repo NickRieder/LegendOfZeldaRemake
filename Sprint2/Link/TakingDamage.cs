@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -36,6 +36,7 @@ namespace Sprint2
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 			isDamaged = true;
+			
 		}
 
 
@@ -81,7 +82,7 @@ namespace Sprint2
 						link.pos = currPos;
 						break;
 				}
-            }
+			}
 			sprite.Update(gameTime);
 			link.sprite.Update(gameTime);
 		}
@@ -96,11 +97,10 @@ namespace Sprint2
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
 
-        public void Execute()
-        {
+		public void Execute()
+		{
 
 			link.TakeDamage();
 		}
-    }
+	}
 }
-

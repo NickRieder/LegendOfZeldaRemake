@@ -67,12 +67,14 @@ namespace Sprint2
 
             font = content.Load<SpriteFont>("File");
 
+            /*
             basementSheet = content.Load<Texture2D>("Sheets/Level 0 SpriteSheet");
             level1Sheet1 = content.Load<Texture2D>("Sheets/Level 1 P1 SpriteSheet");
             level1Sheet2 = content.Load<Texture2D>("Sheets/Level 1 P2 SpriteSheet");
             level2Sheet = content.Load<Texture2D>("Sheets/Level 2 SpriteSheet");
             level3Sheet = content.Load<Texture2D>("Sheets/Level 3 SpriteSheet");
             level4Sheet = content.Load<Texture2D>("Sheets/Level 4 SpriteSheet");
+            */
 
             deathScreen = content.Load<Texture2D>("Sheets/YouDiedScreen");
         }

@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
@@ -110,7 +110,7 @@ namespace Sprint2
 
         public void PauseGame()
         {
-            if(isPaused)
+            if (isPaused)
             {
                 updatableSpritesList = new ConcurrentBag<ISprite>(tempUpdatableList);
                 drawableSpritesList = new ConcurrentBag<ISprite>(tempDrawableList);
@@ -153,7 +153,7 @@ namespace Sprint2
         public void AddToMovableObjectList(ISprite spriteObject)
         {
             movableObjectList.Add(spriteObject);
-            
+
         }
         public void AddToDrawableObjectList(ISprite spriteObject)
         {

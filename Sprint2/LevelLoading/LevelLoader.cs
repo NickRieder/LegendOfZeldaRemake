@@ -26,6 +26,7 @@ namespace Sprint2
         {
             gom.ClearSpriteList();
             gom.SetSpriteContent(spriteFactory);
+            gom.SetSoundContent(soundFactory);
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
