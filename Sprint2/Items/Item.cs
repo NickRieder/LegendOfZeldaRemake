@@ -16,6 +16,11 @@ namespace Sprint2
 		private Sprite sprite;
 		public string itemName;
 
+		private static int itemPosX = 200;
+		private static int itemPosY = 200;
+
+		private static int sourceRectangleMultiplier = 5;
+
 		public Item(string itemName, Vector2 pos)
 		{
 			this.itemName = itemName;

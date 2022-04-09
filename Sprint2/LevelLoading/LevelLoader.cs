@@ -25,10 +25,10 @@ namespace Sprint2
         public void LoadLevel(String fileName, string doorType)
         {
             gom.ClearSpriteList();
+            gom.SetSpriteContent(spriteFactory);
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
-            gom.SetSpriteContent(spriteFactory);
         }
 
         public void LoadLink(string doorType)

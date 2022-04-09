@@ -14,7 +14,6 @@ namespace Sprint2
 		public SoundFactory soundFactory;
 		public int health;
 		public int bossHealth;
-		public int spriteSizeMultiplier;
 
 		public string direction;
 		public GameObjectManager gom;
@@ -28,15 +27,21 @@ namespace Sprint2
 		public SoundEffect bossHurtSound;
 		public SoundEffect bossDeadSound;
 
+		public const int spriteSizeMultiplier = 2;
+
+		private const int startingHealth = 3;
+		private const int startingBossHealth = 10;
+
+		private const int startingPosX = 600;
+		private const int startingPosY = 200;
 
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
 			this.gom = gom;
-			spriteSizeMultiplier = 2;
-			bossHealth = 10;
-			health = 3;
-			pos = new Vector2(600, 200);
+			bossHealth = startingBossHealth;
+			health = startingHealth;
+			pos = new Vector2(startingPosX, startingPosY);
 			this.freeze = false;
 		}
 

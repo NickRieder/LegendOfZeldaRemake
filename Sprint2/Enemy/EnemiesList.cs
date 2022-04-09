@@ -28,13 +28,16 @@ namespace Sprint2
 
         Enemies enemyToBeDrawn;
 
+        private const int startingPosX = 600;
+        private const int startingPosY = 200;
+
         public EnemiesList()
         {
 
             enemiesArray = new ArrayList();
 
             arrIndex = 0;
-            pos = new Vector2(600, 200);
+            pos = new Vector2(startingPosX, startingPosY);
 
             /*bluebat = new Enemies("Bluebat");
             bluegel = new Enemies("Bluegel");

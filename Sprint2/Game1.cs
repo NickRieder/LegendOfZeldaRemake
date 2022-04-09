@@ -21,9 +21,6 @@ namespace Sprint2
             HUD_WIDTH = 765
         }
 
-        /*public const int GAME_WINDOW_WIDTH = 765;
-        public const int GAME_WINDOW_HEIGHT = 633;*/
-
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public Rectangle windowRectangle;
@@ -38,13 +35,12 @@ namespace Sprint2
         private HUD hud;
         public Camera camera;
 
-        private SoundEffect themeSong;
-        private SoundEffectInstance themeSongLoop;
+        public SoundEffect themeSong;
+        public SoundEffectInstance themeSongLoop;
 
         // For the Camera class
         public static int ScreenHeight;
         public static int ScreenWidth;
-
 
 
         public Game1()
@@ -82,7 +78,7 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             controllerList.Add(keyboardController);
 
-            gom = new GameObjectManager();
+            gom = new GameObjectManager(this);
             levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
 
             controllerList.Add(gom.mouseController);
@@ -146,10 +142,13 @@ namespace Sprint2
             base.Draw(gameTime);
         }
 
-        internal void Reset()
+        public void Reset()
         {
             // new link, enemy, block, item
+            //keyboardController = new KeyboardController();
             this.Initialize();
+            //this.LoadContent();
+            //base.Initialize();
         }
     }
 }

@@ -22,6 +22,17 @@ namespace Sprint2
         private int HUDPosX;
         private int HUDPosY;
 
+        private const int HUDPosOffsetX = 525;
+        private const int HUDPosOffsetY = 50;
+
+        private const int itemStringOffsetX = 290;
+        private const int keysStringOffsetY = 48;
+        private const int bombsStringOffsetY = 74;
+
+        private const int sourceRectangleMultiplier = 3;
+
+        private const int fullHeart = 2;
+        private const int halfHeart = 1;
 
         public HUD(GameObjectManager gom)
         {
@@ -60,12 +71,12 @@ namespace Sprint2
             itemSprite.Draw(spriteBatch, new Vector2(HUDPos.X + 385, HUDPos.Y + 40));
 
             // numebrs of items link has
-            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y), Color.White);
-            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y + 48), Color.White);
-            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + 290, HUDPos.Y + 74), Color.White);
+            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y), Color.White);
+            spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + keysStringOffsetY), Color.White);
+            spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + bombsStringOffsetY), Color.White);
 
             //health
-            for (int i = 2; i <= link.maxHealth; i+=2)
+            for (int i = fullHeart; i <= link.maxHealth; i+=fullHeart)
             {
                 Rectangle sourceRectangle;
                 Rectangle destinationRectangle;
@@ -76,7 +87,7 @@ namespace Sprint2
                         sourceRectangle = spriteFactory.getFullHeartRect();
 
                     }
-                    else if(link.health == i - 1)
+                    else if(link.health == i - halfHeart)
                     {
                         //draw half heart
                         sourceRectangle = spriteFactory.getHalfHeartRect();
@@ -86,7 +97,7 @@ namespace Sprint2
                         //draw empty heart
                         sourceRectangle = spriteFactory.getEmptyHeartRect();
                     }
-                    destinationRectangle = new Rectangle((int)(HUDPos.X + 525 + ((3 *sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + 50), 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
+                    destinationRectangle = new Rectangle((int)(HUDPos.X + HUDPosOffsetX + ((sourceRectangleMultiplier * sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + HUDPosOffsetY), sourceRectangleMultiplier * sourceRectangle.Width, sourceRectangleMultiplier * sourceRectangle.Height);
                     spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
                 
                 
@@ -102,6 +113,15 @@ namespace Sprint2
         public void SetItemSprite(Sprite sprite)
         {
             itemSprite = sprite;
+        }
+
+        public void SetSoundContent(SoundFactory soundFactory)
+        {
+
+        }
+        public object GetConcreteObject()
+        {
+            return this;
         }
     }
 }

@@ -13,12 +13,16 @@ namespace Sprint2
         private Sprite sprite;
         private string direction;
 
+        private const int startingSpeed = 7;
+        private const int frameUpdateMod = 10;
+        private const double speedDecrementInterval = 0.5;
+
         public Boomerang(Link link, SpriteFactory spriteFactory)
         {
             this.link = link;
             counter = 0;
             itemPos = link.pos;
-            speed = 7;
+            speed = startingSpeed;
             direction = link.GetDirection();
             switch (direction)
             {
@@ -69,10 +73,10 @@ namespace Sprint2
 
 
 
-            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
+            if (((int) gameTime.TotalGameTime.TotalMilliseconds) % frameUpdateMod == 0)
             {
                 sprite.Update(gameTime);
-                speed -= 0.5;
+                speed-= speedDecrementInterval;
             }
             if (sprite.getDestinationRectangle().Intersects(link.GetSpriteRectangle()))
             {

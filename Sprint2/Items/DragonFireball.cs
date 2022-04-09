@@ -14,17 +14,21 @@ namespace Sprint2
         private string trajectory;
         private Vector2 slope;
 
+        private static int initialVelocity = 1;
+        private static int slopeX = 3;
+        private static int slopeY = 2;
+
         public DragonFireball(Enemies enemy, string projectileType) : base(enemy, projectileType)
         {
             counter = 0;
-            velocity = 1;
+            velocity = initialVelocity;
             this.gom = enemy.gom;
         }
 
         public void SetTrajectory(string path)
         {
             trajectory = path;
-            slope = new Vector2(3,2);
+            slope = new Vector2(slopeX,slopeY);
         }
 
         public override void Update(GameTime gameTime)

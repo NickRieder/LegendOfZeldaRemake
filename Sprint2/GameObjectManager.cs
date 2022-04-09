@@ -32,7 +32,7 @@ namespace Sprint2
         public Block block;
         //public Door door;
         public EnemiesList enemiesList;
-
+        public HUD Hud;
         private Background background;
         public KeyboardController keyboardController;
         public MouseController mouseController;
@@ -43,7 +43,7 @@ namespace Sprint2
         public HUD hud;
         public Camera camera;
 
-        public GameObjectManager()
+        public GameObjectManager(Game1 game)
         {
 
             // Use ConcurrentBag to allow modifying of a collection while it is being iterated over.
@@ -65,7 +65,7 @@ namespace Sprint2
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
-            link = new Link(this);
+            link = new Link(game, this);
             background = new Background();
             gameTime = new GameTime();
             isPaused = false;
@@ -154,13 +154,11 @@ namespace Sprint2
         {
             movableObjectList.Add(spriteObject);
             
-            
         }
         public void AddToDrawableObjectList(ISprite spriteObject)
         {
             drawableSpritesList.Add(spriteObject);
             updatableSpritesList.Add(spriteObject);
-            
         }
         public void AddToUpdatableObjectList(ISprite spriteObject)
         {
@@ -177,12 +175,10 @@ namespace Sprint2
         }
         public void RemoveFromAllObjectList(ISprite incoming)
         {
-            //System.Diagnostics.Debug.WriteLine("I'm in remove");
             ConcurrentBag<ISprite> bagCopy = new ConcurrentBag<ISprite>();
             ConcurrentBag<ISprite> tempBag = new ConcurrentBag<ISprite>();
             ISprite removed;
             bagCopy = allObjectList;
-            
             while (bagCopy.TryTake(out removed))    // TryTake returns a bool and sets 'removed' to the object that was taken out of the bag.
             {
                 if (!(removed.Equals(incoming)))

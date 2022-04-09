@@ -13,6 +13,8 @@ namespace Sprint2
         private Sprite sprite;
         private string direction;
 
+        private const int frameUpdateMod = 150;
+
         public Explosion(Link link, SpriteFactory spriteFactory)
         {
             direction = link.GetDirection();
@@ -48,7 +50,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 150 == 0)
+            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % frameUpdateMod == 0)
             {
                 sprite.Update(gameTime);
                 currFrame++;

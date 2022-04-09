@@ -12,10 +12,14 @@ namespace Sprint2
         private int counter;
         private double velocity;
 
+        private static int velocityUpdateMod = 10;
+        private static int initialVelocity = 7;
+        private static double velocityUpdate = 0.5;
+
 		public GoriyaBoomerang(Enemies enemy, string projectileType) : base(enemy, projectileType)
 		{
             counter = 0;
-            velocity = 7;
+            velocity = initialVelocity;
             this.gom = enemy.gom;
         }
 
@@ -46,10 +50,10 @@ namespace Sprint2
                     break;
             }
 
-            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % 10 == 0)
+            if (((int)gameTime.TotalGameTime.TotalMilliseconds) % velocityUpdateMod == 0)
             {
                 base.Update(gameTime);
-                velocity -= 0.5;
+                velocity -= velocityUpdate;
             }
             if (sprite.getDestinationRectangle().Intersects(enemy.GetSpriteRectangle()))   // 
             {

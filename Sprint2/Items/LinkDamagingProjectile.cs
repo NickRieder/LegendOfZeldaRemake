@@ -35,12 +35,10 @@ namespace Sprint2
 
 			// Projectile fields setup
 			this.projectileType = projectileType;
+
 			//this.pos = enemy.pos;
 			this.projectileDirection = link.direction;
-			//linkDirection = link.GetDirection();
-			//pos = link.pos;
-			//itemPos.X = link.pos.X;
-			//itemPos.Y = link.pos.Y;
+
 			link.isUsingItem = true;
 
 			switch (projectileType)
@@ -56,22 +54,18 @@ namespace Sprint2
 						case "down":
 							CenterProjectilePosition(spriteFactory.getArrowSpriteDown());
 							sprite = spriteFactory.getArrowSpriteDown();
-							//itemPos.Y = link.pos.Y + link.GetSpriteRectangle().Height;
 							break;
 						case "up":
 							CenterProjectilePosition(spriteFactory.getArrowSpriteUp());
 							sprite = spriteFactory.getArrowSpriteUp();
-							//itemPos.Y = link.pos.Y - link.GetSpriteRectangle().Height;
 							break;
 						case "right":
 							CenterProjectilePosition(spriteFactory.getArrowSpriteRight());
 							sprite = spriteFactory.getArrowSpriteRight();
-							//itemPos.X = link.pos.X + link.GetSpriteRectangle().Width;
 							break;
 						case "left":
 							CenterProjectilePosition(spriteFactory.getArrowSpriteLeft());
 							sprite = spriteFactory.getArrowSpriteLeft();
-							//itemPos.X = link.pos.X - link.GetSpriteRectangle().Width;
 							break;
 						default:
 							break;
@@ -87,9 +81,6 @@ namespace Sprint2
 					sprite = spriteFactory.getNullProjectile();
 					break;
 			}
-
-
-
 		}
 
 		private void CenterProjectilePosition(Sprite projectileSprite)
@@ -157,7 +148,6 @@ namespace Sprint2
 		public void RemoveProjectile(ISprite projectile)
 		{
 			gom.RemoveFromEveryCollection(projectile);
-			//System.Diagnostics.Debug.WriteLine("Removing");
 		}
 
 		public virtual void Update(GameTime gameTime) // the virtual keyword allows subclasses to override methods

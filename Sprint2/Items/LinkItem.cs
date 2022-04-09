@@ -10,23 +10,23 @@ namespace Sprint2
         private string itemString;
         private ISprite currItem;
         private SpriteFactory spriteFactory;
-        
+
         private Link link;
-       // private NullSprite nullItem;
+        // private NullSprite nullItem;
         private Boolean isUsingItem;
         private TimeSpan startTimeUsing;
         private GameObjectManager gom;
-      
+
 
         public LinkItem(Link link, SpriteFactory spriteFactory)
         {
             this.spriteFactory = spriteFactory;
             this.link = link;
             currItem = new NullSprite();
-           // nullItem = new NullSprite();
+            // nullItem = new NullSprite();
             isUsingItem = false;
             this.gom = link.gom;
-           
+
         }
 
         public void SetItem(string item)
@@ -36,7 +36,7 @@ namespace Sprint2
         //currItem.GetType().ToString().Equals(nullItem.ToString())
         public void Use()
         {
-            if(link.isUsingItem == false)
+            if (link.isUsingItem == false)
             {
                 /*Debug.WriteLine("currItem = " + currItem.GetType().ToString());
                 Debug.WriteLine("null Item = " + nullItem.GetType().ToString());
@@ -46,7 +46,7 @@ namespace Sprint2
                 switch (itemString)
                 {
                     case "Boomerang":
-                        currItem = new LinkBoomerang(link, "Boomerang");                      
+                        currItem = new LinkBoomerang(link, "Boomerang");
                         gom.AddToMovableObjectList(currItem);
                         gom.AddToDrawableObjectList(currItem);
                         link.boomerangSound.Play();
@@ -58,13 +58,13 @@ namespace Sprint2
                         link.arrowSound.Play();
                         break;
                     case "Explosion":
-                        currItem = new LinkExplosion(link,"Explosion" );
+                        currItem = new LinkExplosion(link, "Explosion");
                         gom.AddToMovableObjectList(currItem);
                         gom.AddToDrawableObjectList(currItem);
                         link.bombThrow.Play();
                         break;
                 }
-               
+
             }
         }
 

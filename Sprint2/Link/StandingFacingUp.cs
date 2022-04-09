@@ -29,7 +29,7 @@ namespace Sprint2
 			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
-		{
+		{ 
 			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
