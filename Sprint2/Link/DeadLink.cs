@@ -24,7 +24,6 @@ namespace Sprint2
 			this.link = link;
 
 			game.themeSongLoop.Stop();
-			game.themeSong.Dispose();
 
 			spriteFactory = link.spriteFactory;
 

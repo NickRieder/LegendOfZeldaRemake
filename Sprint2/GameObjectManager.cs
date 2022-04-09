@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
@@ -22,7 +22,7 @@ namespace Sprint2
         public ConcurrentBag<ISprite> drawableSpritesListInserts;
         private ConcurrentBag<ISprite> tempUpdatableList;
         public SoundFactory soundFactory { get; set; }
-        
+
 
         private ConcurrentBag<ISprite> tempDrawableList;
         private ConcurrentBag<ISprite> pauseMenuList;
@@ -51,7 +51,7 @@ namespace Sprint2
             movableObjectList = new ConcurrentBag<ISprite>();
             drawableSpritesList = new ConcurrentBag<ISprite>();
             updatableSpritesList = new ConcurrentBag<ISprite>();
-            
+
             // Inserts lists are lists that store elements to be added while the actual list corresponding to the name is being iterated through.
             allObjectListInserts = new ConcurrentBag<ISprite>();
             movableObjectListInserts = new ConcurrentBag<ISprite>();
@@ -77,7 +77,7 @@ namespace Sprint2
 
             this.AddToDrawableObjectList(background);
             this.AddToDrawableObjectList(link);
-            
+
         }
 
         public void SetGame(Game1 game1)
@@ -123,7 +123,7 @@ namespace Sprint2
                 drawableSpritesList.Clear();
             }
             isPaused = !isPaused;
-            
+
         }
 
         public void SetBackgroundRoom(string roomName)
@@ -266,3 +266,4 @@ namespace Sprint2
         }
     }
 }
+   

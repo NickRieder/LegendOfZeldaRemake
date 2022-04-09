@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint2.Collison;
@@ -87,10 +87,10 @@ namespace Sprint2
                             //collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
                             collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
-    
-                        
+
+
                     }
-                    
+
                 }
             }
         }

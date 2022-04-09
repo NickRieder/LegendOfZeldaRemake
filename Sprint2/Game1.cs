@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -72,7 +72,7 @@ namespace Sprint2
             gom = new GameObjectManager(this);
             levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
             gom = new GameObjectManager(this);
-            levelLoader = new LevelLoader(gom, spriteFactory,soundFactory);
+            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
 
             controllerList.Add(gom.mouseController);
             controllerList.Add(keyboardController);
@@ -86,8 +86,8 @@ namespace Sprint2
         }
 
         protected override void LoadContent()
-        { 
-            
+        {
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             soundFactory.LoadSounds();
 
@@ -108,7 +108,7 @@ namespace Sprint2
 
             keyboardController.Initialize(gom, this, soundFactory, spriteFactory, spriteBatch);
 
-            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -143,7 +143,7 @@ namespace Sprint2
         public void Reset()
         {
             // new link, enemy, block, item
-            this. Initialize();
+            this.Initialize();
         }
     }
 }

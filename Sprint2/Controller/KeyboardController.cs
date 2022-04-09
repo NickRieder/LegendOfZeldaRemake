@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
@@ -35,7 +35,7 @@ namespace Sprint2
         {
             controllerMappingsHold.Add(key, command);
         }
-        
+
         public void RegisterCommandTap(Keys key, ICommand command)
         {
             controllerMappingsTap.Add(key, command);
@@ -118,7 +118,7 @@ namespace Sprint2
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
-            if(!isPaused)
+            if (!isPaused)
             {
                 foreach (Keys key in pressedKeys.Union(previousPressedKeys))
                 {
@@ -159,11 +159,11 @@ namespace Sprint2
             {
                 foreach (Keys key in pressedKeys)
                 {
-                    if(controllerMappingsPause.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) == -1)
+                    if (controllerMappingsPause.ContainsKey(key) && Array.IndexOf(previousPressedKeys, key) == -1)
                     {
                         controllerMappingsPause[key].Execute();
                     }
-                    
+
                 }
             }
             previousPressedKeys = pressedKeys;

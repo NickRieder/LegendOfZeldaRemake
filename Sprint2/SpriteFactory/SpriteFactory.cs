@@ -79,7 +79,7 @@ namespace Sprint2
             deathScreen = content.Load<Texture2D>("Sheets/YouDiedScreen");
         }
 
-        
+
         public Texture2D getTileSheet()
         {
             return tileSheet;
@@ -177,7 +177,7 @@ namespace Sprint2
         private static Rectangle DARKNUT_SHEET2_RIGHT2 = new Rectangle(69, 90, 16, 16);
         private static Rectangle DARKNUT_SHEET2MIRROR_LEFT1 = new Rectangle(372, 90, 16, 16);
         private static Rectangle DARKNUT_SHEET2MIRROR_LEFT2 = new Rectangle(389, 90, 16, 16);
-       
+
 
         private static Rectangle WIZZROBE_SHEET2_RIGHT1 = new Rectangle(126, 90, 16, 16);
         private static Rectangle WIZZROBE_SHEET2_RIGHT2 = new Rectangle(143, 90, 16, 16);
@@ -404,12 +404,10 @@ namespace Sprint2
             return new Sprite(linkSheetUpsideDown, ARROW_UPSIDEDOWN_DOWN);
         }
 
-/*        public Sprite getBombSprite()
-        {
-
-            return new Sprite(itemSheet, BOMB_SPRITE);
-
-        }*/
+        /*        public Sprite getBombSprite()
+                {
+                    return new Sprite(itemSheet, BOMB_SPRITE);
+                }*/
 
         public Sprite getExplosionSprite()
         {
@@ -597,17 +595,17 @@ namespace Sprint2
         {
             return new Sprite(enemySheet2, DARKNUT_SHEET2_BACK, DARKNUT_SHEET2_BACK2);
         }
-         public Sprite getDarknutDownSprite()
+        public Sprite getDarknutDownSprite()
         {
-            return new Sprite(enemySheet2,DARKNUT_SHEET2_FRONT1,  DARKNUT_SHEET2_FRONT2);
+            return new Sprite(enemySheet2, DARKNUT_SHEET2_FRONT1, DARKNUT_SHEET2_FRONT2);
         }
-         public Sprite getDarknutLeftSprite()
+        public Sprite getDarknutLeftSprite()
         {
-            return new Sprite(enemySheet2Mirror, DARKNUT_SHEET2MIRROR_LEFT1,  DARKNUT_SHEET2MIRROR_LEFT2);
+            return new Sprite(enemySheet2Mirror, DARKNUT_SHEET2MIRROR_LEFT1, DARKNUT_SHEET2MIRROR_LEFT2);
         }
-         public Sprite getDarknutRightSprite()
+        public Sprite getDarknutRightSprite()
         {
-            return new Sprite(enemySheet2,DARKNUT_SHEET2_RIGHT1,  DARKNUT_SHEET2_RIGHT2);
+            return new Sprite(enemySheet2, DARKNUT_SHEET2_RIGHT1, DARKNUT_SHEET2_RIGHT2);
         }
         public Sprite getDragonRightSprite()
         {
@@ -661,7 +659,7 @@ namespace Sprint2
 
         public Sprite getHurtBossSprite()
         {
-            return new Sprite(enemySheet,HURT_BOSS);
+            return new Sprite(enemySheet, HURT_BOSS);
         }
 
 
