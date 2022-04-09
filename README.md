@@ -8,7 +8,8 @@ Directions on how to play:
 
 DISCLAIMER:
 Our game is trash and unfinished so if you give us a bad grade, we told you so.
-We didnt get to implementing collision so many of our state stuff is tied to keys
+We didnt get to implementing collision so many of our state stuff is tied to keys.
+Also PLEASE only use the master branch, and not any other branch. Not even the Sprint4 branch
 
 Link:
 To move link around the map, use w,a,s,d and the arrow keys.
