@@ -21,10 +21,7 @@
 			<XCoord>500</XCoord>
 			<YCoord>150</YCoord>
 		</enemy>
-		<enemy Type="Boss">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
+		
 	</Enemies>
 	<Walls>
 		<wall>
