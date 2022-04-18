@@ -43,7 +43,7 @@ namespace Sprint2
 			this.gom = gom;
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
-			rupies = keys = bombs = 0;
+			rupies = keys = bombs = 1;	// Link should start with 0. Currently 1 for debugging purposes.
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
 			

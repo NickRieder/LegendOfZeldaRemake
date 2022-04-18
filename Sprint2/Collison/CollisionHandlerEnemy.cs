@@ -67,27 +67,27 @@ namespace Sprint2.Collison
 
                 if (subjectType == typeof(DragonFireball) && targetType == typeof(Link))
                 {
-                    System.Diagnostics.Debug.WriteLine("DEBUG3: /CollisionHandlerEnemy/ PROJECTILE COLLISION ");
-                    //subject.GetLinkObject().TakeDamage();
                     Link tempLink = (Link)target;
                     tempLink.TakeDamage();
-                    //link.TakeDamage();
                 }
 
                 if (subjectType == typeof(Link) && targetType == typeof(Enemies))
                 {
-                    //subject.GetLinkObject().TakeDamage();
                     Link tempLink = (Link)subject;
                     tempLink.TakeDamage();
-                    //link.TakeDamage();
                 }
 
                 if (subjectType == typeof(Link) && targetType == typeof(Door)) // door collision - doesnt work yet - will have to refactor
                 {
-                    System.Diagnostics.Debug.WriteLine("DEBUG4: /CollisionHandlerEnemy/ DOOR COLLISION ");
-
+                    Link tempLink = (Link)subject;
                     Door tempDoor = (Door)target;
-                    tempDoor.LoadNextRoom();
+                    
+                    if (tempLink.keys > 0)
+                    {
+                        tempDoor.canContinue = true;
+                    }
+
+                    tempDoor.LoadNextLevel();
                 }
             }
         }

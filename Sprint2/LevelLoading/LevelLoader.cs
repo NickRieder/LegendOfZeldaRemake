@@ -53,6 +53,50 @@ namespace Sprint2
                     link.SetPos(SpriteFactory.LINK_LEFT_POS);
                     link.currState = new StandingFacingRight(link);
                     break;
+                case "TopOpen":
+                    link.SetPos(SpriteFactory.LINK_BOTTOM_POS);
+                    link.currState = new StandingFacingUp(link);
+                    break;
+                case "BotOpen":
+                    link.SetPos(SpriteFactory.LINK_TOP_POS);
+                    link.currState = new StandingFacingDown(link);
+                    break;
+                case "LeftOpen":
+                    link.SetPos(SpriteFactory.LINK_RIGHT_POS);
+                    link.currState = new StandingFacingLeft(link);
+                    break;
+                case "RightOpen":
+                    link.SetPos(SpriteFactory.LINK_LEFT_POS);
+                    link.currState = new StandingFacingRight(link);
+                    break;
+                case "TopLock":
+                    link.SetPos(SpriteFactory.LINK_BOTTOM_POS);
+                    link.currState = new StandingFacingUp(link);
+                    break;
+                case "BotLock":
+                    link.SetPos(SpriteFactory.LINK_TOP_POS);
+                    link.currState = new StandingFacingDown(link);
+                    break;
+                case "LeftLock":
+                    link.SetPos(SpriteFactory.LINK_RIGHT_POS);
+                    link.currState = new StandingFacingLeft(link);
+                    break;
+                case "RightLock":
+                    link.SetPos(SpriteFactory.LINK_LEFT_POS);
+                    link.currState = new StandingFacingRight(link);
+                    break;
+                case "TopWall":
+
+                    break;
+                case "BotWall":
+
+                    break;
+                case "LeftWall":
+
+                    break;
+                case "RightWall":
+
+                    break;
                 default:
                     link.SetPos(SpriteFactory.LINK_RIGHT_POS);
                     link.currState = new StandingFacingLeft(link);

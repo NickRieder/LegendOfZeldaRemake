@@ -13,6 +13,7 @@ namespace Sprint2
         private int yPos;
         string direction;
         bool canContinue;
+        int cameraSpeed;
         private SpriteFactory spriteFactory;
 
         public MovingCamera(Camera camera, string direction)
@@ -20,6 +21,7 @@ namespace Sprint2
             this.camera = camera;
             xPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
             yPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
+            cameraSpeed = (int)Camera.CAMERA_SETTING.CAMERA_SPEED;
             this.direction = direction;
             canContinue = true;
         }
@@ -33,28 +35,28 @@ namespace Sprint2
             switch (direction)
             {
                 case "Up":
-                    yPos += 5;
+                    yPos += cameraSpeed;
                     if (yPos >= (int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Down":
-                    yPos -= 5;
+                    yPos -= cameraSpeed;
                     if (yPos <= -(int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Left":
-                    xPos += 5;
+                    xPos += cameraSpeed;
                     if (xPos >= (int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Right":
-                    xPos -= 5;
+                    xPos -= cameraSpeed;
                     if (xPos <= -(int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;

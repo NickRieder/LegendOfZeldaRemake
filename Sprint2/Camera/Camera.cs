@@ -10,6 +10,7 @@ namespace Sprint2
     {
         public enum CAMERA_SETTING : int
         {
+            CAMERA_SPEED = 7,
             STARTING_X_POS = 0,
             STARTING_Y_POS = 0,
             START_ANIMATION = 0,
