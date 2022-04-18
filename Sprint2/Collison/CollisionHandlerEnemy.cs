@@ -73,7 +73,10 @@ namespace Sprint2.Collison
                 if (subjectType == typeof(DragonFireball) && targetType == typeof(Link))
                 {
                     Link tempLink = (Link)target;
+                    EnemyDamagingProjectile tempProjectile = (DragonFireball)subject;
                     tempLink.TakeDamage();
+                    tempProjectile.RemoveProjectile(tempProjectile);
+
                 }
 
                 if (subjectType == typeof(Link) && targetType == typeof(Enemies))
@@ -100,37 +103,34 @@ namespace Sprint2.Collison
                         tempDoor.canContinue = true;
                     }
 
-                    /*bool checkTop = doorType.Contains("Top");
-                    bool checkBot = doorType.Contains("Bot");
-                    bool checkLeft = doorType.Contains("Left");
-                    bool checkRight = doorType.Contains("Right");*/
+                    if (tempDoor.canContinue)
+                    {
+                        if (doorType.Contains("Top"))
+                        {
+                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                            scrollCommand = new SetCameraMovingUp(gom.camera, tempDoor);
+                            scrollCommand.Execute();
+                        }
+                        else if (doorType.Contains("Bot"))
+                        {
+                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                            scrollCommand = new SetCameraMovingDown(gom.camera, tempDoor);
+                            scrollCommand.Execute();
+                        }
+                        else if (doorType.Contains("Left"))
+                        {
+                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                            scrollCommand = new SetCameraMovingLeft(gom.camera, tempDoor);
+                            scrollCommand.Execute();
+                        }
+                        else if (doorType.Contains("Right"))
+                        {
+                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                            scrollCommand = new SetCameraMovingRight(gom.camera, tempDoor);
+                            scrollCommand.Execute();
+                        }
+                    }           
 
-                    if (doorType.Contains("Top"))
-                    {
-                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                        scrollCommand = new SetCameraMovingUp(gom.camera, tempDoor);
-                        scrollCommand.Execute();
-                    }
-                    else if (doorType.Contains("Bot"))
-                    {
-                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                        scrollCommand = new SetCameraMovingDown(gom.camera, tempDoor);
-                        scrollCommand.Execute();
-                    }
-                    else if (doorType.Contains("Left"))
-                    {
-                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                        scrollCommand = new SetCameraMovingLeft(gom.camera, tempDoor);
-                        scrollCommand.Execute();
-                    }
-                    else if (doorType.Contains("Right"))
-                    {
-                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                        scrollCommand = new SetCameraMovingRight(gom.camera, tempDoor);
-                        scrollCommand.Execute();
-                    }
-
-                    //tempDoor.LoadNextLevel();
                 }
             }
         }
