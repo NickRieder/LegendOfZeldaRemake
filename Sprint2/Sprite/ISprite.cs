@@ -15,5 +15,7 @@ namespace Sprint2
         public void Draw(SpriteBatch spritebatch);
         public void Update(GameTime gameTime);
         public object GetConcreteObject();
+
+        
     }
 }

@@ -16,10 +16,6 @@ namespace Sprint2
         public ConcurrentBag<ISprite> movableObjectList { get; set; }
         public ConcurrentBag<ISprite> updatableSpritesList;
         public ConcurrentBag<ISprite> drawableSpritesList;
-        public ConcurrentBag<ISprite> allObjectListInserts;
-        public ConcurrentBag<ISprite> movableObjectListInserts;
-        public ConcurrentBag<ISprite> updatableSpritesListInserts;
-        public ConcurrentBag<ISprite> drawableSpritesListInserts;
         private ConcurrentBag<ISprite> tempUpdatableList;
         public SoundFactory soundFactory { get; set; }
 
@@ -53,10 +49,6 @@ namespace Sprint2
             updatableSpritesList = new ConcurrentBag<ISprite>();
 
             // Inserts lists are lists that store elements to be added while the actual list corresponding to the name is being iterated through.
-            allObjectListInserts = new ConcurrentBag<ISprite>();
-            movableObjectListInserts = new ConcurrentBag<ISprite>();
-            drawableSpritesListInserts = new ConcurrentBag<ISprite>();
-            updatableSpritesListInserts = new ConcurrentBag<ISprite>();
             tempUpdatableList = new ConcurrentBag<ISprite>();
             tempDrawableList = new ConcurrentBag<ISprite>();
             pauseMenuList = new ConcurrentBag<ISprite>();

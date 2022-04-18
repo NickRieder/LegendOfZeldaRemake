@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Sprint2
@@ -146,15 +147,22 @@ namespace Sprint2
 			//item.Update(gameTime);
 		}
 
-		public Link GetConcreteObject()
-		{
-			return this;
-		}
+        /*public Link GetLinkObject()
+        {
+            return this;
+        }*/
 
-		object ISprite.GetConcreteObject()
-		{
-			return this;
-		}
-	}
+        /*public T GetObject<T>() where T : ISprite
+        {
+			T result = this;
+            return this;
+        }*/
+
+
+        object ISprite.GetConcreteObject()
+        {
+            return this;
+        }
+    }
 }
 

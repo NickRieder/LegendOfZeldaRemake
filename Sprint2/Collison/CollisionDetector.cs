@@ -85,7 +85,7 @@ namespace Sprint2
                             //System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
                             collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
                             //collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
-                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
+                            collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
                         }
 
 
