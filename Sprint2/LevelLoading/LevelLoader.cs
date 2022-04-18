@@ -103,7 +103,7 @@ namespace Sprint2
                     break;
 
             }
-            //gom.AddToAllObjectList(link);
+            gom.AddToAllObjectList(link);
             gom.AddToDrawableObjectList(link);
             gom.AddToMovableObjectList(link);
         }

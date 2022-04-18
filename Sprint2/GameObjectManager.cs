@@ -241,11 +241,13 @@ namespace Sprint2
             camera.Draw(spriteBatch);
             if (!isPaused) background.Draw(spriteBatch);
             else menu.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
+            
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
             }
+
+            hud.Draw(spriteBatch);
         }
 
         public void Update(GameTime gametime)

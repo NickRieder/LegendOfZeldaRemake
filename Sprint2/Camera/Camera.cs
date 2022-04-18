@@ -10,7 +10,7 @@ namespace Sprint2
     {
         public enum CAMERA_SETTING : int
         {
-            CAMERA_SPEED = 7,
+            CAMERA_SPEED = 10,
             STARTING_X_POS = 0,
             STARTING_Y_POS = 0,
             START_ANIMATION = 0,
@@ -74,9 +74,9 @@ namespace Sprint2
             currState.FreezeCamera(xPos, yPos);
         }
 
-        public void AnimateRoomTransition(string direction) // pass in the side of the door later
+        public void AnimateRoomTransition(string direction, Door door) // pass in the side of the door later
         {
-            currState.AnimateRoomTransition(direction);
+            currState.AnimateRoomTransition(direction, door);
         }
 
         public void Update(GameTime gameTime)

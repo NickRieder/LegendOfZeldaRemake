@@ -28,9 +28,9 @@ namespace Sprint2
 
             camera.transform = position;
         }
-        public void AnimateRoomTransition(string direction)
+        public void AnimateRoomTransition(string direction, Door door)
         {
-            camera.currState = new MovingCamera(camera, direction);
+            camera.currState = new MovingCamera(camera, direction, door);
         }
 
         public void Update(GameTime gameTime)

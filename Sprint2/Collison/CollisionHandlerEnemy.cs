@@ -11,6 +11,7 @@ namespace Sprint2.Collison
     {
         private Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, Type> collisionDictionary;
         private HashSet<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>> keySet;
+        private GameObjectManager gom;
         public Game1 myGame;
         private Link link;
         // ArrayList[] enumValues = { 0, 1, 2, 3, 4 };
@@ -25,6 +26,7 @@ namespace Sprint2.Collison
 
         public CollisionHandlerEnemy(GameObjectManager gom)
         {
+            this.gom = gom;
             this.link = gom.link;
             collisionDictionary = new Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, Type>();
             BuildDictionary();
@@ -90,13 +92,45 @@ namespace Sprint2.Collison
                 {
                     Link tempLink = (Link)subject;
                     Door tempDoor = (Door)target;
+                    string doorType = tempDoor.doorType;
+                    ICommand scrollCommand;
                     
-                    if (tempDoor.doorType.Contains("Lock") && tempLink.keys > 0)
+                    if (doorType.Contains("Lock") && tempLink.keys > 0)
                     {
                         tempDoor.canContinue = true;
                     }
 
-                    tempDoor.LoadNextLevel();
+                    /*bool checkTop = doorType.Contains("Top");
+                    bool checkBot = doorType.Contains("Bot");
+                    bool checkLeft = doorType.Contains("Left");
+                    bool checkRight = doorType.Contains("Right");*/
+
+                    if (doorType.Contains("Top"))
+                    {
+                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                        scrollCommand = new SetCameraMovingUp(gom.camera, tempDoor);
+                        scrollCommand.Execute();
+                    }
+                    else if (doorType.Contains("Bot"))
+                    {
+                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                        scrollCommand = new SetCameraMovingDown(gom.camera, tempDoor);
+                        scrollCommand.Execute();
+                    }
+                    else if (doorType.Contains("Left"))
+                    {
+                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                        scrollCommand = new SetCameraMovingLeft(gom.camera, tempDoor);
+                        scrollCommand.Execute();
+                    }
+                    else if (doorType.Contains("Right"))
+                    {
+                        System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
+                        scrollCommand = new SetCameraMovingRight(gom.camera, tempDoor);
+                        scrollCommand.Execute();
+                    }
+
+                    //tempDoor.LoadNextLevel();
                 }
             }
         }
