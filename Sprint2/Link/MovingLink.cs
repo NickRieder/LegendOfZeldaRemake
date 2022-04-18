@@ -41,36 +41,23 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			if (link.direction != "up")
-			{
-				link.direction = "up";
-				link.currState = new StandingFacingUp(link);
-			}
+			link.direction = "up";
+			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			if (link.direction != "down")
-			{
-				link.direction = "down";
-				link.currState = new StandingFacingDown(link);
-			}
+			link.direction = "down";
+			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
-			if (link.direction != "right")
-			{
-				link.direction = "right";
-				link.currState = new StandingFacingRight(link);
-			}
+			link.direction = "right";
+			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			if (link.direction != "left")
-            {
-				link.direction = "left";
-				link.currState = new StandingFacingLeft(link);
-			}
-			
+			link.direction = "left";
+			link.currState = new StandingFacingLeft(link);
 		}
 		public void Move()
         {
