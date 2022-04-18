@@ -36,6 +36,8 @@ namespace Sprint2
 		public SoundEffect bombThrow;
 		public GameObjectManager gom;
 		public bool isUsingItem;
+		public bool canTakeDamage;
+
 		public Link(Game1 game, GameObjectManager gom)
 		{
 			//item = new NullItem();
@@ -46,7 +48,7 @@ namespace Sprint2
 			rupies = keys = bombs = 1;	// Link should start with 0. Currently 1 for debugging purposes.
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
-			
+			canTakeDamage = true;
 		}
 
 		public void SetSoundContent(SoundFactory soundFactory)

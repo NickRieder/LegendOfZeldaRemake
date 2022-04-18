@@ -96,6 +96,9 @@ namespace Sprint2
 
             mainSprObjPos.X = otherSprObjPos.X - mainSpriteRectangle.Width;
             mainSpriteObject.pos = mainSprObjPos;
+
+            /*otherSprObjPos.X = mainSprObjPos.X + mainSpriteRectangle.Width;
+            otherSpriteObject.pos = otherSprObjPos;*/
         }
         public void PreventRightCollision(ISprite mainSpriteObject, ISprite otherSpriteObject)
         {

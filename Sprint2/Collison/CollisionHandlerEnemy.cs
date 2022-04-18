@@ -82,7 +82,13 @@ namespace Sprint2.Collison
                 if (subjectType == typeof(Link) && targetType == typeof(Enemies))
                 {
                     Link tempLink = (Link)subject;
-                    tempLink.TakeDamage();
+                    Enemies tempEnemy = (Enemies)target;
+
+                    if (tempLink.canTakeDamage)
+                    {
+                        tempLink.TakeDamage();
+                    }
+
                 }
 
                 /*if (subjectType == typeof(Enemies) && targetType == typeof(Link))

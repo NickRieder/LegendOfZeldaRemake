@@ -36,7 +36,7 @@ namespace Sprint2
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 			isDamaged = true;
-			
+			link.canTakeDamage = false;
 		}
 
 
@@ -58,6 +58,7 @@ namespace Sprint2
 			if (startDamagedTime + damagedTime < gameTime.TotalGameTime)
 			{
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
+				link.canTakeDamage = true;
 			}
 			else
             {
@@ -84,7 +85,7 @@ namespace Sprint2
 				}
 			}
 			sprite.Update(gameTime);
-			link.sprite.Update(gameTime);
+			//link.sprite.Update(gameTime);
 		}
 
 		// No OPs
