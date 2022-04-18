@@ -37,12 +37,15 @@ namespace Sprint2.Collison
             doorType = typeof(Door); // type is Sprint2.Door
             itemType = typeof(Item);
             enemyType = typeof(Enemies); // type is Sprint2.Enemies
+
             enemyProjectileType = typeof(EnemyDamagingProjectile);
+            //dragonFireballType = typeof(DragonFireball);
 
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 //System.Diagnostics.Debug.WriteLine($" {side}");
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, enemyType, side), typeof(SetTakeDamage));
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(enemyType, linkType, side), typeof(SetTakeDamage));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Link), side), typeof(SetTakeDamage));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Door), side), typeof(SetNextRoom));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Item), side), typeof(SetLinkUseItem));
@@ -77,12 +80,18 @@ namespace Sprint2.Collison
                     tempLink.TakeDamage();
                 }
 
+                /*if (subjectType == typeof(Enemies) && targetType == typeof(Link))
+                {
+                    Link tempLink = (Link)target;
+                    tempLink.TakeDamage();
+                }*/
+
                 if (subjectType == typeof(Link) && targetType == typeof(Door)) // door collision - doesnt work yet - will have to refactor
                 {
                     Link tempLink = (Link)subject;
                     Door tempDoor = (Door)target;
                     
-                    if (tempLink.keys > 0)
+                    if (tempDoor.doorType.Contains("Lock") && tempLink.keys > 0)
                     {
                         tempDoor.canContinue = true;
                     }
