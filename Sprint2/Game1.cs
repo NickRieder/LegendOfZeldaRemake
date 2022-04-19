@@ -98,7 +98,7 @@ namespace Sprint2
             themeSong = soundFactory.getThemeSong();
             themeSongLoop = themeSong.CreateInstance();
             themeSongLoop.IsLooped = true;
-            //themeSongLoop.Play();
+            themeSongLoop.Play();
 
             gom.spriteFactory = spriteFactory;
             gom.soundFactory = soundFactory;
