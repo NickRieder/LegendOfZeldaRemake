@@ -57,7 +57,7 @@ namespace Sprint2
 		}
 
 		// No OPs
-		public void TakeDamage() { }
+		public void TakeDamage(int collisionSide) { }
 		public void StandingUp() { }
 		public void StandingDown() { }
 		public void StandingRight() { }

@@ -21,8 +21,6 @@ namespace Sprint2
         }
         public void Invoke()
         {
-            /*Link tempLink = (Link)subject;
-            Door tempDoor = (Door)target;*/
             string doorType = door.doorType;
             ICommand scrollCommand;
 
@@ -35,34 +33,25 @@ namespace Sprint2
             {
                 if (doorType.Contains("Top"))
                 {
-                    System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
                     scrollCommand = new SetCameraMovingUp(gom.camera, door);
                     scrollCommand.Execute();
                 }
                 else if (doorType.Contains("Bot"))
                 {
-                    System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
                     scrollCommand = new SetCameraMovingDown(gom.camera, door);
                     scrollCommand.Execute();
                 }
                 else if (doorType.Contains("Left"))
                 {
-                    System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
                     scrollCommand = new SetCameraMovingLeft(gom.camera, door);
                     scrollCommand.Execute();
                 }
                 else if (doorType.Contains("Right"))
                 {
-                    System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
                     scrollCommand = new SetCameraMovingRight(gom.camera, door);
                     scrollCommand.Execute();
                 }
             }
-
-            /*if (subjectType == typeof(Link) && targetType == typeof(Door)) // door collision - doesnt work yet - will have to refactor
-            {
-                
-            }*/
         }
 
         

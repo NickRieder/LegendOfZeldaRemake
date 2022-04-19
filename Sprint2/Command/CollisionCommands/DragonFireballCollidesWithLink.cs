@@ -8,6 +8,7 @@ namespace Sprint2
     {
         private Link link;
         private EnemyDamagingProjectile fireball;
+        private int collisionSide;
         private GameObjectManager gom;
         public DragonFireballCollidesWithLink()
         {
@@ -17,11 +18,12 @@ namespace Sprint2
         {
             this.fireball = (DragonFireball)fireballObject;
             this.link = (Link)linkObject;
+            this.collisionSide = (int)collisionSideOfMainObject;
             this.gom = gom;
         }
         public void Invoke()
         {
-            link.TakeDamage();
+            link.TakeDamage(collisionSide);
             fireball.RemoveProjectile(fireball);
 
             /*if (subjectType == typeof(DragonFireball) && targetType == typeof(Link))

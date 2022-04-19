@@ -22,7 +22,7 @@ namespace Sprint2
 		public void Move() { }
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
-		public void TakeDamage() { }
+		public void TakeDamage(int collisionSide) { }
 		public void Draw(SpriteBatch spriteBatch) { }
 		public void Update(GameTime gameTime) 
 		{

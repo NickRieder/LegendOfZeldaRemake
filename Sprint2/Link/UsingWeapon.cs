@@ -35,22 +35,23 @@ namespace Sprint2
 					sprite = spriteFactory.getLinkUsingWeaponUp();
 					break;
 			}
+			link.sprite = sprite;
 			attackTime = TimeSpan.FromMilliseconds(500);
 			isAttacking = true;
 		}
 
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
 		{
 			link.health--;
 			link.currState = new NewDirectionalLinkSprite(link, link.direction);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			sprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 			if (isAttacking)
 			{
 				startTimeAttack = gameTime.TotalGameTime;

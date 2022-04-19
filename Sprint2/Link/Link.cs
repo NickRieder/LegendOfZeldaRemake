@@ -119,9 +119,9 @@ namespace Sprint2
 			currState = new UsingItem(this);
 			item.Use();
 		}
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
         {
-			currState.TakeDamage();
+			currState.TakeDamage(collisionSide);
 			if (health == 0)
             {
 				linkDeadSound.Play();
@@ -145,7 +145,7 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
-			sprite.Update(gameTime);
+			//sprite.Update(gameTime);
 			//item.Update(gameTime);
 		}
 

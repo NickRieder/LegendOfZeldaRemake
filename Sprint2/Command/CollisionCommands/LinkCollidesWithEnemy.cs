@@ -8,6 +8,7 @@ namespace Sprint2
     {
         private Link link;
         private Enemies enemy;
+        private int side;
         private GameObjectManager gom;
         public LinkCollidesWithEnemy()
         {
@@ -17,13 +18,15 @@ namespace Sprint2
         {
             this.link = (Link)linkObject;
             this.enemy = (Enemies)enemyObject;
+            this.side = (int)collisionSideOfMainObject;
             this.gom = gom;
         }
         public void Invoke()
         {
-            if (link.canTakeDamage)
+            if (link.canTakeDamage && enemy.canDamage)
             {
-                link.TakeDamage();
+                link.TakeDamage(side);
+                //enemy.DealDamage();
             }
         }
     }

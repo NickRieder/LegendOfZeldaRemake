@@ -120,6 +120,7 @@ namespace Sprint2
             }
 
             gom.Update(gameTime);
+
             collisionDetector.Update(gameTime);
 
             base.Update(gameTime);

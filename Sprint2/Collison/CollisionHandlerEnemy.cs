@@ -14,15 +14,11 @@ namespace Sprint2.Collison
         private GameObjectManager gom;
         public Game1 myGame;
         private Link link;
-        // ArrayList[] enumValues = { 0, 1, 2, 3, 4 };
         Type linkType;
         Type doorType;
         Type itemType;
         Type enemyType;
         Type enemyProjectileType;
-        private Door door;
-
-
 
         public CollisionHandlerEnemy(GameObjectManager gom)
         {
@@ -38,17 +34,24 @@ namespace Sprint2.Collison
             linkType = typeof(Link);
             doorType = typeof(Door); // type is Sprint2.Door
             itemType = typeof(Item);
-            enemyType = typeof(Enemies); // type is Sprint2.Enemies
+            enemyType = typeof(Enemies);
 
             enemyProjectileType = typeof(EnemyDamagingProjectile);
             //dragonFireballType = typeof(DragonFireball);
 
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
-                //System.Diagnostics.Debug.WriteLine($" {side}");
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Door), side), new LinkCollidesWithDoor());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Enemies), side), new LinkCollidesWithEnemy());
+                //collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Enemies), typeof(Link), side), new LinkCollidesWithEnemy());
+
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Link), side), new DragonFireballCollidesWithLink());
+
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Block), side), new LinkCollidesWithBlock());
+                /*collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Block), side), new EnemyCollidesWithBlock());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Block), side), new DragonFireballCollidesWithBlock());
+
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Door), side), new DragonFireballCollidesWithDoor());*/
 
                 /*collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, enemyType, side), typeof(SetTakeDamage));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(enemyType, linkType, side), typeof(SetTakeDamage));
@@ -62,6 +65,7 @@ namespace Sprint2.Collison
         {
             Type subjectType = subject.GetType();
             Type targetType = target.GetType();
+
             /*System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
             System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ targetType = " + targetType);*/
 

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections;
 
 namespace Sprint2
@@ -35,6 +36,11 @@ namespace Sprint2
 		private const int startingPosX = 600;
 		private const int startingPosY = 200;
 
+		//temp
+		public bool canDamage;
+		private static int damageCooldownTimer = 0;
+		private static int damageCooldown = 60;
+
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
@@ -43,6 +49,7 @@ namespace Sprint2
 			health = startingHealth;
 			pos = new Vector2(startingPosX, startingPosY);
 			this.freeze = false;
+			canDamage = true;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -150,13 +157,33 @@ namespace Sprint2
 			}
 		
 		}
+		public void DealDamage()
+        {
+			canDamage = false;
+			System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage =  " + canDamage);
+		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			currState.Draw(spriteBatch);
 		}
 		public void Update(GameTime gameTime)
 		{
-			currState.Update(gameTime);
+			if (damageCooldownTimer >= damageCooldown)
+            {
+				canDamage = true;
+				damageCooldownTimer = 0;
+			}
+			//damageCooldownTimer++;
+            if (!canDamage)
+            {
+				//System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage =  " + canDamage);
+				damageCooldownTimer++;
+				//System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ damageCooldownTimer =  " + damageCooldownTimer);
+			}
+
+            //System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ timer = " + damageTimer);
+            //System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage = " + canDamage);
+            currState.Update(gameTime);
 		}
 
 		public Enemies GetConcreteObject()
