@@ -218,6 +218,9 @@ namespace Sprint2
         private static Rectangle ARROW_UPSIDEDOWN_DOWN = new Rectangle(360, 108, 7, 15);
         private static Rectangle ARROW_MIRRORED_LEFT = new Rectangle(345, 185, 15, 15);
 
+        private static Rectangle TRIFORCE_P1 = new Rectangle(81, 139, 47, 24);
+        private static Rectangle TRIFORCE_P2 = new Rectangle(128, 139, 49, 24);
+        private static Rectangle TRIFORCE_P3 = new Rectangle(97, 115, 64, 23);
 
         private static Rectangle BOOMERANG_1 = new Rectangle(63, 189, 8, 8);
         private static Rectangle BOOMERANG_2 = new Rectangle(73, 189, 8, 8);
@@ -390,6 +393,18 @@ namespace Sprint2
         public Sprite getArrowSpriteRight()
         {
             return new Sprite(linkSheet, ARROW_RIGHT);
+        }
+        public Sprite getTriforceSprite1()
+        {
+            return new Sprite(hudSheet, TRIFORCE_P1);
+        }
+        public Sprite getTriforceSprite2()
+        {
+            return new Sprite(hudSheet, TRIFORCE_P2);
+        }
+        public Sprite getTriforceSprite3()
+        {
+            return new Sprite(hudSheet, TRIFORCE_P3);
         }
         public Sprite getArrowSpriteUp()
         {

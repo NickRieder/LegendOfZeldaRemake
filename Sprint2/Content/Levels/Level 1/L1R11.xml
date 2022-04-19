@@ -77,6 +77,10 @@
 			<XCoord>343</XCoord>
 			<YCoord>229</YCoord>
 		</item>
+		<item Type="tri1">
+			<XCoord>485</XCoord>
+			<YCoord>300</YCoord>
+		</item>
 	</Items>
 	<Doors>
 		<door Type="TopWall">

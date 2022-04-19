@@ -3,30 +3,6 @@
 	<background>
 		<sprite>room1</sprite>
 	</background>
-	
-	<Blocks>
-		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>192</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>192</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>338</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>338</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>576</XCoord>
-			<YCoord>242</YCoord>
-		</block>
-	</Blocks>
-
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
@@ -55,17 +31,13 @@
 	</Walls>
 	
 	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
 		<enemy Type="Dragon">
 			<XCoord>500</XCoord>
 			<YCoord>150</YCoord>
+		</enemy>
+		<enemy Type="Dragon">
+			<XCoord>286</XCoord>
+			<YCoord>300</YCoord>
 		</enemy>
 	</Enemies>
 	<Walls>

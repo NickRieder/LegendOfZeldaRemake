@@ -6,24 +6,44 @@
 	
 	<Blocks>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>192</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
+			<XCoord>145</XCoord>
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
-			<YCoord>338</YCoord>
+			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>338</YCoord>
+			<XCoord>239</XCoord>
+			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>576</XCoord>
-			<YCoord>242</YCoord>
+			<XCoord>286</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>333</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>382</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>429</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>478</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>526</XCoord>
+			<YCoord>192</YCoord>
+		</block>
+		<block Type ="NonFlat">
+			<XCoord>573</XCoord>
+			<YCoord>192</YCoord>
 		</block>
 	</Blocks>
 
@@ -53,47 +73,12 @@
 			<Height>300</Height>
 		</wall>
 	</Walls>
-	
-	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
-		<enemy Type="Dragon">
-			<XCoord>500</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-	</Enemies>
-	<Walls>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
-			<Width>300</Width>
-			<Height>20</Height>
-		</wall>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
-			<Width>300</Width>
-			<Height>5</Height>
-		</wall>
-		<wall>
-			<XCoord>25</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-		<wall>
-			<XCoord>680</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-	</Walls>
+	<Items>
+		<item Type="key">
+			<XCoord>343</XCoord>
+			<YCoord>290</YCoord>
+		</item>
+	</Items>
 	<Doors>
 		<door Type="TopOpen">
 			<room>Level 2/L2R2</room>    <!-- Next Room-->
