@@ -55,45 +55,11 @@
 	</Walls>
 	
 	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
 		<enemy Type="Dragon">
 			<XCoord>500</XCoord>
 			<YCoord>150</YCoord>
 		</enemy>
 	</Enemies>
-	<Walls>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
-			<Width>300</Width>
-			<Height>20</Height>
-		</wall>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
-			<Width>300</Width>
-			<Height>5</Height>
-		</wall>
-		<wall>
-			<XCoord>25</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-		<wall>
-			<XCoord>680</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-	</Walls>
 	<Doors>
 		<door Type="TopOpen">
 			<room>Level 1/L1R11</room>    <!-- Next Room-->
@@ -103,7 +69,7 @@
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
-		<door Type="Level 1/LeftWall">
+		<door Type="LeftWall">
 			<room></room>
 			<!-- Next Room-->
 			<room>Level 1/L1R9</room>

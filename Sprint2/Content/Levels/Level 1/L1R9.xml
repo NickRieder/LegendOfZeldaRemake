@@ -31,7 +31,7 @@
 		</block>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
-			<YCoord>186</YCoord>
+			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
 			<XCoord>192</XCoord>
@@ -54,7 +54,7 @@
 			<YCoord>98</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>620</XCoord>
+			<XCoord>624</XCoord>
 			<YCoord>98</YCoord>
 		</block>
 		<block Type ="NonFlat">
@@ -74,7 +74,7 @@
 			<YCoord>145</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>620</XCoord>
+			<XCoord>624</XCoord>
 			<YCoord>145</YCoord>
 		</block>
 		<block Type ="NonFlat">
@@ -158,15 +158,15 @@
 			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>620</XCoord>
+			<XCoord>624</XCoord>
 			<YCoord>383</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>620</XCoord>
+			<XCoord>624</XCoord>
 			<YCoord>336</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>620</XCoord>
+			<XCoord>624</XCoord>
 			<YCoord>286</YCoord>
 		</block>
 	</Blocks>

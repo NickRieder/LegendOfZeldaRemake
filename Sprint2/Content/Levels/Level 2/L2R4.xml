@@ -10,23 +10,22 @@
 			<YCoord>192</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>192</YCoord>
+			<XCoord>286</XCoord>
+			<YCoord>336</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>338</YCoord>
+			<XCoord>478</XCoord>
+			<YCoord>239</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>338</YCoord>
+			<XCoord>526</XCoord>
+			<YCoord>336</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>576</XCoord>
-			<YCoord>242</YCoord>
+			<XCoord>624</XCoord>
+			<YCoord>336</YCoord>
 		</block>
 	</Blocks>
-
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
@@ -55,13 +54,13 @@
 	</Walls>
 	
 	<Enemies>
-		<enemy Type="Bluebat">
+		<enemy Type="Snake">
 			<XCoord>150</XCoord>
 			<YCoord>150</YCoord>
 		</enemy>
 		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
+			<XCoord>440</XCoord>
+			<YCoord>383</YCoord>
 		</enemy>
 		<enemy Type="Dragon">
 			<XCoord>500</XCoord>

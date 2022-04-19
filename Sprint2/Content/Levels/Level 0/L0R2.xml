@@ -48,15 +48,15 @@
 			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>382</XCoord>
+			<XCoord>384</XCoord>
 			<YCoord>286</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>382</XCoord>
+			<XCoord>384</XCoord>
 			<YCoord>239</YCoord>
 		</block>
 		<block Type ="NonFlat">
-			<XCoord>382</XCoord>
+			<XCoord>384 </XCoord>
 			<YCoord>192</YCoord>
 		</block>
 	</Blocks>
