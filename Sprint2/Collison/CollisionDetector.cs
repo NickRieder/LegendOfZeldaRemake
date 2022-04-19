@@ -23,17 +23,12 @@ namespace Sprint2
         private GameObjectManager gom;
         private ConcurrentBag<ISprite> allObjectList;
         private ConcurrentBag<ISprite> movableObjectList;
-        private CollisionHandler collisionHandler;
-        private CollisionHandlerEnemy collisionHandlerEnemy;
+        private CollisionResolver collisionHandler;
 
         public CollisionDetector(GameObjectManager gom)
         {
             this.gom = gom;
-            /*allObjectList = gom.allObjectList;
-            movableObjectList = gom.movableObjectList;*/
-
-            collisionHandler = new CollisionHandler(gom);
-            collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
+            collisionHandler = new CollisionResolver(gom);
         }
 
         private int GetCollisionSide(ISprite movableSpite, ISprite otherSprite)
@@ -82,8 +77,8 @@ namespace Sprint2
 
                         if (collisionSideOfMainSprite != (int)COLLISION_SIDE.NONE)
                         {
-                            collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfMainSprite);
-                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfOtherSprite);
+                            collisionHandler.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfMainSprite);
+                            collisionHandler.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfOtherSprite);
                         }
                     }
                 }
