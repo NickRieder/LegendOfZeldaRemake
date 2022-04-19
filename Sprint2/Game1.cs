@@ -32,6 +32,7 @@ namespace Sprint2
         public GameObjectManager gom;
         private LevelLoader levelLoader;
         private CollisionDetector collisionDetector;
+        private RoomGenerator roomGenerator;
 
         private HUD hud;
         public Camera camera;
@@ -69,8 +70,11 @@ namespace Sprint2
             controllerList = new ArrayList();
 
             keyboardController = new KeyboardController();
+
             gom = new GameObjectManager(this);
             levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
+            roomGenerator = new RoomGenerator();
+
 
             controllerList.Add(gom.mouseController);
             controllerList.Add(keyboardController);
@@ -103,6 +107,7 @@ namespace Sprint2
             gom.SetSoundContent(soundFactory);
 
             levelLoader.LoadLevel("Level 0/L0R1", "Top");
+            roomGenerator.GenerateRandomRoom(25);
 
             keyboardController.Initialize(gom, this, soundFactory, spriteFactory, spriteBatch);
 
@@ -118,6 +123,7 @@ namespace Sprint2
             }
 
             gom.Update(gameTime);
+
             collisionDetector.Update(gameTime);
 
             base.Update(gameTime);

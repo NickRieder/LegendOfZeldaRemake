@@ -33,6 +33,7 @@ namespace Sprint2
 					sprite = spriteFactory.getLinkUsingItemUp();
 					break;
 			}
+			link.sprite = sprite;
 			totalFrames = sprite.GetTotalFrames();
 			currFrame = 0;
 		}
@@ -44,11 +45,11 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			sprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 			if (currFrame == totalFrames * frameMultiplier)
             {
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
@@ -64,6 +65,6 @@ namespace Sprint2
 		public void Move() { }
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
-		public void TakeDamage() { }
+		public void TakeDamage(int collisionSide) { }
 	}
 }

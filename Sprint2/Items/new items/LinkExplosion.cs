@@ -26,7 +26,8 @@ namespace Sprint2
         {
             Vector2 newPos = pos;
 
-            switch (projectileDirection)
+            // if you want bomb to travel a long distance
+            /*switch (projectileDirection)
             {
                 case "down":
                     newPos.Y += (int)speed;
@@ -46,7 +47,7 @@ namespace Sprint2
                     break;
                 default:
                     break;
-            }
+            }*/
             base.Update(gameTime);
             if (link.isUsingItem)
             {
@@ -54,12 +55,12 @@ namespace Sprint2
                 startTimeUsing = gameTime.TotalGameTime;
                 link.isUsingItem = false;
             }
-            if(startTimeUsing + TimeSpan.FromMilliseconds(500) < gameTime.TotalGameTime)
+            if(startTimeUsing + TimeSpan.FromMilliseconds(1200) < gameTime.TotalGameTime)
             {
                 sprite = spriteFactory.getExplosionSprite();
                 
             }
-            if (startTimeUsing + TimeSpan.FromMilliseconds(750) < gameTime.TotalGameTime)
+            if (startTimeUsing + TimeSpan.FromMilliseconds(1500) < gameTime.TotalGameTime)
             {
                 link.explosion.Play();
                 // System.Diagnostics.Debug.WriteLine("");

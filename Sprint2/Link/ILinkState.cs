@@ -12,7 +12,7 @@ namespace Sprint2
         void StandingLeft();
         void Move();
         void UseWeapon();
-        void TakeDamage();
+        void TakeDamage(int collisionSide);
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gameTime);
     }

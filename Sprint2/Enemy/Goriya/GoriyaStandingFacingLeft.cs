@@ -23,7 +23,6 @@ namespace Sprint2
 
         public GoriyaStandingFacingLeft(Enemies goriya)
         {
-            System.Diagnostics.Debug.WriteLine("DEBUG: In FacingLeftState");
             randomNumberGenerator = new Random();
             totalSecondsPassed = 0;
 

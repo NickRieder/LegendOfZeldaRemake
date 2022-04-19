@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Sprint2
@@ -35,6 +36,8 @@ namespace Sprint2
 		public SoundEffect bombThrow;
 		public GameObjectManager gom;
 		public bool isUsingItem;
+		public bool canTakeDamage;
+
 		public Link(Game1 game, GameObjectManager gom)
 		{
 			//item = new NullItem();
@@ -42,10 +45,12 @@ namespace Sprint2
 			this.gom = gom;
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
+
 			rupees = keys = bombs = 0;
+
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
-			
+			canTakeDamage = true;
 		}
 
 		public void SetSoundContent(SoundFactory soundFactory)
@@ -116,9 +121,9 @@ namespace Sprint2
 			currState = new UsingItem(this);
 			item.Use();
 		}
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
         {
-			currState.TakeDamage();
+			currState.TakeDamage(collisionSide);
 			if (health == 0)
             {
 				linkDeadSound.Play();
@@ -142,19 +147,26 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
-			sprite.Update(gameTime);
+			//sprite.Update(gameTime);
 			//item.Update(gameTime);
 		}
 
-		public Link GetConcreteObject()
-		{
-			return this;
-		}
+        /*public Link GetLinkObject()
+        {
+            return this;
+        }*/
 
-		object ISprite.GetConcreteObject()
-		{
-			return this;
-		}
-	}
+        /*public T GetObject<T>() where T : ISprite
+        {
+			T result = this;
+            return this;
+        }*/
+
+
+        object ISprite.GetConcreteObject()
+        {
+            return this;
+        }
+    }
 }
 

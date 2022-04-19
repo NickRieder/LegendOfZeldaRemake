@@ -59,7 +59,6 @@ namespace Sprint2
 
             if (startTimeUsing + TimeSpan.FromMilliseconds(1500) < gameTime.TotalGameTime)
             {
-                System.Diagnostics.Debug.WriteLine("DEBUG: (LinkArrow/Update) removing projectile...");
                 link.isUsingItem = false;
                 base.RemoveProjectile(this);
                 

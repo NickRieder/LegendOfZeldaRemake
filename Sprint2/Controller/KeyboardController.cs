@@ -106,11 +106,6 @@ namespace Sprint2
             RegisterCommandPause(Keys.D, new SetNextItem(gom.menu));
             RegisterCommandPause(Keys.Z, new SetLinkItem(gom.menu));
 
-            RegisterCommandTap(Keys.NumPad6, new SetCameraMovingRight(gom.camera));
-            RegisterCommandTap(Keys.NumPad4, new SetCameraMovingLeft(gom.camera));
-            RegisterCommandTap(Keys.NumPad8, new SetCameraMovingUp(gom.camera));
-            RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(gom.camera));
-
             RegisterCommandTap(Keys.M, new SetWinningState(gom.camera, spriteFactory, spriteBatch));
           
         }
