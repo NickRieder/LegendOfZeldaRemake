@@ -79,6 +79,7 @@ namespace Sprint2
 
         public void SetSoundContent(SoundFactory soundFactory)
         {
+            
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSoundContent(soundFactory);

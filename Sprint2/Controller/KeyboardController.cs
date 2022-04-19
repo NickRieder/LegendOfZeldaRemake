@@ -107,6 +107,7 @@ namespace Sprint2
             RegisterCommandPause(Keys.Z, new SetLinkItem(gom.menu));
 
             RegisterCommandTap(Keys.M, new SetWinningState(gom.camera, spriteFactory, spriteBatch));
+          
         }
 
         public void Update(GameTime gameTime)
