@@ -43,12 +43,12 @@ namespace Sprint2
 
 			switch (projectileType)
 			{
-				case "Boomerang":
+				case "boomerang":
 					CenterProjectilePosition(spriteFactory.getBoomerangSprite());
 					sprite = spriteFactory.getBoomerangSprite();
 					
 					break;
-				case "Arrow":
+				case "arrow":
 					switch (link.direction)
 					{
 						case "down":
@@ -71,7 +71,7 @@ namespace Sprint2
 							break;
 					}
 					break;
-				case "Explosion":
+				case "bomb":
 					CenterProjectilePosition(spriteFactory.getBombSprite());
 					sprite = spriteFactory.getBombSprite();
 
