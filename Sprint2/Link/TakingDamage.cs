@@ -63,7 +63,7 @@ namespace Sprint2
 				link.canTakeDamage = true;
 				damagedTimer = 0;
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
-				//System.Diagnostics.Debug.WriteLine("DEBUG1: /TakingDamage/ canTakeDamage reset back to TRUE ");
+				//System.Diagnostics.Debug.WriteLine("DEBUG: /TakingDamage/ canTakeDamage reset back to TRUE ");
 			}
 			else
             {

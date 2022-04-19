@@ -9,7 +9,7 @@ using System.Collections.Concurrent;
 
 namespace Sprint2
 {
-    public class CollisionDetector : ICollision
+    public class CollisionDetector
     {
         public enum COLLISION_SIDE : int
         {

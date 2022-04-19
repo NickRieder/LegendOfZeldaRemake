@@ -13,17 +13,10 @@ namespace Sprint2.Collison
         private HashSet<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>> keySet;
         private GameObjectManager gom;
         public Game1 myGame;
-        private Link link;
-        Type linkType;
-        Type doorType;
-        Type itemType;
-        Type enemyType;
-        Type enemyProjectileType;
 
         public CollisionResolver(GameObjectManager gom)
         {
             this.gom = gom;
-            this.link = gom.link;
             collisionDictionary = new Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, ICollisionCommand>();
             BuildDictionary();
             keySet = new HashSet<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> >(collisionDictionary.Keys);
@@ -31,14 +24,6 @@ namespace Sprint2.Collison
         
         private void BuildDictionary()
         {
-            linkType = typeof(Link);
-            doorType = typeof(Door); // type is Sprint2.Door
-            itemType = typeof(Item);
-            enemyType = typeof(Enemies);
-
-            enemyProjectileType = typeof(EnemyDamagingProjectile);
-            //dragonFireballType = typeof(DragonFireball);
-
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 // Link colliding with Door objects
