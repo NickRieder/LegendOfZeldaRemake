@@ -71,47 +71,10 @@ namespace Sprint2
 
         public void Update(GameTime gametime)
         {
-            /*foreach (ISprite movableSprite in gom.movableObjectList)
+            foreach (ISprite movableSprite in gom.getListOfMovableObjects())
             {
-                if (movableSprite.GetType() == typeof(Enemies))
+                foreach (ISprite otherSprite in gom.getListOfAllObjects())
                 {
-                    Enemies tempEnemy = (Enemies)movableSprite;
-                    if (movableSprite.GetSpriteRectangle().Intersects(gom.link.GetSpriteRectangle()))
-                    {
-                        *//*System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionDetector/ canDamage = " + tempEnemy.canDamage);
-                        System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionDetector/ canTakeDamage = " + gom.link.canTakeDamage);*//*
-                        if (gom.link.canTakeDamage && tempEnemy.canDamage)
-                        {
-                            //tempEnemy.canDamage = false;
-                            collisionHandlerEnemy.HandleCollision(gom.link, movableSprite, CollisionDetector.COLLISION_SIDE.BOTTOM);
-                        }
-
-                    }
-                }
-
-            }*/
-
-            //System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionDetector/ counter = " + counter);
-
-            foreach (ISprite movableSprite in gom.movableObjectList)
-            {
-                foreach (ISprite otherSprite in gom.allObjectList)
-                {
-
-                    if (movableSprite.GetType() == typeof(Link) && otherSprite.GetType() == typeof(Enemies))
-                    {
-                        Link tempLink = (Link)movableSprite;
-
-                        int collisionSideOfMainSprite = GetCollisionSide(movableSprite, otherSprite);
-                        int collisionSideOfOtherSprite = GetCollisionSide(otherSprite, movableSprite);
-
-                        if (collisionSideOfMainSprite != (int)COLLISION_SIDE.NONE && tempLink.canTakeDamage)
-                        {
-                            collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfMainSprite);
-                        }
-
-                    }
-
                     if (!(movableSprite == otherSprite))
                     {
                         int collisionSideOfMainSprite = GetCollisionSide(movableSprite, otherSprite);
@@ -120,6 +83,7 @@ namespace Sprint2
                         if (collisionSideOfMainSprite != (int)COLLISION_SIDE.NONE)
                         {
                             collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfMainSprite);
+                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfOtherSprite);
                         }
                     }
                 }
