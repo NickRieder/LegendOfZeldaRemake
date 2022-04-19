@@ -56,12 +56,17 @@ namespace Sprint2
                         gom.AddToMovableObjectList(currItem);
                         gom.AddToDrawableObjectList(currItem);
                         link.arrowSound.Play();
+                        
                         break;
                     case "Explosion":
-                        currItem = new LinkExplosion(link, "Explosion");
-                        gom.AddToMovableObjectList(currItem);
-                        gom.AddToDrawableObjectList(currItem);
-                        link.bombThrow.Play();
+                        if(link.bombs > 0)
+                        { 
+                            currItem = new LinkExplosion(link, "Explosion");
+                            gom.AddToMovableObjectList(currItem);
+                            gom.AddToDrawableObjectList(currItem);
+                            link.bombThrow.Play();
+                            link.bombs--;
+                        }
                         break;
                 }
 
