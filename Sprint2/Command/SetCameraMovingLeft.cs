@@ -7,15 +7,17 @@ namespace Sprint2
     class SetCameraMovingLeft : ICommand
     {
         private Camera camera;
+        private Door door;
 
-        public SetCameraMovingLeft(Camera camera)
+        public SetCameraMovingLeft(Camera camera, Door door)
         {
             this.camera = camera;
+            this.door = door;
         }
 
         public void Execute()
         {
-            camera.AnimateRoomTransition("Left");
+            camera.AnimateRoomTransition("Left", door);
         }
     }
 }

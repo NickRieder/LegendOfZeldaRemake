@@ -283,8 +283,8 @@ namespace Sprint2
         // link starting positions
         public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
         public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
-        public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
-        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
+        public static Vector2 LINK_TOP_POS = new Vector2(360, 110);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 370);
 
         // HUD
         public static Rectangle HUD_SPRITE = new Rectangle(258, 26, 255, 34);

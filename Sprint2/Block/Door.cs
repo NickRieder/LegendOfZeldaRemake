@@ -18,7 +18,7 @@ namespace Sprint2
 
         public Sprite sprite;
         public string doorType;
-
+        public bool canContinue;
 
         private const int initialDoorPosX = 100;
         private const int initialDoorPosY = 500;
@@ -44,39 +44,51 @@ namespace Sprint2
             {
                 case "TopOpen":
                     sprite = spriteFactory.getTopDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "BotOpen":
                     sprite = spriteFactory.getBottomDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "LeftOpen":
                     sprite = spriteFactory.getLeftDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "RightOpen":
                     sprite = spriteFactory.getRightDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "TopWall":
                     sprite = spriteFactory.getTopDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "BotWall":
                     sprite = spriteFactory.getBottomDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "LeftWall":
                     sprite = spriteFactory.getLeftDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "RightWall":
                     sprite = spriteFactory.getRightDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "TopLock":
                     sprite = spriteFactory.getTopDoorLockedSprite();
+                    canContinue = false;
                     break;
                 case "BotLock":
                     sprite = spriteFactory.getBottomDoorLockedSprite();
+                    canContinue = false;
                     break;
                 case "LeftLock":
                     sprite = spriteFactory.getLeftDoorLockedSprite();
+                    canContinue = false;
                     break;
                 case "RightLock":
                     sprite = spriteFactory.getRightDoorLockedSprite();
+                    canContinue = false;
                     break;
                 default:
                     sprite = spriteFactory.getTopDoorClosedSprite();
@@ -106,7 +118,11 @@ namespace Sprint2
 
         public void LoadNextLevel()
         {
-            levelLoader.LoadLevel(nextLevel, doorType);
+            if (canContinue)
+            {
+                levelLoader.LoadLevel(nextLevel, doorType);
+            }
+            
         }
 
         public void LoadNextRoom()

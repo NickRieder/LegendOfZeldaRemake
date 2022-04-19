@@ -36,7 +36,7 @@ namespace Sprint2
             this.sb = spriteBatch;
         }
 
-        public void AnimateRoomTransition(string direction)
+        public void AnimateRoomTransition(string direction, Door door)
         {
             throw new NotImplementedException();
         }
