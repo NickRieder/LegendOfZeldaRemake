@@ -68,10 +68,6 @@ namespace Sprint2
                 startUsingItem = false;
 
             }
-            if (startTimeUsing + TimeSpan.FromMilliseconds(2500) < gameTime.TotalGameTime)
-            {
-                base.RemoveProjectile(this);
-            }
 
             base.Update(gameTime);
         }

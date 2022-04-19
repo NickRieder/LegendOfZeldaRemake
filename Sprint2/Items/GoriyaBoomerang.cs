@@ -9,8 +9,7 @@ namespace Sprint2
 {
     public class GoriyaBoomerang : EnemyDamagingProjectile
     {
-        private int counter;
-        private double velocity;
+        public double velocity;
 
         private static int velocityUpdateMod = 10;
         private static int initialVelocity = 7;
@@ -18,7 +17,6 @@ namespace Sprint2
 
 		public GoriyaBoomerang(Enemies enemy, string projectileType) : base(enemy, projectileType)
 		{
-            counter = 0;
             velocity = initialVelocity;
             this.gom = enemy.gom;
         }
@@ -55,12 +53,11 @@ namespace Sprint2
                 base.Update(gameTime);
                 velocity -= velocityUpdate;
             }
-            if (sprite.getDestinationRectangle().Intersects(enemy.GetSpriteRectangle()))   // 
+            if (sprite.getDestinationRectangle().Intersects(enemy.GetSpriteRectangle()))
             {
                 base.RemoveProjectile(this);
                 enemy.freeze = false;
             }
-            counter++;
         }
 
     }
