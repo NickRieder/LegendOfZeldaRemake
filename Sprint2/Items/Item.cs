@@ -67,6 +67,18 @@ namespace Sprint2
 				case "key":
 					sprite = spriteFactory.getKeySprite();
 					break;
+
+				case "tri1":
+					sprite = spriteFactory.getTriforceSprite1();
+					break;
+				case "tri2":
+					sprite = spriteFactory.getTriforceSprite2();
+					break;
+				case "tri3":
+					sprite = spriteFactory.getTriforceSprite3();
+					break;
+				default:
+
 				case "bow":
                     sprite = spriteFactory.getBowSprite();
 					break;
@@ -77,6 +89,7 @@ namespace Sprint2
 					sprite = spriteFactory.getRupeeSprite();
 					break;
                 default:
+
 					break;
 			}
 		}

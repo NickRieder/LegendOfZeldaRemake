@@ -4,70 +4,7 @@
 		<sprite>room1</sprite>
 	</background>
 	
-	<Blocks>
-		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>192</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>192</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>192</XCoord>
-			<YCoord>338</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>432</XCoord>
-			<YCoord>338</YCoord>
-		</block>
-		<block Type ="NonFlat">
-			<XCoord>576</XCoord>
-			<YCoord>242</YCoord>
-		</block>
-	</Blocks>
-
-	<Walls>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>22</YCoord>
-			<Width>300</Width>
-			<Height>20</Height>
-		</wall>
-		<wall>
-			<XCoord>0</XCoord>
-			<YCoord>435</YCoord>
-			<Width>300</Width>
-			<Height>5</Height>
-		</wall>
-		<wall>
-			<XCoord>25</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-		<wall>
-			<XCoord>680</XCoord>
-			<YCoord>0</YCoord>
-			<Width>20</Width>
-			<Height>300</Height>
-		</wall>
-	</Walls>
 	
-	<Enemies>
-		<enemy Type="Bluebat">
-			<XCoord>150</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-		<enemy Type="Snake">
-			<XCoord>400</XCoord>
-			<YCoord>200</YCoord>
-		</enemy>
-		<enemy Type="Dragon">
-			<XCoord>500</XCoord>
-			<YCoord>150</YCoord>
-		</enemy>
-	</Enemies>
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
