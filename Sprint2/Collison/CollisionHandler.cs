@@ -28,13 +28,11 @@ namespace Sprint2
         }
 
         public void Collide(ISprite mainSpriteObject, ISprite otherSpriteObject, int collisionSideEnum)  // Check the collisionSideEnum parameter against the CollisionDetection.COLLISION_SIDE enums
-        {
-            //ConcurrentBag<ISprite> tempConcurrentBag = gom.movableObjectList;
-            var tempList = gom.movableObjectList.ToList();
+        {   
             if (gom.movableObjectList.Contains(mainSpriteObject))
             {
                 CheckCollisionWithBlock(mainSpriteObject, otherSpriteObject, collisionSideEnum);
-                CheckCollisionWithDoor(mainSpriteObject, otherSpriteObject, collisionSideEnum);
+                //CheckCollisionWithDoor(mainSpriteObject, otherSpriteObject, collisionSideEnum);
             }
         }
 

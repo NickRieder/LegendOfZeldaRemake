@@ -36,7 +36,7 @@ namespace Sprint2
 			damagedTime = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 			isDamaged = true;
-			link.canTakeDamage = false;
+			
 		}
 
 
@@ -50,6 +50,7 @@ namespace Sprint2
 			{
 				startDamagedTime = gameTime.TotalGameTime;
 				isDamaged = false;
+				link.canTakeDamage = false;
 			}
 			if (link.health == 0)
             {

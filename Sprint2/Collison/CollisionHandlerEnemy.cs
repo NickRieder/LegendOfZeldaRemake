@@ -9,7 +9,7 @@ namespace Sprint2.Collison
 {
     public class CollisionHandlerEnemy
     {
-        private Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, Type> collisionDictionary;
+        private Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, ICollisionCommand> collisionDictionary;
         private HashSet<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>> keySet;
         private GameObjectManager gom;
         public Game1 myGame;
@@ -28,7 +28,7 @@ namespace Sprint2.Collison
         {
             this.gom = gom;
             this.link = gom.link;
-            collisionDictionary = new Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, Type>();
+            collisionDictionary = new Dictionary<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>, ICollisionCommand>();
             BuildDictionary();
             keySet = new HashSet<Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> >(collisionDictionary.Keys);
         }
@@ -46,32 +46,37 @@ namespace Sprint2.Collison
             foreach (CollisionDetector.COLLISION_SIDE side in Enum.GetValues(typeof(CollisionDetector.COLLISION_SIDE)))
             {
                 //System.Diagnostics.Debug.WriteLine($" {side}");
-                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, enemyType, side), typeof(SetTakeDamage));
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Door), side), new LinkCollidesWithDoor());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Enemies), side), new LinkCollidesWithEnemy());
+                //collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Link), side), new DragonFireballCollidesWithLink());
+
+                /*collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, enemyType, side), typeof(SetTakeDamage));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(enemyType, linkType, side), typeof(SetTakeDamage));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Link), side), typeof(SetTakeDamage));
-                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Door), side), typeof(SetNextRoom));
-                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Item), side), typeof(SetLinkUseItem));
+
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, typeof(Item), side), typeof(SetLinkUseItem));*/
             }
         }
 
-        public void HandleCollision(ISprite subject, ISprite target, COLLISION_SIDE side)
+        public void HandleCollision(ISprite subject, ISprite target, CollisionDetector.COLLISION_SIDE collisionSideOfMainObject)
         {
             Type subjectType = subject.GetType();
             Type targetType = target.GetType();
-            System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
-            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ targetType = " + targetType);
+            /*System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
+            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ targetType = " + targetType);*/
 
-            Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> key = new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(subjectType, targetType, side);
+            Tuple<Type, Type, CollisionDetector.COLLISION_SIDE> key = new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(subjectType, targetType, collisionSideOfMainObject);
 
             if (keySet.Contains(key))
             {
-                //System.Diagnostics.Debug.WriteLine("DEBUG: /CollisionHandlerEnemy/ touching projectile ");
-                //collisionDictionary.
+                collisionDictionary[key].SetCollisionObjects(subject, target, collisionSideOfMainObject, gom);
+                collisionDictionary[key].Invoke();
 
-                //System.Diagnostics.Debug.WriteLine($" {key}");
+                System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
 
                 if (subjectType == typeof(DragonFireball) && targetType == typeof(Link))
                 {
+                    System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
                     Link tempLink = (Link)target;
                     EnemyDamagingProjectile tempProjectile = (DragonFireball)subject;
                     tempLink.TakeDamage();
@@ -79,65 +84,6 @@ namespace Sprint2.Collison
 
                 }
 
-                if (subjectType == typeof(Link) && targetType == typeof(Enemies))
-                {
-                    Link tempLink = (Link)subject;
-                    Enemies tempEnemy = (Enemies)target;
-
-                    if (tempLink.canTakeDamage)
-                    {
-                        tempLink.TakeDamage();
-                    }
-
-                }
-
-                /*if (subjectType == typeof(Enemies) && targetType == typeof(Link))
-                {
-                    Link tempLink = (Link)target;
-                    tempLink.TakeDamage();
-                }*/
-
-                if (subjectType == typeof(Link) && targetType == typeof(Door)) // door collision - doesnt work yet - will have to refactor
-                {
-                    Link tempLink = (Link)subject;
-                    Door tempDoor = (Door)target;
-                    string doorType = tempDoor.doorType;
-                    ICommand scrollCommand;
-                    
-                    if (doorType.Contains("Lock") && tempLink.keys > 0)
-                    {
-                        tempDoor.canContinue = true;
-                    }
-
-                    if (tempDoor.canContinue)
-                    {
-                        if (doorType.Contains("Top"))
-                        {
-                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                            scrollCommand = new SetCameraMovingUp(gom.camera, tempDoor);
-                            scrollCommand.Execute();
-                        }
-                        else if (doorType.Contains("Bot"))
-                        {
-                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                            scrollCommand = new SetCameraMovingDown(gom.camera, tempDoor);
-                            scrollCommand.Execute();
-                        }
-                        else if (doorType.Contains("Left"))
-                        {
-                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                            scrollCommand = new SetCameraMovingLeft(gom.camera, tempDoor);
-                            scrollCommand.Execute();
-                        }
-                        else if (doorType.Contains("Right"))
-                        {
-                            System.Diagnostics.Debug.WriteLine("DEBUG2: /CollisionHandlerEnemy/ SCROLL CAMERA");
-                            scrollCommand = new SetCameraMovingRight(gom.camera, tempDoor);
-                            scrollCommand.Execute();
-                        }
-                    }           
-
-                }
             }
         }
     }

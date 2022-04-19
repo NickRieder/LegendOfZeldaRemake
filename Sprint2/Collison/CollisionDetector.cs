@@ -78,14 +78,16 @@ namespace Sprint2
                 {
                     if (!(movableSprite == otherSprite))
                     {
-                        int collisionSide = GetCollisionSide(movableSprite, otherSprite);
+                        int collisionSideOfMainSprite = GetCollisionSide(movableSprite, otherSprite);
+                        int collisionSideOfOtherSprite = GetCollisionSide(otherSprite, movableSprite);
 
-                        if (collisionSide != (int)COLLISION_SIDE.NONE)
+                        if (collisionSideOfMainSprite != (int)COLLISION_SIDE.NONE)
                         {
                             //System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
-                            collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
-                            //collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
-                            collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
+                            collisionHandler.Collide(movableSprite, otherSprite, collisionSideOfMainSprite);
+                            collisionHandler.Collide(otherSprite, movableSprite, collisionSideOfOtherSprite);
+
+                            collisionHandlerEnemy.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfMainSprite);
                         }
 
 
