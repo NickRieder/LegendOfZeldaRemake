@@ -48,8 +48,18 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            destinationRectangle = new Rectangle((int)location.X, (int)location.Y, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
-
+            if (frameList[0] == new Rectangle(18, 97, 16, 28)) // LINK_USESWORD_UP
+            {
+                destinationRectangle = new Rectangle((int)location.X, (int)location.Y - 28, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            }
+            else if (frameList[0] == new Rectangle(326, 78, 27, 16)) // LINK_USESWORD_MIRROR_LEFT
+            {
+                destinationRectangle = new Rectangle((int)location.X - 27, (int)location.Y, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            }
+            else
+            {
+                destinationRectangle = new Rectangle((int)location.X, (int)location.Y, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            }
             spriteBatch.Draw(spriteSheet, destinationRectangle, frameList[currFrame], Color.White);
         }
 
