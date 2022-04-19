@@ -107,7 +107,7 @@ namespace Sprint2
             gom.SetSoundContent(soundFactory);
 
             levelLoader.LoadLevel("Level 0/L0R1", "Top");
-            //roomGenerator.GenerateRandomRoom(10);
+            roomGenerator.GenerateRandomRoom(25);
 
             keyboardController.Initialize(gom, this, soundFactory, spriteFactory, spriteBatch);
 
