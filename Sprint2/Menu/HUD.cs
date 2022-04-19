@@ -71,7 +71,7 @@ namespace Sprint2
             itemSprite.Draw(spriteBatch, new Vector2(HUDPos.X + 385, HUDPos.Y + 40));
 
             // numebrs of items link has
-            spriteBatch.DrawString(font, "X" + link.rupies.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y), Color.White);
+            spriteBatch.DrawString(font, "X" + link.rupees.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y), Color.White);
             spriteBatch.DrawString(font, "X" + link.keys.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + keysStringOffsetY), Color.White);
             spriteBatch.DrawString(font, "X" + link.bombs.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y + bombsStringOffsetY), Color.White);
 

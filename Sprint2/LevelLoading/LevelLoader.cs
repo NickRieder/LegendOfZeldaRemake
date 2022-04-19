@@ -75,8 +75,9 @@ namespace Sprint2
 
         public void LoadItemObject(String itemName, Vector2 pos)
         {
-            Item item = new Item(itemName, pos);
+            Item item = new Item(itemName, pos, gom);
             item.SetSpriteContent(spriteFactory);
+            item.SetSoundContent(soundFactory);
 
             gom.AddToAllObjectList(item);
             gom.AddToDrawableObjectList(item);

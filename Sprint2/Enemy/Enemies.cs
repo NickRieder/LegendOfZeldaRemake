@@ -152,7 +152,10 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			currState.Draw(spriteBatch);
+			if (health != 0 || bossHealth !=0)
+            {
+				currState.Draw(spriteBatch);
+			}
 		}
 		public void Update(GameTime gameTime)
 		{
