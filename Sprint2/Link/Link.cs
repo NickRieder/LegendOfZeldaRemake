@@ -91,6 +91,10 @@ namespace Sprint2
         {
 			return sprite.getDestinationRectangle();
         }
+		public Rectangle getCurrentFrameRectangle()
+        {
+			return sprite.getCurrentFrameRectangle();
+        }
 
 		public void StandingUp()
         {
