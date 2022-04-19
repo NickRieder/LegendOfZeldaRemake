@@ -48,7 +48,7 @@ namespace Sprint2.Collison
                 //System.Diagnostics.Debug.WriteLine($" {side}");
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Door), side), new LinkCollidesWithDoor());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Enemies), side), new LinkCollidesWithEnemy());
-                //collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Link), side), new DragonFireballCollidesWithLink());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Link), side), new DragonFireballCollidesWithLink());
 
                 /*collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(linkType, enemyType, side), typeof(SetTakeDamage));
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(enemyType, linkType, side), typeof(SetTakeDamage));
@@ -72,18 +72,7 @@ namespace Sprint2.Collison
                 collisionDictionary[key].SetCollisionObjects(subject, target, collisionSideOfMainObject, gom);
                 collisionDictionary[key].Invoke();
 
-                System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
-
-                if (subjectType == typeof(DragonFireball) && targetType == typeof(Link))
-                {
-                    System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
-                    Link tempLink = (Link)target;
-                    EnemyDamagingProjectile tempProjectile = (DragonFireball)subject;
-                    tempLink.TakeDamage();
-                    tempProjectile.RemoveProjectile(tempProjectile);
-
-                }
-
+                //System.Diagnostics.Debug.WriteLine("DEBUG1: /CollisionHandlerEnemy/ subjectType = " + subjectType);
             }
         }
     }
