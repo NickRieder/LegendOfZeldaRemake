@@ -112,6 +112,7 @@ namespace Sprint2
             RegisterCommandTap(Keys.NumPad5, new SetCameraMovingDown(gom.camera));
 
             RegisterCommandTap(Keys.M, new SetWinningState(gom.camera, spriteFactory, spriteBatch));
+          
         }
 
         public void Update(GameTime gameTime)

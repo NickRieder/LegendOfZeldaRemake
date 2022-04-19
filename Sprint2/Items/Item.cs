@@ -30,6 +30,7 @@ namespace Sprint2
 		private SoundEffect bowPickup;
 		private SoundEffect heartPickup;
 		private SoundEffect boomerangPickup;
+		private SoundEffect triforcePickup;
 
 
 		public Item(string itemName, Vector2 pos, GameObjectManager gom)
@@ -68,6 +69,16 @@ namespace Sprint2
 					sprite = spriteFactory.getKeySprite();
 					break;
 
+				case "bow":
+					sprite = spriteFactory.getBowSprite();
+					break;
+				case "heart":
+					sprite = spriteFactory.getHeartSprite();
+					break;
+				case "rupee":
+					sprite = spriteFactory.getRupeeSprite();
+					break;
+
 				case "tri1":
 					sprite = spriteFactory.getTriforceSprite1();
 					break;
@@ -77,17 +88,8 @@ namespace Sprint2
 				case "tri3":
 					sprite = spriteFactory.getTriforceSprite3();
 					break;
-				default:
 
-				case "bow":
-                    sprite = spriteFactory.getBowSprite();
-					break;
-				case "heart":
-					sprite = spriteFactory.getHeartSprite();
-					break;
-				case "rupee":
-					sprite = spriteFactory.getRupeeSprite();
-					break;
+				
                 default:
 
 					break;
@@ -103,6 +105,7 @@ namespace Sprint2
 			bombPickup = soundFactory.getItemSound();
 			bowPickup = soundFactory.getItemSound();
 			boomerangPickup = soundFactory.getItemSound();
+			triforcePickup = soundFactory.newDiscoveredItemSound();
 
 
 		}
@@ -142,6 +145,15 @@ namespace Sprint2
 					link.rupees++;
 					rupeePickup.Play();
 					break;
+				case "tri1":
+					triforcePickup.Play();
+					break;
+				case "tri2":
+					triforcePickup.Play();
+					break;
+				case "tri3":
+					triforcePickup.Play();
+					break;
 
 				default:
 					break;
@@ -151,10 +163,7 @@ namespace Sprint2
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			if (!menu.itemList.Contains(itemName)){
 				sprite.Draw(spriteBatch, pos);
-			}
-			
 		}
 
 		public void Update(GameTime gameTime)

@@ -160,6 +160,11 @@ namespace Sprint2
 		public void Update(GameTime gameTime)
 		{
 			currState.Update(gameTime);
+			if (bossHealth == 0 || health == 0)
+            {
+				gom.RemoveFromEveryCollection(this);
+            }
+
 		}
 
 		public Enemies GetConcreteObject()
