@@ -164,10 +164,21 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			currState.Draw(spriteBatch);
+			if (health != 0 || bossHealth !=0)
+            {
+				currState.Draw(spriteBatch);
+			}
 		}
 		public void Update(GameTime gameTime)
 		{
+
+			currState.Update(gameTime);
+			if (bossHealth == 0 || health == 0)
+            {
+				gom.RemoveFromEveryCollection(this);
+            }
+
+
 			if (damageCooldownTimer >= damageCooldown)
             {
 				canDamage = true;
@@ -184,6 +195,7 @@ namespace Sprint2
             //System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ timer = " + damageTimer);
             //System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage = " + canDamage);
             currState.Update(gameTime);
+
 		}
 
 		public Enemies GetConcreteObject()

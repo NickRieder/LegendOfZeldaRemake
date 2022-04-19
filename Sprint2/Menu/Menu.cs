@@ -12,7 +12,7 @@ namespace Sprint2
         private GameObjectManager gom;
         private SpriteFactory spriteFactory;
         private Link link;
-        private List<string> itemList;
+        public List<string> itemList;
         private int index;
         private Sprite menuSprite;
         private Sprite selectorSprite;

@@ -70,11 +70,11 @@ namespace Sprint2
             controllerList = new ArrayList();
 
             keyboardController = new KeyboardController();
-            gom = new GameObjectManager(this);
-            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
+
             gom = new GameObjectManager(this);
             levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
             roomGenerator = new RoomGenerator();
+
 
             controllerList.Add(gom.mouseController);
             controllerList.Add(keyboardController);

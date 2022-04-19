@@ -97,7 +97,7 @@ namespace Sprint2
 
         public void TakeDamage()
         {
-
+            boss.bossHealth--;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -107,6 +107,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
+            
             Attack();
             boss.sprite.Update(gameTime);
         }

@@ -15,7 +15,7 @@ namespace Sprint2
 		public SoundFactory soundFactory;
 		public Game1 game;
 		public Sprite sprite;
-		public int health, maxHealth, rupies, keys, bombs;
+		public int health, maxHealth, rupees, keys, bombs;
 		public LinkItem item;
 		public string direction;
 		public List<IItem> itemList;
@@ -45,7 +45,9 @@ namespace Sprint2
 			this.gom = gom;
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
-			rupies = keys = bombs = 1;	// Link should start with 0. Currently 1 for debugging purposes.
+
+			rupees = keys = bombs = 0;
+
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
 			canTakeDamage = true;

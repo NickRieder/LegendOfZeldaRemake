@@ -74,6 +74,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
+            
             elapsedTime = gameTime.ElapsedGameTime;
             secondsPassed = elapsedTime.TotalSeconds;
             totalSecondsPassed = totalSecondsPassed + secondsPassed;
