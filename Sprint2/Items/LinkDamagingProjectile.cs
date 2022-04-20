@@ -20,10 +20,13 @@ namespace Sprint2
 		public string projectileDirection;
 		//private string linkDirection;
 		Vector2 itemPos;
-		
+
+		public bool canDealDamage;
+
 
 		public LinkDamagingProjectile(Link link, string projectileType)
 		{
+			canDealDamage = true;
 			//System.Diagnostics.Debug.WriteLine(projectileType);
 			this.spriteFactory = link.spriteFactory;
 			this.gom = link.gom;
@@ -86,7 +89,7 @@ namespace Sprint2
 		private void CenterProjectilePosition(Sprite projectileSprite)
 		{
 			Vector2 centeredPos = linkPos;
-			Rectangle enemyRectangle = link.GetSpriteRectangle();		// enemyRectangle IS 0,0,0,0 RECTANGLE FOR SOME REASON
+			Rectangle enemyRectangle = link.getCurrentFrameRectangle();
 			Rectangle projectileRectangle = projectileSprite.getCurrentFrameRectangle();
 			int divisorVal = 2;
 			int eWidth = enemyRectangle.Width;

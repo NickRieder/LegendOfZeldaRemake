@@ -16,7 +16,7 @@ namespace Sprint2.Command
 
         public void Execute()
         {
-            enemy.TakeDamage();
+            enemy.TakeDamage(1);
         }
     }
 }

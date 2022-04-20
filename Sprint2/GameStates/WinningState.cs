@@ -73,14 +73,14 @@ namespace Sprint2.GameStates
 
         public void Draw(SpriteBatch sb)
         {
-            
+            /*
             sb.DrawString(font, "Thanks Link, You're", new Vector2(50, 30), Color.Red);
             sb.DrawString(font, "The Hero of Hyrule.", new Vector2(50, 80), Color.Red);
             sb.DrawString(font, "Finally", new Vector2(50, 130), Color.Red);
             sb.DrawString(font, "Peace returns to Hyrule.", new Vector2(50, 180), Color.Red);
             sb.DrawString(font, "This ends the story.", new Vector2(50, 205), Color.Blue);
             sb.DrawString(font, "Another story awaits! Press the Start or Enter button.", new Vector2(50, 230), Color.Red);
-            
+            */
         }
     }
 }

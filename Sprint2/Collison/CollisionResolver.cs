@@ -29,7 +29,7 @@ namespace Sprint2.Collison
                 // Link colliding with Door objects
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Door), side), new LinkCollidesWithDoor());
 
-                // Link colliding with Enemy objects
+                // Link colliding with Enemies objects
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Enemies), side), new LinkCollidesWithEnemy());
 
                 // Link colliding with Item objects
@@ -39,6 +39,12 @@ namespace Sprint2.Collison
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(DragonFireball), side), new LinkCollidesWithDragonFireball());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(GoriyaBoomerang), side), new LinkCollidesWithGoriyaBoomerang());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(BossMinion), side), new LinkCollidesWithBossMinion());
+
+                // Link projectiles colliding with Enemies Object
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkArrow), typeof(Enemies), side), new LinkArrowCollidesWithEnemy());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkBoomerang), typeof(Enemies), side), new LinkBoomerangCollidesWithEnemy());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkExplosion), typeof(Enemies), side), new LinkExplosionCollidesWithEnemy());
+
 
                 // Colliding into Block objects
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Block), side), new LinkCollidesWithBlock());
@@ -50,6 +56,9 @@ namespace Sprint2.Collison
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Wall), side), new DragonFireballCollidesWithWall());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(GoriyaBoomerang), typeof(Wall), side), new GoriyaBoomerangCollidesWithWall());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(BossMinion), typeof(Wall), side), new BossMinionCollidesWithWall());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkArrow), typeof(Wall), side), new LinkArrowCollidesWithWall());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkBoomerang), typeof(Wall), side), new LinkBoomerangCollidesWithWall());
+                //collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkExplosion), typeof(Wall), side), new LinkBombCollidesWithWall());
 
                 /*collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Block), side), new DragonFireballCollidesWithBlock());
 

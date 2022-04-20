@@ -12,7 +12,7 @@ namespace Sprint2
         private Rectangle currRectangle;
         private List<Rectangle> frameList;
         private Rectangle destinationRectangle;
-        private const int scaleMultiplier = 3;
+        public int scaleMultiplier;
         private const int frameUpdateMod = 10;
         private int counter;
 
@@ -29,6 +29,8 @@ namespace Sprint2
                 frameList.Add(frame);
             }
             currRectangle = frameList[currFrame];
+
+            scaleMultiplier = 3;
         }
 
         public void Update(GameTime gameTime)

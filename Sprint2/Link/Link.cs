@@ -46,7 +46,7 @@ namespace Sprint2
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
 
-			rupees = keys = bombs = 0;
+			rupees = keys = bombs = 5;
 
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
@@ -90,6 +90,10 @@ namespace Sprint2
 		public Rectangle GetSpriteRectangle()
         {
 			return sprite.getDestinationRectangle();
+        }
+		public Rectangle getCurrentFrameRectangle()
+        {
+			return sprite.getCurrentFrameRectangle();
         }
 
 		public void StandingUp()

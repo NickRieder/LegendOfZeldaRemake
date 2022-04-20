@@ -130,9 +130,13 @@ namespace Sprint2
             currState.Attack();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int damage)
 		{
-			currState.TakeDamage();
+			for (int i = 0; i < damage; i++)
+            {
+				currState.TakeDamage();
+			}
+			
 			if (enemyName == "Boss")
             {
 				if (bossHealth == 0)

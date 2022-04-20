@@ -136,7 +136,7 @@ namespace Sprint2
             roomArray = PopulateEnemies(roomArray, difficulty);
 
             //print room
-            /*Debug.WriteLine("Printing Matrix: ");
+            Debug.WriteLine("Printing Matrix: ");
             
             for (int i = 0; i < roomArray.GetLength(0); i++)
             {
@@ -145,7 +145,7 @@ namespace Sprint2
                     Debug.Write(roomArray[i, j] + "\t");
                 }
                 Debug.WriteLine("\n");
-            }*/
+            }
 
             return roomArray;
         }

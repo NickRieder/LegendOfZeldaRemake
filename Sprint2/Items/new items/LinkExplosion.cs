@@ -11,15 +11,37 @@ namespace Sprint2
         private int counter;
         private double speed;
         private TimeSpan startTimeUsing;
+        private bool hasNotExploded;
+        public int damage;
 
         public LinkExplosion(Link link, string projectileType) : base(link, projectileType)
         {
 
             counter = 0;
             speed = 5;
+            hasNotExploded = true;
             this.gom = link.gom;
 
 
+        }
+
+        private void Explode()
+        {
+            Vector2 explosionPos = pos;
+
+            int halfBombWidth = sprite.getCurrentFrameRectangle().Width / 2;
+            int halfBombHeight = sprite.getCurrentFrameRectangle().Height / 2;
+
+            sprite = spriteFactory.getExplosionSprite();
+            sprite.scaleMultiplier = 10;      
+            
+            explosionPos.X -= (sprite.getCurrentFrameRectangle().Width / 2) - halfBombWidth;
+            explosionPos.Y -= (sprite.getCurrentFrameRectangle().Height / 2) - halfBombHeight;
+            pos = explosionPos;
+
+            damage = 3;
+
+            hasNotExploded = false;
         }
       
         public override void Update(GameTime gameTime)
@@ -48,6 +70,7 @@ namespace Sprint2
                 default:
                     break;
             }*/
+
             base.Update(gameTime);
             if (link.isUsingItem)
             {
@@ -55,12 +78,14 @@ namespace Sprint2
                 startTimeUsing = gameTime.TotalGameTime;
                 link.isUsingItem = false;
             }
-            if(startTimeUsing + TimeSpan.FromMilliseconds(1200) < gameTime.TotalGameTime)
+            if(startTimeUsing + TimeSpan.FromMilliseconds(1500) < gameTime.TotalGameTime)
             {
-                sprite = spriteFactory.getExplosionSprite();
-                
+                if (hasNotExploded)
+                {
+                    Explode();
+                }
             }
-            if (startTimeUsing + TimeSpan.FromMilliseconds(1500) < gameTime.TotalGameTime)
+            if (startTimeUsing + TimeSpan.FromMilliseconds(1800) < gameTime.TotalGameTime)
             {
                 link.explosion.Play();
                 // System.Diagnostics.Debug.WriteLine("");

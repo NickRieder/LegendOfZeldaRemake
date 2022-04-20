@@ -82,25 +82,29 @@ namespace Sprint2
 
         public void SetItem()
         {
-            string item = itemList[index];
-            link.SetItem(item);
-            
-            switch (item)
+            if (index < itemList.Count)
             {
-                case "boomerang":
-                    itemSprite = spriteFactory.getBoomerangSprite();
-                    break;
-                case "arrow":
-                    itemSprite = spriteFactory.getBowSprite();
-                    break;
-                case "bomb":
-                    itemSprite = spriteFactory.getBombSprite();
-                    break;
-                default:
-                    itemSprite = spriteFactory.getFlatBlockSprite();
-                    break;
+                string item = itemList[index];
+                link.SetItem(item);
+
+                switch (item)
+                {
+                    case "boomerang":
+                        itemSprite = spriteFactory.getBoomerangSprite();
+                        break;
+                    case "arrow":
+                        itemSprite = spriteFactory.getBowSprite();
+                        break;
+                    case "bomb":
+                        itemSprite = spriteFactory.getBombSprite();
+                        break;
+                    default:
+                        itemSprite = spriteFactory.getFlatBlockSprite();
+                        break;
+                }
+                gom.hud.SetItemSprite(itemSprite);
             }
-            gom.hud.SetItemSprite(itemSprite);
+
         }
 
         public void NextItem()
