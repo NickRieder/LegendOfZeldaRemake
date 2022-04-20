@@ -149,6 +149,14 @@ namespace Sprint2
 
             return roomArray;
         }
+        public string GenerateSecretDoor()
+        {
+            string door = "none";
+            int randNum = rng.Next(0, 10);
+            if (randNum == 0) door = "top";
+
+            return door;
+        }
 
         public string[,] GenerateRandomSecretRoom()
         {
