@@ -73,9 +73,10 @@ namespace Sprint2
             keyboardController = new KeyboardController();
 
             gom = new GameObjectManager(this);
-            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory);
+            
             roomGenerator = new RoomGenerator();
             roomWriter = new RoomWriter(roomGenerator);
+            levelLoader = new LevelLoader(gom, spriteFactory, soundFactory, roomWriter);
 
 
             controllerList.Add(gom.mouseController);
@@ -108,9 +109,9 @@ namespace Sprint2
             gom.SetSpriteContent(spriteFactory);
             gom.SetSoundContent(soundFactory);
 
-            levelLoader.LoadLevel("Level 0/L0R1", "Top");
-            roomGenerator.GenerateRandomRoom(25);
-            roomWriter.generateRandomRoom("EndlessRoom1");
+            levelLoader.LoadLevel("EndlessRooms/EndlessRoomDefault", "Left");
+            //roomGenerator.GenerateRandomRoom(25);
+            //roomWriter.generateRandomRoom("EndlessRoom1");
 
             keyboardController.Initialize(gom, this, soundFactory, spriteFactory, spriteBatch);
 

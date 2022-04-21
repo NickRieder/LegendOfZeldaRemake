@@ -123,6 +123,8 @@ namespace Sprint2
                     }
                 }
             }
+            reader.Close();
+            //reader.Dispose();
         } 
     }
 }
