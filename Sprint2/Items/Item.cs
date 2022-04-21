@@ -47,7 +47,7 @@ namespace Sprint2
 
 		public Rectangle GetSpriteRectangle()
 		{
-			return new Rectangle(0, 0, 0, 0); // Change this to Item Sprite
+			return sprite.getDestinationRectangle();
 		}
 		public void SetSpriteContent(SpriteFactory spriteFactory)
 		{
@@ -111,20 +111,23 @@ namespace Sprint2
 		}
 		public void PickupItem()
         {
-			menu.AddToItemList(itemName);
+			
 			switch (itemName)
 			{
 				case "sword":
 					swordPickup.Play();
+					menu.AddToItemList(itemName);
 					break;
 
 				case "boomerang":
 					boomerangPickup.Play();
+					menu.AddToItemList(itemName);
 					break;
 
 				case "bomb":
 					link.bombs++;
 					bombPickup.Play();
+					menu.AddToItemList(itemName);
 					break;
 
 				case "key":
@@ -134,6 +137,7 @@ namespace Sprint2
 
 				case "bow":	
 					bowPickup.Play();
+					menu.AddToItemList(itemName);
 					break;
 
 				case "heart":
@@ -163,7 +167,7 @@ namespace Sprint2
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-				sprite.Draw(spriteBatch, pos);
+			sprite.Draw(spriteBatch, pos);
 		}
 
 		public void Update(GameTime gameTime)

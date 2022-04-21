@@ -119,7 +119,7 @@ namespace Sprint2
 
         public void TakeDamage()
         {
-
+            dragon.health--;
         }
 
         public void Draw(SpriteBatch spriteBatch)

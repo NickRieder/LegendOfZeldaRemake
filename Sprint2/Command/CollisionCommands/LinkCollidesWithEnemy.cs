@@ -23,11 +23,38 @@ namespace Sprint2
         }
         public void Invoke()
         {
-            if (link.canTakeDamage && enemy.canDamage)
+
+            if (link.isUsingWeapon && link.canDealDamage)
+            {
+                link.canDealDamage = false;
+
+                if (link.direction == "up" && side == (int)CollisionDetector.COLLISION_SIDE.TOP)
+                {
+                    enemy.TakeDamage(link.swordDamage);
+                }
+                else if (link.direction == "down" && side == (int)CollisionDetector.COLLISION_SIDE.BOTTOM)
+                {
+                    enemy.TakeDamage(link.swordDamage);
+                }
+                else if (link.direction == "left" && side == (int)CollisionDetector.COLLISION_SIDE.LEFT)
+                {
+                    enemy.TakeDamage(link.swordDamage);
+                }
+                else if (link.direction == "right" && side == (int)CollisionDetector.COLLISION_SIDE.RIGHT)
+                {
+                    enemy.TakeDamage(link.swordDamage);
+                }
+                else
+                {
+                    link.TakeDamage(side);
+                }
+
+            }
+            else if (!link.isUsingWeapon && link.canTakeDamage)
             {
                 link.TakeDamage(side);
-                //enemy.DealDamage();
             }
+
         }
     }
 }

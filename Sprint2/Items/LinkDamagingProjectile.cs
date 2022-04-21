@@ -20,10 +20,13 @@ namespace Sprint2
 		public string projectileDirection;
 		//private string linkDirection;
 		Vector2 itemPos;
-		
+
+		public bool canDealDamage;
+
 
 		public LinkDamagingProjectile(Link link, string projectileType)
 		{
+			canDealDamage = true;
 			//System.Diagnostics.Debug.WriteLine(projectileType);
 			this.spriteFactory = link.spriteFactory;
 			this.gom = link.gom;
@@ -43,12 +46,12 @@ namespace Sprint2
 
 			switch (projectileType)
 			{
-				case "Boomerang":
+				case "boomerang":
 					CenterProjectilePosition(spriteFactory.getBoomerangSprite());
 					sprite = spriteFactory.getBoomerangSprite();
 					
 					break;
-				case "Arrow":
+				case "arrow":
 					switch (link.direction)
 					{
 						case "down":
@@ -71,7 +74,7 @@ namespace Sprint2
 							break;
 					}
 					break;
-				case "Explosion":
+				case "bomb":
 					CenterProjectilePosition(spriteFactory.getBombSprite());
 					sprite = spriteFactory.getBombSprite();
 

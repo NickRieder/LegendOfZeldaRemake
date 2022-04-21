@@ -9,6 +9,7 @@ namespace Sprint2
     {
         private int counter;
         private double speed;
+        public int damage;
         private TimeSpan startTimeUsing;
         private bool startUsingItem;
 
@@ -16,6 +17,7 @@ namespace Sprint2
         {
             counter = 0;
             speed = 7;
+            damage = 1;
             this.gom = link.gom;
             startUsingItem = true;
         }

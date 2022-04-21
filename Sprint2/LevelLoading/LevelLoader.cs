@@ -125,7 +125,6 @@ namespace Sprint2
 
             gom.AddToAllObjectList(item);
             gom.AddToDrawableObjectList(item);
-            gom.AddToUpdatableObjectList(item);
         }
 
         public void LoadEnemyObject(String enemyName, Vector2 pos)

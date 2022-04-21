@@ -37,10 +37,12 @@ namespace Sprint2
 		public GameObjectManager gom;
 		public bool isUsingItem;
 		public bool canTakeDamage;
+		public bool isUsingWeapon;
+		public int swordDamage;
+		public bool canDealDamage;
 
 		public Link(Game1 game, GameObjectManager gom)
 		{
-			//item = new NullItem();
 			this.game = game;
 			this.gom = gom;
 			health = linkStartingHealth;
@@ -51,6 +53,9 @@ namespace Sprint2
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
 			canTakeDamage = true;
+			isUsingWeapon = false;
+			canDealDamage = true;
+			swordDamage = 2;
 		}
 
 		public void SetSoundContent(SoundFactory soundFactory)
