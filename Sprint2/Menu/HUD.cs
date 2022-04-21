@@ -53,7 +53,7 @@ namespace Sprint2
             font = this.spriteFactory.getFont();
             HUDSprite = this.spriteFactory.getHUDSprite();
             sheet = this.spriteFactory.getHudSheet();
-            itemSprite = spriteFactory.getWallSprite(new Rectangle(0, 0, 0, 0));
+            if(itemSprite == null) itemSprite = spriteFactory.getWallSprite(new Rectangle(0, 0, 0, 0));
         }
 
 

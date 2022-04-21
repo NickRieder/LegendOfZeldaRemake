@@ -34,7 +34,7 @@ namespace Sprint2
 
         public void LoadLink(string doorType)
         {
-            link.SetSpriteContent(spriteFactory);
+            //link.SetSpriteContent(spriteFactory);
             switch (doorType)
             {
                 case "Top":
