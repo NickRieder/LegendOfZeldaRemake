@@ -14,7 +14,7 @@ namespace Sprint2
 		private ArrayList itemList;
 		private IItem item;
 		private bool isMoving;
-		private const int movementSpeed = 2;
+		private const int movementSpeed = 4;
 
 		public MovingLink(Link link)
 		{
