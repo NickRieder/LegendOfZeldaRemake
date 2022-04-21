@@ -40,7 +40,10 @@ namespace Sprint2.Collison
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(GoriyaBoomerang), side), new LinkCollidesWithGoriyaBoomerang());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(BossMinion), side), new LinkCollidesWithBossMinion());
 
-                // Link projectiles colliding with Enemies Object
+                // Link sword colliding with Enemies object
+                //collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(BossMinion), side), new LinkSwordCollidesWithEnemy());
+
+                // Link projectiles colliding with Enemies object
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkArrow), typeof(Enemies), side), new LinkArrowCollidesWithEnemy());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkBoomerang), typeof(Enemies), side), new LinkBoomerangCollidesWithEnemy());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkExplosion), typeof(Enemies), side), new LinkExplosionCollidesWithEnemy());
@@ -59,6 +62,8 @@ namespace Sprint2.Collison
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkArrow), typeof(Wall), side), new LinkArrowCollidesWithWall());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkBoomerang), typeof(Wall), side), new LinkBoomerangCollidesWithWall());
                 //collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkExplosion), typeof(Wall), side), new LinkBombCollidesWithWall());
+
+
 
                 /*collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Block), side), new DragonFireballCollidesWithBlock());
 

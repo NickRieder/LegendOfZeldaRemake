@@ -38,6 +38,7 @@ namespace Sprint2
 			link.sprite = sprite;
 			attackTime = TimeSpan.FromMilliseconds(500);
 			isAttacking = true;
+			link.isUsingWeapon = true;
 		}
 
 		public void TakeDamage(int collisionSide)
@@ -59,6 +60,8 @@ namespace Sprint2
 			}
 			if (startTimeAttack + attackTime < gameTime.TotalGameTime)
 			{
+				link.isUsingWeapon = false;
+				link.canDealDamage = true;
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
 			}
 		}

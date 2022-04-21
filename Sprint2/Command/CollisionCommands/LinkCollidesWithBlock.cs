@@ -93,7 +93,16 @@ namespace Sprint2
 
         public void Invoke()
         {
-            CheckCollisionWithBlock(link,block, side);
+            if (!link.isUsingWeapon)
+            {
+                CheckCollisionWithBlock(link, block, side);
+
+                if (!link.canTakeDamage)
+                {
+                    link.canTakeDamage = true;
+                }
+            }
+
         }
     }
 }

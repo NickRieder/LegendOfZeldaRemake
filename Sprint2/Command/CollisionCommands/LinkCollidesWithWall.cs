@@ -26,7 +26,7 @@ namespace Sprint2
             this.gom = gom;
         }
 
-        public void CheckCollisionWithBlock(ISprite mainSpriteObject, ISprite otherSpriteObject, int collisionSideEnum)
+        public void CheckCollisionWithWall(ISprite mainSpriteObject, ISprite otherSpriteObject, int collisionSideEnum)
         {
             //System.Diagnostics.Debug.WriteLine("DEBUG1: /LinkCollidesWithBlock/ INSIDE checkCollisionWithBlock");
             if (collisionSideEnum == (int)CollisionDetector.COLLISION_SIDE.LEFT)
@@ -93,7 +93,16 @@ namespace Sprint2
 
         public void Invoke()
         {
-            CheckCollisionWithBlock(link, wall, side);
+            if (!link.isUsingWeapon)
+            {
+                CheckCollisionWithWall(link, wall, side);
+
+                if (!link.canTakeDamage)
+                {
+                    link.canTakeDamage = true;
+                }
+            }
+            
         }
     }
 }

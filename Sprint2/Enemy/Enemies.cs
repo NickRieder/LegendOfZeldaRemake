@@ -22,6 +22,7 @@ namespace Sprint2
 		public string enemyName;
 		public ArrayList projectileList;
 		public bool freeze { get; set; }
+		
 
 		public SoundEffect enemyHurtSound;
 		public SoundEffect enemyDeadSound;
@@ -38,8 +39,12 @@ namespace Sprint2
 
 		//temp
 		public bool canDamage;
+		public bool canTakeDamage;
 		private static int damageCooldownTimer = 0;
 		private static int damageCooldown = 60;
+
+		private static int invulnerableTimer = 0;
+		private static int invulnerableDuration = 10;
 
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
@@ -50,6 +55,7 @@ namespace Sprint2
 			pos = new Vector2(startingPosX, startingPosY);
 			this.freeze = false;
 			canDamage = true;
+			canTakeDamage = true;
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -132,11 +138,13 @@ namespace Sprint2
 
         public void TakeDamage(int damage)
 		{
+			canTakeDamage = false;
+			System.Diagnostics.Debug.WriteLine("/Enemies/ enemy can take damage = " + canTakeDamage);
 			for (int i = 0; i < damage; i++)
             {
 				currState.TakeDamage();
 			}
-			
+			System.Diagnostics.Debug.WriteLine("DEBUG: /Enemies/ health = " +this.health);
 			if (enemyName == "Boss")
             {
 				if (bossHealth == 0)
@@ -163,7 +171,7 @@ namespace Sprint2
 		}
 		public void DealDamage()
         {
-			canDamage = false;
+			//canDamage = false;
 			System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage =  " + canDamage);
 		}
 		public void Draw(SpriteBatch spriteBatch)
@@ -177,27 +185,37 @@ namespace Sprint2
 		{
 
 			currState.Update(gameTime);
-			if (bossHealth == 0 || health == 0)
+			if (bossHealth <= 0)
             {
 				gom.RemoveFromEveryCollection(this);
             }
-
-
-			if (damageCooldownTimer >= damageCooldown)
-            {
-				canDamage = true;
-				damageCooldownTimer = 0;
+			else if (health <= 0)
+			{
+				gom.RemoveFromEveryCollection(this);
 			}
-			//damageCooldownTimer++;
+
+            /*if (damageCooldownTimer >= damageCooldown)
+            {
+                damageCooldownTimer = 0;
+            }
             if (!canDamage)
             {
-				//System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage =  " + canDamage);
 				damageCooldownTimer++;
-				//System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ damageCooldownTimer =  " + damageCooldownTimer);
+			}*/
+
+            /*if (invulnerableTimer >= invulnerableDuration)
+            {
+                canTakeDamage = true;
+                System.Diagnostics.Debug.WriteLine("/Enemies/ enemy can take damage = " + canTakeDamage);
+                invulnerableTimer = 0;
+            }*/
+            if (!canTakeDamage)
+            {
+				canTakeDamage = true;
+				//invulnerableTimer++;
+				//System.Diagnostics.Debug.WriteLine("TIMER: " + invulnerableTimer);
 			}
 
-            //System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ timer = " + damageTimer);
-            //System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage = " + canDamage);
             currState.Update(gameTime);
 
 		}

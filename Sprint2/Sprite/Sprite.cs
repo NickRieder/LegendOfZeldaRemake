@@ -50,6 +50,8 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
+            // This Link Sword thing needs to be refactored because it messed up with the sprite position when i use link.GetSpriteRectangle (it's drawing in the wrong spots)
+
             if (frameList[0] == new Rectangle(18, 97, 16, 28)) // LINK_USESWORD_UP
             {
                 destinationRectangle = new Rectangle((int)location.X, (int)location.Y - 28, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);

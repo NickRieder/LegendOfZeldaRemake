@@ -19,9 +19,11 @@ namespace Sprint2
 		private TimeSpan startResetTime;
 		private Game1 game;
 
+		private int damagedTimer;
+
+		public static int damagedDuration = 30;
 		private const int linkKnockedSpeed = 7;
-		public static int damagedTimer = 0;
-		public static int damagedDuration = 15;
+		
 
 		private int collisionSide;
 		private static int topSide = (int)CollisionDetector.COLLISION_SIDE.TOP;
@@ -34,11 +36,11 @@ namespace Sprint2
 			this.game = link.game;
 			this.link = link;
 			sprite = link.sprite;
-			
-			
+			damagedTimer = 0;
+
 			spriteFactory = link.spriteFactory;
 			
-			sprite = spriteFactory.getLinkDamaged();
+			link.sprite = spriteFactory.getLinkDamaged(); // why does link.sprite not work the same?
 			damagedTimeSpan = TimeSpan.FromMilliseconds(500);
 			currPos = link.pos;
 
@@ -49,7 +51,7 @@ namespace Sprint2
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
@@ -58,42 +60,43 @@ namespace Sprint2
             {
 				link.currState = new DeadLink(link);
 			}
-			if (damagedTimer >= damagedDuration)
-            {
+			if (damagedTimer >= damagedDuration)    // link.canTakeDamage || 
+			{
 				link.canTakeDamage = true;
-				damagedTimer = 0;
+				//damagedTimer = 0;
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
-				//System.Diagnostics.Debug.WriteLine("DEBUG: /TakingDamage/ canTakeDamage reset back to TRUE ");
 			}
-			else
+            else if (!link.canTakeDamage)
             {
-				if (collisionSide == topSide)
+                if (collisionSide == topSide)
                 {
-					currPos.Y += linkKnockedSpeed;
-					link.pos = currPos;
-				}
-				else if (collisionSide == bottomSide)
+                    currPos.Y += linkKnockedSpeed;
+                    link.pos = currPos;
+                }
+                else if (collisionSide == bottomSide)
                 {
-					currPos.Y -= linkKnockedSpeed;
-					link.pos = currPos;
-				}
-				else if (collisionSide == leftSide)
+                    currPos.Y -= linkKnockedSpeed;
+                    link.pos = currPos;
+                }
+                else if (collisionSide == leftSide)
                 {
-					currPos.X += linkKnockedSpeed;
-					link.pos = currPos;
-				}
-				else if (collisionSide == rightSide)
+                    currPos.X += linkKnockedSpeed;
+                    link.pos = currPos;
+                }
+                else if (collisionSide == rightSide)
                 {
-					currPos.X -= linkKnockedSpeed;
-					link.pos = currPos;
-				}
-			}
+                    currPos.X -= linkKnockedSpeed;
+                    link.pos = currPos;
+                }
+            }
             if (!link.canTakeDamage)
             {
                 damagedTimer++;
             }
+			damagedTimer++;
 
-            link.sprite.Update(gameTime);
+
+			link.sprite.Update(gameTime);
         }
 
 		// No OPs
