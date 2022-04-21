@@ -25,9 +25,9 @@ namespace Sprint2
 
 
             // Temporary until collision is working
-            itemList.Add("boomerang");
             itemList.Add("arrow");
-            itemList.Add("bomb");
+            //itemList.Add("boomerang");
+            //itemList.Add("bomb");
             //gom.AddToPauseMenuList(spriteFactory.getMenuSprite());
         }
 

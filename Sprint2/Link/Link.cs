@@ -27,7 +27,7 @@ namespace Sprint2
 		public SoundEffect explosion;
 
 		private const int sizeMuliplier = 3;
-		private const int linkStartingHealth = 8;
+		private const int linkStartingHealth = 10;
 		private const int linkMaxHealth = 10;
 		private const int linkLowHealth = 1;
 		private const int linkStartingPosX = 40;

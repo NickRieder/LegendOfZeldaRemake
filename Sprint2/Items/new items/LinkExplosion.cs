@@ -21,8 +21,8 @@ namespace Sprint2
             speed = 5;
             hasNotExploded = true;
             this.gom = link.gom;
-
-
+            canDealDamage = false;
+            damage = 5;
         }
 
         private void Explode()
@@ -39,7 +39,8 @@ namespace Sprint2
             explosionPos.Y -= (sprite.getCurrentFrameRectangle().Height / 2) - halfBombHeight;
             pos = explosionPos;
 
-            damage = 3;
+
+            canDealDamage = true;
 
             hasNotExploded = false;
         }
@@ -74,7 +75,6 @@ namespace Sprint2
             base.Update(gameTime);
             if (link.isUsingItem)
             {
-                //System.Diagnostics.Debug.WriteLine("Bomb");
                 startTimeUsing = gameTime.TotalGameTime;
                 link.isUsingItem = false;
             }
@@ -88,10 +88,8 @@ namespace Sprint2
             if (startTimeUsing + TimeSpan.FromMilliseconds(1800) < gameTime.TotalGameTime)
             {
                 link.explosion.Play();
-                // System.Diagnostics.Debug.WriteLine("");
                 base.RemoveProjectile(this);
             }
-            //System.Diagnostics.Debug.WriteLine("explosion");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -26,10 +27,11 @@ namespace Sprint2
         }
         public void Invoke()
         {
-            if (explosion.canDealDamage)
+            if (explosion.canDealDamage && enemy.canTakeDamage)
             {
-                explosion.canDealDamage = false;
+                
                 enemy.TakeDamage(explosion.damage); // bomb damage can be found in the LinkExplosion class
+                explosion.canDealDamage = false;
             }
         }
     }

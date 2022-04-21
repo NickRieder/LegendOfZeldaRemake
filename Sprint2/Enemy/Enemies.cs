@@ -138,7 +138,7 @@ namespace Sprint2
 
         public void TakeDamage(int damage)
 		{
-			canTakeDamage = false;
+			//canTakeDamage = false;
 			System.Diagnostics.Debug.WriteLine("/Enemies/ enemy can take damage = " + canTakeDamage);
 			for (int i = 0; i < damage; i++)
             {
@@ -194,26 +194,9 @@ namespace Sprint2
 				gom.RemoveFromEveryCollection(this);
 			}
 
-            /*if (damageCooldownTimer >= damageCooldown)
-            {
-                damageCooldownTimer = 0;
-            }
-            if (!canDamage)
-            {
-				damageCooldownTimer++;
-			}*/
-
-            /*if (invulnerableTimer >= invulnerableDuration)
-            {
-                canTakeDamage = true;
-                System.Diagnostics.Debug.WriteLine("/Enemies/ enemy can take damage = " + canTakeDamage);
-                invulnerableTimer = 0;
-            }*/
             if (!canTakeDamage)
             {
 				canTakeDamage = true;
-				//invulnerableTimer++;
-				//System.Diagnostics.Debug.WriteLine("TIMER: " + invulnerableTimer);
 			}
 
             currState.Update(gameTime);
