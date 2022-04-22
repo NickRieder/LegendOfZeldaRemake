@@ -100,6 +100,7 @@ namespace Sprint2
             soundFactory.LoadSounds();
             themeSong = soundFactory.getThemeSong();
             themeSongLoop = themeSong.CreateInstance();
+            themeSongLoop.Volume = 0.3f;
             themeSongLoop.IsLooped = true;
             themeSongLoop.Play();
 
