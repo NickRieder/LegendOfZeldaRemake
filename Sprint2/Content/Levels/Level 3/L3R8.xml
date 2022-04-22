@@ -93,7 +93,7 @@
 			<XCoord>672</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="BotLock">
+		<door Type="BotOpen">
 			<room>Level 3/L3R9</room>
 			<!-- Next Room-->
 			<room>Level 3/L3R7</room>

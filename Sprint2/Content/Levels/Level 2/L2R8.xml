@@ -59,7 +59,7 @@
 		</wall>
 	</Walls>
 	<Doors>
-		<door Type="TopLock">
+		<door Type="TopOpen">
 			<room>Level 2/L2R9</room>    <!-- Next Room-->
 			<room>Level 2/L2R7</room>
 			<!-- Previous Room-->
