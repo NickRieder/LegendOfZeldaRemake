@@ -137,7 +137,7 @@ namespace Sprint2
 
 				case "bow":	
 					bowPickup.Play();
-					menu.AddToItemList(itemName);
+					menu.AddToItemList("arrow");
 					break;
 
 				case "heart":
