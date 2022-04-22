@@ -109,7 +109,13 @@ namespace Sprint2
             gom.SetSpriteContent(spriteFactory);
             gom.SetSoundContent(soundFactory);
 
-            levelLoader.LoadLevel("EndlessRooms/EndlessRoomDefault", "Left");
+            //Uncomment Line below to play endless mode
+            //levelLoader.LoadLevel("EndlessRooms/EndlessRoomDefault", "Left");
+            
+            //Uncomment Line below to play story mode
+            levelLoader.LoadLevel("Level 0/L0R1", "Top");
+            
+            
             //roomGenerator.GenerateRandomRoom(25);
             //roomWriter.generateRandomRoom("EndlessRoom1");
 
