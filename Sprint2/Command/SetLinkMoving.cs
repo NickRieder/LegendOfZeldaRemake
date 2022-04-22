@@ -7,16 +7,18 @@ namespace Sprint2
     class SetLinkMoving : ICommand
     {
         private Link link;
-        public SetLinkMoving(Link link)
+        private string direction;
+        public SetLinkMoving(Link link, string direction)
         {
             this.link = link;
+            this.direction = direction;
         }
 
 
 
         public void Execute()
         {
-            link.Move();
+            link.Move(direction);
         }
     }
 }

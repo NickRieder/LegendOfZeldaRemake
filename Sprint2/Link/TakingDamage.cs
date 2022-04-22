@@ -105,13 +105,12 @@ namespace Sprint2
 		public void StandingDown() { }
 		public void StandingRight() { }
 		public void StandingLeft() { }
-		public void Move() { }
+		public void Move(string direction) { }
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
 
 		public void Execute()
 		{
-
 			link.TakeDamage(collisionSide);
 		}
 	}

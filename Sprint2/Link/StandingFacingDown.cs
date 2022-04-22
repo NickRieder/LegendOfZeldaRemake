@@ -21,7 +21,6 @@ namespace Sprint2
 		public StandingFacingDown(Link link)
 		{
 			this.link = link;
-			//this.sprite = link.sprite;
 			link.direction = "down";
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
@@ -42,9 +41,9 @@ namespace Sprint2
 		{
 			link.currState = new StandingFacingLeft(link);
 		}
-		public void Move()
+		public void Move(string direction)
         {
-			link.currState = new MovingLink(link);			
+			link.currState = new MovingLink(link, direction);			
         }
 		public void UseWeapon()
 		{
