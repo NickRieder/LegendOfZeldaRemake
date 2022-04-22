@@ -35,9 +35,17 @@
 			<XCoord>500</XCoord>
 			<YCoord>150</YCoord>
 		</enemy>
-		<enemy Type="Dragon">
+		<enemy Type="Goriya">
 			<XCoord>286</XCoord>
 			<YCoord>300</YCoord>
+		</enemy>
+		<enemy Type="Goriya">
+			<XCoord>400</XCoord>
+			<YCoord>300</YCoord>
+		</enemy>
+		<enemy Type="Goriya">
+			<XCoord>400</XCoord>
+			<YCoord>400</YCoord>
 		</enemy>
 	</Enemies>
 	<Walls>

@@ -59,48 +59,44 @@
 			<YCoord>435</YCoord>
 		</door>
 	</Doors>
-	<enemy Type="Snake">
+	<enemy Type="Goriya">
 		<XCoord>98</XCoord>
+		<YCoord>98</YCoord>
+	</enemy>
+	<block Type="NonFlat">
+		<XCoord>239</XCoord>
+		<YCoord>192</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>239</XCoord>
+		<YCoord>286</YCoord>
+	</block>
+	<enemy Type="Snake">
+		<XCoord>286</XCoord>
 		<YCoord>145</YCoord>
 	</enemy>
 	<block Type="NonFlat">
-		<XCoord>192</XCoord>
-		<YCoord>145</YCoord>
-	</block>
-	<block Type="NonFlat">
-		<XCoord>192</XCoord>
-		<YCoord>239</YCoord>
-	</block>
-	<block Type="NonFlat">
-		<XCoord>239</XCoord>
-		<YCoord>145</YCoord>
-	</block>
-	<block Type="NonFlat">
-		<XCoord>239</XCoord>
+		<XCoord>286</XCoord>
 		<YCoord>192</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>239</XCoord>
+		<XCoord>286</XCoord>
 		<YCoord>239</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>382</XCoord>
-		<YCoord>192</YCoord>
+		<XCoord>286</XCoord>
+		<YCoord>286</YCoord>
 	</block>
 	<block Type="NonFlat">
 		<XCoord>429</XCoord>
 		<YCoord>239</YCoord>
 	</block>
-	<enemy Type="Wizzrobe">
-		<XCoord>478</XCoord>
-		<YCoord>145</YCoord>
-	</enemy>
 	<block Type="NonFlat">
 		<XCoord>478</XCoord>
-		<YCoord>286</YCoord>
+		<YCoord>192</YCoord>
 	</block>
-	<enemy Type="Snake">
+	<block Type="NonFlat">
 		<XCoord>526</XCoord>
-		<YCoord>98</YCoord>
-	</enemy>
+		<YCoord>145</YCoord>
+	</block>
 </Level>

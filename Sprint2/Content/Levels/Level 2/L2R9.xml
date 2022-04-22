@@ -30,8 +30,8 @@
 		</wall>
 	</Walls>
 	<Doors>
-		<door Type="TopOpen">
-			<room>Level 3/L3R1</room>    <!-- Next Room-->
+		<door Type="TopWall">
+			<room></room>    <!-- Next Room-->
 			<room>Level 2/L2R8</room>
 			<!-- Previous Room-->
 			<clickNext>Level 3/L3R1</clickNext>
@@ -47,8 +47,9 @@
 			<XCoord>0</XCoord>
 			<YCoord>218</YCoord>
 		</door>
-		<door Type="RightWall">
-			<room></room>
+		<door Type="RightOpen">
+			<room>Level 3/L3R1</room>
+				<!-- Next Room-->
 			<!-- Next Room-->
 			<room>Level 2/L2R8</room>
 			<!-- Previous Room-->

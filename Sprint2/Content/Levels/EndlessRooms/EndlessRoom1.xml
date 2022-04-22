@@ -60,47 +60,55 @@
 		</door>
 	</Doors>
 	<block Type="NonFlat">
-		<XCoord>145</XCoord>
-		<YCoord>145</YCoord>
+		<XCoord>192</XCoord>
+		<YCoord>239</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>145</XCoord>
+		<XCoord>239</XCoord>
 		<YCoord>192</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>145</XCoord>
+		<XCoord>239</XCoord>
+		<YCoord>239</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>239</XCoord>
+		<YCoord>286</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>286</XCoord>
+		<YCoord>239</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>382</XCoord>
+		<YCoord>145</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>382</XCoord>
+		<YCoord>192</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>382</XCoord>
 		<YCoord>239</YCoord>
 	</block>
 	<enemy Type="Bluegel">
-		<XCoord>145</XCoord>
-		<YCoord>336</YCoord>
+		<XCoord>429</XCoord>
+		<YCoord>98</YCoord>
 	</enemy>
 	<block Type="NonFlat">
-		<XCoord>286</XCoord>
-		<YCoord>286</YCoord>
-	</block>
-	<block Type="NonFlat">
-		<XCoord>333</XCoord>
-		<YCoord>286</YCoord>
-	</block>
-	<block Type="NonFlat">
-		<XCoord>382</XCoord>
+		<XCoord>429</XCoord>
 		<YCoord>145</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>382</XCoord>
+		<XCoord>429</XCoord>
 		<YCoord>192</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>382</XCoord>
+		<XCoord>429</XCoord>
 		<YCoord>239</YCoord>
 	</block>
-	<block Type="NonFlat">
-		<XCoord>382</XCoord>
-		<YCoord>286</YCoord>
-	</block>
-	<enemy Type="Snake">
+	<enemy Type="Wizzrobe">
 		<XCoord>526</XCoord>
-		<YCoord>145</YCoord>
+		<YCoord>98</YCoord>
 	</enemy>
 </Level>

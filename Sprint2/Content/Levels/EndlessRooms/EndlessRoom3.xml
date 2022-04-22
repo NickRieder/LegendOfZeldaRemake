@@ -59,40 +59,52 @@
 			<YCoord>435</YCoord>
 		</door>
 	</Doors>
-	<enemy Type="Wizzrobe">
-		<XCoord>286</XCoord>
-		<YCoord>145</YCoord>
-	</enemy>
 	<block Type="NonFlat">
-		<XCoord>286</XCoord>
+		<XCoord>192</XCoord>
+		<YCoord>145</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>192</XCoord>
+		<YCoord>192</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>192</XCoord>
 		<YCoord>239</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>286</XCoord>
+		<XCoord>192</XCoord>
 		<YCoord>286</YCoord>
 	</block>
 	<block Type="NonFlat">
-		<XCoord>333</XCoord>
-		<YCoord>145</YCoord>
+		<XCoord>192</XCoord>
+		<YCoord>336</YCoord>
 	</block>
 	<block Type="NonFlat">
 		<XCoord>333</XCoord>
-		<YCoord>192</YCoord>
-	</block>
-	<enemy Type="Wizzrobe">
-		<XCoord>333</XCoord>
-		<YCoord>239</YCoord>
-	</enemy>
-	<block Type="NonFlat">
-		<XCoord>382</XCoord>
-		<YCoord>239</YCoord>
-	</block>
-	<block Type="NonFlat">
-		<XCoord>382</XCoord>
 		<YCoord>286</YCoord>
 	</block>
 	<enemy Type="Bluebat">
-		<XCoord>478</XCoord>
+		<XCoord>382</XCoord>
 		<YCoord>239</YCoord>
 	</enemy>
+	<block Type="NonFlat">
+		<XCoord>382</XCoord>
+		<YCoord>286</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>429</XCoord>
+		<YCoord>145</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>429</XCoord>
+		<YCoord>192</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>429</XCoord>
+		<YCoord>239</YCoord>
+	</block>
+	<block Type="NonFlat">
+		<XCoord>429</XCoord>
+		<YCoord>286</YCoord>
+	</block>
 </Level>

@@ -31,6 +31,18 @@
 			<XCoord>573</XCoord>
 			<YCoord>336</YCoord>
 		</item>
+		<item Type="heart">
+			<XCoord>400</XCoord>
+			<YCoord>336</YCoord>
+		</item>
+		<item Type="heart">
+			<XCoord>300</XCoord>
+			<YCoord>336</YCoord>
+		</item>
+		<item Type="heart">
+			<XCoord>200</XCoord>
+			<YCoord>336</YCoord>
+		</item>
 	</Items>
 
 	<Walls>

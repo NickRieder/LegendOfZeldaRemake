@@ -78,6 +78,26 @@
 			<XCoord>343</XCoord>
 			<YCoord>290</YCoord>
 		</item>
+		<item Type="heart">
+			<XCoord>200</XCoord>
+			<YCoord>350</YCoord>
+		</item>
+		<item Type="heart">
+			<XCoord>300</XCoord>
+			<YCoord>350</YCoord>
+		</item>
+		<item Type="heart">
+			<XCoord>400</XCoord>
+			<YCoord>350</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>250</XCoord>
+			<YCoord>145</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>350</XCoord>
+			<YCoord>145</YCoord>
+		</item>
 	</Items>
 	<Doors>
 		<door Type="TopOpen">
