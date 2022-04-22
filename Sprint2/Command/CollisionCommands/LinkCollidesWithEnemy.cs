@@ -47,6 +47,7 @@ namespace Sprint2
                 else
                 {
                     link.TakeDamage(side);
+                    link.isUsingWeapon = false;
                 }
 
             }
