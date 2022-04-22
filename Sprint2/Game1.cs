@@ -111,11 +111,11 @@ namespace Sprint2
 
             //Uncomment Line below to play endless mode
             //levelLoader.LoadLevel("EndlessRooms/EndlessRoomDefault", "Left");
-            
+
             //Uncomment Line below to play story mode
-            levelLoader.LoadLevel("Level 0/L0R1", "Top");
-            
-            
+            //levelLoader.LoadLevel("Level 0/L0R1", "Top");
+            levelLoader.LoadLevel("StartRoom", "Top");
+
             //roomGenerator.GenerateRandomRoom(25);
             //roomWriter.generateRandomRoom("EndlessRoom1");
 
