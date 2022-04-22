@@ -10,7 +10,7 @@ namespace Sprint2
         void StandingDown();
         void StandingRight();
         void StandingLeft();
-        void Move();
+        void Move(string direction);
         void UseWeapon();
         void TakeDamage(int collisionSide);
         void Draw(SpriteBatch spriteBatch);

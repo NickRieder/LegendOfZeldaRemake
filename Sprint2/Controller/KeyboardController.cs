@@ -65,10 +65,10 @@ namespace Sprint2
 
             RegisterCommandTap(Keys.P, new PauseGame(gom, this));
 
-            RegisterCommandHold(Keys.S, new SetLinkMoving(gom.link));
-            RegisterCommandHold(Keys.W, new SetLinkMoving(gom.link));
-            RegisterCommandHold(Keys.A, new SetLinkMoving(gom.link));
-            RegisterCommandHold(Keys.D, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.S, new SetLinkMoving(gom.link, "down"));
+            RegisterCommandHold(Keys.W, new SetLinkMoving(gom.link, "up"));
+            RegisterCommandHold(Keys.A, new SetLinkMoving(gom.link, "left"));
+            RegisterCommandHold(Keys.D, new SetLinkMoving(gom.link, "right"));
 
             RegisterCommandTap(Keys.S, new SetLinkStandingDown(gom.link));
             RegisterCommandTap(Keys.W, new SetLinkStandingUp(gom.link));
@@ -92,10 +92,10 @@ namespace Sprint2
             RegisterCommandRelease(Keys.Left, new SetLinkStandingLeft(gom.link));
             RegisterCommandRelease(Keys.Right, new SetLinkStandingRight(gom.link));
 
-            RegisterCommandHold(Keys.Down, new SetLinkMoving(gom.link));
-            RegisterCommandHold(Keys.Up, new SetLinkMoving(gom.link));
-            RegisterCommandHold(Keys.Left, new SetLinkMoving(gom.link));
-            RegisterCommandHold(Keys.Right, new SetLinkMoving(gom.link));
+            RegisterCommandHold(Keys.Down, new SetLinkMoving(gom.link, "down"));
+            RegisterCommandHold(Keys.Up, new SetLinkMoving(gom.link, "up"));
+            RegisterCommandHold(Keys.Left, new SetLinkMoving(gom.link, "left"));
+            RegisterCommandHold(Keys.Right, new SetLinkMoving(gom.link, "right"));
 
             RegisterCommandTap(Keys.Q, new QuitCommand(game1));
             RegisterCommandTap(Keys.R, new ResetGame(game1));
@@ -128,7 +128,7 @@ namespace Sprint2
                     }
                     else if (controllerMappingsHold.ContainsKey(key))
                     {
-                        if (key == Keys.D)
+                        /*if (key == Keys.D)
                         {
                             if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.S) && !pressedKeys.Contains<Keys>(Keys.W))
                                 controllerMappingsHold[key].Execute();
@@ -146,8 +146,9 @@ namespace Sprint2
                         else if (key == Keys.S)
                         {
                             if (!pressedKeys.Contains<Keys>(Keys.A) && !pressedKeys.Contains<Keys>(Keys.D) && !pressedKeys.Contains<Keys>(Keys.W))
-                                controllerMappingsHold[key].Execute();
-                        }
+                                */
+                        controllerMappingsHold[key].Execute();
+                       // }
                     }
                 }
             }

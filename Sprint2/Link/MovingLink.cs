@@ -13,16 +13,16 @@ namespace Sprint2
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
-		private bool isMoving;
 		private const int movementSpeed = 2;
+		private string direction;
 
-		public MovingLink(Link link)
+		public MovingLink(Link link, string direction)
 		{
 			this.link = link;
-			//this.sprite = link.sprite;
+			this.direction = direction;
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
 					sprite = spriteFactory.getLinkMovingDownSprite();
@@ -41,29 +41,25 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			link.direction = "up";
 			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			link.direction = "down";
 			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
-			link.direction = "right";
 			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			link.direction = "left";
 			link.currState = new StandingFacingLeft(link);
 		}
-		public void Move()
+		public void Move(string direction)
         {
 			Vector2 currPos = link.pos;
 
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
 					currPos.Y += movementSpeed;

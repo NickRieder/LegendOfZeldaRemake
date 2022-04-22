@@ -36,6 +36,7 @@ namespace Sprint2
 		public SoundEffect bombThrow;
 		public GameObjectManager gom;
 		public bool isUsingItem;
+		public bool isMoving;
 		public bool canTakeDamage;
 		public bool isUsingWeapon;
 		public int swordDamage;
@@ -52,6 +53,7 @@ namespace Sprint2
 
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
+			isMoving = false;
 			canTakeDamage = true;
 			isUsingWeapon = false;
 			canDealDamage = true;
@@ -74,9 +76,9 @@ namespace Sprint2
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
-			this.currState = new StandingFacingDown(this);
+			this.currState = new StandingFacingUp(this);
 			sprite = spriteFactory.getLinkStandingFacingDownSprite();
-			direction = "down";
+			direction = "up";
 			item = new LinkItem(this, spriteFactory);
 		}
 
@@ -117,9 +119,9 @@ namespace Sprint2
         {
 			currState.StandingRight();
 		}
-		public void Move()
+		public void Move(string direction)
         {
-			currState.Move();
+			currState.Move(direction);
         }
 		public void UseWeapon()
         {

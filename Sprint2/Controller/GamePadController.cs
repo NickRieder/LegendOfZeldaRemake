@@ -40,10 +40,10 @@ namespace Sprint2.Controller
         public void Initialize(Link link, Item item, Block block, Game1 game1, GameObjectManager gom, SoundFactory soundFactory) {
 
             // movement - needs hold tap release - DPadD
-            RegisterCommandHold(Buttons.DPadDown, new SetLinkMoving(link));
-            RegisterCommandHold(Buttons.DPadUp, new SetLinkMoving(link));
-            RegisterCommandHold(Buttons.DPadLeft, new SetLinkMoving(link));
-            RegisterCommandHold(Buttons.DPadRight, new SetLinkMoving(link));
+            RegisterCommandHold(Buttons.DPadDown, new SetLinkMoving(link, "down"));
+            RegisterCommandHold(Buttons.DPadUp, new SetLinkMoving(link, "up"));
+            RegisterCommandHold(Buttons.DPadLeft, new SetLinkMoving(link, "left"));
+            RegisterCommandHold(Buttons.DPadRight, new SetLinkMoving(link, "right"));
 
             RegisterCommandTap(Buttons.DPadDown, new SetLinkStandingDown(link));
             RegisterCommandTap(Buttons.DPadUp, new SetLinkStandingUp(link));
@@ -56,10 +56,10 @@ namespace Sprint2.Controller
             RegisterCommandRelease(Buttons.DPadRight, new SetLinkStandingRight(link));
 
             // movement - needs hold tap release - joy stick
-            RegisterCommandHold(Buttons.LeftThumbstickDown, new SetLinkMoving(link));
-            RegisterCommandHold(Buttons.LeftThumbstickUp, new SetLinkMoving(link));
-            RegisterCommandHold(Buttons.LeftThumbstickLeft, new SetLinkMoving(link));
-            RegisterCommandHold(Buttons.LeftThumbstickRight, new SetLinkMoving(link));
+            RegisterCommandHold(Buttons.LeftThumbstickDown, new SetLinkMoving(link, "down"));
+            RegisterCommandHold(Buttons.LeftThumbstickUp, new SetLinkMoving(link, "up"));
+            RegisterCommandHold(Buttons.LeftThumbstickLeft, new SetLinkMoving(link, "left"));
+            RegisterCommandHold(Buttons.LeftThumbstickRight, new SetLinkMoving(link, "right"));
 
             RegisterCommandTap(Buttons.LeftThumbstickDown, new SetLinkStandingDown(link));
             RegisterCommandTap(Buttons.LeftThumbstickUp, new SetLinkStandingUp(link));
