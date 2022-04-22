@@ -46,6 +46,8 @@ namespace Sprint2
 		private static int invulnerableTimer = 0;
 		private static int invulnerableDuration = 10;
 
+		private Random rng;
+
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
@@ -56,6 +58,7 @@ namespace Sprint2
 			this.freeze = false;
 			canDamage = true;
 			canTakeDamage = true;
+			rng = new Random();
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -186,12 +189,36 @@ namespace Sprint2
 
 			currState.Update(gameTime);
 			if (bossHealth <= 0)
-            {
+			{
 				gom.RemoveFromEveryCollection(this);
-            }
+			}
 			else if (health <= 0)
 			{
 				gom.RemoveFromEveryCollection(this);
+				int rand = rng.Next(0, 10);
+				Item item;
+				if (rand == 0)
+				{
+					item = new Item("key", pos, gom);
+				}
+				else if (rand == 1 || rand == 2)
+				{
+					item = new Item("bomb", pos, gom);
+				}
+				else if (rand == 3)
+                {
+					item = new Item("heart", pos, gom);
+                }
+				else
+                {
+					item = new Item("rupee", pos, gom);
+                }
+				item.SetSpriteContent(spriteFactory);
+				item.SetSoundContent(soundFactory);
+				gom.AddToAllObjectList(item);
+				gom.AddToDrawableObjectList(item);
+				
+
 			}
 
             if (!canTakeDamage)

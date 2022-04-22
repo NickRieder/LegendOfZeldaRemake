@@ -57,7 +57,20 @@
 			<Height>300</Height>
 		</wall>
 	</Walls>
-	
+	<Items>
+		<item Type="bomb">
+			<XCoord>500</XCoord>
+			<YCoord>145</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>100</XCoord>
+			<YCoord>145</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>350</XCoord>
+			<YCoord>145</YCoord>
+		</item>
+	</Items>
 	<Enemies>
 		<enemy Type="Bluegel">
 			<XCoord>239</XCoord>

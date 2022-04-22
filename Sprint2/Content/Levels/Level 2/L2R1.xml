@@ -29,6 +29,32 @@
 			<Height>300</Height>
 		</wall>
 	</Walls>
+	<Items>
+		<item Type="heart">
+			<XCoord>420</XCoord>
+			<YCoord>229</YCoord>
+		</item>
+		<item Type="heart">
+			<XCoord>420</XCoord>
+			<YCoord>300</YCoord>
+		</item>
+		<item Type="heart">
+			<XCoord>420</XCoord>
+			<YCoord>180</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>343</XCoord>
+			<YCoord>229</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>343</XCoord>
+			<YCoord>300</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>343</XCoord>
+			<YCoord>180</YCoord>
+		</item>
+	</Items>
 	<Doors>
 		<door Type="TopOpen">
 			<room>Level 2/L2R4</room>    <!-- Next Room-->

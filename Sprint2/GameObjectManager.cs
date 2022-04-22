@@ -38,6 +38,7 @@ namespace Sprint2
         public Menu menu;
         public HUD hud;
         public Camera camera;
+        public bool isDead;
 
         public GameObjectManager(Game1 game)
         {
@@ -61,6 +62,7 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
             isPaused = false;
+            isDead = false;
             menu = new Menu(this);
             this.camera = new Camera(this);
             hud = new HUD(this);
@@ -240,8 +242,9 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             camera.Draw(spriteBatch);
-            if (!isPaused) background.Draw(spriteBatch);
-            else menu.Draw(spriteBatch);
+            if (!isPaused && !isDead) background.Draw(spriteBatch);
+            if ( isPaused && !isDead) menu.Draw(spriteBatch);
+            if (isDead) link.Draw(spriteBatch);
             
             foreach (ISprite sprite in drawableSpritesList)
             {
@@ -254,6 +257,7 @@ namespace Sprint2
         public void Update(GameTime gametime)
         {
             camera.Update(gameTime);
+            if (isDead) link.Update(gametime);
             foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);

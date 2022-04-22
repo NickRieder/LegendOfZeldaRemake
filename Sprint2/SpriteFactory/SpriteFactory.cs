@@ -85,6 +85,10 @@ namespace Sprint2
             return tileSheet;
         }
 
+        public Texture2D getDeathSheet()
+        {
+            return deathScreen;
+        }
 
         public Texture2D getItemSheet()
         {

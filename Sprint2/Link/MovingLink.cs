@@ -13,8 +13,9 @@ namespace Sprint2
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
-		private const int movementSpeed = 2;
 		private string direction;
+		private bool isMoving;
+		private const int movementSpeed = 4;
 
 		public MovingLink(Link link, string direction)
 		{

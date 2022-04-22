@@ -19,6 +19,7 @@ namespace Sprint2
         private Texture2D sheet;
         private Vector2 HUDPos;
         private Sprite itemSprite;
+        private Sprite swordSprite;
         private int HUDPosX;
         private int HUDPosY;
 
@@ -54,6 +55,7 @@ namespace Sprint2
             HUDSprite = this.spriteFactory.getHUDSprite();
             sheet = this.spriteFactory.getHudSheet();
             if(itemSprite == null) itemSprite = spriteFactory.getWallSprite(new Rectangle(0, 0, 0, 0));
+            swordSprite = spriteFactory.getSwordSprite();
         }
 
 
@@ -69,6 +71,7 @@ namespace Sprint2
 
             HUDSprite.Draw(spriteBatch, HUDPos);
             itemSprite.Draw(spriteBatch, new Vector2(HUDPos.X + 385, HUDPos.Y + 40));
+            swordSprite.Draw(spriteBatch, new Vector2(HUDPos.X + 458, HUDPos.Y + 35));
 
             // numebrs of items link has
             spriteBatch.DrawString(font, "X" + link.rupees.ToString("00"), new Vector2(HUDPos.X + itemStringOffsetX, HUDPos.Y), Color.White);
@@ -99,6 +102,8 @@ namespace Sprint2
                     }
                     destinationRectangle = new Rectangle((int)(HUDPos.X + HUDPosOffsetX + ((sourceRectangleMultiplier * sourceRectangle.Width) * (i / 2))), (int)(HUDPos.Y + HUDPosOffsetY), sourceRectangleMultiplier * sourceRectangle.Width, sourceRectangleMultiplier * sourceRectangle.Height);
                     spriteBatch.Draw(sheet, destinationRectangle, sourceRectangle, Color.White);
+
+
                 
                 
             }
