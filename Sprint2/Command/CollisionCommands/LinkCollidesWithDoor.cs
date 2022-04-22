@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace Sprint2
 {
     public class LinkCollidesWithDoor : ICollisionCommand
@@ -27,6 +26,7 @@ namespace Sprint2
             if (doorType.Contains("Lock") && link.keys > 0)
             {
                 door.canContinue = true;
+                link.keys--;
             }
 
             if (door.canContinue)
