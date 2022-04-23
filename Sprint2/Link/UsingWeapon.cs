@@ -14,13 +14,15 @@ namespace Sprint2
 		private static TimeSpan attackTime;
 		private TimeSpan startTimeAttack;
 		bool isAttacking;
+		private string direction;
 
 		public UsingWeapon(Link link)
 		{
 			this.link = link;
+			this.direction = link.direction;
 			this.sprite = link.sprite;
 			spriteFactory = link.spriteFactory;
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
 					sprite = spriteFactory.getLinkUsingWeaponDown();
@@ -35,22 +37,24 @@ namespace Sprint2
 					sprite = spriteFactory.getLinkUsingWeaponUp();
 					break;
 			}
+			link.sprite = sprite;
 			attackTime = TimeSpan.FromMilliseconds(500);
 			isAttacking = true;
+			link.isUsingWeapon = true;
 		}
 
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
 		{
 			link.health--;
 			link.currState = new NewDirectionalLinkSprite(link, link.direction);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			sprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 			if (isAttacking)
 			{
 				startTimeAttack = gameTime.TotalGameTime;
@@ -58,6 +62,8 @@ namespace Sprint2
 			}
 			if (startTimeAttack + attackTime < gameTime.TotalGameTime)
 			{
+				link.isUsingWeapon = false;
+				link.canDealDamage = true;
 				link.currState = new NewDirectionalLinkSprite(link, link.direction);
 			}
 		}
@@ -67,7 +73,7 @@ namespace Sprint2
 		public void StandingDown() { }
 		public void StandingRight() { }
 		public void StandingLeft() { }
-		public void Move() { }
+		public void Move(string direction) { }
 		public void UseWeapon() { }
 		public void UseItem(string newItem) { }
 	}

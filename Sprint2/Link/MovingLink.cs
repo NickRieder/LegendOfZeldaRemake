@@ -13,16 +13,17 @@ namespace Sprint2
 		private SoundFactory soundFactory;
 		private ArrayList itemList;
 		private IItem item;
+		private string direction;
 		private bool isMoving;
-		private const int movementSpeed = 2;
+		private const int movementSpeed = 4;
 
-		public MovingLink(Link link)
+		public MovingLink(Link link, string direction)
 		{
 			this.link = link;
-			this.sprite = link.sprite;
+			this.direction = direction;
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
 					sprite = spriteFactory.getLinkMovingDownSprite();
@@ -41,42 +42,25 @@ namespace Sprint2
 		}
 		public void StandingUp()
 		{
-			if (link.direction != "up")
-			{
-				link.direction = "up";
-				link.currState = new StandingFacingUp(link);
-			}
+			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
 		{
-			if (link.direction != "down")
-			{
-				link.direction = "down";
-				link.currState = new StandingFacingDown(link);
-			}
+			link.currState = new StandingFacingDown(link);
 		}
 		public void StandingRight()
 		{
-			if (link.direction != "right")
-			{
-				link.direction = "right";
-				link.currState = new StandingFacingRight(link);
-			}
+			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft()
 		{
-			if (link.direction != "left")
-            {
-				link.direction = "left";
-				link.currState = new StandingFacingLeft(link);
-			}
-			
+			link.currState = new StandingFacingLeft(link);
 		}
-		public void Move()
+		public void Move(string direction)
         {
 			Vector2 currPos = link.pos;
 
-			switch (link.direction)
+			switch (direction)
 			{
 				case "down":
 					currPos.Y += movementSpeed;
@@ -106,18 +90,18 @@ namespace Sprint2
 			link.currState = new UsingItem(link);
 			link.SetItem(newItem);
 		}
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
 		{
 			link.health--;
-			link.currState = new TakingDamage(link);
+			link.currState = new TakingDamage(link, collisionSide);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			sprite.Update(gameTime);
+			//sprite.Update(gameTime);
 			link.sprite.Update(gameTime);
 		}
 	}

@@ -18,8 +18,11 @@ namespace Sprint2
 
         public Sprite sprite;
         public string doorType;
+        public bool canContinue;
+        public bool usable;
 
-
+        /*private int unusableTimer = 0;
+        private int unusableDuration = 500;*/
         private const int initialDoorPosX = 100;
         private const int initialDoorPosY = 500;
         public Door(string doorType, String nextLevel, LevelLoader levelLoader, String prevRoom, String nextClickRoom) 
@@ -30,6 +33,7 @@ namespace Sprint2
             this.prevRoom = prevRoom;
             this.nextClickRoom = nextClickRoom;
             this.doorType = doorType;
+            usable = true;
         }
         public void Draw(SpriteBatch spritebatch)
         {
@@ -44,39 +48,51 @@ namespace Sprint2
             {
                 case "TopOpen":
                     sprite = spriteFactory.getTopDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "BotOpen":
                     sprite = spriteFactory.getBottomDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "LeftOpen":
                     sprite = spriteFactory.getLeftDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "RightOpen":
                     sprite = spriteFactory.getRightDoorOpenSprite();
+                    canContinue = true;
                     break;
                 case "TopWall":
                     sprite = spriteFactory.getTopDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "BotWall":
                     sprite = spriteFactory.getBottomDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "LeftWall":
                     sprite = spriteFactory.getLeftDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "RightWall":
                     sprite = spriteFactory.getRightDoorClosedSprite();
+                    canContinue = false;
                     break;
                 case "TopLock":
                     sprite = spriteFactory.getTopDoorLockedSprite();
+                    canContinue = false;
                     break;
                 case "BotLock":
                     sprite = spriteFactory.getBottomDoorLockedSprite();
+                    canContinue = false;
                     break;
                 case "LeftLock":
                     sprite = spriteFactory.getLeftDoorLockedSprite();
+                    canContinue = false;
                     break;
                 case "RightLock":
                     sprite = spriteFactory.getRightDoorLockedSprite();
+                    canContinue = false;
                     break;
                 default:
                     sprite = spriteFactory.getTopDoorClosedSprite();
@@ -102,11 +118,27 @@ namespace Sprint2
         public void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
+
+            /*if (unusableTimer >= unusableDuration)
+            {
+                usable = true;
+            }
+            if (!usable)
+            {
+                unusableTimer++;
+            }*/
+            //System.Diagnostics.Debug.WriteLine("DEBUG: /Door/ usable = " + usable);
+
         }
 
         public void LoadNextLevel()
         {
-            levelLoader.LoadLevel(nextLevel, doorType);
+            if (canContinue)
+            {
+                levelLoader.LoadLevel(nextLevel, doorType);
+                //usable = true;
+            }
+            
         }
 
         public void LoadNextRoom()

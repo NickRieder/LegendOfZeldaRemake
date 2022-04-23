@@ -9,7 +9,7 @@ using System.Collections.Concurrent;
 
 namespace Sprint2
 {
-    public class CollisionDetector : ICollision
+    public class CollisionDetector
     {
         public enum COLLISION_SIDE : int
         {
@@ -23,17 +23,12 @@ namespace Sprint2
         private GameObjectManager gom;
         private ConcurrentBag<ISprite> allObjectList;
         private ConcurrentBag<ISprite> movableObjectList;
-        private CollisionHandler collisionHandler;
-        private CollisionHandlerEnemy collisionHandlerEnemy;
+        private CollisionResolver collisionHandler;
 
         public CollisionDetector(GameObjectManager gom)
         {
             this.gom = gom;
-            /*allObjectList = gom.allObjectList;
-            movableObjectList = gom.movableObjectList;*/
-
-            collisionHandler = new CollisionHandler(gom);
-            collisionHandlerEnemy = new CollisionHandlerEnemy(gom);
+            collisionHandler = new CollisionResolver(gom);
         }
 
         private int GetCollisionSide(ISprite movableSpite, ISprite otherSprite)
@@ -50,16 +45,16 @@ namespace Sprint2
                 if (intersectingArea.Width >= intersectingArea.Height)      // top-bottom collision
                 {
                     if (mSprRectangle.Y < oSprRectangle.Y)
-                        return (int)COLLISION_SIDE.TOP;                 // movableSprite top collision
+                        return (int)COLLISION_SIDE.BOTTOM;                 // movableSprite bottom collision
                     else if (mSprRectangle.Y >= oSprRectangle.Y)
-                        return (int)COLLISION_SIDE.BOTTOM;              // movableSprite bottom collision
+                        return (int)COLLISION_SIDE.TOP;              // movableSprite top collision
                 }
                 else if (intersectingArea.Width < intersectingArea.Height)   // left-right collision
                 {
                     if (mSprRectangle.X < oSprRectangle.X)
-                        return (int)COLLISION_SIDE.LEFT;                // movableSprite left collision
+                        return (int)COLLISION_SIDE.RIGHT;                // movableSprite right collision
                     else if (mSprRectangle.X >= oSprRectangle.X)
-                        return (int)COLLISION_SIDE.RIGHT;               // movableSprite right collision
+                        return (int)COLLISION_SIDE.LEFT;               // movableSprite left collision
                 }
                 else
                 {
@@ -69,30 +64,26 @@ namespace Sprint2
             return collisionSide;
         }
 
-
         public void Update(GameTime gametime)
         {
-            foreach (ISprite movableSprite in gom.movableObjectList)
+            foreach (ISprite movableSprite in gom.getListOfMovableObjects())
             {
-                foreach (ISprite otherSprite in gom.allObjectList)
+                foreach (ISprite otherSprite in gom.getListOfAllObjects())
                 {
                     if (!(movableSprite == otherSprite))
                     {
-                        int collisionSide = GetCollisionSide(movableSprite, otherSprite);
+                        int collisionSideOfMainSprite = GetCollisionSide(movableSprite, otherSprite);
+                        int collisionSideOfOtherSprite = GetCollisionSide(otherSprite, movableSprite);
 
-                        if (collisionSide != (int)COLLISION_SIDE.NONE)
+                        if (collisionSideOfMainSprite != (int)COLLISION_SIDE.NONE)
                         {
-                            //System.Diagnostics.Debug.WriteLine("collisionSide = " + collisionSide);
-                            collisionHandler.Collide(movableSprite, otherSprite, collisionSide);
-                            //collisionHandler.Collide(otherSprite, movableSprite, collisionSide);
-                            collisionHandlerEnemy.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSide);
+                            collisionHandler.HandleCollision(movableSprite, otherSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfMainSprite);
+                            collisionHandler.HandleCollision(otherSprite, movableSprite, (CollisionDetector.COLLISION_SIDE)collisionSideOfOtherSprite);
                         }
-
-
                     }
-
                 }
             }
+
         }
     }
 }

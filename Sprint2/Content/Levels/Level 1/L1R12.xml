@@ -60,7 +60,7 @@
 			<XCoord>336</XCoord>
 			<YCoord>3</YCoord>
 		</door>
-		<door Type="LeftLock">
+		<door Type="LeftOpen">
 			<room>Level 1/L1R13</room>
 			<!-- Next Room-->
 			<room>Level 1/L1R11</room>

@@ -16,10 +16,6 @@ namespace Sprint2
         public ConcurrentBag<ISprite> movableObjectList { get; set; }
         public ConcurrentBag<ISprite> updatableSpritesList;
         public ConcurrentBag<ISprite> drawableSpritesList;
-        public ConcurrentBag<ISprite> allObjectListInserts;
-        public ConcurrentBag<ISprite> movableObjectListInserts;
-        public ConcurrentBag<ISprite> updatableSpritesListInserts;
-        public ConcurrentBag<ISprite> drawableSpritesListInserts;
         private ConcurrentBag<ISprite> tempUpdatableList;
         public SoundFactory soundFactory { get; set; }
 
@@ -42,6 +38,7 @@ namespace Sprint2
         public Menu menu;
         public HUD hud;
         public Camera camera;
+        public bool isDead;
 
         public GameObjectManager(Game1 game)
         {
@@ -53,10 +50,6 @@ namespace Sprint2
             updatableSpritesList = new ConcurrentBag<ISprite>();
 
             // Inserts lists are lists that store elements to be added while the actual list corresponding to the name is being iterated through.
-            allObjectListInserts = new ConcurrentBag<ISprite>();
-            movableObjectListInserts = new ConcurrentBag<ISprite>();
-            drawableSpritesListInserts = new ConcurrentBag<ISprite>();
-            updatableSpritesListInserts = new ConcurrentBag<ISprite>();
             tempUpdatableList = new ConcurrentBag<ISprite>();
             tempDrawableList = new ConcurrentBag<ISprite>();
             pauseMenuList = new ConcurrentBag<ISprite>();
@@ -69,6 +62,7 @@ namespace Sprint2
             background = new Background();
             gameTime = new GameTime();
             isPaused = false;
+            isDead = false;
             menu = new Menu(this);
             this.camera = new Camera(this);
             hud = new HUD(this);
@@ -87,6 +81,7 @@ namespace Sprint2
 
         public void SetSoundContent(SoundFactory soundFactory)
         {
+            
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.SetSoundContent(soundFactory);
@@ -247,18 +242,22 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             camera.Draw(spriteBatch);
-            if (!isPaused) background.Draw(spriteBatch);
-            else menu.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
+            if (!isPaused && !isDead) background.Draw(spriteBatch);
+            if ( isPaused && !isDead) menu.Draw(spriteBatch);
+            if (isDead) link.Draw(spriteBatch);
+            
             foreach (ISprite sprite in drawableSpritesList)
             {
                 sprite.Draw(spriteBatch);
             }
+
+            hud.Draw(spriteBatch);
         }
 
         public void Update(GameTime gametime)
         {
             camera.Update(gameTime);
+            if (isDead) link.Update(gametime);
             foreach (ISprite sprite in updatableSpritesList)
             {
                 sprite.Update(gametime);

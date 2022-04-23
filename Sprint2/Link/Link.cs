@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Sprint2
@@ -10,11 +11,13 @@ namespace Sprint2
 	{
 		public ILinkState currState;
 		public Vector2 pos { get; set; }
+		public bool freeze { get; set; }
+		
 		public SpriteFactory spriteFactory;
 		public SoundFactory soundFactory;
 		public Game1 game;
 		public Sprite sprite;
-		public int health, maxHealth, rupies, keys, bombs;
+		public int health, maxHealth, rupees, keys, bombs;
 		public LinkItem item;
 		public string direction;
 		public List<IItem> itemList;
@@ -26,7 +29,7 @@ namespace Sprint2
 		public SoundEffect explosion;
 
 		private const int sizeMuliplier = 3;
-		private const int linkStartingHealth = 8;
+		private const int linkStartingHealth = 10;
 		private const int linkMaxHealth = 10;
 		private const int linkLowHealth = 1;
 		private const int linkStartingPosX = 40;
@@ -35,17 +38,33 @@ namespace Sprint2
 		public SoundEffect bombThrow;
 		public GameObjectManager gom;
 		public bool isUsingItem;
+		public bool isMoving;
+		public bool canTakeDamage;
+		public bool isUsingWeapon;
+		public int swordDamage;
+		public bool canDealDamage { get; set; }
+		public bool canDecreaseKey { get; set; }
+		private int keyCooldownTimer = 0;
+		private int keyCooldownDuration = 60;
+
 		public Link(Game1 game, GameObjectManager gom)
 		{
-			//item = new NullItem();
 			this.game = game;
 			this.gom = gom;
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
-			rupies = keys = bombs = 0;
+
+			rupees = keys = bombs = 3;
+
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
-			
+			isMoving = false;
+			canTakeDamage = true;
+			isUsingWeapon = false;
+			canDealDamage = true;
+			swordDamage = 2;
+			freeze = false;
+			canDecreaseKey = true;
 		}
 
 		public void SetSoundContent(SoundFactory soundFactory)
@@ -64,9 +83,9 @@ namespace Sprint2
 		public void SetSpriteContent(SpriteFactory spriteFactory)
         {
 			this.spriteFactory = spriteFactory;
-			this.currState = new StandingFacingDown(this);
+			this.currState = new StandingFacingUp(this);
 			sprite = spriteFactory.getLinkStandingFacingDownSprite();
-			direction = "down";
+			direction = "up";
 			item = new LinkItem(this, spriteFactory);
 		}
 
@@ -86,6 +105,10 @@ namespace Sprint2
         {
 			return sprite.getDestinationRectangle();
         }
+		public Rectangle getCurrentFrameRectangle()
+        {
+			return sprite.getCurrentFrameRectangle();
+        }
 
 		public void StandingUp()
         {
@@ -103,9 +126,9 @@ namespace Sprint2
         {
 			currState.StandingRight();
 		}
-		public void Move()
+		public void Move(string direction)
         {
-			currState.Move();
+			currState.Move(direction);
         }
 		public void UseWeapon()
         {
@@ -116,9 +139,9 @@ namespace Sprint2
 			currState = new UsingItem(this);
 			item.Use();
 		}
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
         {
-			currState.TakeDamage();
+			currState.TakeDamage(collisionSide);
 			if (health == 0)
             {
 				linkDeadSound.Play();
@@ -136,25 +159,35 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
         {
-			currState.Draw(spriteBatch);
-			//item.Draw(spriteBatch);
+			if (!freeze)
+			{
+				currState.Draw(spriteBatch);
+			}
+			
+			if (keyCooldownTimer >= keyCooldownDuration)
+            {
+				canDecreaseKey = true;
+				keyCooldownTimer = 0;
+            }
+			if (!canDecreaseKey)
+            {
+				keyCooldownTimer++;
+            }
+
         }
 		public void Update(GameTime gameTime)
 		{
-			currState.Update(gameTime);
-			sprite.Update(gameTime);
-			//item.Update(gameTime);
+			if (!freeze)
+            {
+				currState.Update(gameTime);
+			}
+			
 		}
 
-		public Link GetConcreteObject()
-		{
-			return this;
-		}
-
-		object ISprite.GetConcreteObject()
-		{
-			return this;
-		}
-	}
+        object ISprite.GetConcreteObject()
+        {
+            return this;
+        }
+    }
 }
 

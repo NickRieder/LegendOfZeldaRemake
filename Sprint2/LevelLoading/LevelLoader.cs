@@ -13,28 +13,39 @@ namespace Sprint2
         private Link link;
         private MouseController mouse;
         private string itemName;
-        public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory, SoundFactory soundFactory)
+        private RoomWriter roomWriter;
+        public LevelLoader(GameObjectManager gom, SpriteFactory spriteFactory, SoundFactory soundFactory, RoomWriter roomWriter)
         {
             this.gom = gom;
             this.link = gom.link;
             this.spriteFactory = spriteFactory;
             this.soundFactory = soundFactory;
+            this.roomWriter = roomWriter;
             doorType = "Right";
         }
 
         public void LoadLevel(String fileName, string doorType)
         {
+            if(fileName.Contains("Endless"))
+            {
+                string nextFileName = "";
+                if (fileName.Contains("Room1")) nextFileName = "EndlessRoom2";
+                else if (fileName.Contains("Room2")) nextFileName = "EndlessRoom3";
+                else if (fileName.Contains("Room3") || fileName.Contains("Default")) nextFileName = "EndlessRoom1";
+                roomWriter.generateRandomRoom(nextFileName);
+            }
             gom.ClearSpriteList();
             gom.SetSpriteContent(spriteFactory);
             gom.SetSoundContent(soundFactory);
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
+            
         }
 
         public void LoadLink(string doorType)
         {
-            link.SetSpriteContent(spriteFactory);
+            //link.SetSpriteContent(spriteFactory);
             switch (doorType)
             {
                 case "Top":
@@ -52,6 +63,50 @@ namespace Sprint2
                 case "Right":
                     link.SetPos(SpriteFactory.LINK_LEFT_POS);
                     link.currState = new StandingFacingRight(link);
+                    break;
+                case "TopOpen":
+                    link.SetPos(SpriteFactory.LINK_BOTTOM_POS);
+                    link.currState = new StandingFacingUp(link);
+                    break;
+                case "BotOpen":
+                    link.SetPos(SpriteFactory.LINK_TOP_POS);
+                    link.currState = new StandingFacingDown(link);
+                    break;
+                case "LeftOpen":
+                    link.SetPos(SpriteFactory.LINK_RIGHT_POS);
+                    link.currState = new StandingFacingLeft(link);
+                    break;
+                case "RightOpen":
+                    link.SetPos(SpriteFactory.LINK_LEFT_POS);
+                    link.currState = new StandingFacingRight(link);
+                    break;
+                case "TopLock":
+                    link.SetPos(SpriteFactory.LINK_BOTTOM_POS);
+                    link.currState = new StandingFacingUp(link);
+                    break;
+                case "BotLock":
+                    link.SetPos(SpriteFactory.LINK_TOP_POS);
+                    link.currState = new StandingFacingDown(link);
+                    break;
+                case "LeftLock":
+                    link.SetPos(SpriteFactory.LINK_RIGHT_POS);
+                    link.currState = new StandingFacingLeft(link);
+                    break;
+                case "RightLock":
+                    link.SetPos(SpriteFactory.LINK_LEFT_POS);
+                    link.currState = new StandingFacingRight(link);
+                    break;
+                case "TopWall":
+
+                    break;
+                case "BotWall":
+
+                    break;
+                case "LeftWall":
+
+                    break;
+                case "RightWall":
+
                     break;
                 default:
                     link.SetPos(SpriteFactory.LINK_RIGHT_POS);
@@ -75,12 +130,12 @@ namespace Sprint2
 
         public void LoadItemObject(String itemName, Vector2 pos)
         {
-            Item item = new Item(itemName, pos);
+            Item item = new Item(itemName, pos, gom);
             item.SetSpriteContent(spriteFactory);
+            item.SetSoundContent(soundFactory);
 
             gom.AddToAllObjectList(item);
             gom.AddToDrawableObjectList(item);
-            gom.AddToUpdatableObjectList(item);
         }
 
         public void LoadEnemyObject(String enemyName, Vector2 pos)

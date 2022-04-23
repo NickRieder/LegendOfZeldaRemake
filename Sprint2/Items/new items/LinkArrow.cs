@@ -9,6 +9,7 @@ namespace Sprint2
     {
         private int counter;
         private double speed;
+        public int damage;
         private TimeSpan startTimeUsing;
         private bool startUsingItem;
 
@@ -16,6 +17,7 @@ namespace Sprint2
         {
             counter = 0;
             speed = 7;
+            damage = 1;
             this.gom = link.gom;
             startUsingItem = true;
         }
@@ -59,7 +61,6 @@ namespace Sprint2
 
             if (startTimeUsing + TimeSpan.FromMilliseconds(1500) < gameTime.TotalGameTime)
             {
-                System.Diagnostics.Debug.WriteLine("DEBUG: (LinkArrow/Update) removing projectile...");
                 link.isUsingItem = false;
                 base.RemoveProjectile(this);
                 

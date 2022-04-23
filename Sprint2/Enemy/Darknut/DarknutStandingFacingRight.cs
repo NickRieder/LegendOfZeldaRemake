@@ -76,25 +76,17 @@ namespace Sprint2
         public void TakeDamage()
         {
             darknut.health--;
-            //darknut.currState = new BluegelDamagedFacingDown(darknut);
+          
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             darknut.sprite.Draw(spriteBatch, darknut.pos);
-            /*Rectangle destinationRectangleFrame1 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame1.Width * darknut.spriteSizeMultiplier, frame1.Height * darknut.spriteSizeMultiplier);
-            Rectangle destinationRectangleFrame2 = new Rectangle((int)darknut.pos.X, (int)darknut.pos.Y, frame2.Width * darknut.spriteSizeMultiplier, frame2.Height * darknut.spriteSizeMultiplier);
-            if (currFrame == 0)
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame1, frame1, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(sheet, destinationRectangleFrame2, frame2, Color.White);
-            }*/
+         
         }
 
         public void Update(GameTime gameTime)
         {
+         
             elapsedTime = gameTime.ElapsedGameTime;
             secondsPassed = elapsedTime.TotalSeconds;
             totalSecondsPassed = totalSecondsPassed + secondsPassed;

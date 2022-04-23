@@ -13,14 +13,18 @@ namespace Sprint2
         private int yPos;
         string direction;
         bool canContinue;
+        int cameraSpeed;
         private SpriteFactory spriteFactory;
+        private Door door;
 
-        public MovingCamera(Camera camera, string direction)
+        public MovingCamera(Camera camera, string direction, Door door)
         {
             this.camera = camera;
             xPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
             yPos = (int)Camera.CAMERA_SETTING.START_ANIMATION;
+            cameraSpeed = (int)Camera.CAMERA_SETTING.CAMERA_SPEED;
             this.direction = direction;
+            this.door = door;
             canContinue = true;
         }
 
@@ -28,33 +32,33 @@ namespace Sprint2
         {
             camera.currState = new StaticCamera(camera, xPos, yPos);
         }
-        public void AnimateRoomTransition(string direction)
+        public void AnimateRoomTransition(string direction, Door door)
         {
             switch (direction)
             {
                 case "Up":
-                    yPos += 5;
+                    yPos += cameraSpeed;
                     if (yPos >= (int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Down":
-                    yPos -= 5;
+                    yPos -= cameraSpeed;
                     if (yPos <= -(int)Camera.CAMERA_SETTING.STOP_VERTICAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Left":
-                    xPos += 5;
+                    xPos += cameraSpeed;
                     if (xPos >= (int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
                     }
                     break;
                 case "Right":
-                    xPos -= 5;
+                    xPos -= cameraSpeed;
                     if (xPos <= -(int)Camera.CAMERA_SETTING.STOP_HORIZONTAL_ANIMATION)
                     {
                         canContinue = false;
@@ -67,21 +71,25 @@ namespace Sprint2
             camera.yPos = -yPos;
             var position = Matrix.CreateTranslation(xPos, yPos, 0);
 
-            //var offset = Matrix.CreateTranslation(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2, 0);
-
             camera.transform = position;
+
+            if (!canContinue)
+            {
+                door.LoadNextLevel();
+                //door.usable = true;
+            }
         }
 
         public void Update(GameTime gameTime)
         {
             if (canContinue)
             {
-                AnimateRoomTransition(direction);
+                AnimateRoomTransition(direction, door);
             }
             else
             {
                 // We know this looks bad with all the dots, but we will refactor this once our door collision works
-                camera.gom.mouseController.door.LoadNextRoom();
+                //camera.gom.mouseController.door.LoadNextRoom();
 
                 // Reset camera position back to the center playable room and freeze it there.
                 camera.xPos = (int)Camera.CAMERA_SETTING.STARTING_X_POS;

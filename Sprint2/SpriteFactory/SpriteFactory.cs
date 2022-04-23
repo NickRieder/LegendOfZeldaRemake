@@ -85,6 +85,10 @@ namespace Sprint2
             return tileSheet;
         }
 
+        public Texture2D getDeathSheet()
+        {
+            return deathScreen;
+        }
 
         public Texture2D getItemSheet()
         {
@@ -245,8 +249,8 @@ namespace Sprint2
         public static Rectangle BOOMERANG = new Rectangle(129, 3, 6, 8);
         public static Rectangle RED_CANDLE = new Rectangle(160, 0, 8, 16);
         public static Rectangle BLUE_CANDLE = new Rectangle(160, 16, 8, 16);
-        public static Rectangle ORANGE_RUBY = new Rectangle(71, 0, 9, 16);
-        public static Rectangle BLUE_RUBY = new Rectangle(71, 16, 9, 16);
+        public static Rectangle ORANGE_RUPEE = new Rectangle(71, 0, 9, 16);
+        public static Rectangle BLUE_RUPEE = new Rectangle(71, 16, 9, 16);
         public static Rectangle KEY = new Rectangle(240, 0, 8, 16);
 
         //Link
@@ -283,8 +287,8 @@ namespace Sprint2
         // link starting positions
         public static Vector2 LINK_LEFT_POS = new Vector2(96, 240);
         public static Vector2 LINK_RIGHT_POS = new Vector2(624, 240);
-        public static Vector2 LINK_TOP_POS = new Vector2(360, 96);
-        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 390);
+        public static Vector2 LINK_TOP_POS = new Vector2(360, 110);
+        public static Vector2 LINK_BOTTOM_POS = new Vector2(360, 370);
 
         // HUD
         public static Rectangle HUD_SPRITE = new Rectangle(258, 26, 255, 34);
@@ -418,6 +422,7 @@ namespace Sprint2
         {
             return new Sprite(linkSheetUpsideDown, ARROW_UPSIDEDOWN_DOWN);
         }
+      
 
         /*        public Sprite getBombSprite()
                 {
@@ -593,6 +598,14 @@ namespace Sprint2
         public Sprite getKeySprite()
         {
             return new Sprite(itemSheet, KEY);
+        }
+        public Sprite getRupeeSprite()
+        {
+            return new Sprite(itemSheet, ORANGE_RUPEE);
+        }
+        public Sprite getHeartSprite()
+        {
+            return new Sprite(itemSheet, HEART_CANISTER);
         }
 
         // Enemies

@@ -18,15 +18,14 @@ namespace Sprint2
 		public StandingFacingLeft(Link link)
 		{
 			this.link = link;
-			this.sprite = link.sprite;
 			link.direction = "left";
 			spriteFactory = link.spriteFactory;
 			soundFactory = link.soundFactory;
-			sprite = spriteFactory.getLinkStandingFacingLeftSprite();
+			link.sprite = spriteFactory.getLinkStandingFacingLeftSprite();
 			
 		}
 		public void StandingUp()
-		{
+		{ 
 			link.currState = new StandingFacingUp(link);
 		}
 		public void StandingDown()
@@ -38,9 +37,9 @@ namespace Sprint2
 			link.currState = new StandingFacingRight(link);
 		}
 		public void StandingLeft() { }
-		public void Move()
+		public void Move(string direction)
         {
-			link.currState = new MovingLink(link);			
+			link.currState = new MovingLink(link, direction);			
 		}
 		public void UseWeapon()
 		{
@@ -51,18 +50,18 @@ namespace Sprint2
 			link.currState = new UsingItem(link);
 			link.SetItem(newItem);
 		}
-		public void TakeDamage()
+		public void TakeDamage(int collisionSide)
 		{
 			link.health--;
-			link.currState = new TakingDamage(link);
+			link.currState = new TakingDamage(link, collisionSide);
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, link.pos);
+			link.sprite.Draw(spriteBatch, link.pos);
 		}
 		public void Update(GameTime gameTime)
 		{
-			sprite.Update(gameTime);
+			link.sprite.Update(gameTime);
 		}
 	}
 }

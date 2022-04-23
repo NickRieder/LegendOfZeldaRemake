@@ -10,7 +10,7 @@ namespace Sprint2
     public class BossMinion : EnemyDamagingProjectile
     {
         private int counter;
-        private double velocity;
+        public double velocity;
 
         private static int initialVelocity = 7;
         private static double velocityUpdate = 0.5;

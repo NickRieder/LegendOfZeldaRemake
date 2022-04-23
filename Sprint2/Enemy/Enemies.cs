@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections;
 
 namespace Sprint2
@@ -21,6 +22,7 @@ namespace Sprint2
 		public string enemyName;
 		public ArrayList projectileList;
 		public bool freeze { get; set; }
+		
 
 		public SoundEffect enemyHurtSound;
 		public SoundEffect enemyDeadSound;
@@ -35,6 +37,17 @@ namespace Sprint2
 		private const int startingPosX = 600;
 		private const int startingPosY = 200;
 
+		//temp
+		public bool canDamage;
+		public bool canTakeDamage { get; set; }
+		private static int damageCooldownTimer = 0;
+		private static int damageCooldown = 60;
+
+		private static int invulnerableTimer = 0;
+		private static int invulnerableDuration = 30;
+
+		private Random rng;
+
 		public Enemies(string enemyName, GameObjectManager gom)
 		{
 			this.enemyName = enemyName;
@@ -43,6 +56,9 @@ namespace Sprint2
 			health = startingHealth;
 			pos = new Vector2(startingPosX, startingPosY);
 			this.freeze = false;
+			canDamage = true;
+			canTakeDamage = true;
+			rng = new Random();
 		}
 
 		public void SetSpriteContent(SpriteFactory spriteFactory)
@@ -123,9 +139,15 @@ namespace Sprint2
             currState.Attack();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int damage)
 		{
-			currState.TakeDamage();
+			//canTakeDamage = false;
+			System.Diagnostics.Debug.WriteLine("/Enemies/ enemy can take damage = " + canTakeDamage);
+			for (int i = 0; i < damage; i++)
+            {
+				currState.TakeDamage();
+			}
+			System.Diagnostics.Debug.WriteLine("DEBUG: /Enemies/ health = " +this.health);
 			if (enemyName == "Boss")
             {
 				if (bossHealth == 0)
@@ -150,13 +172,67 @@ namespace Sprint2
 			}
 		
 		}
+		public void DealDamage()
+        {
+			//canDamage = false;
+			
+		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			currState.Draw(spriteBatch);
+			if (health != 0 || bossHealth !=0)
+            {
+				currState.Draw(spriteBatch);
+			}
 		}
 		public void Update(GameTime gameTime)
 		{
+
 			currState.Update(gameTime);
+			if (bossHealth <= 0)
+			{
+				gom.RemoveFromEveryCollection(this);
+			}
+			else if (health <= 0)
+			{
+				gom.RemoveFromEveryCollection(this);
+				int rand = rng.Next(0, 10);
+				Item item;
+				if (rand == 0)
+				{
+					item = new Item("key", pos, gom);
+				}
+				else if (rand == 1 || rand == 2)
+				{
+					item = new Item("bomb", pos, gom);
+				}
+				else if (rand == 3)
+                {
+					item = new Item("heart", pos, gom);
+                }
+				else
+                {
+					item = new Item("rupee", pos, gom);
+                }
+				item.SetSpriteContent(spriteFactory);
+				item.SetSoundContent(soundFactory);
+				gom.AddToAllObjectList(item);
+				gom.AddToDrawableObjectList(item);
+				
+
+			}
+
+            if (invulnerableTimer >= invulnerableDuration)
+            {
+				canTakeDamage = true;
+				invulnerableTimer = 0;
+            }
+			if (!canTakeDamage)
+            {
+				invulnerableTimer++;
+            }
+
+            currState.Update(gameTime);
+
 		}
 
 		public Enemies GetConcreteObject()

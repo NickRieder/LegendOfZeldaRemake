@@ -45,23 +45,28 @@ namespace Sprint2
 
                 switch (itemString)
                 {
-                    case "Boomerang":
-                        currItem = new LinkBoomerang(link, "Boomerang");
+                    case "boomerang":
+                        currItem = new LinkBoomerang(link, "boomerang");
                         gom.AddToMovableObjectList(currItem);
                         gom.AddToDrawableObjectList(currItem);
                         link.boomerangSound.Play();
                         break;
-                    case "Arrow":
-                        currItem = new LinkArrow(link, "Arrow");
+                    case "arrow":
+                        currItem = new LinkArrow(link, "arrow");
                         gom.AddToMovableObjectList(currItem);
                         gom.AddToDrawableObjectList(currItem);
                         link.arrowSound.Play();
+                        
                         break;
-                    case "Explosion":
-                        currItem = new LinkExplosion(link, "Explosion");
-                        gom.AddToMovableObjectList(currItem);
-                        gom.AddToDrawableObjectList(currItem);
-                        link.bombThrow.Play();
+                    case "bomb":
+                        if(link.bombs > 0)
+                        { 
+                            currItem = new LinkExplosion(link, "bomb");
+                            gom.AddToMovableObjectList(currItem);
+                            gom.AddToDrawableObjectList(currItem);
+                            link.bombThrow.Play();
+                            link.bombs--;
+                        }
                         break;
                 }
 

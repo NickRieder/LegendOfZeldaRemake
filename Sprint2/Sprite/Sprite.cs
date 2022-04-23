@@ -12,7 +12,7 @@ namespace Sprint2
         private Rectangle currRectangle;
         private List<Rectangle> frameList;
         private Rectangle destinationRectangle;
-        private const int scaleMultiplier = 3;
+        public int scaleMultiplier;
         private const int frameUpdateMod = 10;
         private int counter;
 
@@ -29,6 +29,8 @@ namespace Sprint2
                 frameList.Add(frame);
             }
             currRectangle = frameList[currFrame];
+
+            scaleMultiplier = 3;
         }
 
         public void Update(GameTime gameTime)
@@ -48,8 +50,20 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            destinationRectangle = new Rectangle((int)location.X, (int)location.Y, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            // This Link Sword thing needs to be refactored because it messed up with the sprite position when i use link.GetSpriteRectangle (it's drawing in the wrong spots)
 
+            if (frameList[0] == new Rectangle(18, 97, 16, 28)) // LINK_USESWORD_UP
+            {
+                destinationRectangle = new Rectangle((int)location.X, (int)location.Y - 28, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            }
+            else if (frameList[0] == new Rectangle(326, 78, 27, 16)) // LINK_USESWORD_MIRROR_LEFT
+            {
+                destinationRectangle = new Rectangle((int)location.X - 27, (int)location.Y, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            }
+            else
+            {
+                destinationRectangle = new Rectangle((int)location.X, (int)location.Y, scaleMultiplier * currRectangle.Width, scaleMultiplier * currRectangle.Height);
+            }
             spriteBatch.Draw(spriteSheet, destinationRectangle, frameList[currFrame], Color.White);
         }
 

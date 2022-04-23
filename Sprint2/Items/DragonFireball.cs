@@ -13,6 +13,8 @@ namespace Sprint2
         private double velocity;
         private string trajectory;
         private Vector2 slope;
+        private TimeSpan startTimeUsing;
+        private bool startUsingItem;
 
         private static int initialVelocity = 1;
         private static int slopeX = 3;
@@ -23,6 +25,7 @@ namespace Sprint2
             counter = 0;
             velocity = initialVelocity;
             this.gom = enemy.gom;
+            startUsingItem = true;
         }
 
         public void SetTrajectory(string path)
@@ -58,11 +61,14 @@ namespace Sprint2
                         break;
                 }
             }
-            else
+
+            if (startUsingItem)
             {
+                startTimeUsing = gameTime.TotalGameTime;
+                startUsingItem = false;
 
             }
-            
+
             base.Update(gameTime);
         }
 

@@ -80,6 +80,16 @@
 			<YCoord>260</YCoord>
 		</enemy>
 	</Enemies>
+	<Items>
+		<item Type="bomb">
+			<XCoord>250</XCoord>
+			<YCoord>145</YCoord>
+		</item>
+		<item Type="bomb">
+			<XCoord>350</XCoord>
+			<YCoord>145</YCoord>
+		</item>
+	</Items>
 	<Walls>
 		<wall>
 			<XCoord>0</XCoord>
