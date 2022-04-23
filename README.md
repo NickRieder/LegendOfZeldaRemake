@@ -15,7 +15,7 @@ To move link around the map, use w,a,s,d.
 To attack with link's sword, use k.
 To damage link, use e.
 To pause the game and view the menu press p.
-Once in the menu use a and d to navigate through your items, then press z to select one.
+Once in the menu use a and d to navigate through your items, then press k to select one.
 Press p again to exit your menu and return to the game. 
 You can then use l to use the item.
 
