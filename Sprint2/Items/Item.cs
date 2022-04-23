@@ -141,7 +141,10 @@ namespace Sprint2
 					break;
 
 				case "heart":
-					link.health++;
+					if (link.health < 10)
+                    {
+						link.health++;
+					}
 					heartPickup.Play();
 					break;
 

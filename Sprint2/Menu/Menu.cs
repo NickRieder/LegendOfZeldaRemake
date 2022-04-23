@@ -23,12 +23,6 @@ namespace Sprint2
             this.link = gom.link;
             itemList = new List<string>();
 
-
-            // Temporary until collision is working
-            //itemList.Add("arrow");
-            //itemList.Add("boomerang");
-            //itemList.Add("bomb");
-            //gom.AddToPauseMenuList(spriteFactory.getMenuSprite());
         }
 
         public void SetSpriteContent(SpriteFactory spriteFactory)

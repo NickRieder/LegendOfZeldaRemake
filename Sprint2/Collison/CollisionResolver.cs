@@ -45,12 +45,12 @@ namespace Sprint2.Collison
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkBoomerang), typeof(Enemies), side), new LinkBoomerangCollidesWithEnemy());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkExplosion), typeof(Enemies), side), new LinkExplosionCollidesWithEnemy());
 
-
                 // Colliding into Block objects
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Block), side), new LinkCollidesWithBlock());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Enemies), typeof(Block), side), new EnemyCollidesWithBlock());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkBoomerang), typeof(Block), side), new LinkBoomerangCollidesWithBlock());
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(LinkArrow), typeof(Block), side), new LinkArrowCollidesWithBlock());
+                collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(DragonFireball), typeof(Block), side), new DragonFireballCollidesWithBlock());
 
                 // Colliding into the Wall boundaries
                 collisionDictionary.Add(new Tuple<Type, Type, CollisionDetector.COLLISION_SIDE>(typeof(Link), typeof(Wall), side), new LinkCollidesWithWall());

@@ -21,7 +21,7 @@ namespace Sprint2
 		//private string linkDirection;
 		Vector2 itemPos;
 
-		public bool canDealDamage;
+		public bool canDealDamage { get; set; }
 
 
 		public LinkDamagingProjectile(Link link, string projectileType)

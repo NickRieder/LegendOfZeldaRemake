@@ -39,12 +39,12 @@ namespace Sprint2
 
 		//temp
 		public bool canDamage;
-		public bool canTakeDamage;
+		public bool canTakeDamage { get; set; }
 		private static int damageCooldownTimer = 0;
 		private static int damageCooldown = 60;
 
 		private static int invulnerableTimer = 0;
-		private static int invulnerableDuration = 10;
+		private static int invulnerableDuration = 30;
 
 		private Random rng;
 
@@ -175,7 +175,7 @@ namespace Sprint2
 		public void DealDamage()
         {
 			//canDamage = false;
-			System.Diagnostics.Debug.WriteLine("DEBUG1: /Enemies/ canDamage =  " + canDamage);
+			
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
@@ -221,10 +221,15 @@ namespace Sprint2
 
 			}
 
-            if (!canTakeDamage)
+            if (invulnerableTimer >= invulnerableDuration)
             {
 				canTakeDamage = true;
-			}
+				invulnerableTimer = 0;
+            }
+			if (!canTakeDamage)
+            {
+				invulnerableTimer++;
+            }
 
             currState.Update(gameTime);
 

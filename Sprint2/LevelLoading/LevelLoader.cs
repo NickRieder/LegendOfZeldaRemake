@@ -40,6 +40,7 @@ namespace Sprint2
             LoadLink(doorType);
             XMLParser parser = new XMLParser(this);
             parser.parseFile(fileName);
+            
         }
 
         public void LoadLink(string doorType)
