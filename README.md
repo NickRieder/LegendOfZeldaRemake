@@ -1,4 +1,9 @@
 # 3902SprintProject
+
+NOTE TO GRADER:
+Please use our master branch for grading and no other branch. Not even the Sprint 5 branch. We worked very hard on this project to make a good game and we hope you 
+enjoy playing it as much as we did making it.
+
 Welcome to the Legend of Zelda!
 
 In This game, you are Link, a commoner, who is suddenly thrust into a mysterious, magical quest in the kingdom of Hyrule to save the princess, Zelda, from one evil or another.
