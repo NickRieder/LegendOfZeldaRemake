@@ -21,8 +21,8 @@ namespace Sprint2
             speed = 5;
             hasNotExploded = true;
             this.gom = link.gom;
-            canDealDamage = false;
-            damage = 5;
+            canDealDamage = true;
+            damage = 1;
         }
 
         private void Explode()
@@ -33,7 +33,7 @@ namespace Sprint2
             int halfBombHeight = sprite.getCurrentFrameRectangle().Height / 2;
 
             sprite = spriteFactory.getExplosionSprite();
-            sprite.scaleMultiplier = 10;      
+            sprite.scaleMultiplier = 10;
             
             explosionPos.X -= (sprite.getCurrentFrameRectangle().Width / 2) - halfBombWidth;
             explosionPos.Y -= (sprite.getCurrentFrameRectangle().Height / 2) - halfBombHeight;
@@ -50,6 +50,7 @@ namespace Sprint2
             Vector2 newPos = pos;
 
             // if you want bomb to travel a long distance
+            
             /*switch (projectileDirection)
             {
                 case "down":

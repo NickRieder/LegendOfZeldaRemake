@@ -61,9 +61,6 @@ namespace Sprint2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //draw HUD background
-            //HUDPos = new Vector2(0, gom.GetBackgroud().GetSpriteRectangle().Height);
-
             // HUD position is based on the camera position
             HUDPosX = camera.xPos; 
             HUDPosY = (int)Game1.GAME_WINDOW.ROOM_HEIGHT + camera.yPos;

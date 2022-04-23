@@ -19,7 +19,10 @@ namespace Sprint2
         public Sprite sprite;
         public string doorType;
         public bool canContinue;
+        public bool usable;
 
+        /*private int unusableTimer = 0;
+        private int unusableDuration = 500;*/
         private const int initialDoorPosX = 100;
         private const int initialDoorPosY = 500;
         public Door(string doorType, String nextLevel, LevelLoader levelLoader, String prevRoom, String nextClickRoom) 
@@ -30,6 +33,7 @@ namespace Sprint2
             this.prevRoom = prevRoom;
             this.nextClickRoom = nextClickRoom;
             this.doorType = doorType;
+            usable = true;
         }
         public void Draw(SpriteBatch spritebatch)
         {
@@ -114,6 +118,17 @@ namespace Sprint2
         public void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
+
+            /*if (unusableTimer >= unusableDuration)
+            {
+                usable = true;
+            }
+            if (!usable)
+            {
+                unusableTimer++;
+            }*/
+            //System.Diagnostics.Debug.WriteLine("DEBUG: /Door/ usable = " + usable);
+
         }
 
         public void LoadNextLevel()
@@ -121,6 +136,7 @@ namespace Sprint2
             if (canContinue)
             {
                 levelLoader.LoadLevel(nextLevel, doorType);
+                //usable = true;
             }
             
         }

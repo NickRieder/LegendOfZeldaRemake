@@ -71,13 +71,12 @@ namespace Sprint2
             camera.yPos = -yPos;
             var position = Matrix.CreateTranslation(xPos, yPos, 0);
 
-            //var offset = Matrix.CreateTranslation(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2, 0);
-
             camera.transform = position;
 
             if (!canContinue)
             {
                 door.LoadNextLevel();
+                //door.usable = true;
             }
         }
 

@@ -11,6 +11,8 @@ namespace Sprint2
 	{
 		public ILinkState currState;
 		public Vector2 pos { get; set; }
+		public bool freeze { get; set; }
+		
 		public SpriteFactory spriteFactory;
 		public SoundFactory soundFactory;
 		public Game1 game;
@@ -40,7 +42,10 @@ namespace Sprint2
 		public bool canTakeDamage;
 		public bool isUsingWeapon;
 		public int swordDamage;
-		public bool canDealDamage;
+		public bool canDealDamage { get; set; }
+		public bool canDecreaseKey { get; set; }
+		private int keyCooldownTimer = 0;
+		private int keyCooldownDuration = 60;
 
 		public Link(Game1 game, GameObjectManager gom)
 		{
@@ -49,7 +54,7 @@ namespace Sprint2
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
 
-			rupees = keys = bombs = 0;
+			rupees = keys = bombs = 3;
 
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();
@@ -58,6 +63,8 @@ namespace Sprint2
 			isUsingWeapon = false;
 			canDealDamage = true;
 			swordDamage = 2;
+			freeze = false;
+			canDecreaseKey = true;
 		}
 
 		public void SetSoundContent(SoundFactory soundFactory)
@@ -152,27 +159,30 @@ namespace Sprint2
 		}
 		public void Draw(SpriteBatch spriteBatch)
         {
-			currState.Draw(spriteBatch);
-			//item.Draw(spriteBatch);
+			if (!freeze)
+			{
+				currState.Draw(spriteBatch);
+			}
+			
+			if (keyCooldownTimer >= keyCooldownDuration)
+            {
+				canDecreaseKey = true;
+				keyCooldownTimer = 0;
+            }
+			if (!canDecreaseKey)
+            {
+				keyCooldownTimer++;
+            }
+
         }
 		public void Update(GameTime gameTime)
 		{
-			currState.Update(gameTime);
-			//sprite.Update(gameTime);
-			//item.Update(gameTime);
+			if (!freeze)
+            {
+				currState.Update(gameTime);
+			}
+			
 		}
-
-        /*public Link GetLinkObject()
-        {
-            return this;
-        }*/
-
-        /*public T GetObject<T>() where T : ISprite
-        {
-			T result = this;
-            return this;
-        }*/
-
 
         object ISprite.GetConcreteObject()
         {

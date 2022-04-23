@@ -20,17 +20,27 @@ namespace Sprint2
         }
         public void Invoke()
         {
+            //link.freeze = true;
+            
+            
             string doorType = door.doorType;
             ICommand scrollCommand;
 
             if (doorType.Contains("Lock") && link.keys > 0)
             {
                 door.canContinue = true;
-                link.keys--;
+                if (link.canDecreaseKey)
+                {
+                    link.keys--;
+                    link.canDecreaseKey = false;
+                }
+                
             }
 
-            if (door.canContinue)
+            if (door.usable && door.canContinue && link.canTakeDamage)
             {
+                //link.canUseDoor = false;
+                door.usable = false;
                 if (doorType.Contains("Top"))
                 {
                     scrollCommand = new SetCameraMovingUp(gom.camera, door);

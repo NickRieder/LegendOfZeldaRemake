@@ -27,11 +27,11 @@ namespace Sprint2
         }
         public void Invoke()
         {
-            if (explosion.canDealDamage && enemy.canTakeDamage)
+            if (enemy.canTakeDamage) // explosion.canDealDamage && 
             {
-                
+                enemy.canTakeDamage = false;
                 enemy.TakeDamage(explosion.damage); // bomb damage can be found in the LinkExplosion class
-                explosion.canDealDamage = false;
+                //explosion.canDealDamage = false;
             }
         }
     }
