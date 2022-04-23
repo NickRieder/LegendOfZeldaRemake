@@ -54,7 +54,7 @@ namespace Sprint2
 			health = linkStartingHealth;
 			maxHealth = linkMaxHealth;
 
-			rupees = keys = bombs = 3;
+			rupees = keys = bombs = 0;
 
 			pos = new Vector2(linkStartingPosX, linkStartingPosY);
 			itemList = new List<IItem>();

@@ -26,7 +26,7 @@ namespace Sprint2
 
         public void Update(GameTime gameTime)
         {
-            /*MouseState newState = Mouse.GetState();
+            MouseState newState = Mouse.GetState();
 
             if ((newState.LeftButton == ButtonState.Pressed) && (pastState.LeftButton == ButtonState.Released))
             {
@@ -37,7 +37,7 @@ namespace Sprint2
                 door.LoadNextRoom();
             }
 
-            pastState = newState;*/
+            pastState = newState;
         }
     }
 }
